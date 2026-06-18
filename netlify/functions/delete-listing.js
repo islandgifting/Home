@@ -1,0 +1,23 @@
+exports.handler = async (event) => {
+  if (event.httpMethod !== 'POST') return { statusCode: 405, body: JSON.stringify({ error: 'Method not allowed' }) };
+  try {
+    const { id, deleteCode } = JSON.parse(event.body || '{}');
+    const token = process.env.AIRTABLE_TOKEN;
+    const fetchRes = await fetch(`https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblBt9FfVcrMK1aOs/${id}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!fetchRes.ok) return { statusCode: 404, body: JSON.stringify({ error: 'Listing not found' }) };
+    const record = await fetchRes.json();
+    if (!record.fields.DeleteCode || record.fields.DeleteCode !== deleteCode) {
+      return { statusCode: 401, body: JSON.stringify({ error: 'Invalid code' }) };
+    }
+    await fetch(`https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblBt9FfVcrMK1aOs/${id}`, {
+      method: 'PATCH',
+      headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fields: { Status: 'Sold' } })
+    });
+    return { statusCode: 200, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ success: true }) };
+  } catch (error) {
+    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+  }
+};
