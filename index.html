@@ -961,93 +961,48 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
     <p>Put your business in front of the entire Staten Island community. Choose the plan that works for you.</p>
   </div>
 
-  <!-- BUNDLE DEAL -->
-  <div class="bundle-banner">
-    <div>
-      <h3>🔥 Bundle Deal — Banner + Sponsored Card</h3>
-      <p>Get maximum visibility with our most popular combo — save $19/mo</p>
-    </div>
-    <button class="bundle-btn" onclick="startAdPayment('Bundle')">Get Bundle — $129/mo</button>
-  </div>
-
-  <!-- AD PRICING -->
-  <div class="ad-pricing-grid">
-    <div class="ad-price-card">
-      <div class="ad-price-icon">📋</div>
-      <div class="ad-price-name">Basic Directory</div>
-      <div class="ad-price-val">Free</div>
-      <div class="ad-price-per">Forever free</div>
-      <ul class="ad-price-feats">
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-tier">Basic</div>
+      <div class="price-val">Free</div>
+      <div class="price-per">Forever free</div>
+      <ul class="price-feats">
         <li>Business name &amp; phone</li>
         <li>Category listing</li>
         <li>Searchable directory</li>
       </ul>
-      <div class="ad-btn" style="cursor:pointer" onclick="document.getElementById('contact-form').scrollIntoView({behavior:'smooth',block:'start'})">Get Listed Free</div>
+      <div class="price-btn" style="cursor:pointer" onclick="document.getElementById('contact-form').scrollIntoView({behavior:'smooth',block:'start'})">Get Listed Free</div>
+      <div style="margin-top:.75rem;font-size:.78rem;text-align:center"><a href="#contact-form" style="color:var(--gray);text-decoration:underline">Already listed? Update your details →</a></div>
     </div>
-    <div class="ad-price-card">
-      <div class="ad-price-icon">⭐</div>
-      <div class="ad-price-name">Featured Listing</div>
-      <div class="ad-price-val">$18<span style="font-size:.9rem">/mo</span></div>
-      <div class="ad-price-per">per month</div>
-      <ul class="ad-price-feats">
+
+    <div class="price-card feat">
+      <div class="price-tier">⭐ Featured</div>
+      <div class="price-val">$79<span style="font-size:1rem">/mo</span></div>
+      <div class="price-per">per month</div>
+      <ul class="price-feats">
         <li>Everything in Basic</li>
         <li>Featured card placement</li>
         <li>Business description</li>
         <li>Address &amp; website link</li>
+        <li>Priority in search results</li>
+        <li>Featured Business spotlight</li>
       </ul>
-      <a href="#contact-form" class="ad-btn price-btn">Get Started</a>
+      <button class="price-btn" onclick="startAdPayment('FeaturedBusiness')">Get Started</button>
     </div>
-    <div class="ad-price-card popular">
-      <div class="ad-price-icon">🏠</div>
-      <div class="ad-price-name">Homepage Banner</div>
-      <div class="ad-price-val">$99<span style="font-size:.9rem">/mo</span></div>
-      <div class="ad-price-per">per month</div>
-      <ul class="ad-price-feats">
-        <li>Full-width rotating banner</li>
-        <li>Seen by every visitor</li>
-        <li>Your logo, image &amp; tagline</li>
-        <li>Direct link to your business</li>
-      </ul>
-      <button class="ad-btn" onclick="startAdPayment('Banner')">Advertise Now</button>
-    </div>
-    <div class="ad-price-card">
-      <div class="ad-price-icon">📌</div>
-      <div class="ad-price-name">Sponsored Card</div>
-      <div class="ad-price-val">$49<span style="font-size:.9rem">/mo</span></div>
-      <div class="ad-price-per">per month</div>
-      <ul class="ad-price-feats">
-        <li>Pinned top of directory</li>
-        <li>Gold "Sponsored" badge</li>
-        <li>Featured in your category</li>
-        <li>Priority search placement</li>
-      </ul>
-      <button class="ad-btn" onclick="startAdPayment('Sponsored')">Get Sponsored</button>
-    </div>
-    <div class="ad-price-card">
-      <div class="ad-price-icon">🔥</div>
-      <div class="ad-price-name">Featured Business</div>
-      <div class="ad-price-val">$79<span style="font-size:.9rem">/mo</span></div>
-      <div class="ad-price-per">per month</div>
-      <ul class="ad-price-feats">
-        <li>Spotlight section on homepage</li>
-        <li>Premium navy card design</li>
-        <li>Logo, description &amp; phone</li>
-        <li>Above the directory</li>
-      </ul>
-      <button class="ad-btn" onclick="startAdPayment('FeaturedBusiness')">Get Featured</button>
-    </div>
-    <div class="ad-price-card">
-      <div class="ad-price-icon">💎</div>
-      <div class="ad-price-name">Premium</div>
-      <div class="ad-price-val">$36<span style="font-size:.9rem">/mo</span></div>
-      <div class="ad-price-per">per month</div>
-      <ul class="ad-price-feats">
+
+    <div class="price-card">
+      <div class="price-tier">💎 Premium</div>
+      <div class="price-val">$129<span style="font-size:1rem">/mo</span></div>
+      <div class="price-per">per month</div>
+      <ul class="price-feats">
         <li>Everything in Featured</li>
-        <li>Banner ad on homepage</li>
+        <li>Full-width homepage banner</li>
+        <li>Sponsored directory card</li>
         <li>Blog post feature</li>
         <li>Social media promotion</li>
+        <li>Maximum visibility</li>
       </ul>
-      <a href="#contact-form" class="ad-btn price-btn">Get Started</a>
+      <button class="price-btn" onclick="startAdPayment('Bundle')">Get Started</button>
     </div>
   </div>
 
@@ -1076,14 +1031,10 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
         <option>Other</option>
       </select>
       <select>
-        <option>Ad Type</option>
+        <option>Plan</option>
         <option>Basic (Free)</option>
-        <option>Featured Listing ($18/mo)</option>
-        <option>Homepage Banner ($99/mo)</option>
-        <option>Sponsored Card ($49/mo)</option>
-        <option>Featured Business ($79/mo)</option>
-        <option>Premium ($36/mo)</option>
-        <option>Bundle Deal ($129/mo)</option>
+        <option>Featured ($79/mo)</option>
+        <option>Premium ($129/mo)</option>
       </select>
     </div>
     <div class="form-row full">
