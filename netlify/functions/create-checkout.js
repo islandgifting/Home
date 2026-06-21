@@ -34,7 +34,7 @@ exports.handler = async (event) => {
     } else if (planLower.includes('bundle')) {
       priceId = 'price_1TjqJTIDdMLYVh4oey44O6Il'; // $129/mo Bundle
     } else if (planLower.includes('coupon')) {
-      priceId = 'price_1TksPjCeft5tD5H2nzn2Ssng'; // $29/mo Coupon
+      priceId = 'price_1Tksc2IDdMLYVh4o6WWoMaOa'; // $29/mo Coupon
     }
 
     if (!priceId) {
