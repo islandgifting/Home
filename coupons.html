@@ -142,7 +142,7 @@ function copyCode(code) {
 async function loadCoupons() {
   try {
     // Load from Coupons table
-    const res = await fetch(`https://api.airtable.com/v0/appyNDNuwGFgR44sg/Coupons?sort[0][field]=Created&sort[0][direction]=desc`, {
+    const res = await fetch(`https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ?sort[0][field]=Created&sort[0][direction]=desc`, {
       headers: { 'Authorization': `Bearer ${TOKEN}` }
     });
     const data = await res.json();
