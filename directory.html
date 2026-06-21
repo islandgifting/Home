@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Directory — ShopLocal SI</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--light:#f4f6fb;--white:#fff;--border:#dde2ee;--gray:#64748b}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:#1a1a2e}
+a{color:inherit;text-decoration:none}
+nav{background:var(--navy);position:sticky;top:0;z-index:999;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.logo{color:#fff;font-size:1.15rem;font-weight:900}.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:1.25rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500}.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--red);color:#fff!important;padding:.45rem 1.1rem;border-radius:6px;font-weight:700!important}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px}
+.page-hero{background:var(--navy);color:#fff;text-align:center;padding:2rem;position:relative}
+.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,67,.2),transparent 65%);pointer-events:none}
+.page-hero h1{font-size:1.8rem;font-weight:900;position:relative}.page-hero h1 span{color:var(--gold)}
+.page-hero p{color:rgba(255,255,255,.8);font-size:.88rem;margin-top:.4rem;position:relative}
+.search-bar{background:#fff;padding:1.25rem 2rem;border-bottom:1px solid var(--border);position:sticky;top:62px;z-index:99}
+.search-inner{max-width:760px;margin:0 auto;display:flex;gap:.75rem;flex-wrap:wrap}
+.search-inner input,.search-inner select{flex:1;min-width:150px;padding:.7rem 1rem;border:2px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;transition:border .2s}
+.search-inner input:focus,.search-inner select:focus{border-color:var(--navy)}
+.search-inner button{background:var(--navy);color:#fff;border:none;padding:.7rem 1.2rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem}
+.container{max-width:1150px;margin:0 auto;padding:2rem 1.5rem}
+.cat-tabs{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-bottom:2rem}
+.ctab{padding:.35rem .9rem;border:2px solid var(--navy);border-radius:20px;background:transparent;color:var(--navy);font-weight:600;font-size:.78rem;cursor:pointer;transition:all .2s}
+.ctab:hover,.ctab.active{background:var(--navy);color:#fff}
+.ctab.em:hover,.ctab.em.active{background:var(--red);border-color:var(--red);color:#fff}
+.cat-section{margin-bottom:2.5rem}
+.cat-title{font-size:.92rem;font-weight:800;color:var(--navy);background:#f0f3fa;padding:.55rem 1rem;border-left:4px solid var(--navy);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.5px}
+.cat-title.em{background:#fff5f5;border-left-color:var(--red);color:var(--red)}
+.biz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.9rem}
+.biz-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.95rem 1.1rem;transition:all .2s;position:relative}
+.biz-card:hover{border-color:var(--navy);box-shadow:0 4px 14px rgba(10,28,75,.12);transform:translateY(-2px)}
+.biz-card.em{background:#fff8f8;border-color:#ffcccc}
+.biz-card.hatz{background:#fff0f0;border:2px solid var(--red)}
+.biz-name{font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:.2rem}
+.biz-card.em .biz-name{color:var(--red)}
+.biz-desc{font-size:.78rem;color:var(--gray);margin-bottom:.35rem}
+.biz-addr{font-size:.75rem;color:var(--gray)}
+.biz-phone{font-size:.85rem;font-weight:700;color:var(--red);margin-top:.35rem}
+.biz-card.hatz .biz-phone{font-size:1.05rem;font-weight:900}
+.biz-card.featured-card{background:linear-gradient(135deg,#fffbf0,#fff8e1);border:2px solid var(--gold)}
+.biz-card.featured-card .biz-name{color:#7a5c00}
+.biz-card.featured-card::before{content:'⭐ Featured';position:absolute;top:-.1rem;right:.75rem;background:var(--gold);color:#111;font-size:.62rem;font-weight:800;padding:.15rem .5rem;border-radius:0 0 5px 5px}
+.biz-card.premium-card{background:linear-gradient(135deg,#0a1c4b,#182e6a);border:2px solid var(--gold);color:#fff}
+.biz-card.premium-card .biz-name{color:var(--gold)}
+.biz-card.premium-card .biz-desc,.biz-card.premium-card .biz-addr{color:rgba(255,255,255,.7)}
+.biz-card.premium-card .biz-phone a{color:#fff}
+.biz-card.premium-card::before{content:'💎 Premium';position:absolute;top:-.1rem;right:.75rem;background:var(--gold);color:#111;font-size:.62rem;font-weight:800;padding:.15rem .5rem;border-radius:0 0 5px 5px}
+.biz-card.premium-card:hover{box-shadow:0 4px 20px rgba(212,168,67,.4)}
+.biz-more-btn{display:block;margin-top:.6rem;background:var(--gold);color:#111;border:none;padding:.42rem .85rem;border-radius:6px;font-size:.73rem;font-weight:700;cursor:pointer;width:100%;text-align:center}
+.biz-more-btn:hover{background:#b8922e;color:#fff}
+.hidden{display:none!important}
+.biz-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.biz-modal-overlay.open{opacity:1;pointer-events:all}
+.biz-modal{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:640px;max-height:90vh;overflow-y:auto;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.biz-modal-overlay.open .biz-modal{transform:translateY(0)}
+.biz-modal-handle{width:40px;height:4px;background:#dde2ee;border-radius:2px;margin:1rem auto .5rem}
+.biz-modal-banner{width:100%;overflow:hidden}
+.biz-modal-banner iframe,.biz-modal-banner div{width:100%;min-height:140px;border:none;display:block}
+.biz-modal-body{padding:1.5rem}
+.biz-modal-badge{background:var(--gold);color:#111;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:4px;display:inline-block;margin-bottom:.65rem}
+.biz-modal-name{font-size:1.3rem;font-weight:900;color:var(--navy);margin-bottom:.2rem}
+.biz-modal-cat{font-size:.8rem;color:var(--gray);margin-bottom:.65rem}
+.biz-modal-desc{font-size:.88rem;line-height:1.65;margin-bottom:1rem}
+.biz-modal-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.biz-modal-btn-call{background:var(--red);color:#fff;padding:.65rem 1.1rem;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;display:flex;align-items:center;gap:.35rem;border:none;cursor:pointer}
+.biz-modal-btn-web{background:var(--navy);color:#fff;padding:.65rem 1.1rem;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;display:flex;align-items:center;gap:.35rem}
+.biz-modal-btn-email{background:#fff;color:var(--navy);border:2px solid var(--navy);padding:.6rem 1.1rem;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;display:flex;align-items:center;gap:.35rem}
+.biz-modal-coupons{border-top:1px solid var(--border);padding-top:.9rem;margin-top:.4rem}
+.biz-modal-coupons h4{font-size:.8rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.65rem}
+.biz-modal-coupon{background:var(--light);border-radius:10px;padding:.8rem 1rem;margin-bottom:.6rem;display:flex;justify-content:space-between;align-items:center}
+.biz-modal-coupon-discount{font-size:1rem;font-weight:900;color:var(--navy)}
+.biz-modal-coupon-desc{font-size:.76rem;color:var(--gray);margin-top:.1rem}
+.biz-modal-coupon-code{background:var(--gold);color:#111;font-size:.73rem;font-weight:800;padding:.28rem .65rem;border-radius:6px;cursor:pointer;white-space:nowrap}
+.biz-modal-close{width:100%;background:var(--light);color:var(--navy);border:none;padding:.85rem;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;margin-top:.4rem}
+footer{background:#070e29;color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.82rem}
+footer a{color:var(--gold)}
+@media(max-width:768px){.nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;padding:1rem 2rem;gap:.75rem}.nav-links.open{display:flex}.hamburger{display:flex}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Shop<span>Local</span> SI</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/directory.html" style="color:var(--gold)">Directory</a></li>
+    <li><a href="/marketplace.html">Marketplace</a></li>
+    <li><a href="/ads.html">📢 Ads</a></li>
+    <li><a href="/coupons.html">🎟️ Coupons</a></li>
+    <li><a href="/#shabbos">Shabbos</a></li>
+    <li><a href="/#blog">Blog</a></li>
+    <li><a href="/advertise.html" class="nav-cta">Advertise</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <h1>Community <span>Business Directory</span></h1>
+  <p>Every dollar spent locally strengthens our community — search, find, support</p>
+</div>
+
+<div class="search-bar">
+  <div class="search-inner">
+    <input type="text" id="searchInput" placeholder="Search businesses, services..." oninput="filterBiz()">
+    <select id="catFilter" onchange="filterBiz()">
+      <option value="">All Categories</option>
+      <option value="food">Restaurants & Food</option>
+      <option value="home">Home Services</option>
+      <option value="photo">Photography</option>
+      <option value="auto">Auto Services</option>
+      <option value="medical">Medical</option>
+      <option value="specialty">Specialty Shops</option>
+      <option value="beauty">Beauty & Self Care</option>
+      <option value="pool">Pool Rental</option>
+      <option value="services">Services</option>
+      <option value="transport">Transportation</option>
+      <option value="realty">Realtors</option>
+      <option value="insurance">Insurance</option>
+      <option value="emergency">Emergency Services</option>
+    </select>
+    <button onclick="filterBiz()">Search</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cat-tabs">
+    <button class="ctab active" onclick="setTab('all',this)">All</button>
+    <button class="ctab" onclick="setTab('food',this)">🍽 Food</button>
+    <button class="ctab" onclick="setTab('home',this)">🏠 Home</button>
+    <button class="ctab" onclick="setTab('photo',this)">📷 Photo</button>
+    <button class="ctab" onclick="setTab('auto',this)">🚗 Auto</button>
+    <button class="ctab" onclick="setTab('medical',this)">⚕ Medical</button>
+    <button class="ctab" onclick="setTab('specialty',this)">🛍 Specialty</button>
+    <button class="ctab" onclick="setTab('beauty',this)">💅 Beauty</button>
+    <button class="ctab" onclick="setTab('pool',this)">🏊 Pool</button>
+    <button class="ctab" onclick="setTab('services',this)">⚙ Services</button>
+    <button class="ctab" onclick="setTab('transport',this)">🚐 Transport</button>
+    <button class="ctab" onclick="setTab('realty',this)">🏡 Realty</button>
+    <button class="ctab" onclick="setTab('insurance',this)">📋 Insurance</button>
+    <button class="ctab em" onclick="setTab('emergency',this)">🆘 Emergency</button>
+  </div>
+
+  <div id="bizContainer">
+        <li><a href="tel:7187614444">Shmira: 718-761-4444</a></li>
+        <li><a href="tel:7183702121">Shomrim: 718-370-2121</a></li>
+        <li><a href="tel:7188544548">Misaskim: (718) 854-4548</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    &copy; 2025 Shop Local Staten Island · Strengthening our community one purchase at a time<br>
+    <span style="font-size:.72rem">To add or update your listing: <a href="/advertise.html" style="color:var(--gold)">click here</a></span>
+  </div>
+</footer>
+
+<!-- BUSINESS PROFILE MODAL -->
+<div class="biz-modal-overlay" id="bizModalOverlay" onclick="if(event.target===this)closeBizModal()">
+  <div class="biz-modal" id="bizModal">
+    <div class="biz-modal-handle"></div>
+    <div class="biz-modal-banner" id="bizModalBanner"></div>
+    <div class="biz-modal-body">
+      <div class="biz-modal-badge" id="bizModalBadge">⭐ Featured Partner</div>
+      <div class="biz-modal-name" id="bizModalName"></div>
+      <div class="biz-modal-cat" id="bizModalCat"></div>
+      <div class="biz-modal-desc" id="bizModalDesc"></div>
+      <div class="biz-modal-actions" id="bizModalActions"></div>
+      <div class="biz-modal-coupons" id="bizModalCoupons" style="display:none">
+        <h4>🎟️ Active Coupons</h4>
+        <div id="bizModalCouponsList"></div>
+      </div>
+      <button class="biz-modal-close" onclick="closeBizModal()">✕ Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── SHABBOS TIMES ──────────────────────────────
+(function() {
+  const LAT = 40.5795, LON = -74.1502;
+  function getNextFriday() {
+    const d = new Date(); const day = d.getDay();
+    const diff = day <= 5 ? 5 - day : 6;
+    const fri = new Date(d); fri.setDate(d.getDate() + (diff === 0 ? 7 : diff));
+    fri.setHours(12,0,0,0); return fri;
+  }
+  function isDST(date) {
+    const yr = date.getFullYear();
+    const start = new Date(yr,2,1); start.setDate(1+(7-start.getDay())%7+7);
+    const end = new Date(yr,10,1); end.setDate(1+(7-end.getDay())%7);
+    return date >= start && date < end;
+  }
+  function calcSunset(date) {
+    const J = Math.floor((date - new Date(date.getFullYear(),0,0))/86400000);
+    const D = 23.45*Math.sin((2*Math.PI/365)*(J-81))*Math.PI/180;
+    const lat_r = LAT*Math.PI/180;
+    const cosH = -Math.tan(lat_r)*Math.tan(D);
+    if (cosH>1||cosH<-1) return null;
+    const H = Math.acos(cosH)*180/Math.PI;
+    return 12+H/15-LON/15+(isDST(date)?-4:-5);
+  }
+  function fmt(h) {
+    const hr=Math.floor(h),min=Math.round((h-hr)*60);
+    const m=min<10?'0'+min:min,period=hr>=12?'PM':'AM',h12=hr>12?hr-12:hr===0?12:hr;
+    return h12+':'+m+' '+period;
+  }
+  const fri=getNextFriday(),sun=calcSunset(fri);
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const sat=new Date(fri); sat.setDate(fri.getDate()+1);
+  document.getElementById('shabDate').textContent='Shabbos '+days[fri.getDay()]+', '+months[fri.getMonth()]+' '+fri.getDate()+' — '+months[sat.getMonth()]+' '+sat.getDate()+', '+sat.getFullYear();
+  if (sun) {
+    document.getElementById('candleLighting').textContent=fmt(sun-18/60);
+    document.getElementById('shabbosEnds').textContent=fmt(sun+50/60);
+  }
+})();
+
+// ─── BANNER FLASH ANIMATION ──────────────────────────────
+(function() {
+  const texts = ['📢 YOUR AD HERE', '🏆 PREMIUM BANNER', '✨ BE SEEN BY ALL', '🚀 ADVERTISE NOW'];
+  let i = 0;
+  const el = document.getElementById('bannerFlashText');
+  if (el) setInterval(() => {
+    el.style.opacity = '0';
+    setTimeout(() => {
+      const t = texts[i % texts.length];
+      el.querySelector('div').textContent = t;
+      el.style.opacity = '1';
+      i++;
+    }, 400);
+    el.style.transition = 'opacity .4s';
+  }, 3000);
+})();
+
+// ─── LOAD ADS & FEATURED BUSINESSES ──────────────────────────────
+(function() {
+  let allAds = [], allCoupons = [];
+
+  async function loadAll() {
+    try {
+      const [adsRes, coupRes] = await Promise.all([
+        fetch('/.netlify/functions/get-ads'),
+        fetch('https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ', {
+          headers: { 'Authorization': `Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87` }
+        })
+      ]);
+
+      if (adsRes.ok) {
+        const data = await adsRes.json();
+        allAds = data.all || [...(data.banners||[]), ...(data.featured||[]), ...(data.sponsored||[])];
+
+        // BANNER
+        if (data.banners && data.banners.length) {
+          document.getElementById('bannerPromo').style.display = 'none';
+          const wrap = document.getElementById('bannerWrap');
+          const rotator = document.getElementById('bannerRotator');
+          wrap.style.display = 'block';
+          rotator.innerHTML = data.banners.map((b,i) => `
+            <div class="banner-slide ${i===0?'active':''}" style="display:${i===0?'block':'none'}" onclick="${b.link?`window.open('${b.link}','_blank')`:''}">
+              ${b.bannerHTML
+                ? `<iframe srcdoc="${b.bannerHTML.replace(/"/g,'&quot;')}" style="width:100%;height:180px;border:none"></iframe>`
+                : `<div style="width:100%;height:180px;background:linear-gradient(135deg,${b.color||'#0a1c4b'},#182e6a);display:flex;align-items:center;justify-content:space-between;padding:0 2rem">
+                    <div><div style="color:var(--gold);font-size:1.3rem;font-weight:900">${b.businessName}</div><div style="color:rgba(255,255,255,.8);font-size:.85rem">${b.tagline||''}</div><div style="color:var(--gold);font-weight:700">${b.phone||''}</div></div>
+                    <div style="background:var(--gold);color:#111;padding:.7rem 1.4rem;border-radius:8px;font-weight:800">Call Now →</div>
+                  </div>`
+              }
+            </div>`).join('');
+          if (data.banners.length > 1) {
+            let cur = 0;
+            setInterval(() => {
+              const slides = rotator.querySelectorAll('.banner-slide');
+              slides[cur].style.display = 'none';
+              cur = (cur+1) % slides.length;
+              slides[cur].style.display = 'block';
+            }, 4000);
+          }
+        }
+
+        // FEATURED BUSINESSES SECTION
+        const featGrid = document.getElementById('featBizGrid');
+        const featItems = data.all || [...(data.featured||[]), ...(data.banners||[])];
+        if (featItems.length) {
+          featGrid.innerHTML = featItems.map(a => `
+            <div class="feat-biz-card" onclick="openBizModal(${JSON.stringify(a).replace(/"/g,'&quot;')})">
+              <div class="feat-biz-badge">${a.planType === 'premium' ? '💎 Premium' : '⭐ Featured'}</div>
+              <div class="feat-biz-name">${a.businessName}</div>
+              <div class="feat-biz-desc">${a.tagline || a.description || ''}</div>
+              <div class="feat-biz-phone">${a.phone || ''}</div>
+            </div>`).join('');
+        } else {
+          document.getElementById('featSection').style.display = 'none';
+        }
+
+        // TV SCREEN
+        if (allAds.length) {
+          const tvInner = document.getElementById('tvInner');
+          let cur = 0;
+          function showTVAd(i) {
+            const ad = allAds[i];
+            if (ad.bannerHTML) {
+              tvInner.innerHTML = `<iframe srcdoc="${ad.bannerHTML.replace(/"/g,'&quot;')}" style="width:100%;height:100%;border:none"></iframe>`;
+            } else {
+              tvInner.innerHTML = `<div style="width:100%;height:100%;background:linear-gradient(135deg,${ad.color||'#0a1c4b'},#182e6a);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;text-align:center">
+                <div style="color:var(--gold);font-size:1.2rem;font-weight:900">${ad.businessName}</div>
+                <div style="color:rgba(255,255,255,.8);font-size:.8rem;margin-top:.3rem">${ad.tagline||''}</div>
+                <div style="color:var(--gold);font-weight:700;margin-top:.5rem">${ad.phone||''}</div>
+              </div>`;
+            }
+          }
+          showTVAd(0);
+          if (allAds.length > 1) {
+            setInterval(() => {
+              const tvInner = document.getElementById('tvInner');
+              tvInner.style.opacity = '0';
+              tvInner.style.transition = 'opacity .3s';
+              setTimeout(() => { cur = (cur+1)%allAds.length; showTVAd(cur); tvInner.style.opacity='1'; }, 300);
+            }, 4000);
+          }
+        }
+      }
+
+      if (coupRes.ok) {
+        const cd = await coupRes.json();
+        allCoupons = (cd.records||[]).filter(r=>(r.fields.Status||'').toLowerCase()==='active').map(r=>({
+          biz: r.fields.BusinessName||'', discount: r.fields.Discount||'',
+          desc: r.fields.Description||'', code: r.fields.Code||''
+        }));
+      }
+    } catch(e) {
+      console.log('Load error:', e);
+      document.getElementById('featSection').style.display = 'none';
+    }
+  }
+
+  window.openBizModal = function(ad) {
+    if (typeof ad === 'string') ad = JSON.parse(ad);
+    const banner = document.getElementById('bizModalBanner');
+    if (ad.bannerHTML) {
+      banner.innerHTML = `<iframe srcdoc="${ad.bannerHTML.replace(/"/g,'&quot;')}" style="width:100%;height:160px;border:none"></iframe>`;
+      banner.style.display = 'block';
+    } else {
+      banner.innerHTML = `<div style="width:100%;height:120px;background:linear-gradient(135deg,${ad.color||'#0a1c4b'},#182e6a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;font-weight:900">${ad.businessName}</div>`;
+      banner.style.display = 'block';
+    }
+    document.getElementById('bizModalBadge').textContent = ad.planType==='premium' ? '💎 Premium Partner' : '⭐ Featured Partner';
+    document.getElementById('bizModalName').textContent = ad.businessName||'';
+    document.getElementById('bizModalCat').textContent = (ad.category||'') + (ad.address ? ' · '+ad.address : '');
+    document.getElementById('bizModalDesc').textContent = ad.description||ad.tagline||'';
+    let actions = '';
+    if (ad.phone) actions += `<a href="tel:${ad.phone.replace(/\D/g,'')}" class="biz-modal-btn-call">📞 Call Now</a>`;
+    if (ad.link) actions += `<a href="${ad.link}" target="_blank" class="biz-modal-btn-web">🌐 Visit Website</a>`;
+    if (ad.email) actions += `<a href="mailto:${ad.email}" class="biz-modal-btn-email">✉️ Email Us</a>`;
+    document.getElementById('bizModalActions').innerHTML = actions;
+    const bizCoupons = allCoupons.filter(c=>c.biz.toLowerCase()===(ad.businessName||'').toLowerCase());
+    const coupSection = document.getElementById('bizModalCoupons');
+    if (bizCoupons.length) {
+      coupSection.style.display = 'block';
+      document.getElementById('bizModalCouponsList').innerHTML = bizCoupons.map(c=>`
+        <div class="biz-modal-coupon">
+          <div><div class="biz-modal-coupon-discount">${c.discount}</div><div class="biz-modal-coupon-desc">${c.desc}</div></div>
+          ${c.code?`<div class="biz-modal-coupon-code" onclick="navigator.clipboard.writeText('${c.code}');this.textContent='✅';setTimeout(()=>this.textContent='${c.code}',2000)">${c.code}</div>`:''}
+        </div>`).join('');
+    } else { coupSection.style.display = 'none'; }
+    document.getElementById('bizModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeBizModal = function() {
+    document.getElementById('bizModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('DOMContentLoaded', loadAll);
+})();
+
+// ─── SMOOTH SCROLL ──────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
+    <div style="text-align:center;margin-top:1rem">
+      <p id="noResults" class="hidden" style="color:var(--gray);padding:2rem">No businesses found. Try a different search.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="biz-modal-overlay" id="bizModalOverlay" onclick="if(event.target===this)closeBizModal()">
+  <div class="biz-modal">
+    <div class="biz-modal-handle"></div>
+    <div class="biz-modal-banner" id="bizModalBanner"></div>
+    <div class="biz-modal-body">
+      <div class="biz-modal-badge" id="bizModalBadge">⭐ Featured Partner</div>
+      <div class="biz-modal-name" id="bizModalName"></div>
+      <div class="biz-modal-cat" id="bizModalCat"></div>
+      <div class="biz-modal-desc" id="bizModalDesc"></div>
+      <div class="biz-modal-actions" id="bizModalActions"></div>
+      <div class="biz-modal-coupons" id="bizModalCoupons" style="display:none">
+        <h4>🎟️ Active Coupons</h4>
+        <div id="bizModalCouponsList"></div>
+      </div>
+      <button class="biz-modal-close" onclick="closeBizModal()">✕ Close</button>
+    </div>
+  </div>
+</div>
+
+<footer><a href="/">← ShopLocal SI</a> · <a href="/advertise.html">Advertise</a> · <a href="/coupons.html">Coupons</a></footer>
+
+<script>
+function filterBiz() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const cat = document.getElementById('catFilter').value;
+  const cards = document.querySelectorAll('.biz-card');
+  const sections = document.querySelectorAll('.cat-section');
+  let found = 0;
+  cards.forEach(c => {
+    const matchCat = !cat || c.dataset.cat === cat;
+    const matchQ = !q || c.dataset.search.includes(q) || c.innerText.toLowerCase().includes(q);
+    c.classList.toggle('hidden', !(matchCat && matchQ));
+    if (matchCat && matchQ) found++;
+  });
+  sections.forEach(s => {
+    const vis = [...s.querySelectorAll('.biz-card')].some(c => !c.classList.contains('hidden'));
+    s.classList.toggle('hidden', !vis);
+  });
+  const nr = document.getElementById('noResults');
+  if (nr) nr.classList.toggle('hidden', found > 0);
+}
+
+function setTab(cat, btn) {
+  document.querySelectorAll('.ctab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('catFilter').value = cat === 'all' ? '' : cat;
+  document.getElementById('searchInput').value = '';
+  filterBiz();
+}
+
+// Load featured profiles
+let allCoupons = [];
+(async function() {
+  try {
+    const [adsRes, coupRes] = await Promise.all([
+      fetch('/.netlify/functions/get-ads'),
+      fetch('https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ', {
+        headers: { 'Authorization': `Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87` }
+      })
+    ]);
+    if (adsRes.ok) {
+      const data = await adsRes.json();
+      const featuredAds = data.all || [...(data.banners||[]),...(data.featured||[]),...(data.sponsored||[])];
+      if (featuredAds.length) {
+        document.querySelectorAll('.biz-card').forEach(card => {
+          const nameEl = card.querySelector('.biz-name');
+          if (!nameEl) return;
+          const cardName = nameEl.textContent.trim().toLowerCase();
+          const match = featuredAds.find(a =>
+            a.businessName.toLowerCase() === cardName ||
+            cardName.includes(a.businessName.toLowerCase()) ||
+            a.businessName.toLowerCase().includes(cardName)
+          );
+          if (match) {
+            card.classList.add(match.planType === 'premium' ? 'premium-card' : 'featured-card');
+            const btn = document.createElement('button');
+            btn.className = 'biz-more-btn';
+            btn.textContent = match.planType === 'premium' ? '💎 More Info' : '⭐ More Info';
+            btn.onclick = (e) => { e.stopPropagation(); openBizModal(match); };
+            card.appendChild(btn);
+          }
+        });
+      }
+    }
+    if (coupRes.ok) {
+      const cd = await coupRes.json();
+      allCoupons = (cd.records||[]).filter(r=>(r.fields.Status||'').toLowerCase()==='active').map(r=>({
+        biz:r.fields.BusinessName||'',discount:r.fields.Discount||'',desc:r.fields.Description||'',code:r.fields.Code||''
+      }));
+    }
+  } catch(e) { console.log(e); }
+})();
+
+function openBizModal(ad) {
+  const banner = document.getElementById('bizModalBanner');
+  if (ad.bannerHTML) {
+    banner.innerHTML = `<iframe srcdoc="${ad.bannerHTML.replace(/"/g,'&quot;')}" style="width:100%;height:160px;border:none"></iframe>`;
+  } else {
+    banner.innerHTML = `<div style="height:120px;background:linear-gradient(135deg,${ad.color||'#0a1c4b'},#182e6a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;font-weight:900">${ad.businessName}</div>`;
+  }
+  banner.style.display = 'block';
+  document.getElementById('bizModalBadge').textContent = ad.planType==='premium'?'💎 Premium Partner':'⭐ Featured Partner';
+  document.getElementById('bizModalName').textContent = ad.businessName||'';
+  document.getElementById('bizModalCat').textContent = (ad.category||'')+(ad.address?' · '+ad.address:'');
+  document.getElementById('bizModalDesc').textContent = ad.description||ad.tagline||'';
+  let actions = '';
+  if (ad.phone) actions += `<a href="tel:${ad.phone.replace(/\D/g,'')}" class="biz-modal-btn-call">📞 Call Now</a>`;
+  if (ad.link) actions += `<a href="${ad.link}" target="_blank" class="biz-modal-btn-web">🌐 Website</a>`;
+  if (ad.email) actions += `<a href="mailto:${ad.email}" class="biz-modal-btn-email">✉️ Email</a>`;
+  document.getElementById('bizModalActions').innerHTML = actions;
+  const bizCoupons = allCoupons.filter(c=>c.biz.toLowerCase()===(ad.businessName||'').toLowerCase());
+  const cs = document.getElementById('bizModalCoupons');
+  if (bizCoupons.length) {
+    cs.style.display='block';
+    document.getElementById('bizModalCouponsList').innerHTML = bizCoupons.map(c=>`
+      <div class="biz-modal-coupon">
+        <div><div class="biz-modal-coupon-discount">${c.discount}</div><div class="biz-modal-coupon-desc">${c.desc}</div></div>
+        ${c.code?`<div class="biz-modal-coupon-code" onclick="navigator.clipboard.writeText('${c.code}');this.textContent='✅';setTimeout(()=>this.textContent='${c.code}',2000)">${c.code}</div>`:''}
+      </div>`).join('');
+  } else cs.style.display='none';
+  document.getElementById('bizModalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeBizModal() {
+  document.getElementById('bizModalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+</script>
+</body>
+</html>

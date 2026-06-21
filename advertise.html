@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advertise — ShopLocal SI</title>
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--light:#f4f6fb;--border:#dde2ee;--gray:#64748b}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:#1a1a2e}
+a{color:inherit;text-decoration:none}
+nav{background:var(--navy);position:sticky;top:0;z-index:999;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.logo{color:#fff;font-size:1.15rem;font-weight:900}.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:1.25rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500}.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--red);color:#fff!important;padding:.45rem 1.1rem;border-radius:6px;font-weight:700!important}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px}
+.page-hero{background:var(--navy);color:#fff;text-align:center;padding:3rem 2rem;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,67,.2),transparent 65%);pointer-events:none}
+.page-hero h1{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;position:relative}.page-hero h1 span{color:var(--gold)}
+.page-hero p{color:rgba(255,255,255,.8);margin:.5rem auto 0;max-width:520px;position:relative}
+.container{max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;margin-bottom:2.5rem}
+.price-card{border:2px solid var(--border);border-radius:14px;padding:1.75rem;text-align:center;transition:all .2s;background:#fff}
+.price-card.feat{border-color:var(--navy);background:var(--navy);color:#fff}
+.price-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(10,28,75,.15)}
+.price-tier{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:.5rem}
+.price-card.feat .price-tier{color:var(--gold)}
+.price-val{font-size:2.3rem;font-weight:900;color:var(--navy)}
+.price-card.feat .price-val{color:#fff}
+.price-per{font-size:.8rem;color:var(--gray);margin-bottom:1.25rem}
+.price-card.feat .price-per{color:rgba(255,255,255,.65)}
+.price-feats{list-style:none;margin-bottom:1.5rem;text-align:left}
+.price-feats li{padding:.35rem 0;font-size:.84rem;border-bottom:1px solid #eee}
+.price-card.feat .price-feats li{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.88)}
+.price-feats li::before{content:"✓ ";color:#2a9d5c;font-weight:700}
+.price-card.feat .price-feats li::before{color:var(--gold)}
+.price-btn{display:block;padding:.7rem;border-radius:8px;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s;border:2px solid var(--navy);color:var(--navy);background:transparent;width:100%}
+.price-btn:hover{background:var(--navy);color:#fff}
+.price-card.feat .price-btn{background:var(--gold);color:#111;border-color:var(--gold)}
+.price-card.feat .price-btn:hover{background:#b8922e}
+.free-note{font-size:.73rem;text-align:center;margin-top:.6rem;color:var(--gray)}
+.contact-form{background:#fff;border-radius:14px;border:1px solid var(--border);padding:2rem;margin-top:1rem}
+.contact-form h3{font-weight:700;color:var(--navy);margin-bottom:1.25rem;text-align:center}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.form-row.full{grid-template-columns:1fr}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:.7rem .9rem;border:2px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;transition:border .2s}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--navy)}
+.contact-form textarea{height:90px;resize:vertical}
+.form-submit{background:var(--navy);color:#fff;border:none;padding:.8rem 2rem;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;width:100%;margin-top:.5rem}
+.coupon-cta{background:linear-gradient(135deg,var(--navy),#182e6a);border-radius:14px;padding:2rem;text-align:center;color:#fff;margin-top:2rem}
+.coupon-cta h3{color:var(--gold);font-size:1.1rem;margin-bottom:.4rem}
+.coupon-cta p{color:rgba(255,255,255,.8);font-size:.85rem;margin-bottom:1rem}
+.btn-gold{background:var(--gold);color:#111;padding:.75rem 2rem;border-radius:8px;font-weight:800;border:none;cursor:pointer;font-size:.9rem}
+footer{background:#070e29;color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.82rem;margin-top:2rem}
+footer a{color:var(--gold)}
+@media(max-width:768px){.nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;padding:1rem 2rem;gap:.75rem}.nav-links.open{display:flex}.hamburger{display:flex}.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Shop<span>Local</span> SI</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/directory.html">Directory</a></li>
+    <li><a href="/marketplace.html">Marketplace</a></li>
+    <li><a href="/ads.html">📢 Ads</a></li>
+    <li><a href="/coupons.html">🎟️ Coupons</a></li>
+    <li><a href="/#shabbos">Shabbos</a></li>
+    <li><a href="/advertise.html" class="nav-cta" style="background:var(--gold);color:#111!important">Advertise</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <h1>Advertise With <span>ShopLocal SI</span></h1>
+  <p>Put your business in front of thousands of Staten Island community members every month</p>
+</div>
+
+<div class="container">
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-tier">Basic</div>
+      <div class="price-val">Free</div>
+      <div class="price-per">Forever free</div>
+      <ul class="price-feats">
+        <li>Business name &amp; phone</li>
+        <li>Category listing</li>
+        <li>Searchable directory</li>
+      </ul>
+      <div class="price-btn" style="cursor:pointer" onclick="document.getElementById('contact-form').scrollIntoView({behavior:'smooth'})">Get Listed Free</div>
+      <div class="free-note">Already listed? <a href="#contact-form" style="color:var(--navy);text-decoration:underline">Update your details →</a></div>
+    </div>
+
+    <div class="price-card feat">
+      <div class="price-tier">⭐ Featured</div>
+      <div class="price-val">$79<span style="font-size:.9rem">/mo</span></div>
+      <div class="price-per">per month</div>
+      <ul class="price-feats">
+        <li>Everything in Basic</li>
+        <li>Gold card in directory</li>
+        <li>Business description</li>
+        <li>Address &amp; website link</li>
+        <li>Featured Business spotlight</li>
+        <li>⭐ More Info button</li>
+      </ul>
+      <button class="price-btn" onclick="startAdPayment('FeaturedBusiness')">Get Started</button>
+    </div>
+
+    <div class="price-card">
+      <div class="price-tier">💎 Premium</div>
+      <div class="price-val">$129<span style="font-size:.9rem">/mo</span></div>
+      <div class="price-per">per month</div>
+      <ul class="price-feats">
+        <li>Everything in Featured</li>
+        <li>Navy/gold card in directory</li>
+        <li>Full-width homepage banner</li>
+        <li>Sponsored directory card</li>
+        <li>TV screen ad display</li>
+        <li>Blog post feature</li>
+        <li>Maximum visibility</li>
+      </ul>
+      <button class="price-btn" onclick="startAdPayment('Bundle')">Get Started</button>
+    </div>
+  </div>
+
+  <!-- COUPON CTA -->
+  <div class="coupon-cta">
+    <h3>🎟️ Also offer a Coupon!</h3>
+    <p>Post a discount offer on our Coupons page — starting at just $29/mo. Expires end of month.</p>
+    <button class="btn-gold" onclick="window.location.href='/coupons.html'">Post a Coupon — $29/mo</button>
+  </div>
+
+  <!-- CONTACT FORM -->
+  <div class="contact-form" id="contact-form" style="margin-top:2.5rem">
+    <h3>📬 Submit Your Listing or Enquiry</h3>
+    <div class="form-row">
+      <input type="text" placeholder="Business Name *">
+      <input type="text" placeholder="Contact Name *">
+    </div>
+    <div class="form-row">
+      <input type="tel" placeholder="Phone Number *">
+      <input type="email" placeholder="Email Address">
+    </div>
+    <div class="form-row">
+      <select>
+        <option>Category</option>
+        <option>Restaurants &amp; Food</option><option>Home Services</option>
+        <option>Photography</option><option>Auto Services</option><option>Medical</option>
+        <option>Specialty Shops</option><option>Beauty &amp; Self Care</option>
+        <option>Services</option><option>Transportation</option><option>Other</option>
+      </select>
+      <select>
+        <option>Plan</option>
+        <option>Basic (Free)</option>
+        <option>Featured ($79/mo)</option>
+        <option>Premium ($129/mo)</option>
+        <option>Coupon ($29/mo)</option>
+      </select>
+    </div>
+    <div class="form-row full">
+      <textarea placeholder="Business description, address, or message…"></textarea>
+    </div>
+    <button class="form-submit" onclick="alert('Thank you! We will be in touch shortly. ✡')">Submit Enquiry</button>
+  </div>
+</div>
+
+<footer><a href="/">← ShopLocal SI</a> · <a href="/directory.html">Directory</a> · <a href="/coupons.html">Coupons</a></footer>
+
+<script>
+const stripe = Stripe('pk_live_51Tin6MIDdMLYVh4oK2QStvaVhBuIEgCcD92cHrhppumHc9xe2fAdlUbniSIWtfccPi2Pqoohh8mzGtjA4Zvq2IPu000Marfnt5');
+
+async function startAdPayment(plan) {
+  try {
+    const response = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan })
+    });
+    const data = await response.json();
+    if (data.redirect) { document.getElementById('contact-form').scrollIntoView({behavior:'smooth'}); return; }
+    const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+    if (result.error) throw new Error(result.error.message);
+  } catch (error) {
+    alert('Payment error: ' + error.message + '\n\nPlease fill in the form below.');
+    document.getElementById('contact-form').scrollIntoView({behavior:'smooth'});
+  }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>

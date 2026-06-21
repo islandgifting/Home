@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Marketplace — ShopLocal SI</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--light:#f4f6fb;--border:#dde2ee;--gray:#64748b}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:#1a1a2e}
+a{color:inherit;text-decoration:none}
+nav{background:var(--navy);position:sticky;top:0;z-index:999;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.logo{color:#fff;font-size:1.15rem;font-weight:900}.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:1.25rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500}.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--red);color:#fff!important;padding:.45rem 1.1rem;border-radius:6px;font-weight:700!important}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px}
+.page-hero{background:var(--navy);color:#fff;text-align:center;padding:2rem;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,67,.2),transparent 65%);pointer-events:none}
+.page-hero h1{font-size:1.8rem;font-weight:900;position:relative}.page-hero h1 span{color:var(--gold)}
+.page-hero p{color:rgba(255,255,255,.8);font-size:.88rem;margin-top:.4rem;position:relative}
+.container{max-width:1150px;margin:0 auto;padding:2rem 1.5rem}
+.mkt-form-wrap{background:#fff;border-radius:14px;box-shadow:0 2px 16px rgba(10,28,75,.10);padding:2rem;margin-bottom:2.5rem}
+.mkt-form-wrap h3{color:var(--navy);font-size:1.1rem;margin-bottom:1.25rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.form-row.full{grid-template-columns:1fr}
+.mkt-form-wrap input,.mkt-form-wrap select,.mkt-form-wrap textarea{width:100%;padding:.7rem .9rem;border:2px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;transition:border .2s}
+.mkt-form-wrap input:focus,.mkt-form-wrap select:focus,.mkt-form-wrap textarea:focus{border-color:var(--navy)}
+.mkt-form-wrap textarea{height:80px;resize:vertical}
+.hide-toggle{background:#f8faff;border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;margin-bottom:.75rem}
+.hide-toggle label{display:flex;align-items:flex-start;gap:.65rem;cursor:pointer}
+.hide-toggle input[type=checkbox]{margin-top:3px;width:16px;height:16px}
+.hide-toggle .title{font-weight:700;font-size:.88rem;color:var(--navy)}
+.hide-toggle .sub{font-size:.76rem;color:var(--gray);margin-top:.15rem}
+.mkt-submit-btn{background:var(--navy);color:#fff;padding:.85rem 2rem;border:none;border-radius:8px;font-weight:700;font-size:.92rem;cursor:pointer;width:100%}
+.mkt-success{display:none;margin-top:1rem;background:#e8f8ee;color:#1a6b35;padding:.85rem 1rem;border-radius:8px;font-weight:600;text-align:center}
+.mkt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.25rem}
+.mkt-card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:all .2s}
+.mkt-card:hover{box-shadow:0 8px 22px rgba(0,0,0,.1);transform:translateY(-3px)}
+.mkt-img{height:150px;background:linear-gradient(135deg,#e8ecf5,#d0d8ee);display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+.mkt-body{padding:1rem}
+.mkt-tag{display:inline-block;background:#e8f0fd;color:var(--navy);font-size:.7rem;font-weight:700;padding:.18rem .6rem;border-radius:4px;margin-bottom:.4rem}
+.mkt-title{font-weight:700;font-size:.92rem;color:#1a1a2e;margin-bottom:.22rem}
+.mkt-desc{font-size:.8rem;color:var(--gray)}
+.mkt-price{color:var(--red);font-weight:800;font-size:1rem;margin-top:.4rem}
+.mkt-contact{font-size:.76rem;color:var(--gray)}
+.mkt-footer{padding:.7rem 1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;display:none}
+.modal-box{background:#fff;border-radius:14px;padding:2rem;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal-box h3{color:var(--navy);margin-bottom:.5rem}
+.modal-box p{font-size:.83rem;color:var(--gray);margin-bottom:1rem}
+.modal-box input,.modal-box textarea{width:100%;padding:.7rem;border:2px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;margin-bottom:.75rem}
+.modal-box textarea{height:90px;resize:vertical}
+.modal-btn-row{display:flex;gap:.5rem}
+.btn-navy{background:var(--navy);color:#fff;border:none;padding:.75rem 1rem;border-radius:8px;font-weight:700;cursor:pointer;flex:1}
+.btn-light{background:var(--light);color:var(--navy);border:1px solid var(--border);padding:.75rem 1rem;border-radius:8px;font-weight:600;cursor:pointer;flex:1}
+.modal-status{font-size:.83rem;text-align:center;margin-top:.65rem}
+footer{background:#070e29;color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.82rem;margin-top:2rem}
+footer a{color:var(--gold)}
+@media(max-width:768px){.nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;padding:1rem 2rem;gap:.75rem}.nav-links.open{display:flex}.hamburger{display:flex}.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Shop<span>Local</span> SI</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/directory.html">Directory</a></li>
+    <li><a href="/marketplace.html" style="color:var(--gold)">Marketplace</a></li>
+    <li><a href="/ads.html">📢 Ads</a></li>
+    <li><a href="/coupons.html">🎟️ Coupons</a></li>
+    <li><a href="/#shabbos">Shabbos</a></li>
+    <li><a href="/advertise.html" class="nav-cta">Advertise</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <h1>Community <span>Marketplace</span></h1>
+  <p>Buy, sell, and trade within our community — 100% free</p>
+</div>
+
+<div class="container">
+  <!-- POST FORM -->
+  <div class="mkt-form-wrap">
+    <h3>➕ Post a Free Listing</h3>
+    <div class="form-row">
+      <input id="mkt-title" type="text" placeholder="Item Title *">
+      <input id="mkt-price" type="text" placeholder="Price (e.g. $50 OBO or Free)">
+    </div>
+    <div class="form-row">
+      <select id="mkt-cat">
+        <option value="">Category *</option>
+        <option>Furniture</option><option>Clothing</option><option>Seforim &amp; Judaica</option>
+        <option>Kitchen</option><option>Baby &amp; Kids</option><option>Electronics</option>
+        <option>Services</option><option>Free / Giveaway</option><option>Other</option>
+      </select>
+      <input id="mkt-contact" type="text" placeholder="Your phone or email *">
+    </div>
+    <div class="form-row full">
+      <textarea id="mkt-desc" placeholder="Describe your item — condition, size, pickup details…"></textarea>
+    </div>
+    <div class="hide-toggle">
+      <label>
+        <input type="checkbox" id="mkt-hide-contact">
+        <div><div class="title">🔒 Hide my contact info</div><div class="sub">Buyers message you through the site. Your phone/email stays private.</div></div>
+      </label>
+    </div>
+    <button class="mkt-submit-btn" id="mkt-submit" type="button">Post Listing — Free</button>
+    <div class="mkt-success" id="mkt-success"></div>
+  </div>
+
+  <!-- LISTINGS -->
+  <div class="mkt-grid" id="mkt-grid">
+    <div class="mkt-card"><div class="mkt-img">🪑</div><div class="mkt-body"><div class="mkt-tag">Furniture</div><div class="mkt-title">Dining Table &amp; 6 Chairs</div><div class="mkt-desc">Beautiful solid wood table. Moving — must sell.</div><div class="mkt-price">$450 OBO</div><div class="mkt-contact">📍 Staten Island</div></div><div class="mkt-footer"><span style="font-size:.73rem;color:var(--gray)">Posted 2 days ago</span></div></div>
+    <div class="mkt-card"><div class="mkt-img">👗</div><div class="mkt-body"><div class="mkt-tag">Clothing</div><div class="mkt-title">Shabbos Dresses — Various Sizes</div><div class="mkt-desc">Sizes 6–14. All like new.</div><div class="mkt-price">$25–$65 each</div><div class="mkt-contact">📍 Staten Island</div></div><div class="mkt-footer"><span style="font-size:.73rem;color:var(--gray)">Posted 5 days ago</span></div></div>
+    <div class="mkt-card"><div class="mkt-img">📚</div><div class="mkt-body"><div class="mkt-tag">Seforim &amp; Judaica</div><div class="mkt-title">Large Seforim Collection</div><div class="mkt-desc">Gemara set, Mishnah Berurah, and more.</div><div class="mkt-price">Priced individually</div><div class="mkt-contact">📍 Staten Island</div></div><div class="mkt-footer"><span style="font-size:.73rem;color:var(--gray)">Posted 1 week ago</span></div></div>
+    <div class="mkt-card"><div class="mkt-img">🍳</div><div class="mkt-body"><div class="mkt-tag">Kitchen</div><div class="mkt-title">KitchenAid Mixer — Like New</div><div class="mkt-desc">5qt tilt-head. All attachments included.</div><div class="mkt-price">$200 Firm</div><div class="mkt-contact">📍 Staten Island</div></div><div class="mkt-footer"><span style="font-size:.73rem;color:var(--gray)">Posted 3 days ago</span></div></div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal-box">
+    <h3>💬 Message Seller</h3>
+    <p>Your message will be sent anonymously. The seller's contact stays private.</p>
+    <input type="text" id="modal-buyer-name" placeholder="Your name *">
+    <textarea id="modal-buyer-msg" placeholder="Your message *"></textarea>
+    <div class="modal-btn-row">
+      <button class="btn-navy" onclick="sendMessage()">Send Message</button>
+      <button class="btn-light" onclick="closeModal()">Cancel</button>
+    </div>
+    <div class="modal-status" id="modal-status"></div>
+  </div>
+</div>
+
+<!-- REMOVE MODAL -->
+<div class="modal-overlay" id="removeModal">
+  <div class="modal-box">
+    <h3>✅ Mark as Sold</h3>
+    <p>Enter the 6-digit code you received when you posted this listing.</p>
+    <input type="text" id="modal-delete-code" placeholder="6-digit code" maxlength="6" style="text-align:center;letter-spacing:.3rem;font-size:1.1rem">
+    <div class="modal-btn-row">
+      <button class="btn-navy" style="background:var(--red)" onclick="removeListing()">Remove Listing</button>
+      <button class="btn-light" onclick="closeRemoveModal()">Cancel</button>
+    </div>
+    <div class="modal-status" id="remove-status"></div>
+  </div>
+</div>
+
+<footer><a href="/">← ShopLocal SI</a> · <a href="/directory.html">Directory</a> · <a href="/advertise.html">Advertise</a></footer>
+
+<script>
+const TOKEN = 'pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87';
+const catEmoji = {'Furniture':'🪑','Clothing':'👗','Seforim & Judaica':'📚','Kitchen':'🍳','Baby & Kids':'🛏','Electronics':'📱','Services':'🔧','Free / Giveaway':'🎁','Other':'📦'};
+let currentContactId = null, currentRemoveId = null;
+
+async function loadListings() {
+  try {
+    const res = await fetch('/.netlify/functions/get-listings');
+    if (!res.ok) return;
+    const data = await res.json();
+    const grid = document.getElementById('mkt-grid');
+    grid.querySelectorAll('.user-listing').forEach(el => el.remove());
+    (data.listings||[]).forEach(item => {
+      const emoji = catEmoji[item.category]||'📦';
+      const card = document.createElement('div');
+      card.className = 'mkt-card user-listing';
+      card.innerHTML = `
+        <div class="mkt-img">${emoji}</div>
+        <div class="mkt-body">
+          <div class="mkt-tag">${item.category}</div>
+          <div class="mkt-title">${item.title}</div>
+          <div class="mkt-desc">${item.description}</div>
+          <div class="mkt-price">${item.price}</div>
+          ${item.contactHidden
+            ? `<div class="mkt-contact" style="color:var(--gray);font-style:italic">🔒 Contact hidden</div>`
+            : `<div class="mkt-contact">📞 ${item.contact}</div>`}
+        </div>
+        <div class="mkt-footer" style="flex-direction:column;gap:.4rem;align-items:stretch">
+          <span style="font-size:.73rem;color:var(--gray)">${item.submitted}</span>
+          <button onclick="openContact('${item.id}','${item.title.replace(/'/g,"\\'")}',${item.contactHidden},'${(item.contact||'').replace(/'/g,"\\'")}','${item.id}')" style="background:var(--navy);color:#fff;border:none;padding:.45rem;border-radius:6px;font-size:.76rem;font-weight:700;cursor:pointer">💬 Contact Seller</button>
+          <button onclick="openRemove('${item.id}')" style="background:#fff;color:var(--gray);border:1px solid var(--border);padding:.38rem;border-radius:6px;font-size:.7rem;cursor:pointer">✅ Mark as Sold</button>
+        </div>`;
+      grid.insertBefore(card, grid.firstChild);
+    });
+  } catch(e) { console.log(e); }
+}
+
+document.getElementById('mkt-submit').addEventListener('click', async function(e) {
+  e.preventDefault(); e.stopPropagation();
+  const title = document.getElementById('mkt-title').value.trim();
+  const price = document.getElementById('mkt-price').value.trim()||'Contact for price';
+  const category = document.getElementById('mkt-cat').value;
+  const contact = document.getElementById('mkt-contact').value.trim();
+  const description = document.getElementById('mkt-desc').value.trim();
+  const hideContact = document.getElementById('mkt-hide-contact').checked;
+  if (!title||!category||!contact) { alert('Please fill in Title, Category, and Contact info.'); return; }
+  this.textContent = 'Submitting…'; this.disabled = true;
+  try {
+    const res = await fetch('/.netlify/functions/submit-listing', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({title,price,category,contact,description,hideContact})
+    });
+    const data = await res.json();
+    ['mkt-title','mkt-price','mkt-contact','mkt-desc'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('mkt-cat').selectedIndex=0;
+    document.getElementById('mkt-hide-contact').checked=false;
+    const suc = document.getElementById('mkt-success');
+    suc.style.display='block';
+    suc.innerHTML = `✅ Submitted! Save your removal code: <strong style="font-size:1.2rem;letter-spacing:.2rem">${data.deleteCode}</strong> — screenshot it now!`;
+    setTimeout(()=>suc.style.display='none', 15000);
+    loadListings();
+  } catch(err) { alert('Error: '+err.message); }
+  finally { this.textContent='Post Listing — Free'; this.disabled=false; }
+});
+
+function openContact(id, title, hidden, directContact) {
+  if (!hidden && directContact) {
+    document.getElementById('contactModal').style.display='flex';
+    document.getElementById('contactModal').innerHTML = `<div class="modal-box"><h3>Contact Seller</h3><p>Listing: <strong>${title}</strong></p><div style="background:var(--light);padding:1rem;border-radius:8px;font-size:1.1rem;font-weight:700;color:var(--navy);text-align:center;margin:1rem 0">📞 ${directContact}</div><button class="btn-light" onclick="closeContactModal()" style="width:100%">Close</button></div>`;
+    return;
+  }
+  currentContactId = id;
+  document.getElementById('contactModal').style.display='flex';
+  document.getElementById('modal-status').textContent='';
+}
+
+async function sendMessage() {
+  const name = document.getElementById('modal-buyer-name').value.trim();
+  const msg = document.getElementById('modal-buyer-msg').value.trim();
+  const status = document.getElementById('modal-status');
+  if (!name||!msg) { status.style.color='#cc2222'; status.textContent='Please fill in all fields.'; return; }
+  status.style.color=var(--gray); status.textContent='Sending…';
+  try {
+    const res = await fetch('/.netlify/functions/contact-seller',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({listingId:currentContactId,buyerName:name,buyerMessage:msg})});
+    if (!res.ok) throw new Error('Failed');
+    status.style.color='#1a6b35'; status.textContent='✅ Message sent!';
+    setTimeout(closeModal,2000);
+  } catch(e) { status.style.color='#cc2222'; status.textContent='Failed. Try again.'; }
+}
+
+function openRemove(id) { currentRemoveId=id; document.getElementById('removeModal').style.display='flex'; document.getElementById('remove-status').textContent=''; }
+async function removeListing() {
+  const code = document.getElementById('modal-delete-code').value.trim();
+  const status = document.getElementById('remove-status');
+  if (!code) { status.style.color='#cc2222'; status.textContent='Enter your code.'; return; }
+  status.textContent='Verifying…';
+  try {
+    const res = await fetch('/.netlify/functions/delete-listing',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:currentRemoveId,deleteCode:code})});
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error||'Wrong code');
+    status.style.color='#1a6b35'; status.textContent='✅ Listing removed!';
+    setTimeout(()=>{closeRemoveModal();loadListings();},1500);
+  } catch(e) { status.style.color='#cc2222'; status.textContent=e.message==='Invalid code'?'❌ Wrong code':'Error. Try again.'; }
+}
+
+function closeModal() { document.getElementById('contactModal').style.display='none'; }
+function closeContactModal() { document.getElementById('contactModal').style.display='none'; }
+function closeRemoveModal() { document.getElementById('removeModal').style.display='none'; }
+
+loadListings();
+</script>
+</body>
+</html>

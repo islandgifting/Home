@@ -10,8 +10,6 @@
 :root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--light:#f4f6fb;--white:#fff;--border:#dde2ee;--gray:#64748b}
 body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:#1a1a2e;line-height:1.5}
 a{color:inherit;text-decoration:none}
-
-/* NAV */
 nav{background:var(--navy);position:sticky;top:0;z-index:999;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;box-shadow:0 2px 12px rgba(0,0,0,.4)}
 .logo{color:#fff;font-size:1.15rem;font-weight:900;letter-spacing:-.5px}.logo span{color:var(--gold)}
 .nav-links{display:flex;gap:1.25rem;list-style:none}
@@ -20,232 +18,118 @@ nav{background:var(--navy);position:sticky;top:0;z-index:999;padding:0 2rem;disp
 .nav-cta:hover{background:#aa1515!important}
 .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
 .hamburger span{width:22px;height:2px;background:#fff;border-radius:2px}
-
-/* EMERGENCY STRIP */
 .emstrip{background:var(--red);color:#fff;padding:.55rem 2rem;display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-size:.82rem;font-weight:600}
-.emstrip a{color:#fff}
-.emstrip .sep{opacity:.5}
-
-/* HERO */
-.hero{background:var(--navy);color:#fff;text-align:center;padding:3rem 2rem 3.5rem;position:relative;overflow:hidden}
+.emstrip a{color:#fff}.emstrip .sep{opacity:.5}
+.hero{background:var(--navy);color:#fff;text-align:center;padding:2.5rem 2rem 3rem;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,67,.18),transparent 65%);pointer-events:none}
-.hero h1{font-size:clamp(1.8rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-1px;position:relative}
+.hero h1{font-size:clamp(1.6rem,4vw,3rem);font-weight:900;line-height:1.05;letter-spacing:-1px;position:relative}
 .hero h1 em{color:var(--red);font-style:normal;display:block}
-.hero-sub{font-size:1rem;margin:.75rem auto 0;max-width:520px;color:rgba(255,255,255,.82);position:relative}
-.hero-btns{display:flex;gap:.9rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;position:relative}
-
-/* TV SCREEN */
-.tv-wrap{max-width:1150px;margin:0 auto;padding:1.5rem 2rem;background:var(--navy)}
-.tv-screen{background:#111;border-radius:16px;border:6px solid #2a2a2a;box-shadow:0 0 0 2px #444,0 20px 40px rgba(0,0,0,.5);overflow:hidden;position:relative;cursor:pointer}
-.tv-screen::before{content:'📺 LIVE ADS';position:absolute;top:.5rem;left:.75rem;background:var(--red);color:#fff;font-size:.6rem;font-weight:800;padding:.15rem .45rem;border-radius:3px;z-index:10;letter-spacing:.5px}
-.tv-screen::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.03) 0%,transparent 50%);pointer-events:none;z-index:5}
-.tv-content{height:160px;display:flex;align-items:center;justify-content:center}
-.tv-stand{width:60px;height:12px;background:#2a2a2a;margin:0 auto;border-radius:0 0 4px 4px}
-.tv-base{width:120px;height:8px;background:#222;margin:0 auto;border-radius:4px}
-.tv-label{text-align:center;color:rgba(255,255,255,.5);font-size:.72rem;margin-top:.5rem;letter-spacing:.5px}
-.tv-view-all{display:block;text-align:center;margin-top:.75rem;color:var(--gold);font-weight:700;font-size:.85rem;text-decoration:none}
-.tv-view-all:hover{color:#fff}
-.btn-gold{background:var(--gold);color:#111;padding:.78rem 1.9rem;border-radius:8px;font-weight:800;font-size:.95rem;transition:background .2s,transform .2s}
-.btn-gold:hover{background:#b8922e;transform:translateY(-2px)}
-.btn-outline{border:2px solid rgba(255,255,255,.7);color:#fff;padding:.78rem 1.9rem;border-radius:8px;font-weight:700;font-size:.95rem;transition:all .2s}
+.hero-sub{font-size:.95rem;margin:.6rem auto 0;max-width:520px;color:rgba(255,255,255,.82);position:relative}
+.hero-btns{display:flex;gap:.75rem;justify-content:center;margin-top:1.25rem;flex-wrap:wrap;position:relative}
+.btn-gold{background:var(--gold);color:#111;padding:.7rem 1.6rem;border-radius:8px;font-weight:800;font-size:.9rem;transition:background .2s}
+.btn-gold:hover{background:#b8922e}
+.btn-outline{border:2px solid rgba(255,255,255,.7);color:#fff;padding:.7rem 1.6rem;border-radius:8px;font-weight:700;font-size:.9rem;transition:all .2s}
 .btn-outline:hover{background:#fff;color:var(--navy)}
+.stats{background:var(--gold);padding:1rem 2rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
+.stat{text-align:center}.stat-n{font-size:1.6rem;font-weight:900;color:var(--navy)}.stat-l{font-size:.7rem;font-weight:700;color:rgba(10,28,75,.65);text-transform:uppercase;letter-spacing:.5px}
 
-/* STATS */
-.stats{background:var(--gold);padding:1.1rem 2rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
-.stat{text-align:center}
-.stat-n{font-size:1.7rem;font-weight:900;color:var(--navy)}
-.stat-l{font-size:.72rem;font-weight:700;color:rgba(10,28,75,.65);text-transform:uppercase;letter-spacing:.5px}
+/* QUICK LINKS */
+.quick-links{background:#fff;padding:2rem;border-bottom:1px solid var(--border)}
+.ql-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;max-width:900px;margin:0 auto}
+.ql-card{background:var(--light);border-radius:12px;padding:1.25rem;text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent;text-decoration:none;display:block}
+.ql-card:hover{border-color:var(--navy);background:#fff;transform:translateY(-2px);box-shadow:0 4px 14px rgba(10,28,75,.1)}
+.ql-icon{font-size:1.8rem;display:block;margin-bottom:.4rem}
+.ql-label{font-weight:700;font-size:.85rem;color:var(--navy)}
+.ql-sub{font-size:.72rem;color:var(--gray);margin-top:.15rem}
 
-/* SECTIONS */
-section{padding:4rem 2rem}
-.sec-head{text-align:center;margin-bottom:2.5rem}
-.sec-head h2{font-size:1.85rem;font-weight:800;color:var(--navy)}
-.divider{width:55px;height:4px;background:var(--red);margin:.7rem auto;border-radius:2px}
-.sec-head p{color:var(--gray);max-width:580px;margin:0 auto;font-size:.93rem}
+/* FEATURED BUSINESSES */
+.feat-section{padding:2rem;background:var(--navy)}
+.feat-section .sec-head h2{color:var(--gold);font-size:1.5rem;font-weight:900}
+.feat-section .divider{background:var(--gold)}
+.feat-section .sec-head p{color:rgba(255,255,255,.75)}
+.sec-head{text-align:center;margin-bottom:1.75rem}
+.sec-head h2{font-size:1.5rem;font-weight:800;color:var(--navy)}
+.divider{width:55px;height:4px;background:var(--red);margin:.6rem auto;border-radius:2px}
+.sec-head p{color:var(--gray);max-width:580px;margin:0 auto;font-size:.9rem}
+.feat-biz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;max-width:1150px;margin:0 auto}
+.feat-biz-card{background:rgba(255,255,255,.07);border:1px solid rgba(212,168,67,.3);border-radius:14px;padding:1.5rem;color:#fff;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.feat-biz-card:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.feat-biz-badge{background:var(--gold);color:#111;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:4px;text-transform:uppercase;margin-bottom:.65rem;display:inline-block}
+.feat-biz-name{font-size:1.05rem;font-weight:800;margin-bottom:.2rem}
+.feat-biz-desc{font-size:.8rem;color:rgba(255,255,255,.75);margin-bottom:.6rem}
+.feat-biz-phone{font-size:.9rem;font-weight:700;color:var(--gold)}
+.feat-biz-empty{text-align:center;padding:2rem;color:rgba(255,255,255,.5);font-size:.88rem}
+.feat-advertise{text-align:center;margin-top:1.25rem}
 
-/* DIRECTORY */
-#directory{background:#fff}
-.search-wrap{max-width:680px;margin:0 auto 2rem;display:flex;gap:.75rem;flex-wrap:wrap}
-.search-wrap input,.search-wrap select{flex:1;min-width:160px;padding:.75rem 1rem;border:2px solid var(--border);border-radius:8px;font-size:.93rem;outline:none;transition:border .2s}
-.search-wrap input:focus,.search-wrap select:focus{border-color:var(--navy)}
-.search-wrap button{background:var(--navy);color:#fff;border:none;padding:.75rem 1.3rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:.93rem;white-space:nowrap}
-.cat-tabs{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;margin-bottom:2rem}
-.ctab{padding:.38rem .95rem;border:2px solid var(--navy);border-radius:20px;background:transparent;color:var(--navy);font-weight:600;font-size:.8rem;cursor:pointer;transition:all .2s}
-.ctab:hover,.ctab.active{background:var(--navy);color:#fff}
-.ctab.em:hover,.ctab.em.active{background:var(--red);border-color:var(--red);color:#fff}
-.cat-section{margin-bottom:2.5rem}
-.cat-title{font-size:.95rem;font-weight:800;color:var(--navy);background:#f0f3fa;padding:.6rem 1rem;border-left:4px solid var(--navy);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.5px}
-.cat-title.em{background:#fff5f5;border-left-color:var(--red);color:var(--red)}
-.biz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.9rem}
-.biz-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.95rem 1.1rem;transition:all .2s}
-.biz-card:hover{border-color:var(--navy);box-shadow:0 4px 14px rgba(10,28,75,.12);transform:translateY(-2px)}
-.biz-card.em{background:#fff8f8;border-color:#ffcccc}
-.biz-card.hatz{background:#fff0f0;border:2px solid var(--red)}
-.biz-name{font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:.2rem}
-.biz-card.em .biz-name{color:var(--red)}
-.biz-desc{font-size:.78rem;color:var(--gray);margin-bottom:.4rem}
-.biz-addr{font-size:.75rem;color:var(--gray)}
-.biz-phone{font-size:.85rem;font-weight:700;color:var(--red);margin-top:.35rem}
-.biz-card.hatz .biz-phone{font-size:1.1rem;font-weight:900}
+/* TV SCREEN - SQUARE */
+.tv-section{background:var(--navy);padding:0 2rem 2rem}
+.tv-outer{max-width:400px;margin:0 auto}
+.tv-frame{background:#111;border-radius:16px;border:8px solid #2a2a2a;box-shadow:0 0 0 2px #555,0 20px 50px rgba(0,0,0,.6);overflow:hidden;position:relative;cursor:pointer;aspect-ratio:1;max-width:400px}
+.tv-screen-label{position:absolute;top:.6rem;left:.75rem;background:var(--red);color:#fff;font-size:.6rem;font-weight:800;padding:.15rem .5rem;border-radius:3px;z-index:10;letter-spacing:.5px;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.tv-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.tv-promo{text-align:center;padding:1.5rem}
+.tv-promo-main{font-size:2rem;font-weight:900;color:var(--gold);letter-spacing:.05em;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.tv-promo-sub{color:rgba(255,255,255,.7);font-size:.85rem;margin-top:.5rem}
+.tv-promo-price{color:var(--gold);font-weight:700;font-size:1rem;margin-top:.4rem}
+.tv-promo-btn{background:var(--gold);color:#111;padding:.5rem 1.25rem;border-radius:6px;font-weight:800;font-size:.8rem;display:inline-block;margin-top:.75rem;animation:glow 2s infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 10px rgba(212,168,67,.5)}50%{box-shadow:0 0 25px rgba(212,168,67,.9)}}
+.tv-legs{display:flex;justify-content:center;gap:80px;margin-top:0}
+.tv-leg{width:12px;height:20px;background:#2a2a2a;border-radius:0 0 4px 4px}
+.tv-base-bar{width:140px;height:8px;background:#1a1a1a;margin:0 auto;border-radius:4px}
+.tv-caption{text-align:center;color:rgba(255,255,255,.45);font-size:.7rem;margin-top:.6rem;letter-spacing:.5px}
+.tv-link{display:block;text-align:center;color:var(--gold);font-weight:700;font-size:.85rem;margin-top:.6rem}
 
 /* SHABBOS */
+section{padding:3rem 2rem}
 #shabbos{background:var(--navy);color:#fff}
 #shabbos .sec-head h2{color:var(--gold)}
 #shabbos .divider{background:var(--gold)}
 #shabbos .sec-head p{color:rgba(255,255,255,.75)}
 .shab-wrap{max-width:560px;margin:0 auto}
 .shab-card{background:rgba(255,255,255,.08);border:1px solid rgba(212,168,67,.35);border-radius:16px;padding:2rem}
-.shab-date{text-align:center;font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:1.5rem}
-.shab-parsha{text-align:center;font-size:.85rem;color:rgba(255,255,255,.6);margin-bottom:1rem}
+.shab-date{text-align:center;font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:1.25rem}
 .shab-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
-.shab-block{text-align:center;padding:1.1rem;background:rgba(255,255,255,.07);border-radius:10px}
-.shab-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.55);margin-bottom:.4rem}
-.shab-time{font-size:2rem;font-weight:800;color:var(--gold)}
-.shab-note{font-size:.7rem;color:rgba(255,255,255,.4);margin-top:.25rem}
-.shab-disclaimer{text-align:center;font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.6}
+.shab-block{text-align:center;padding:1rem;background:rgba(255,255,255,.07);border-radius:10px}
+.shab-lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.55);margin-bottom:.35rem}
+.shab-time{font-size:1.8rem;font-weight:800;color:var(--gold)}
+.shab-note{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:.2rem}
+.shab-disclaimer{text-align:center;font-size:.73rem;color:rgba(255,255,255,.45);line-height:1.6}
 .shab-disclaimer a{color:var(--gold)}
-
-/* MARKETPLACE */
-#marketplace{background:var(--light)}
-.mkt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.25rem;max-width:1150px;margin:0 auto}
-.mkt-card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:all .2s}
-.mkt-card:hover{box-shadow:0 8px 22px rgba(0,0,0,.1);transform:translateY(-3px)}
-.mkt-img{height:165px;background:linear-gradient(135deg,#e8ecf5,#d0d8ee);display:flex;align-items:center;justify-content:center;font-size:2.8rem}
-.mkt-body{padding:1rem}
-.mkt-tag{display:inline-block;background:#e8f0fd;color:var(--navy);font-size:.7rem;font-weight:700;padding:.18rem .6rem;border-radius:4px;margin-bottom:.45rem}
-.mkt-title{font-weight:700;font-size:.92rem;color:#1a1a2e;margin-bottom:.25rem}
-.mkt-desc{font-size:.8rem;color:var(--gray)}
-.mkt-price{color:var(--red);font-weight:800;font-size:1.05rem;margin-top:.45rem}
-.mkt-contact{font-size:.78rem;color:var(--gray)}
-.mkt-footer{padding:.75rem 1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.mkt-cta{background:var(--navy);color:#fff;font-size:.78rem;font-weight:700;padding:.35rem .8rem;border-radius:6px}
-
-/* BANNER ADS */
-.banner-rotator{position:relative;max-width:1150px;margin:0 auto 0;overflow:hidden;border-radius:12px}
-.banner-slide{display:none;position:relative;cursor:pointer}
-.banner-slide.active{display:block}
-.banner-slide img{width:100%;height:180px;object-fit:cover;border-radius:12px}
-.banner-slide-fallback{width:100%;height:180px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;text-decoration:none}
-.banner-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.65rem}
-.banner-dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .2s}
-.banner-dot.active{background:var(--navy)}
-.banner-ad-label{position:absolute;top:.5rem;right:.75rem;background:rgba(0,0,0,.45);color:#fff;font-size:.65rem;padding:.15rem .45rem;border-radius:4px;font-weight:600;letter-spacing:.5px}
-
-/* FEATURED BUSINESSES */
-#featured-businesses{background:#fff;padding:2.5rem 2rem}
-.feat-biz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;max-width:1150px;margin:0 auto}
-.feat-biz-card{background:linear-gradient(135deg,#0a1c4b,#182e6a);border-radius:14px;padding:1.5rem;color:#fff;position:relative;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}
-.feat-biz-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(10,28,75,.3)}
-.feat-biz-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(212,168,67,.2),transparent 65%);pointer-events:none}
-.feat-biz-badge{background:var(--gold);color:#111;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:.75rem}
-.feat-biz-name{font-size:1.1rem;font-weight:800;margin-bottom:.25rem}
-.feat-biz-desc{font-size:.82rem;color:rgba(255,255,255,.75);margin-bottom:.75rem}
-.feat-biz-phone{font-size:.95rem;font-weight:700;color:var(--gold)}
-
-/* SPONSORED CARDS in directory */
-.biz-card.sponsored{background:linear-gradient(135deg,#fffbf0,#fff8e1);border:2px solid var(--gold);position:relative}
-.biz-card.sponsored::before{content:'⭐ Sponsored';position:absolute;top:-.1rem;right:.75rem;background:var(--gold);color:#111;font-size:.62rem;font-weight:800;padding:.15rem .5rem;border-radius:0 0 5px 5px;letter-spacing:.3px}
-
-/* AD PRICING SECTION */
-.ad-pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;max-width:900px;margin:0 auto 2rem}
-.ad-price-card{border:2px solid var(--border);border-radius:14px;padding:1.5rem;text-align:center;transition:all .2s;background:#fff}
-.ad-price-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(212,168,67,.2)}
-.ad-price-card.popular{border-color:var(--navy);background:var(--navy);color:#fff}
-.ad-price-icon{font-size:2rem;margin-bottom:.5rem}
-.ad-price-name{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:.35rem}
-.ad-price-card.popular .ad-price-name{color:var(--gold)}
-.ad-price-val{font-size:2rem;font-weight:900;color:var(--navy);margin-bottom:.2rem}
-.ad-price-card.popular .ad-price-val{color:#fff}
-.ad-price-per{font-size:.78rem;color:var(--gray);margin-bottom:1rem}
-.ad-price-card.popular .ad-price-per{color:rgba(255,255,255,.6)}
-.ad-price-feats{list-style:none;text-align:left;margin-bottom:1.25rem}
-.ad-price-feats li{font-size:.82rem;padding:.3rem 0;border-bottom:1px solid #eee}
-.ad-price-card.popular .ad-price-feats li{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.85)}
-.ad-price-feats li::before{content:"✓ ";color:#2a9d5c;font-weight:700}
-.ad-price-card.popular .ad-price-feats li::before{color:var(--gold)}
-.ad-btn{display:block;padding:.7rem;border-radius:8px;font-weight:700;font-size:.88rem;cursor:pointer;transition:all .2s;border:2px solid var(--navy);color:var(--navy);background:transparent;text-align:center}
-.ad-btn:hover{background:var(--navy);color:#fff}
-.ad-price-card.popular .ad-btn{background:var(--gold);color:#111;border-color:var(--gold)}
-.ad-price-card.popular .ad-btn:hover{background:#b8922e}
-.bundle-banner{max-width:900px;margin:0 auto 2rem;background:linear-gradient(135deg,var(--navy),#182e6a);border-radius:14px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.bundle-banner h3{color:var(--gold);font-size:1.1rem;font-weight:800}
-.bundle-banner p{color:rgba(255,255,255,.8);font-size:.85rem;margin-top:.25rem}
-.bundle-btn{background:var(--gold);color:#111;border:none;padding:.75rem 1.75rem;border-radius:8px;font-weight:800;cursor:pointer;font-size:.9rem;white-space:nowrap}
-.bundle-btn:hover{background:#b8922e}
-#advertise{background:#fff}
-.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;max-width:860px;margin:0 auto 2.5rem}
-.price-card{border:2px solid var(--border);border-radius:14px;padding:1.75rem;text-align:center;transition:all .2s}
-.price-card.feat{border-color:var(--navy);background:var(--navy);color:#fff}
-.price-tier{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:.5rem}
-.price-card.feat .price-tier{color:var(--gold)}
-.price-val{font-size:2.3rem;font-weight:900;color:var(--navy)}
-.price-card.feat .price-val{color:#fff}
-.price-per{font-size:.82rem;color:var(--gray)}
-.price-card.feat .price-per{color:rgba(255,255,255,.65)}
-.price-feats{list-style:none;margin:1.4rem 0;text-align:left}
-.price-feats li{padding:.38rem 0;font-size:.86rem;border-bottom:1px solid #eee}
-.price-card.feat .price-feats li{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.88)}
-.price-feats li::before{content:"✓ ";color:#2a9d5c;font-weight:700}
-.price-card.feat .price-feats li::before{color:var(--gold)}
-.price-btn{display:block;padding:.7rem;border-radius:8px;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s;border:2px solid var(--navy);color:var(--navy);background:transparent}
-.price-btn:hover{background:var(--navy);color:#fff}
-.price-card.feat .price-btn{background:var(--gold);color:#111;border-color:var(--gold)}
-.price-card.feat .price-btn:hover{background:#b8922e}
-.adv-form{max-width:600px;margin:0 auto;background:var(--light);border-radius:12px;padding:2rem;border:1px solid var(--border)}
-.adv-form h3{font-weight:700;color:var(--navy);margin-bottom:1.25rem;text-align:center}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
-.form-row.full{grid-template-columns:1fr}
-.adv-form input,.adv-form select,.adv-form textarea{width:100%;padding:.7rem .9rem;border:2px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;transition:border .2s}
-.adv-form input:focus,.adv-form select:focus,.adv-form textarea:focus{border-color:var(--navy)}
-.adv-form textarea{height:90px;resize:vertical}
-.form-submit{background:var(--navy);color:#fff;border:none;padding:.8rem 2rem;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;width:100%;margin-top:.5rem}
 
 /* BLOG */
 #blog{background:var(--light)}
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem;max-width:1100px;margin:0 auto 2rem}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;max-width:1100px;margin:0 auto 1.5rem}
 .blog-card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--border);transition:all .2s}
-.blog-card:hover{box-shadow:0 8px 22px rgba(0,0,0,.1);transform:translateY(-3px)}
-.blog-hero{height:175px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
-.blog-body{padding:1.15rem}
-.blog-cat{font-size:.7rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem}
-.blog-title{font-weight:700;font-size:.97rem;color:var(--navy);margin-bottom:.4rem;line-height:1.35}
-.blog-exc{font-size:.82rem;color:var(--gray);line-height:1.55}
-.blog-meta{font-size:.75rem;color:var(--gray);margin-top:.7rem;display:flex;justify-content:space-between}
-.submit-post{background:var(--navy);color:#fff;padding:1rem 2.5rem;border-radius:8px;font-weight:700;display:inline-block;margin:0 auto;display:block;width:fit-content;margin:0 auto}
-.submit-post:hover{background:#182e6a}
+.blog-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.1);transform:translateY(-2px)}
+.blog-hero{height:150px;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.blog-body{padding:1rem}
+.blog-cat{font-size:.7rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.35rem}
+.blog-title{font-weight:700;font-size:.92rem;color:var(--navy);margin-bottom:.35rem;line-height:1.35}
+.blog-exc{font-size:.8rem;color:var(--gray);line-height:1.5}
+.blog-meta{font-size:.73rem;color:var(--gray);margin-top:.6rem;display:flex;justify-content:space-between}
+.submit-post{background:var(--navy);color:#fff;padding:.9rem 2rem;border-radius:8px;font-weight:700;display:block;width:fit-content;margin:0 auto}
 
 /* COMMUNITY */
 #community{background:var(--navy)}
 .comm-card{background:rgba(255,255,255,.07);border:1px solid rgba(212,168,67,.3);border-radius:14px;padding:2rem;max-width:900px;margin:0 auto;text-align:center;color:#fff}
-.comm-card h3{color:var(--gold);font-size:1.2rem;margin-bottom:.9rem}
-.comm-card p{color:rgba(255,255,255,.8);font-size:.88rem;line-height:1.8;margin-bottom:.75rem}
-.comm-orgs{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
-.org-pill{background:rgba(255,255,255,.1);border:1px solid rgba(212,168,67,.4);border-radius:8px;padding:.75rem 1.25rem;color:var(--gold);font-weight:700;font-size:.85rem}
+.comm-card h3{color:var(--gold);font-size:1.1rem;margin-bottom:.75rem}
+.comm-card p{color:rgba(255,255,255,.8);font-size:.86rem;line-height:1.8;margin-bottom:.65rem}
+.comm-orgs{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-top:1.25rem}
+.org-pill{background:rgba(255,255,255,.1);border:1px solid rgba(212,168,67,.4);border-radius:8px;padding:.65rem 1.1rem;color:var(--gold);font-weight:700;font-size:.83rem}
 
 /* FOOTER */
-footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
-.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2rem;max-width:1100px;margin:0 auto 2rem}
-.foot-col h4{color:var(--gold);font-size:.82rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.9rem}
+footer{background:#070e29;color:rgba(255,255,255,.75);padding:2.5rem 2rem 1.5rem}
+.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.75rem;max-width:1100px;margin:0 auto 1.75rem}
+.foot-col h4{color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.75rem}
 .foot-col ul{list-style:none}
-.foot-col li{margin-bottom:.45rem;font-size:.83rem}
-.foot-col a{color:rgba(255,255,255,.65);transition:color .2s}
-.foot-col a:hover{color:var(--gold)}
-.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.5rem;text-align:center;font-size:.78rem;color:rgba(255,255,255,.4);max-width:1100px;margin:0 auto}
-.foot-logo{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:.5rem}
-.foot-logo span{color:var(--gold)}
+.foot-col li{margin-bottom:.4rem;font-size:.81rem}
+.foot-col a{color:rgba(255,255,255,.65);transition:color .2s}.foot-col a:hover{color:var(--gold)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.25rem;text-align:center;font-size:.76rem;color:rgba(255,255,255,.4);max-width:1100px;margin:0 auto}
+.foot-logo{font-size:1.2rem;font-weight:900;color:#fff;margin-bottom:.4rem}.foot-logo span{color:var(--gold)}
 
-/* MOBILE NAV */
-@media(max-width:768px){
-  .nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;padding:1rem 2rem;gap:.75rem}
-  .nav-links.open{display:flex}
-  .hamburger{display:flex}
-  .stats{gap:1.2rem}
-  .shab-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-  .price-card.feat{transform:none}
-}
-
-/* BUSINESS PROFILE MODAL */
+/* MODAL */
 .biz-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
 .biz-modal-overlay.open{opacity:1;pointer-events:all}
 .biz-modal{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:640px;max-height:90vh;overflow-y:auto;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
@@ -253,50 +137,46 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
 .biz-modal-handle{width:40px;height:4px;background:#dde2ee;border-radius:2px;margin:1rem auto .5rem}
 .biz-modal-banner{width:100%;height:160px;overflow:hidden}
 .biz-modal-banner iframe{width:100%;height:160px;border:none;display:block}
-.biz-modal-banner-fallback{width:100%;height:160px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:900;color:#fff}
 .biz-modal-body{padding:1.5rem}
-.biz-modal-badge{background:var(--gold);color:#111;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:.75rem}
-.biz-modal-name{font-size:1.4rem;font-weight:900;color:var(--navy);margin-bottom:.25rem}
-.biz-modal-cat{font-size:.8rem;color:var(--gray);margin-bottom:.75rem}
-.biz-modal-desc{font-size:.9rem;color:#1a1a2e;line-height:1.65;margin-bottom:1.25rem}
-.biz-modal-actions{display:flex;gap:.65rem;flex-wrap:wrap;margin-bottom:1.25rem}
-.biz-modal-btn-call{background:var(--red);color:#fff;padding:.7rem 1.25rem;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;border:none;cursor:pointer}
-.biz-modal-btn-web{background:var(--navy);color:#fff;padding:.7rem 1.25rem;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none;display:flex;align-items:center;gap:.4rem}
-.biz-modal-btn-web:hover{background:#182e6a}
-.biz-modal-btn-email{background:#fff;color:var(--navy);border:2px solid var(--navy);padding:.65rem 1.25rem;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none;display:flex;align-items:center;gap:.4rem}
-.biz-modal-coupons{border-top:1px solid var(--border);padding-top:1rem;margin-top:.5rem}
-.biz-modal-coupons h4{font-size:.82rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem}
-.biz-modal-coupon{background:var(--light);border-radius:10px;padding:.85rem 1rem;margin-bottom:.65rem;display:flex;justify-content:space-between;align-items:center}
-.biz-modal-coupon-info{flex:1}
-.biz-modal-coupon-discount{font-size:1.1rem;font-weight:900;color:var(--navy)}
-.biz-modal-coupon-desc{font-size:.78rem;color:var(--gray);margin-top:.15rem}
-.biz-modal-coupon-code{background:var(--gold);color:#111;font-size:.75rem;font-weight:800;padding:.3rem .7rem;border-radius:6px;cursor:pointer;white-space:nowrap}
-.biz-modal-close{width:100%;background:var(--light);color:var(--navy);border:none;padding:.9rem;border-radius:10px;font-weight:700;font-size:.92rem;cursor:pointer;margin-top:.5rem}
-.biz-more-btn{display:block;margin-top:.6rem;background:var(--gold);color:#111;border:none;padding:.45rem .9rem;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;width:100%;text-align:center}
-.biz-more-btn:hover{background:#b8922e;color:#fff}
-/* FEATURED & PREMIUM DIRECTORY CARDS */
-.biz-card.featured-card{background:linear-gradient(135deg,#fffbf0,#fff8e1);border:2px solid var(--gold);position:relative}
-.biz-card.featured-card .biz-name{color:#7a5c00}
-.biz-card.featured-card::before{content:'⭐ Featured';position:absolute;top:-.1rem;right:.75rem;background:var(--gold);color:#111;font-size:.62rem;font-weight:800;padding:.15rem .5rem;border-radius:0 0 5px 5px}
-.biz-card.premium-card{background:linear-gradient(135deg,#0a1c4b,#182e6a);border:2px solid var(--gold);position:relative;color:#fff}
-.biz-card.premium-card .biz-name{color:var(--gold)}
-.biz-card.premium-card .biz-desc,.biz-card.premium-card .biz-addr{color:rgba(255,255,255,.7)}
-.biz-card.premium-card .biz-phone a{color:#fff}
-.biz-card.premium-card::before{content:'💎 Premium';position:absolute;top:-.1rem;right:.75rem;background:var(--gold);color:#111;font-size:.62rem;font-weight:800;padding:.15rem .5rem;border-radius:0 0 5px 5px}
-.biz-card.premium-card:hover{box-shadow:0 4px 20px rgba(212,168,67,.4)}
-.biz-more-btn{display:block;margin-top:.6rem;background:var(--gold);color:#111;border:none;padding:.45rem .9rem;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;width:100%;text-align:center}
-.biz-more-btn:hover{background:#b8922e;color:#fff}
+.biz-modal-badge{background:var(--gold);color:#111;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:4px;display:inline-block;margin-bottom:.65rem}
+.biz-modal-name{font-size:1.35rem;font-weight:900;color:var(--navy);margin-bottom:.2rem}
+.biz-modal-cat{font-size:.8rem;color:var(--gray);margin-bottom:.65rem}
+.biz-modal-desc{font-size:.9rem;line-height:1.65;margin-bottom:1.1rem}
+.biz-modal-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.biz-modal-btn-call{background:var(--red);color:#fff;padding:.65rem 1.1rem;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;display:flex;align-items:center;gap:.35rem;border:none;cursor:pointer}
+.biz-modal-btn-web{background:var(--navy);color:#fff;padding:.65rem 1.1rem;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;display:flex;align-items:center;gap:.35rem}
+.biz-modal-btn-email{background:#fff;color:var(--navy);border:2px solid var(--navy);padding:.6rem 1.1rem;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;display:flex;align-items:center;gap:.35rem}
+.biz-modal-coupons{border-top:1px solid var(--border);padding-top:.9rem;margin-top:.4rem}
+.biz-modal-coupons h4{font-size:.8rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.65rem}
+.biz-modal-coupon{background:var(--light);border-radius:10px;padding:.8rem 1rem;margin-bottom:.6rem;display:flex;justify-content:space-between;align-items:center}
+.biz-modal-coupon-discount{font-size:1rem;font-weight:900;color:var(--navy)}
+.biz-modal-coupon-desc{font-size:.76rem;color:var(--gray);margin-top:.12rem}
+.biz-modal-coupon-code{background:var(--gold);color:#111;font-size:.73rem;font-weight:800;padding:.28rem .65rem;border-radius:6px;cursor:pointer;white-space:nowrap}
+.biz-modal-close{width:100%;background:var(--light);color:var(--navy);border:none;padding:.85rem;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;margin-top:.4rem}
 
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;padding:1rem 2rem;gap:.75rem}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .stats{gap:1.2rem}
+  .shab-grid{grid-template-columns:1fr}
+  .ql-grid{grid-template-columns:repeat(3,1fr)}
+}
 .hidden{display:none!important}
-.container{max-width:1150px;margin:0 auto}
 </style>
 </head>
 <body>
 
 <!-- BANNER ADS -->
 <div id="bannerWrap" style="background:var(--gold);padding:1rem 2rem;display:none">
-  <div id="bannerRotator" class="banner-rotator" style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.2)">
-    <!-- Populated by JS from Airtable -->
+  <div id="bannerRotator" style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.2)"></div>
+</div>
+<div id="bannerPromo" style="background:var(--gold);padding:.75rem 2rem;display:block">
+  <div onclick="window.location.href='/advertise.html'" style="background:var(--navy);border-radius:10px;height:70px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden">
+    <div id="bannerFlashText" style="text-align:center;z-index:2;position:relative">
+      <div style="color:var(--gold);font-size:1.1rem;font-weight:900;letter-spacing:.05em">📢 YOUR AD HERE</div>
+      <div style="color:rgba(255,255,255,.75);font-size:.75rem;margin-top:.15rem">Premium homepage banner · $129/mo · <strong style="color:var(--gold)">Click to advertise →</strong></div>
+    </div>
   </div>
 </div>
 
@@ -310,20 +190,21 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
   <a href="tel:7187614444">Shmira: 718-761-4444</a>
   <span class="sep">|</span>
   <a href="tel:7183702121">Shomrim: 718-370-2121</a>
+  <span class="sep">|</span>
+  <a href="tel:7188544548">Misaskim: (718) 854-4548</a>
 </div>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">Shop<span>Local</span> SI</a>
+  <a href="/" class="logo">Shop<span>Local</span> SI</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#directory">Directory</a></li>
-    <li><a href="#shabbos">Shabbos Times</a></li>
-    <li><a href="#marketplace">Marketplace</a></li>
+    <li><a href="/directory.html">Directory</a></li>
+    <li><a href="/marketplace.html">Marketplace</a></li>
     <li><a href="/ads.html">📢 Ads</a></li>
     <li><a href="/coupons.html">🎟️ Coupons</a></li>
+    <li><a href="#shabbos">Shabbos</a></li>
     <li><a href="#blog">Blog</a></li>
-    <li><a href="#advertise">Advertise</a></li>
-    <li><a href="#advertise" class="nav-cta">List Your Business</a></li>
+    <li><a href="/advertise.html" class="nav-cta">Advertise</a></li>
   </ul>
   <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
     <span></span><span></span><span></span>
@@ -335,23 +216,10 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
   <h1>SHOP LOCAL.<em>STRENGTHEN OUR COMMUNITY.</em></h1>
   <p class="hero-sub">Support the businesses that support you — right here on Staten Island</p>
   <div class="hero-btns">
-    <a href="#directory" class="btn-gold">Browse Directory</a>
-    <a href="#marketplace" class="btn-outline">Community Marketplace</a>
-    <a href="#advertise" class="btn-outline">List Your Business</a>
+    <a href="/directory.html" class="btn-gold">Browse Directory</a>
+    <a href="/marketplace.html" class="btn-outline">Marketplace</a>
+    <a href="/advertise.html" class="btn-outline">List Your Business</a>
   </div>
-</div>
-
-<!-- TV SCREEN ADS WIDGET -->
-<div class="tv-wrap" id="tvWrap" style="display:none">
-  <div class="tv-screen" onclick="window.location.href='/ads.html'">
-    <div class="tv-content" id="tvContent">
-      <div style="color:rgba(255,255,255,.4);font-size:.85rem">Loading ads…</div>
-    </div>
-  </div>
-  <div class="tv-stand"></div>
-  <div class="tv-base"></div>
-  <div class="tv-label">CLICK TO VIEW ALL ADS & PROMOTIONS</div>
-  <a href="/ads.html" class="tv-view-all">📢 View All Ads & Promotions →</a>
 </div>
 
 <!-- STATS -->
@@ -362,525 +230,56 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
   <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Impact</div></div>
 </div>
 
+<!-- QUICK LINKS -->
+<div class="quick-links">
+  <div class="ql-grid">
+    <a href="/directory.html" class="ql-card"><span class="ql-icon">🏪</span><span class="ql-label">Directory</span><span class="ql-sub">80+ businesses</span></a>
+    <a href="/marketplace.html" class="ql-card"><span class="ql-icon">🛍</span><span class="ql-label">Marketplace</span><span class="ql-sub">Buy & sell locally</span></a>
+    <a href="/ads.html" class="ql-card"><span class="ql-icon">📢</span><span class="ql-label">Ads & Promos</span><span class="ql-sub">Special offers</span></a>
+    <a href="/coupons.html" class="ql-card"><span class="ql-icon">🎟️</span><span class="ql-label">Coupons</span><span class="ql-sub">Exclusive deals</span></a>
+    <a href="/advertise.html" class="ql-card"><span class="ql-icon">⭐</span><span class="ql-label">Advertise</span><span class="ql-sub">From $29/mo</span></a>
+  </div>
+</div>
+
 <!-- FEATURED BUSINESSES -->
-<section id="featured-businesses" style="display:none">
+<div class="feat-section" id="featSection">
   <div class="sec-head">
-    <h2>⭐ Featured Businesses</h2>
-    <div class="divider"></div>
-    <p>Our community's top sponsors — supporting Staten Island together</p>
+    <h2 style="color:var(--gold)">⭐ Featured & Premium Businesses</h2>
+    <div class="divider" style="background:var(--gold)"></div>
+    <p style="color:rgba(255,255,255,.75)">Our community's top sponsors — supporting Staten Island together</p>
   </div>
   <div class="feat-biz-grid" id="featBizGrid">
-    <!-- Populated by JS from Airtable -->
+    <div class="feat-biz-empty">Loading featured businesses…</div>
   </div>
-</section>
-
-<!-- DIRECTORY -->
-<section id="directory">
-  <div class="sec-head">
-    <h2>Community Business Directory</h2>
-    <div class="divider"></div>
-    <p>Every dollar spent locally strengthens our community. Search, find, and support your neighbours.</p>
+  <div class="feat-advertise" style="margin-top:1.5rem">
+    <a href="/advertise.html" style="background:var(--gold);color:#111;padding:.75rem 2rem;border-radius:8px;font-weight:800;font-size:.88rem;display:inline-block">✨ Get Featured Here →</a>
   </div>
+</div>
 
-  <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="Search businesses, services..." oninput="filterBiz()">
-    <select id="catFilter" onchange="filterBiz()">
-      <option value="">All Categories</option>
-      <option value="food">Restaurants &amp; Food</option>
-      <option value="home">Home Services</option>
-      <option value="photo">Photography</option>
-      <option value="auto">Auto Services</option>
-      <option value="medical">Medical</option>
-      <option value="specialty">Specialty Shops</option>
-      <option value="beauty">Beauty &amp; Self Care</option>
-      <option value="pool">Pool Rental</option>
-      <option value="services">Services</option>
-      <option value="transport">Transportation</option>
-      <option value="realty">Realtors</option>
-      <option value="insurance">Insurance</option>
-      <option value="emergency">Emergency Services</option>
-    </select>
-    <button onclick="filterBiz()">Search</button>
+<!-- TV SCREEN -->
+<div class="tv-section">
+  <div class="tv-outer">
+    <div class="sec-head" style="padding-bottom:1rem">
+      <h2 style="color:var(--gold)">📺 Live Ads</h2>
+      <div class="divider" style="background:var(--gold)"></div>
+    </div>
+    <div class="tv-frame" id="tvFrame" onclick="window.location.href='/ads.html'">
+      <div class="tv-screen-label">🔴 LIVE</div>
+      <div class="tv-inner" id="tvInner">
+        <div class="tv-promo">
+          <div class="tv-promo-main">📢 YOUR AD HERE</div>
+          <div class="tv-promo-sub">Reach the entire Staten Island community</div>
+          <div class="tv-promo-price">From $49/mo</div>
+          <div class="tv-promo-btn">Advertise Now →</div>
+        </div>
+      </div>
+    </div>
+    <div class="tv-legs"><div class="tv-leg"></div><div class="tv-leg"></div></div>
+    <div class="tv-base-bar"></div>
+    <div class="tv-caption">CLICK TO VIEW ALL ADS & PROMOTIONS</div>
+    <a href="/ads.html" class="tv-link">📢 View All Ads & Promotions →</a>
   </div>
-
-  <div class="cat-tabs">
-    <button class="ctab active" onclick="setTab('all',this)">All</button>
-    <button class="ctab" onclick="setTab('food',this)">🍽 Food</button>
-    <button class="ctab" onclick="setTab('home',this)">🏠 Home</button>
-    <button class="ctab" onclick="setTab('photo',this)">📷 Photography</button>
-    <button class="ctab" onclick="setTab('auto',this)">🚗 Auto</button>
-    <button class="ctab" onclick="setTab('medical',this)">⚕ Medical</button>
-    <button class="ctab" onclick="setTab('specialty',this)">🛍 Specialty</button>
-    <button class="ctab" onclick="setTab('beauty',this)">💅 Beauty</button>
-    <button class="ctab" onclick="setTab('pool',this)">🏊 Pool</button>
-    <button class="ctab" onclick="setTab('services',this)">⚙ Services</button>
-    <button class="ctab" onclick="setTab('transport',this)">🚐 Transport</button>
-    <button class="ctab" onclick="setTab('realty',this)">🏡 Realty</button>
-    <button class="ctab" onclick="setTab('insurance',this)">📋 Insurance</button>
-    <button class="ctab em" onclick="setTab('emergency',this)">🆘 Emergency</button>
-  </div>
-
-  <div id="bizContainer" class="container">
-
-    <!-- FOOD -->
-    <div class="cat-section" data-cat="food">
-      <div class="cat-title">🍽 Restaurants &amp; Food</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="food" data-search="321 desserts food">
-          <div class="biz-name">321 Desserts</div>
-          <div class="biz-phone"><a href="tel:7182907785">718-290-7785</a></div>
-        </div>
-        <div class="biz-card" data-cat="food" data-search="dairy palace pizza caterers victory">
-          <div class="biz-name">Dairy Palace Pizza &amp; Caterers</div>
-          <div class="biz-addr">2216 Victory Blvd</div>
-          <div class="biz-phone"><a href="tel:7187615200">718-761-5200</a></div>
-        </div>
-        <div class="biz-card" data-cat="food" data-search="fruitique shelley fruit">
-          <div class="biz-name">Fruitique by Shelley</div>
-          <div class="biz-phone"><a href="tel:7183741418">718-374-1418</a></div>
-        </div>
-        <div class="biz-card" data-cat="food" data-search="island catering ny steven israel">
-          <div class="biz-name">Island Catering NY</div>
-          <div class="biz-desc">Steven Israel</div>
-          <div class="biz-phone"><a href="tel:6466456609">646-645-6609</a></div>
-        </div>
-        <div class="biz-card" data-cat="food" data-search="island kosher supermarket grocery">
-          <div class="biz-name">Island Kosher Supermarket</div>
-          <div class="biz-addr">2200 Victory Blvd</div>
-          <div class="biz-phone"><a href="tel:7186502200">718-650-2200</a></div>
-        </div>
-        <div class="biz-card" data-cat="food" data-search="milk honey bradley">
-          <div class="biz-name">Milk &amp; Honey</div>
-          <div class="biz-addr">330 Bradley Ave</div>
-          <div class="biz-phone"><a href="tel:7188714319">718-871-4319</a></div>
-        </div>
-        <div class="biz-card" data-cat="food" data-search="sugar house ice cream dessert victory">
-          <div class="biz-name">Sugar House Ice Cream</div>
-          <div class="biz-addr">2003 Victory Blvd</div>
-          <div class="biz-phone"><a href="tel:7187016891">718-701-6891</a></div>
-        </div>
-        <div class="biz-card" data-cat="food" data-search="tasters market bradley">
-          <div class="biz-name">Tasters Market</div>
-          <div class="biz-addr">330 Bradley Ave</div>
-          <div class="biz-phone"><a href="tel:7184772300">718-477-2300</a></div>
-        </div>
-        <div class="biz-card" data-cat="food" data-search="natures island health food store">
-          <div class="biz-name">The Natures Island</div>
-          <div class="biz-desc">Health Food Store</div>
-          <div class="biz-phone"><a href="tel:8455403233">845-540-3233</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- HOME SERVICES -->
-    <div class="cat-section" data-cat="home">
-      <div class="cat-title">🏠 Home Services</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="home" data-search="appliance repair brian home">
-          <div class="biz-name">Appliance Repair</div>
-          <div class="biz-desc">Brian</div>
-          <div class="biz-phone"><a href="tel:9178860649">917-886-0649</a></div>
-        </div>
-        <div class="biz-card" data-cat="home" data-search="dryer vent cleaning chanoch">
-          <div class="biz-name">Dryer Vent Cleaning</div>
-          <div class="biz-desc">Chanoch</div>
-          <div class="biz-phone"><a href="tel:3472449382">347-244-9382</a></div>
-        </div>
-        <div class="biz-card" data-cat="home" data-search="electrican daniel shaool electric">
-          <div class="biz-name">Electrician</div>
-          <div class="biz-desc">Daniel Shaool</div>
-          <div class="biz-phone"><a href="tel:3479392767">347-939-2767</a></div>
-        </div>
-        <div class="biz-card" data-cat="home" data-search="island door repair springs motors">
-          <div class="biz-name">Island Door Repair</div>
-          <div class="biz-desc">Springs · Motors · Doors</div>
-          <div class="biz-phone"><a href="tel:6466237253">646-623-7253</a></div>
-        </div>
-        <div class="biz-card" data-cat="home" data-search="j c power washing houses driveways deck">
-          <div class="biz-name">J &amp; C Power Washing Inc</div>
-          <div class="biz-desc">Houses · Driveways · Deck</div>
-          <div class="biz-phone"><a href="tel:6466237253">646-623-7253</a></div>
-        </div>
-        <div class="biz-card" data-cat="home" data-search="jaison guterman handyman construction">
-          <div class="biz-name">Jaison Guterman</div>
-          <div class="biz-desc">Handyman &amp; Construction</div>
-          <div class="biz-phone"><a href="tel:7188648164">718-864-8164</a></div>
-        </div>
-        <div class="biz-card" data-cat="home" data-search="jake home repairs buildable">
-          <div class="biz-name">Jake — Home Repairs</div>
-          <div class="biz-desc">Buildable Home Repairs</div>
-          <div class="biz-phone"><a href="tel:7323476458">732-347-6458</a></div>
-        </div>
-        <div class="biz-card" data-cat="home" data-search="next level improvements contractor">
-          <div class="biz-name">Next Level Improvements</div>
-          <div class="biz-desc">Contractor</div>
-          <div class="biz-phone"><a href="tel:9176855086">917-685-5086</a></div>
-        </div>
-        <div class="biz-card" data-cat="home" data-search="roofing home alexsander furman">
-          <div class="biz-name">Roofing &amp; Home</div>
-          <div class="biz-desc">Alexsander Furman</div>
-          <div class="biz-phone"><a href="tel:9178625223">917-862-5223</a></div>
-        </div>
-        <div class="biz-card" data-cat="home" data-search="simplify solar electric bills">
-          <div class="biz-name">Simplify Solar</div>
-          <div class="biz-desc">Save BIG on electric bills</div>
-          <div class="biz-phone"><a href="tel:9175728547">917-572-8547</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PHOTOGRAPHY -->
-    <div class="cat-section" data-cat="photo">
-      <div class="cat-title">📷 Photography</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="photo" data-search="engaging pix photography newborn family events">
-          <div class="biz-name">Engaging Pix Photography</div>
-          <div class="biz-desc">Newborn · Family · Events</div>
-          <div class="biz-phone"><a href="tel:3473936094">347-393-6094</a></div>
-        </div>
-        <div class="biz-card" data-cat="photo" data-search="koby yedgar photography event">
-          <div class="biz-name">Koby Yedgar Photography</div>
-          <div class="biz-desc">Event Photography</div>
-          <div class="biz-phone"><a href="tel:9176821351">917-682-1351</a></div>
-        </div>
-        <div class="biz-card" data-cat="photo" data-search="nechami photography family portraits">
-          <div class="biz-name">Nechami Photography</div>
-          <div class="biz-desc">Family Portraits</div>
-          <div class="biz-phone"><a href="tel:3472486011">347-248-6011</a></div>
-        </div>
-        <div class="biz-card" data-cat="photo" data-search="rikkiz photography portraits events">
-          <div class="biz-name">Rikkiz Photography</div>
-          <div class="biz-desc">Portraits and Events</div>
-          <div class="biz-phone"><a href="tel:9177534444">917-753-4444</a></div>
-        </div>
-        <div class="biz-card" data-cat="photo" data-search="ulano photography portraits events">
-          <div class="biz-name">Ulano Photography</div>
-          <div class="biz-desc">Portrait and Events</div>
-          <div class="biz-phone"><a href="tel:9176157568">917-615-7568</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- AUTO -->
-    <div class="cat-section" data-cat="auto">
-      <div class="cat-title">🚗 Auto Services</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="auto" data-search="buckle up leasing auto lease car">
-          <div class="biz-name">Buckle Up Leasing</div>
-          <div class="biz-desc">Auto Leasing</div>
-          <div class="biz-phone"><a href="tel:9172259663">917-225-9663</a></div>
-        </div>
-        <div class="biz-card" data-cat="auto" data-search="family auto sales collision mechanical">
-          <div class="biz-name">Family Auto</div>
-          <div class="biz-desc">Sales · Collision · Mechanical Services</div>
-          <div class="biz-phone"><a href="tel:7185569274">718-556-9274</a></div>
-        </div>
-        <div class="biz-card" data-cat="auto" data-search="perfect drive sales leasing financing car">
-          <div class="biz-name">Perfect Drive</div>
-          <div class="biz-desc">Sales · Leasing · Financing</div>
-          <div class="biz-phone"><a href="tel:7186077674">718-607-7674</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MEDICAL -->
-    <div class="cat-section" data-cat="medical">
-      <div class="cat-title">⚕ Medical</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="medical" data-search="dr kenneth horowitz eyes ophthalmology doctor">
-          <div class="biz-name">Dr Kenneth Horowitz MD</div>
-          <div class="biz-desc">Care &amp; Treatment of the Eyes</div>
-          <div class="biz-phone"><a href="tel:7182701794">718-270-1794</a></div>
-        </div>
-        <div class="biz-card" data-cat="medical" data-search="ehysha schwartz stitches aesthetics botox">
-          <div class="biz-name">Ehysha Schwartz</div>
-          <div class="biz-desc">Stitches · Aesthetics · Botox</div>
-          <div class="biz-phone"><a href="tel:9293224480">929-322-4480</a></div>
-        </div>
-        <div class="biz-card" data-cat="medical" data-search="miriam blau np after hours medical ismay">
-          <div class="biz-name">Miriam Blau NP</div>
-          <div class="biz-desc">After Hours Medical · 7 Ismay St</div>
-          <div class="biz-phone"><a href="tel:6465807333">646-580-7333</a></div>
-        </div>
-        <div class="biz-card" data-cat="medical" data-search="sincere medical bradley doctor">
-          <div class="biz-name">Sincere Medical</div>
-          <div class="biz-addr">314 Bradley Ave</div>
-          <div class="biz-phone"><a href="tel:7184941700">718-494-1700</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SPECIALTY SHOPS -->
-    <div class="cat-section" data-cat="specialty">
-      <div class="cat-title">🛍 Specialty Shops</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="specialty" data-search="camp labels">
-          <div class="biz-name">Camp Labels</div>
-          <div class="biz-phone"><a href="tel:7188530791">718-853-0791</a> · <a href="tel:3476289338">347-628-9338</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="hedys gifts all occasions ship">
-          <div class="biz-name">Hedy's Gifts</div>
-          <div class="biz-desc">Gifts for All Occasions — We Ship!</div>
-          <div class="biz-phone"><a href="tel:3477293538">347-729-3538</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="island gifting engraving photo printing">
-          <div class="biz-name">Island Gifting</div>
-          <div class="biz-desc">Gifts · Engraving · Photo Printing</div>
-          <div class="biz-phone"><a href="tel:9177534444">917-753-4444</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="lab grown jewelry gold diamond">
-          <div class="biz-name">Lab Grown Jewelry</div>
-          <div class="biz-desc">14ct &amp; 18ct Gold Diamond Jewelry</div>
-          <div class="biz-phone"><a href="tel:9176407675">917-640-7675</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="little lilac baby layette gifting">
-          <div class="biz-name">Little Lilac</div>
-          <div class="biz-desc">Baby Layette and Gifting</div>
-          <div class="biz-phone"><a href="tel:3476751567">347-675-1567</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="make statement wholesale gold filled jewelry">
-          <div class="biz-name">Make a Statement</div>
-          <div class="biz-desc">Wholesale Gold Filled Jewlery</div>
-          <div class="biz-phone"><a href="tel:3473936094">347-393-6094</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="mr basics mens boys dry goods clothing">
-          <div class="biz-name">Mr Basics</div>
-          <div class="biz-desc">Mens &amp; Boys Dry Goods</div>
-          <div class="biz-phone"><a href="tel:7188511799">718-851-1799</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="my sefer judaica books sheraden">
-          <div class="biz-name">My Sefer Judaica</div>
-          <div class="biz-addr">159 Sheraden Ave</div>
-          <div class="biz-phone"><a href="tel:8887333708">888-733-3708</a> · 888-SEFER-08</div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="present style gift wrap home decor">
-          <div class="biz-name">Present n' Style</div>
-          <div class="biz-desc">Gift Wrap &amp; Home Décor</div>
-          <div class="biz-phone"><a href="tel:9178098001">917-809-8001</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="sabine extraaoridnair balloon decor events gifting">
-          <div class="biz-name">Sabine ExtraaoridnAir</div>
-          <div class="biz-desc">Balloon Décor for Events &amp; Gifting</div>
-          <div class="biz-phone"><a href="tel:9178382707">917-838-2707</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="finishing touch gifts personalized">
-          <div class="biz-name">The Finishing Touch Gifts</div>
-          <div class="biz-desc">Personalized Gifts</div>
-          <div class="biz-phone"><a href="tel:9178034452">917-803-4452</a></div>
-        </div>
-        <div class="biz-card" data-cat="specialty" data-search="white petal lingerie fitting">
-          <div class="biz-name">White Petal Lingerie</div>
-          <div class="biz-desc">Your Perfect Fitting</div>
-          <div class="biz-phone"><a href="tel:3477074637">347-707-4637</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BEAUTY -->
-    <div class="cat-section" data-cat="beauty">
-      <div class="cat-title">💅 Beauty &amp; Self Care</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="beauty" data-search="atara fendrich massage craniosacral therapy lmt">
-          <div class="biz-name">Atara Fendrich LMT</div>
-          <div class="biz-desc">Massage &amp; Craniosacral Therapy</div>
-          <div class="biz-phone"><a href="tel:9177108370">917-710-8370</a></div>
-        </div>
-        <div class="biz-card" data-cat="beauty" data-search="danielle besser wig hair makeup">
-          <div class="biz-name">Danielle Besser</div>
-          <div class="biz-desc">Wig · Hair · Makeup</div>
-          <div class="biz-phone"><a href="tel:7182322789">718-232-2789</a></div>
-        </div>
-        <div class="biz-card" data-cat="beauty" data-search="friedas nails waxing home">
-          <div class="biz-name">Frieda's Nails &amp; Waxing</div>
-          <div class="biz-desc">We Come to Your Home!</div>
-          <div class="biz-phone"><a href="tel:9543305845">954-330-5845</a></div>
-        </div>
-        <div class="biz-card" data-cat="beauty" data-search="glam go makeup chani">
-          <div class="biz-name">Glam n Go</div>
-          <div class="biz-desc">Makeup by Chani</div>
-          <div class="biz-phone"><a href="tel:9178438740">917-843-8740</a></div>
-        </div>
-        <div class="biz-card" data-cat="beauty" data-search="glo laser suri jachimowitz electrolysis">
-          <div class="biz-name">Glo Laser — Suri Jachimowitz</div>
-          <div class="biz-desc">Laser and Electrolysis</div>
-          <div class="biz-phone"><a href="tel:3476990822">347-699-0822</a></div>
-        </div>
-        <div class="biz-card" data-cat="beauty" data-search="hair gall wigs haircuts">
-          <div class="biz-name">Hair by Gall</div>
-          <div class="biz-desc">Wigs · Hair · Haircuts</div>
-          <div class="biz-phone"><a href="tel:3474247505">347-424-7505</a></div>
-        </div>
-        <div class="biz-card" data-cat="beauty" data-search="makeup naomi">
-          <div class="biz-name">Makeup by Naomi</div>
-          <div class="biz-phone"><a href="tel:7185987865">718-598-7865</a></div>
-        </div>
-        <div class="biz-card" data-cat="beauty" data-search="nancys salon mani pedi waxing lice">
-          <div class="biz-name">Nancy's Salon</div>
-          <div class="biz-desc">Mani · Pedi · Waxing · Lice Check</div>
-          <div class="biz-phone"><a href="tel:7189389337">718-938-9337</a></div>
-        </div>
-        <div class="biz-card" data-cat="beauty" data-search="pessi wigs sales cut wash set">
-          <div class="biz-name">Pessi Wigs</div>
-          <div class="biz-desc">Wig Sales · Cut · Wash &amp; Set</div>
-          <div class="biz-phone"><a href="tel:9293098640">929-309-8640</a></div>
-        </div>
-        <div class="biz-card" data-cat="beauty" data-search="wigs laya sales cut wash set">
-          <div class="biz-name">Wigs by Laya</div>
-          <div class="biz-desc">Sales · Cut · Wash &amp; Set</div>
-          <div class="biz-phone"><a href="tel:7187918865">718-791-8865</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- POOL -->
-    <div class="cat-section" data-cat="pool">
-      <div class="cat-title">🏊 Pool Rental</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="pool" data-search="bryna sklars salt water pool swim lessons aqua aerobics">
-          <div class="biz-name">Bryna Sklars</div>
-          <div class="biz-desc">Salt Water Pool · Swim Lessons · Aqua Aerobics</div>
-          <div class="biz-phone"><a href="tel:3473936094">347-393-6094</a></div>
-        </div>
-        <div class="biz-card" data-cat="pool" data-search="chumi fried salt water pool winterized year round">
-          <div class="biz-name">Chumi Fried</div>
-          <div class="biz-desc">Salt Water Pool (Winterized, Year-Round)</div>
-          <div class="biz-phone"><a href="tel:7188121872">718-812-1872</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SERVICES -->
-    <div class="cat-section" data-cat="services">
-      <div class="cat-title">⚙ Services</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="services" data-search="club 21 domestic business employees">
-          <div class="biz-name">Club 21 Services</div>
-          <div class="biz-desc">Domestic &amp; Business Employees</div>
-          <div class="biz-phone"><a href="tel:3474238886">347-423-8886</a></div>
-        </div>
-        <div class="biz-card" data-cat="services" data-search="lactation consultant raizy rubinson clc">
-          <div class="biz-name">Lactation Consultant</div>
-          <div class="biz-desc">Raizy Rubinson CLC</div>
-          <div class="biz-phone"><a href="tel:7182907785">718-290-7785</a></div>
-        </div>
-        <div class="biz-card" data-cat="services" data-search="mobile phone screen repair moshe kustin">
-          <div class="biz-name">Mobile Phone Screen Repair</div>
-          <div class="biz-desc">Moshe Kustin</div>
-          <div class="biz-phone"><a href="tel:3472656499">347-265-6499</a></div>
-        </div>
-        <div class="biz-card" data-cat="services" data-search="physical therapist alexander yegorov">
-          <div class="biz-name">Physical Therapist</div>
-          <div class="biz-desc">Alexander Yegorov</div>
-          <div class="biz-phone"><a href="tel:7187014545">718-701-4545</a></div>
-        </div>
-        <div class="biz-card" data-cat="services" data-search="sew chic alterations miri gabel tailoring">
-          <div class="biz-name">Sew Chic Alterations</div>
-          <div class="biz-desc">Miri Gabel</div>
-          <div class="biz-phone"><a href="tel:9295295214">929-529-5214</a></div>
-        </div>
-        <div class="biz-card" data-cat="services" data-search="sparkle agency home office cleaning">
-          <div class="biz-name">Sparkle Agency</div>
-          <div class="biz-desc">Home &amp; Office Cleaning Service</div>
-          <div class="biz-phone"><a href="tel:3474073931">347-407-3931</a></div>
-        </div>
-        <div class="biz-card" data-cat="services" data-search="we buy gold silver wayne greenberg">
-          <div class="biz-name">We Buy Gold &amp; Silver</div>
-          <div class="biz-desc">Wayne Greenberg</div>
-          <div class="biz-phone"><a href="tel:9173641511">917-364-1511</a></div>
-        </div>
-        <div class="biz-card" data-cat="services" data-search="wealth concierge group businesses grow">
-          <div class="biz-name">Wealth Concierge Group</div>
-          <div class="biz-desc">Helping businesses grow</div>
-          <div class="biz-phone"><a href="tel:6466237253">646-623-7253</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TRANSPORT -->
-    <div class="cat-section" data-cat="transport">
-      <div class="cat-title">🚐 Transportation</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="transport" data-search="staten island shuttle bp transportation">
-          <div class="biz-name">Staten Island Shuttle</div>
-          <div class="biz-desc">Staten Island – Borough Park</div>
-          <div class="biz-phone"><a href="tel:7183423000">718-342-3000</a></div>
-        </div>
-        <div class="biz-card" data-cat="transport" data-search="yakov schmelczer vip long distance messenger">
-          <div class="biz-name">Yakov Schmelczer</div>
-          <div class="biz-desc">VIP Long Distance · Messenger</div>
-          <div class="biz-phone"><a href="tel:9172004594">917-200-4594</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- REALTY -->
-    <div class="cat-section" data-cat="realty">
-      <div class="cat-title">🏡 Realtors</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="realty" data-search="shaina barber katz realty nyc real estate">
-          <div class="biz-name">Shaina Barber</div>
-          <div class="biz-desc">Katz Realty NYC — Who you hire matters</div>
-          <div class="biz-phone"><a href="tel:9179729789">917-972-9789</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- INSURANCE -->
-    <div class="cat-section" data-cat="insurance">
-      <div class="cat-title">📋 Insurance Agents</div>
-      <div class="biz-grid">
-        <div class="biz-card" data-cat="insurance" data-search="aryeh pearlman life health insurance agent">
-          <div class="biz-name">Aryeh Pearlman</div>
-          <div class="biz-desc">Life &amp; Health Insurance Agent</div>
-          <div class="biz-phone"><a href="tel:7183741103">718-374-1103</a></div>
-        </div>
-        <div class="biz-card" data-cat="insurance" data-search="mr hirshenbaum estate planning life retirement">
-          <div class="biz-name">Mr Hirshenbaum</div>
-          <div class="biz-desc">Estate Planning · Life &amp; Retirement</div>
-          <div class="biz-phone"><a href="tel:3477250833">347-725-0833</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- EMERGENCY -->
-    <div class="cat-section" data-cat="emergency">
-      <div class="cat-title em">🆘 Emergency Services</div>
-      <div class="biz-grid">
-        <div class="biz-card em hatz" data-cat="emergency" data-search="hatzolah emergency ambulance">
-          <div class="biz-name">🚑 Hatzolah</div>
-          <div class="biz-desc">Emergency Medical Services</div>
-          <div class="biz-phone"><a href="tel:7182301000">718-230-1000</a></div>
-        </div>
-        <div class="biz-card em" data-cat="emergency" data-search="chaveirim help flat tire lockout">
-          <div class="biz-name">Chaveirim</div>
-          <div class="biz-desc">Community Emergency Assistance</div>
-          <div class="biz-phone"><a href="tel:7187612428">718-761-2428</a></div>
-        </div>
-        <div class="biz-card em" data-cat="emergency" data-search="chavivim community help">
-          <div class="biz-name">Chavivim</div>
-          <div class="biz-phone"><a href="tel:7188717299">718-871-7299</a></div>
-        </div>
-        <div class="biz-card em" data-cat="emergency" data-search="misaskim funeral gemach">
-          <div class="biz-name">Misaskim</div>
-          <div class="biz-phone"><a href="tel:7188544548">(718) 854-4548</a></div>
-        </div>
-        <div class="biz-card em" data-cat="emergency" data-search="shmira security patrol">
-          <div class="biz-name">Shmira</div>
-          <div class="biz-phone"><a href="tel:7187614444">718-761-4444</a></div>
-        </div>
-        <div class="biz-card em" data-cat="emergency" data-search="shomrim security neighborhood watch">
-          <div class="biz-name">Shomrim</div>
-          <div class="biz-phone"><a href="tel:7183702121">718-370-2121</a></div>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:1rem">
-      <p id="noResults" class="hidden" style="color:var(--gray);font-size:1rem;padding:2rem">No businesses found. Try a different search or category.</p>
-    </div>
-
-  </div>
-</section>
+</div>
 
 <!-- SHABBOS TIMES -->
 <section id="shabbos">
@@ -892,7 +291,6 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
   <div class="shab-wrap">
     <div class="shab-card">
       <div class="shab-date" id="shabDate">Loading…</div>
-      <div class="shab-parsha" id="shabParsha"></div>
       <div class="shab-grid">
         <div class="shab-block">
           <div class="shab-lbl">🕯 Candle Lighting</div>
@@ -906,209 +304,10 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
         </div>
       </div>
       <div class="shab-disclaimer">
-        ⚠ Times are approximate for Staten Island (40.58°N). Always verify with your local Rav.<br>
+        ⚠ Times are approximate for Staten Island. Always verify with your local Rav.<br>
         Accurate times: <a href="https://www.chabad.org/calendar/zmanim.htm" target="_blank">Chabad.org</a> · <a href="https://myzmanim.com" target="_blank">MyZmanim.com</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- MARKETPLACE -->
-<section id="marketplace">
-  <div class="sec-head">
-    <h2>Community Marketplace</h2>
-    <div class="divider"></div>
-    <p>Buy, sell, and trade within our community — 100% free.</p>
-  </div>
-
-  <!-- POST A LISTING FORM -->
-  <div id="mkt-form-wrap" style="max-width:680px;margin:0 auto 2.5rem;background:#fff;border-radius:14px;box-shadow:0 2px 16px rgba(10,28,75,.10);padding:2rem">
-    <h3 style="color:var(--navy);font-size:1.15rem;margin-bottom:1.25rem">➕ Post a Free Listing</h3>
-    <div class="form-row">
-      <input id="mkt-title" type="text" placeholder="Item Title *" style="flex:2">
-      <input id="mkt-price" type="text" placeholder="Price (e.g. $50 OBO or Free)">
-    </div>
-    <div class="form-row">
-      <select id="mkt-cat">
-        <option value="">Category *</option>
-        <option>Furniture</option>
-        <option>Clothing</option>
-        <option>Seforim &amp; Judaica</option>
-        <option>Kitchen</option>
-        <option>Baby &amp; Kids</option>
-        <option>Electronics</option>
-        <option>Services</option>
-        <option>Free / Giveaway</option>
-        <option>Other</option>
-      </select>
-      <input id="mkt-contact" type="text" placeholder="Your phone or email *">
-    </div>
-    <div class="form-row full">
-      <textarea id="mkt-desc" placeholder="Describe your item — condition, size, pickup details…" style="height:90px"></textarea>
-    </div>
-    <!-- Hide contact option -->
-    <div style="margin:.75rem 0;padding:.85rem 1rem;background:#f8faff;border-radius:8px;border:1px solid var(--border)">
-      <label style="display:flex;align-items:flex-start;gap:.75rem;cursor:pointer">
-        <input type="checkbox" id="mkt-hide-contact" style="margin-top:3px;width:16px;height:16px;cursor:pointer">
-        <div>
-          <div style="font-weight:700;font-size:.88rem;color:var(--navy)">🔒 Hide my contact info</div>
-          <div style="font-size:.78rem;color:var(--gray);margin-top:.2rem">Buyers will send you a message through the site. Your phone/email stays private and you'll see it in your listing dashboard.</div>
-        </div>
-      </label>
-    </div>
-    <button id="mkt-submit" type="button" style="background:var(--navy);color:#fff;padding:.85rem 2rem;border:none;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;width:100%;margin-top:.25rem">Post Listing — Free</button>
-    <div id="mkt-success" style="display:none;margin-top:1rem"></div>
-  </div>
-
-  <!-- LISTINGS GRID -->
-  <div class="mkt-grid" id="mkt-grid">
-    <!-- Static seed listings -->
-    <div class="mkt-card">
-      <div class="mkt-img">🪑</div>
-      <div class="mkt-body">
-        <div class="mkt-tag">Furniture</div>
-        <div class="mkt-title">Dining Table &amp; 6 Chairs — Excellent Condition</div>
-        <div class="mkt-desc">Beautiful solid wood table. Moving — must sell.</div>
-        <div class="mkt-price">$450 OBO</div>
-        <div class="mkt-contact">📍 Staten Island · Call/Text to arrange viewing</div>
-      </div>
-      <div class="mkt-footer"><span style="font-size:.75rem;color:var(--gray)">Posted 2 days ago</span></div>
-    </div>
-    <div class="mkt-card">
-      <div class="mkt-img">👗</div>
-      <div class="mkt-body">
-        <div class="mkt-tag">Clothing</div>
-        <div class="mkt-title">Shabbos Dresses — Various Sizes</div>
-        <div class="mkt-desc">Collection of Shabbos and Yom Tov dresses, sizes 6–14. All like new.</div>
-        <div class="mkt-price">$25–$65 each</div>
-        <div class="mkt-contact">📍 Staten Island</div>
-      </div>
-      <div class="mkt-footer"><span style="font-size:.75rem;color:var(--gray)">Posted 5 days ago</span></div>
-    </div>
-    <div class="mkt-card">
-      <div class="mkt-img">📚</div>
-      <div class="mkt-body">
-        <div class="mkt-tag">Seforim &amp; Judaica</div>
-        <div class="mkt-title">Large Seforim Collection — Various Titles</div>
-        <div class="mkt-desc">Downsizing. Gemara set, Mishnah Berurah, various other seforim available.</div>
-        <div class="mkt-price">Priced individually</div>
-        <div class="mkt-contact">📍 Staten Island</div>
-      </div>
-      <div class="mkt-footer"><span style="font-size:.75rem;color:var(--gray)">Posted 1 week ago</span></div>
-    </div>
-    <div class="mkt-card">
-      <div class="mkt-img">🍳</div>
-      <div class="mkt-body">
-        <div class="mkt-tag">Kitchen</div>
-        <div class="mkt-title">KitchenAid Mixer — Like New</div>
-        <div class="mkt-desc">Tilt-head stand mixer, 5qt. Used only a few times. All attachments included.</div>
-        <div class="mkt-price">$200 Firm</div>
-        <div class="mkt-contact">📍 Staten Island</div>
-      </div>
-      <div class="mkt-footer"><span style="font-size:.75rem;color:var(--gray)">Posted 3 days ago</span></div>
-    </div>
-    <div class="mkt-card">
-      <div class="mkt-img">🛏</div>
-      <div class="mkt-body">
-        <div class="mkt-tag">Baby &amp; Kids</div>
-        <div class="mkt-title">Baby Furniture Set — Crib, Dresser, Changing Table</div>
-        <div class="mkt-desc">Complete nursery set in excellent condition. Neutral white.</div>
-        <div class="mkt-price">$350 for set</div>
-        <div class="mkt-contact">📍 Staten Island</div>
-      </div>
-      <div class="mkt-footer"><span style="font-size:.75rem;color:var(--gray)">Posted 4 days ago</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ADVERTISE -->
-<section id="advertise" style="background:#fff">
-  <div class="sec-head">
-    <h2>Advertise With Us</h2>
-    <div class="divider"></div>
-    <p>Put your business in front of the entire Staten Island community. Choose the plan that works for you.</p>
-  </div>
-
-  <div class="price-grid">
-    <div class="price-card">
-      <div class="price-tier">Basic</div>
-      <div class="price-val">Free</div>
-      <div class="price-per">Forever free</div>
-      <ul class="price-feats">
-        <li>Business name &amp; phone</li>
-        <li>Category listing</li>
-        <li>Searchable directory</li>
-      </ul>
-      <div class="price-btn" style="cursor:pointer" onclick="document.getElementById('contact-form').scrollIntoView({behavior:'smooth',block:'start'})">Get Listed Free</div>
-      <div style="margin-top:.75rem;font-size:.78rem;text-align:center"><a href="#contact-form" style="color:var(--gray);text-decoration:underline">Already listed? Update your details →</a></div>
-    </div>
-
-    <div class="price-card feat">
-      <div class="price-tier">⭐ Featured</div>
-      <div class="price-val">$79<span style="font-size:1rem">/mo</span></div>
-      <div class="price-per">per month</div>
-      <ul class="price-feats">
-        <li>Everything in Basic</li>
-        <li>Featured card placement</li>
-        <li>Business description</li>
-        <li>Address &amp; website link</li>
-        <li>Priority in search results</li>
-        <li>Featured Business spotlight</li>
-      </ul>
-      <button class="price-btn" onclick="startAdPayment('FeaturedBusiness')">Get Started</button>
-    </div>
-
-    <div class="price-card">
-      <div class="price-tier">💎 Premium</div>
-      <div class="price-val">$129<span style="font-size:1rem">/mo</span></div>
-      <div class="price-per">per month</div>
-      <ul class="price-feats">
-        <li>Everything in Featured</li>
-        <li>Full-width homepage banner</li>
-        <li>Sponsored directory card</li>
-        <li>Blog post feature</li>
-        <li>Social media promotion</li>
-        <li>Maximum visibility</li>
-      </ul>
-      <button class="price-btn" onclick="startAdPayment('Bundle')">Get Started</button>
-    </div>
-  </div>
-
-  <div class="adv-form" id="contact-form" style="margin-top:3rem">
-    <h3>📬 Submit Your Listing or Enquiry</h3>
-    <div class="form-row">
-      <input type="text" placeholder="Business Name *">
-      <input type="text" placeholder="Contact Name *">
-    </div>
-    <div class="form-row">
-      <input type="tel" placeholder="Phone Number *">
-      <input type="email" placeholder="Email Address">
-    </div>
-    <div class="form-row">
-      <select>
-        <option>Category</option>
-        <option>Restaurants &amp; Food</option>
-        <option>Home Services</option>
-        <option>Photography</option>
-        <option>Auto Services</option>
-        <option>Medical</option>
-        <option>Specialty Shops</option>
-        <option>Beauty &amp; Self Care</option>
-        <option>Services</option>
-        <option>Transportation</option>
-        <option>Other</option>
-      </select>
-      <select>
-        <option>Plan</option>
-        <option>Basic (Free)</option>
-        <option>Featured ($79/mo)</option>
-        <option>Premium ($129/mo)</option>
-      </select>
-    </div>
-    <div class="form-row full">
-      <textarea placeholder="Business description, address, or message…"></textarea>
-    </div>
-    <button class="form-submit" onclick="alert('Thank you! We will be in touch shortly. ✡')">Submit Enquiry</button>
   </div>
 </section>
 
@@ -1125,7 +324,7 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
       <div class="blog-body">
         <div class="blog-cat">Community News</div>
         <div class="blog-title">Why Every Dollar You Spend Locally Makes a Difference</div>
-        <div class="blog-exc">When you choose a local business, you're not just making a purchase — you're strengthening families, creating jobs, and supporting the charitable organizations that keep our community strong.</div>
+        <div class="blog-exc">When you choose a local business, you're not just making a purchase — you're strengthening families and supporting our community.</div>
         <div class="blog-meta"><span>Jun 2025</span><a href="#" style="color:var(--red);font-weight:600">Read more →</a></div>
       </div>
     </div>
@@ -1134,43 +333,35 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
       <div class="blog-body">
         <div class="blog-cat">Business Spotlight</div>
         <div class="blog-title">Meet the Local Businesses Behind Our Community</div>
-        <div class="blog-exc">This month we're highlighting the incredible variety of services available right here on Staten Island — from kosher dining to medical care, beauty, and home services.</div>
+        <div class="blog-exc">This month we're highlighting the incredible variety of services available right here on Staten Island.</div>
         <div class="blog-meta"><span>Jun 2025</span><a href="#" style="color:var(--red);font-weight:600">Read more →</a></div>
       </div>
     </div>
     <div class="blog-card">
       <div class="blog-hero" style="background:#f0f7ef">🤝</div>
       <div class="blog-body">
-        <div class="blog-cat">Charity &amp; Giving</div>
-        <div class="blog-title">Supporting Bikur Cholim &amp; COJO — How Shop Local Helps</div>
-        <div class="blog-exc">Every dollar spent locally contributes to organisations that provide hospital visits, meals, transportation, and emergency aid to those who need it most on Staten Island.</div>
+        <div class="blog-cat">Charity & Giving</div>
+        <div class="blog-title">Supporting Bikur Cholim & COJO — How Shop Local Helps</div>
+        <div class="blog-exc">Every dollar spent locally contributes to organisations that provide aid to those who need it most on Staten Island.</div>
         <div class="blog-meta"><span>May 2025</span><a href="#" style="color:var(--red);font-weight:600">Read more →</a></div>
       </div>
     </div>
   </div>
-  <div style="text-align:center;margin-top:2rem">
-    <a href="#advertise" class="submit-post">✍ Submit a Blog Post</a>
+  <div style="text-align:center">
+    <a href="/advertise.html" class="submit-post">✍ Submit a Blog Post</a>
   </div>
 </section>
 
 <!-- COMMUNITY -->
-<section id="community" style="padding:3rem 2rem">
-  <div class="sec-head">
-    <h2 style="color:var(--gold)">Our Community Organisations</h2>
-    <div class="divider" style="background:var(--gold)"></div>
-  </div>
+<section id="community" style="padding:2.5rem 2rem">
   <div class="comm-card">
     <h3>NEXT TIME YOU SHOP — Ask Yourself: WHY DOES IT MATTER?</h3>
-    <p>Because every dollar spent locally strengthens our community. It supports families, creates jobs, and lightens the burden on vital organisations like <strong style="color:var(--gold)">Staten Island Bikur Cholim</strong> and <strong style="color:var(--gold)">COJO</strong>, which provide discreet, life-changing support to those in crisis.</p>
-    <p>Bikur Cholim assists with medical equipment, hospital visits, meals, transportation, and emergency aid. COJO offers case management, benefits assistance, youth and senior programming, and has operated Staten Island's largest kosher food pantry since 1980.</p>
-    <p><strong style="color:var(--gold)">Have Maaser to give? Start at home.</strong> Your first stop should always be your own community.</p>
+    <p>Because every dollar spent locally strengthens our community. It supports families and lightens the burden on vital organisations like <strong style="color:var(--gold)">Staten Island Bikur Cholim</strong> and <strong style="color:var(--gold)">COJO</strong>.</p>
+    <p><strong style="color:var(--gold)">Have Maaser to give? Start at home.</strong></p>
     <div class="comm-orgs">
       <div class="org-pill">🏥 Staten Island Bikur Cholim<br><small style="font-weight:400;color:rgba(255,255,255,.7)">Donate: Zelle 718-494-4343</small></div>
       <div class="org-pill">🤝 COJO Staten Island<br><small style="font-weight:400;color:rgba(255,255,255,.7)">Community Support Since 1980</small></div>
     </div>
-    <p style="margin-top:1.25rem;font-size:.85rem;color:rgba(255,255,255,.6)">
-      <strong style="color:var(--gold)">HIRING SOMEONE?</strong> Think local. Help someone in our community get back on their feet.
-    </p>
   </div>
 </section>
 
@@ -1179,26 +370,24 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
   <div class="foot-grid">
     <div class="foot-col">
       <div class="foot-logo">Shop<span>Local</span> SI</div>
-      <p style="font-size:.83rem;line-height:1.7;color:rgba(255,255,255,.55)">Supporting the businesses that support our Staten Island community.</p>
+      <p style="font-size:.81rem;line-height:1.7;color:rgba(255,255,255,.55)">Supporting the businesses that support our Staten Island community.</p>
     </div>
     <div class="foot-col">
-      <h4>Directory</h4>
+      <h4>Pages</h4>
       <ul>
-        <li><a href="#directory">All Businesses</a></li>
-        <li><a href="#directory">Restaurants &amp; Food</a></li>
-        <li><a href="#directory">Home Services</a></li>
-        <li><a href="#directory">Medical</a></li>
-        <li><a href="#directory">Beauty &amp; Self Care</a></li>
+        <li><a href="/directory.html">Business Directory</a></li>
+        <li><a href="/marketplace.html">Marketplace</a></li>
+        <li><a href="/ads.html">Ads & Promotions</a></li>
+        <li><a href="/coupons.html">Coupons & Deals</a></li>
+        <li><a href="/advertise.html">Advertise With Us</a></li>
       </ul>
     </div>
     <div class="foot-col">
       <h4>Community</h4>
       <ul>
         <li><a href="#shabbos">Shabbos Times</a></li>
-        <li><a href="#marketplace">Marketplace</a></li>
         <li><a href="#blog">Community Blog</a></li>
-        <li><a href="#advertise">Advertise</a></li>
-        <li><a href="#advertise">List Your Business</a></li>
+        <li><a href="/advertise.html">List Your Business</a></li>
       </ul>
     </div>
     <div class="foot-col">
@@ -1215,7 +404,7 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
   </div>
   <div class="foot-bottom">
     &copy; 2025 Shop Local Staten Island · Strengthening our community one purchase at a time<br>
-    <span style="font-size:.72rem">To add or update your listing: <a href="#advertise" style="color:var(--gold)">click here</a></span>
+    <span style="font-size:.72rem">To add or update your listing: <a href="/advertise.html" style="color:var(--gold)">click here</a></span>
   </div>
 </footer>
 
@@ -1240,108 +429,192 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
 </div>
 
 <script>
-// ─── BUSINESS PROFILE MODAL ───────────────────────────────
+// ─── SHABBOS TIMES ──────────────────────────────
 (function() {
-  let featuredAds = [];
-  let allCoupons = [];
+  const LAT = 40.5795, LON = -74.1502;
+  function getNextFriday() {
+    const d = new Date(); const day = d.getDay();
+    const diff = day <= 5 ? 5 - day : 6;
+    const fri = new Date(d); fri.setDate(d.getDate() + (diff === 0 ? 7 : diff));
+    fri.setHours(12,0,0,0); return fri;
+  }
+  function isDST(date) {
+    const yr = date.getFullYear();
+    const start = new Date(yr,2,1); start.setDate(1+(7-start.getDay())%7+7);
+    const end = new Date(yr,10,1); end.setDate(1+(7-end.getDay())%7);
+    return date >= start && date < end;
+  }
+  function calcSunset(date) {
+    const J = Math.floor((date - new Date(date.getFullYear(),0,0))/86400000);
+    const D = 23.45*Math.sin((2*Math.PI/365)*(J-81))*Math.PI/180;
+    const lat_r = LAT*Math.PI/180;
+    const cosH = -Math.tan(lat_r)*Math.tan(D);
+    if (cosH>1||cosH<-1) return null;
+    const H = Math.acos(cosH)*180/Math.PI;
+    return 12+H/15-LON/15+(isDST(date)?-4:-5);
+  }
+  function fmt(h) {
+    const hr=Math.floor(h),min=Math.round((h-hr)*60);
+    const m=min<10?'0'+min:min,period=hr>=12?'PM':'AM',h12=hr>12?hr-12:hr===0?12:hr;
+    return h12+':'+m+' '+period;
+  }
+  const fri=getNextFriday(),sun=calcSunset(fri);
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const sat=new Date(fri); sat.setDate(fri.getDate()+1);
+  document.getElementById('shabDate').textContent='Shabbos '+days[fri.getDay()]+', '+months[fri.getMonth()]+' '+fri.getDate()+' — '+months[sat.getMonth()]+' '+sat.getDate()+', '+sat.getFullYear();
+  if (sun) {
+    document.getElementById('candleLighting').textContent=fmt(sun-18/60);
+    document.getElementById('shabbosEnds').textContent=fmt(sun+50/60);
+  }
+})();
 
-  async function loadFeaturedProfiles() {
+// ─── BANNER FLASH ANIMATION ──────────────────────────────
+(function() {
+  const texts = ['📢 YOUR AD HERE', '🏆 PREMIUM BANNER', '✨ BE SEEN BY ALL', '🚀 ADVERTISE NOW'];
+  let i = 0;
+  const el = document.getElementById('bannerFlashText');
+  if (el) setInterval(() => {
+    el.style.opacity = '0';
+    setTimeout(() => {
+      const t = texts[i % texts.length];
+      el.querySelector('div').textContent = t;
+      el.style.opacity = '1';
+      i++;
+    }, 400);
+    el.style.transition = 'opacity .4s';
+  }, 3000);
+})();
+
+// ─── LOAD ADS & FEATURED BUSINESSES ──────────────────────────────
+(function() {
+  let allAds = [], allCoupons = [];
+
+  async function loadAll() {
     try {
-      // Load ads
-      const adsRes = await fetch('/.netlify/functions/get-ads');
+      const [adsRes, coupRes] = await Promise.all([
+        fetch('/.netlify/functions/get-ads'),
+        fetch('https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ', {
+          headers: { 'Authorization': `Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87` }
+        })
+      ]);
+
       if (adsRes.ok) {
         const data = await adsRes.json();
-        featuredAds = [...(data.banners||[]), ...(data.featured||[]), ...(data.sponsored||[])];
-      }
+        allAds = data.all || [...(data.banners||[]), ...(data.featured||[]), ...(data.sponsored||[])];
 
-      // Load coupons
-      const coupRes = await fetch(`https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ`, {
-        headers: { 'Authorization': `Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87` }
-      });
-      if (coupRes.ok) {
-        const coupData = await coupRes.json();
-        allCoupons = (coupData.records||[])
-          .filter(r => (r.fields.Status||'').toLowerCase() === 'active')
-          .map(r => ({ biz: r.fields.BusinessName||'', discount: r.fields.Discount||'', desc: r.fields.Description||'', code: r.fields.Code||'' }));
-      }
-
-      // Inject "More Info" buttons and styling into matching directory cards
-      if (featuredAds.length) {
-        document.querySelectorAll('.biz-card').forEach(card => {
-          const nameEl = card.querySelector('.biz-name');
-          if (!nameEl) return;
-          const cardName = nameEl.textContent.trim().toLowerCase();
-          const match = featuredAds.find(a =>
-            a.businessName.toLowerCase() === cardName ||
-            cardName.includes(a.businessName.toLowerCase()) ||
-            a.businessName.toLowerCase().includes(cardName)
-          );
-          if (match) {
-            // Apply card styling based on plan
-            if (match.planType === 'premium') {
-              card.classList.add('premium-card');
-            } else {
-              card.classList.add('featured-card');
-            }
-            // Add More Info button
-            const btn = document.createElement('button');
-            btn.className = 'biz-more-btn';
-            btn.textContent = match.planType === 'premium' ? '💎 More Info' : '⭐ More Info';
-            btn.onclick = (e) => { e.stopPropagation(); openBizModal(match); };
-            card.appendChild(btn);
+        // BANNER
+        if (data.banners && data.banners.length) {
+          document.getElementById('bannerPromo').style.display = 'none';
+          const wrap = document.getElementById('bannerWrap');
+          const rotator = document.getElementById('bannerRotator');
+          wrap.style.display = 'block';
+          rotator.innerHTML = data.banners.map((b,i) => `
+            <div class="banner-slide ${i===0?'active':''}" style="display:${i===0?'block':'none'}" onclick="${b.link?`window.open('${b.link}','_blank')`:''}">
+              ${b.bannerHTML
+                ? `<iframe srcdoc="${b.bannerHTML.replace(/"/g,'&quot;')}" style="width:100%;height:180px;border:none"></iframe>`
+                : `<div style="width:100%;height:180px;background:linear-gradient(135deg,${b.color||'#0a1c4b'},#182e6a);display:flex;align-items:center;justify-content:space-between;padding:0 2rem">
+                    <div><div style="color:var(--gold);font-size:1.3rem;font-weight:900">${b.businessName}</div><div style="color:rgba(255,255,255,.8);font-size:.85rem">${b.tagline||''}</div><div style="color:var(--gold);font-weight:700">${b.phone||''}</div></div>
+                    <div style="background:var(--gold);color:#111;padding:.7rem 1.4rem;border-radius:8px;font-weight:800">Call Now →</div>
+                  </div>`
+              }
+            </div>`).join('');
+          if (data.banners.length > 1) {
+            let cur = 0;
+            setInterval(() => {
+              const slides = rotator.querySelectorAll('.banner-slide');
+              slides[cur].style.display = 'none';
+              cur = (cur+1) % slides.length;
+              slides[cur].style.display = 'block';
+            }, 4000);
           }
-        });
+        }
+
+        // FEATURED BUSINESSES SECTION
+        const featGrid = document.getElementById('featBizGrid');
+        const featItems = data.all || [...(data.featured||[]), ...(data.banners||[])];
+        if (featItems.length) {
+          featGrid.innerHTML = featItems.map(a => `
+            <div class="feat-biz-card" onclick="openBizModal(${JSON.stringify(a).replace(/"/g,'&quot;')})">
+              <div class="feat-biz-badge">${a.planType === 'premium' ? '💎 Premium' : '⭐ Featured'}</div>
+              <div class="feat-biz-name">${a.businessName}</div>
+              <div class="feat-biz-desc">${a.tagline || a.description || ''}</div>
+              <div class="feat-biz-phone">${a.phone || ''}</div>
+            </div>`).join('');
+        } else {
+          document.getElementById('featSection').style.display = 'none';
+        }
+
+        // TV SCREEN
+        if (allAds.length) {
+          const tvInner = document.getElementById('tvInner');
+          let cur = 0;
+          function showTVAd(i) {
+            const ad = allAds[i];
+            if (ad.bannerHTML) {
+              tvInner.innerHTML = `<iframe srcdoc="${ad.bannerHTML.replace(/"/g,'&quot;')}" style="width:100%;height:100%;border:none"></iframe>`;
+            } else {
+              tvInner.innerHTML = `<div style="width:100%;height:100%;background:linear-gradient(135deg,${ad.color||'#0a1c4b'},#182e6a);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;text-align:center">
+                <div style="color:var(--gold);font-size:1.2rem;font-weight:900">${ad.businessName}</div>
+                <div style="color:rgba(255,255,255,.8);font-size:.8rem;margin-top:.3rem">${ad.tagline||''}</div>
+                <div style="color:var(--gold);font-weight:700;margin-top:.5rem">${ad.phone||''}</div>
+              </div>`;
+            }
+          }
+          showTVAd(0);
+          if (allAds.length > 1) {
+            setInterval(() => {
+              const tvInner = document.getElementById('tvInner');
+              tvInner.style.opacity = '0';
+              tvInner.style.transition = 'opacity .3s';
+              setTimeout(() => { cur = (cur+1)%allAds.length; showTVAd(cur); tvInner.style.opacity='1'; }, 300);
+            }, 4000);
+          }
+        }
       }
-    } catch(e) { console.log('Profile load error:', e); }
+
+      if (coupRes.ok) {
+        const cd = await coupRes.json();
+        allCoupons = (cd.records||[]).filter(r=>(r.fields.Status||'').toLowerCase()==='active').map(r=>({
+          biz: r.fields.BusinessName||'', discount: r.fields.Discount||'',
+          desc: r.fields.Description||'', code: r.fields.Code||''
+        }));
+      }
+    } catch(e) {
+      console.log('Load error:', e);
+      document.getElementById('featSection').style.display = 'none';
+    }
   }
 
   window.openBizModal = function(ad) {
-    // Banner
+    if (typeof ad === 'string') ad = JSON.parse(ad);
     const banner = document.getElementById('bizModalBanner');
     if (ad.bannerHTML) {
       banner.innerHTML = `<iframe srcdoc="${ad.bannerHTML.replace(/"/g,'&quot;')}" style="width:100%;height:160px;border:none"></iframe>`;
       banner.style.display = 'block';
-    } else if (ad.businessName) {
-      banner.innerHTML = `<div class="biz-modal-banner-fallback" style="background:linear-gradient(135deg,${ad.color||'#0a1c4b'},#182e6a)">${ad.businessName}</div>`;
-      banner.style.display = 'block';
     } else {
-      banner.style.display = 'none';
+      banner.innerHTML = `<div style="width:100%;height:120px;background:linear-gradient(135deg,${ad.color||'#0a1c4b'},#182e6a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;font-weight:900">${ad.businessName}</div>`;
+      banner.style.display = 'block';
     }
-
-    // Badge
-    const type = (ad.adType||'').toLowerCase();
-    document.getElementById('bizModalBadge').textContent = type.includes('banner') || type.includes('bundle') ? '💎 Premium Partner' : '⭐ Featured Partner';
-
-    // Info
-    document.getElementById('bizModalName').textContent = ad.businessName || '';
-    document.getElementById('bizModalCat').textContent = ad.category || '';
-    document.getElementById('bizModalDesc').textContent = ad.description || ad.tagline || '';
-
-    // Actions
+    document.getElementById('bizModalBadge').textContent = ad.planType==='premium' ? '💎 Premium Partner' : '⭐ Featured Partner';
+    document.getElementById('bizModalName').textContent = ad.businessName||'';
+    document.getElementById('bizModalCat').textContent = (ad.category||'') + (ad.address ? ' · '+ad.address : '');
+    document.getElementById('bizModalDesc').textContent = ad.description||ad.tagline||'';
     let actions = '';
     if (ad.phone) actions += `<a href="tel:${ad.phone.replace(/\D/g,'')}" class="biz-modal-btn-call">📞 Call Now</a>`;
     if (ad.link) actions += `<a href="${ad.link}" target="_blank" class="biz-modal-btn-web">🌐 Visit Website</a>`;
     if (ad.email) actions += `<a href="mailto:${ad.email}" class="biz-modal-btn-email">✉️ Email Us</a>`;
     document.getElementById('bizModalActions').innerHTML = actions;
-
-    // Coupons
-    const bizCoupons = allCoupons.filter(c => c.biz.toLowerCase() === ad.businessName.toLowerCase());
+    const bizCoupons = allCoupons.filter(c=>c.biz.toLowerCase()===(ad.businessName||'').toLowerCase());
     const coupSection = document.getElementById('bizModalCoupons');
     if (bizCoupons.length) {
       coupSection.style.display = 'block';
-      document.getElementById('bizModalCouponsList').innerHTML = bizCoupons.map(c => `
+      document.getElementById('bizModalCouponsList').innerHTML = bizCoupons.map(c=>`
         <div class="biz-modal-coupon">
-          <div class="biz-modal-coupon-info">
-            <div class="biz-modal-coupon-discount">${c.discount}</div>
-            <div class="biz-modal-coupon-desc">${c.desc}</div>
-          </div>
-          ${c.code ? `<div class="biz-modal-coupon-code" onclick="navigator.clipboard.writeText('${c.code}');this.textContent='✅ Copied!';setTimeout(()=>this.textContent='${c.code}',2000)">${c.code}</div>` : ''}
+          <div><div class="biz-modal-coupon-discount">${c.discount}</div><div class="biz-modal-coupon-desc">${c.desc}</div></div>
+          ${c.code?`<div class="biz-modal-coupon-code" onclick="navigator.clipboard.writeText('${c.code}');this.textContent='✅';setTimeout(()=>this.textContent='${c.code}',2000)">${c.code}</div>`:''}
         </div>`).join('');
-    } else {
-      coupSection.style.display = 'none';
-    }
-
-    // Open modal
+    } else { coupSection.style.display = 'none'; }
     document.getElementById('bizModalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   };
@@ -1351,567 +624,15 @@ footer{background:#070e29;color:rgba(255,255,255,.75);padding:3rem 2rem 2rem}
     document.body.style.overflow = '';
   };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadFeaturedProfiles);
-  } else {
-    loadFeaturedProfiles();
-  }
+  document.addEventListener('DOMContentLoaded', loadAll);
 })();
 
-// ─── SEARCH & FILTER ─────────────────────────────
-function filterBiz() {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const cat = document.getElementById('catFilter').value;
-  const cards = document.querySelectorAll('.biz-card');
-  const sections = document.querySelectorAll('.cat-section');
-  let found = 0;
-
-  cards.forEach(c => {
-    const matchCat = !cat || c.dataset.cat === cat;
-    const matchQ = !q || c.dataset.search.includes(q) || c.innerText.toLowerCase().includes(q);
-    c.classList.toggle('hidden', !(matchCat && matchQ));
-    if (matchCat && matchQ) found++;
-  });
-
-  sections.forEach(s => {
-    const vis = [...s.querySelectorAll('.biz-card')].some(c => !c.classList.contains('hidden'));
-    s.classList.toggle('hidden', !vis);
-  });
-
-  document.getElementById('noResults').classList.toggle('hidden', found > 0);
-}
-
-function setTab(cat, btn) {
-  document.querySelectorAll('.ctab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('catFilter').value = cat === 'all' ? '' : cat;
-  document.getElementById('searchInput').value = '';
-  filterBiz();
-}
-
-// ─── SHABBOS TIMES ───────────────────────────────
-(function() {
-  const LAT = 40.5795, LON = -74.1502;
-
-  function getNextFriday() {
-    const d = new Date();
-    const day = d.getDay();
-    const diff = day <= 5 ? 5 - day : 6;
-    const fri = new Date(d);
-    fri.setDate(d.getDate() + (diff === 0 ? 7 : diff));
-    fri.setHours(12, 0, 0, 0);
-    return fri;
-  }
-
-  function isDST(date) {
-    const yr = date.getFullYear();
-    const start = new Date(yr, 2, 1);
-    start.setDate(1 + (7 - start.getDay()) % 7 + 7);
-    const end = new Date(yr, 10, 1);
-    end.setDate(1 + (7 - end.getDay()) % 7);
-    return date >= start && date < end;
-  }
-
-  function calcSunset(date) {
-    const J = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
-    const D = 23.45 * Math.sin((2 * Math.PI / 365) * (J - 81)) * Math.PI / 180;
-    const lat_r = LAT * Math.PI / 180;
-    const cosH = -Math.tan(lat_r) * Math.tan(D);
-    if (cosH > 1 || cosH < -1) return null;
-    const H = Math.acos(cosH) * 180 / Math.PI;
-    const utcSunset = 12 + H / 15 - LON / 15;
-    const offset = isDST(date) ? -4 : -5;
-    return utcSunset + offset;
-  }
-
-  function fmt(h) {
-    const hr = Math.floor(h);
-    const min = Math.round((h - hr) * 60);
-    const m = min < 10 ? '0' + min : min;
-    const period = hr >= 12 ? 'PM' : 'AM';
-    const h12 = hr > 12 ? hr - 12 : hr === 0 ? 12 : hr;
-    return h12 + ':' + m + ' ' + period;
-  }
-
-  const fri = getNextFriday();
-  const sun = calcSunset(fri);
-
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
-  const sat = new Date(fri); sat.setDate(fri.getDate() + 1);
-  document.getElementById('shabDate').textContent =
-    'Shabbos ' + days[fri.getDay()] + ', ' + months[fri.getMonth()] + ' ' + fri.getDate() +
-    ' — ' + months[sat.getMonth()] + ' ' + sat.getDate() + ', ' + sat.getFullYear();
-
-  if (sun) {
-    document.getElementById('candleLighting').textContent = fmt(sun - 18/60);
-    document.getElementById('shabbosEnds').textContent = fmt(sun + 50/60);
-  } else {
-    document.getElementById('candleLighting').textContent = 'N/A';
-    document.getElementById('shabbosEnds').textContent = 'N/A';
-  }
-})();
-
-// ─── MARKETPLACE ───────────────────────────────
-(function() {
-  const catEmoji = {
-    'Furniture':'🪑','Clothing':'👗','Seforim & Judaica':'📚','Kitchen':'🍳',
-    'Baby & Kids':'🛏','Electronics':'📱','Services':'🔧','Free / Giveaway':'🎁','Other':'📦'
-  };
-
-  async function loadApprovedListings() {
-    try {
-      const res = await fetch('/.netlify/functions/get-listings');
-      if (!res.ok) return;
-      const data = await res.json();
-      const grid = document.getElementById('mkt-grid');
-      if (!grid || !data.listings) return;
-
-      grid.querySelectorAll('.user-listing').forEach(el => el.remove());
-
-      data.listings.forEach(item => {
-        const emoji = catEmoji[item.category] || '📦';
-        const contactHidden = item.contactHidden;
-        const card = document.createElement('div');
-        card.className = 'mkt-card user-listing';
-        card.innerHTML = `
-          <div class="mkt-img">${emoji}</div>
-          <div class="mkt-body">
-            <div class="mkt-tag">${item.category}</div>
-            <div class="mkt-title">${item.title}</div>
-            <div class="mkt-desc">${item.description}</div>
-            <div class="mkt-price">${item.price}</div>
-            ${contactHidden
-              ? `<div class="mkt-contact" style="color:var(--gray);font-style:italic">🔒 Contact hidden — use message button</div>`
-              : `<div class="mkt-contact">📞 ${item.contact}</div>`
-            }
-          </div>
-          <div class="mkt-footer" style="flex-direction:column;gap:.5rem;align-items:stretch">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <span style="font-size:.75rem;color:var(--gray)">${item.submitted}</span>
-            </div>
-            <button onclick="openContactModal('${item.id}','${item.title.replace(/'/g,"\\'")}',${contactHidden},\`${contactHidden ? '' : item.contact}\`)"
-              style="background:var(--navy);color:#fff;border:none;padding:.5rem;border-radius:6px;font-size:.78rem;font-weight:700;cursor:pointer;width:100%">
-              💬 Contact Seller
-            </button>
-            <button onclick="openRemoveModal('${item.id}')"
-              style="background:#fff;color:var(--gray);border:1px solid var(--border);padding:.4rem;border-radius:6px;font-size:.72rem;cursor:pointer;width:100%">
-              ✅ Mark as Sold
-            </button>
-          </div>
-        `;
-        grid.insertBefore(card, grid.firstChild);
-      });
-    } catch(e) {
-      console.log('Could not load listings:', e);
-    }
-  }
-
-  // ── Contact Modal ──
-  window.openContactModal = function(id, title, contactHidden, directContact) {
-    if (!contactHidden && directContact) {
-      // Show contact directly
-      showModal(`
-        <h3 style="color:var(--navy);margin-bottom:1rem">Contact Seller</h3>
-        <p style="margin-bottom:.5rem">Listing: <strong>${title}</strong></p>
-        <div style="background:#f4f6fb;padding:1rem;border-radius:8px;font-size:1.1rem;font-weight:700;color:var(--navy);text-align:center;margin:1rem 0">
-          📞 ${directContact}
-        </div>
-        <button onclick="closeModal()" style="width:100%;background:var(--navy);color:#fff;border:none;padding:.8rem;border-radius:8px;font-weight:700;cursor:pointer;margin-top:.5rem">Close</button>
-      `);
-    } else {
-      // Anonymous message form
-      showModal(`
-        <h3 style="color:var(--navy);margin-bottom:.5rem">💬 Message Seller</h3>
-        <p style="font-size:.82rem;color:var(--gray);margin-bottom:1rem">Your message will be forwarded anonymously. The seller's contact stays private.</p>
-        <input id="modal-buyer-name" type="text" placeholder="Your name *" style="width:100%;padding:.7rem;border:2px solid #dde2ee;border-radius:8px;margin-bottom:.75rem;font-size:.9rem">
-        <textarea id="modal-buyer-msg" placeholder="Your message *" style="width:100%;padding:.7rem;border:2px solid #dde2ee;border-radius:8px;height:100px;font-size:.9rem;resize:vertical"></textarea>
-        <button onclick="sendMessage('${id}','${title.replace(/'/g,"\\'")}')"
-          style="width:100%;background:var(--navy);color:#fff;border:none;padding:.8rem;border-radius:8px;font-weight:700;cursor:pointer;margin-top:.75rem">Send Message</button>
-        <button onclick="closeModal()" style="width:100%;background:#fff;color:var(--gray);border:1px solid #dde2ee;padding:.7rem;border-radius:8px;font-weight:600;cursor:pointer;margin-top:.5rem">Cancel</button>
-        <div id="modal-msg-status" style="margin-top:.75rem;text-align:center;font-size:.85rem"></div>
-      `);
-    }
-  };
-
-  window.sendMessage = async function(id, title) {
-    const name = document.getElementById('modal-buyer-name').value.trim();
-    const msg  = document.getElementById('modal-buyer-msg').value.trim();
-    const status = document.getElementById('modal-msg-status');
-
-    if (!name || !msg) { status.style.color='#cc2222'; status.textContent='Please fill in all fields.'; return; }
-
-    status.style.color='var(--gray)'; status.textContent='Sending…';
-
-    try {
-      const res = await fetch('/.netlify/functions/contact-seller', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ listingId: id, buyerName: name, buyerMessage: msg })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
-      status.style.color='#1a6b35';
-      status.textContent='✅ Message sent! The seller will be in touch.';
-      setTimeout(closeModal, 2500);
-    } catch(e) {
-      status.style.color='#cc2222';
-      status.textContent='Failed to send. Please try again.';
-    }
-  };
-
-  // ── Remove/Sold Modal ──
-  window.openRemoveModal = function(id) {
-    showModal(`
-      <h3 style="color:var(--navy);margin-bottom:.5rem">✅ Mark as Sold</h3>
-      <p style="font-size:.82rem;color:var(--gray);margin-bottom:1rem">Enter the 6-digit code you received when you posted this listing.</p>
-      <input id="modal-delete-code" type="text" placeholder="6-digit code *" maxlength="6"
-        style="width:100%;padding:.7rem;border:2px solid #dde2ee;border-radius:8px;font-size:1.2rem;text-align:center;letter-spacing:.2rem;margin-bottom:.75rem">
-      <button onclick="removeListing('${id}')"
-        style="width:100%;background:#cc2222;color:#fff;border:none;padding:.8rem;border-radius:8px;font-weight:700;cursor:pointer">Remove My Listing</button>
-      <button onclick="closeModal()" style="width:100%;background:#fff;color:var(--gray);border:1px solid #dde2ee;padding:.7rem;border-radius:8px;font-weight:600;cursor:pointer;margin-top:.5rem">Cancel</button>
-      <div id="modal-remove-status" style="margin-top:.75rem;text-align:center;font-size:.85rem"></div>
-    `);
-  };
-
-  window.removeListing = async function(id) {
-    const code = document.getElementById('modal-delete-code').value.trim();
-    const status = document.getElementById('modal-remove-status');
-    if (!code) { status.style.color='#cc2222'; status.textContent='Please enter your code.'; return; }
-
-    status.style.color='var(--gray)'; status.textContent='Verifying…';
-
-    try {
-      const res = await fetch('/.netlify/functions/delete-listing', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, deleteCode: code })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Wrong code');
-      status.style.color='#1a6b35';
-      status.textContent='✅ Listing removed!';
-      setTimeout(() => { closeModal(); loadApprovedListings(); }, 1500);
-    } catch(e) {
-      status.style.color='#cc2222';
-      status.textContent = e.message === 'Invalid code' ? '❌ Wrong code. Try again.' : 'Error. Please try again.';
-    }
-  };
-
-  // ── Modal helpers ──
-  function showModal(html) {
-    let overlay = document.getElementById('mkt-modal-overlay');
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.id = 'mkt-modal-overlay';
-      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem';
-      overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-      document.body.appendChild(overlay);
-    }
-    overlay.innerHTML = `<div style="background:#fff;border-radius:14px;padding:2rem;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3)">${html}</div>`;
-    overlay.style.display = 'flex';
-  }
-
-  window.closeModal = function() {
-    const overlay = document.getElementById('mkt-modal-overlay');
-    if (overlay) overlay.style.display = 'none';
-  };
-
-  async function submitListing(title, price, category, contact, description, hideContact) {
-    const res = await fetch('/.netlify/functions/submit-listing', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, price, category, contact, description, hideContact })
-    });
-    if (!res.ok) { const err = await res.json(); throw new Error(err.error || 'Submission failed'); }
-    return await res.json();
-  }
-
-  function initMarketplace() {
-    loadApprovedListings();
-
-    const btn = document.getElementById('mkt-submit');
-    if (!btn) return;
-
-    btn.addEventListener('click', async function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const title       = document.getElementById('mkt-title').value.trim();
-      const price       = document.getElementById('mkt-price').value.trim() || 'Contact for price';
-      const category    = document.getElementById('mkt-cat').value;
-      const contact     = document.getElementById('mkt-contact').value.trim();
-      const description = document.getElementById('mkt-desc').value.trim();
-      const hideContact = document.getElementById('mkt-hide-contact').checked;
-
-      if (!title || !category || !contact) {
-        alert('Please fill in Title, Category, and Contact info.');
-        return;
-      }
-
-      btn.textContent = 'Submitting…';
-      btn.disabled = true;
-
-      try {
-        const result = await submitListing(title, price, category, contact, description, hideContact);
-
-        ['mkt-title','mkt-price','mkt-contact','mkt-desc'].forEach(id => document.getElementById(id).value = '');
-        document.getElementById('mkt-cat').selectedIndex = 0;
-        document.getElementById('mkt-hide-contact').checked = false;
-
-        const suc = document.getElementById('mkt-success');
-        suc.style.display = 'block';
-        suc.innerHTML = `
-          <div style="background:#e8f8ee;color:#1a6b35;padding:1.25rem;border-radius:8px;text-align:center">
-            <div style="font-weight:700;font-size:1rem;margin-bottom:.5rem">✅ Listing submitted — pending approval!</div>
-            <div style="font-size:.88rem;margin-bottom:.75rem">Save this code to remove your listing when sold:</div>
-            <div style="font-size:2rem;font-weight:900;letter-spacing:.3rem;color:var(--navy);background:#fff;padding:.75rem 1.5rem;border-radius:8px;display:inline-block">${result.deleteCode}</div>
-            <div style="font-size:.75rem;margin-top:.5rem;color:#64748b">Screenshot or write this down — it cannot be recovered</div>
-          </div>
-        `;
-        setTimeout(() => suc.style.display = 'none', 15000);
-
-      } catch(err) {
-        alert('Error submitting listing: ' + err.message);
-      } finally {
-        btn.textContent = 'Post Listing — Free';
-        btn.disabled = false;
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMarketplace);
-  } else {
-    initMarketplace();
-  }
-})();
-
-// ─── TV SCREEN ADS ───────────────────────────────
-(function() {
-  async function loadTVAds() {
-    try {
-      const res = await fetch('/.netlify/functions/get-ads');
-      if (!res.ok) return;
-      const data = await res.json();
-      const all = [...(data.banners||[]), ...(data.featured||[]), ...(data.sponsored||[])];
-      if (!all.length) return;
-
-      const tvWrap = document.getElementById('tvWrap');
-      const tvContent = document.getElementById('tvContent');
-      tvWrap.style.display = 'block';
-
-      let current = 0;
-      function showAd(i) {
-        const ad = all[i];
-        if (ad.bannerHTML) {
-          tvContent.innerHTML = `<iframe srcdoc="${ad.bannerHTML.replace(/"/g,'&quot;')}" style="width:100%;height:160px;border:none;display:block"></iframe>`;
-        } else {
-          tvContent.innerHTML = `
-            <div style="width:100%;height:160px;background:linear-gradient(135deg,${ad.color||'#0a1c4b'},#182e6a);display:flex;align-items:center;justify-content:space-between;padding:0 2rem">
-              <div>
-                <div style="color:var(--gold);font-size:1.3rem;font-weight:900">${ad.businessName}</div>
-                <div style="color:rgba(255,255,255,.8);font-size:.85rem;margin-top:.3rem">${ad.tagline||ad.description||''}</div>
-                <div style="color:var(--gold);font-weight:700;margin-top:.5rem">${ad.phone||''}</div>
-              </div>
-              <div style="background:var(--gold);color:#111;padding:.65rem 1.25rem;border-radius:8px;font-weight:800;font-size:.85rem">View Ad →</div>
-            </div>`;
-        }
-      }
-
-      showAd(0);
-      if (all.length > 1) {
-        setInterval(() => {
-          current = (current + 1) % all.length;
-          tvContent.style.opacity = '0';
-          setTimeout(() => { showAd(current); tvContent.style.opacity = '1'; }, 300);
-        }, 4000);
-        tvContent.style.transition = 'opacity .3s';
-      }
-    } catch(e) { console.log('TV ads error:', e); }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadTVAds);
-  } else {
-    loadTVAds();
-  }
-})();
-
-// ─── AD PAYMENTS ───────────────────────────────
-async function startAdPayment(adType) {
-  try {
-    const response = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan: adType })
-    });
-    if (!response.ok) {
-      const err = await response.json();
-      throw new Error(err.error || 'Server error');
-    }
-    const data = await response.json();
-    if (data.redirect) {
-      document.getElementById('contact-form').scrollIntoView({behavior:'smooth',block:'start'});
-      return;
-    }
-    const stripe = Stripe('pk_live_51Tin6MIDdMLYVh4oK2QStvaVhBuIEgCcD92cHrhppumHc9xe2fAdlUbniSIWtfccPi2Pqoohh8mzGtjA4Zvq2IPu000Marfnt5');
-    const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
-    if (result.error) throw new Error(result.error.message);
-  } catch (error) {
-    // Fall back to contact form
-    document.getElementById('contact-form').scrollIntoView({behavior:'smooth',block:'start'});
-    alert('Please fill in the enquiry form below and we\'ll set up your ad!');
-  }
-}
-
-// ─── BANNER & FEATURED BUSINESSES ───────────────────────────────
-(function() {
-  async function loadAds() {
-    try {
-      const res = await fetch('/.netlify/functions/get-ads');
-      if (!res.ok) return;
-      const data = await res.json();
-
-      // Load banners
-      if (data.banners && data.banners.length > 0) {
-        const rotator = document.getElementById('bannerRotator');
-        const wrap = document.getElementById('bannerWrap');
-        wrap.style.display = 'block';
-        rotator.innerHTML = data.banners.map((b, i) => `
-          <div class="banner-slide ${i === 0 ? 'active' : ''}" onclick="window.open('${b.link || '#'}','_blank')">
-            ${b.image
-              ? `<img src="${b.image}" alt="${b.businessName}">`
-              : `<div class="banner-slide-fallback" style="background:linear-gradient(135deg,${b.color || '#0a1c4b'},#182e6a)">
-                  <div style="font-size:1.4rem;font-weight:900;color:#fff">${b.businessName}</div>
-                  <div style="font-size:.9rem;color:rgba(255,255,255,.8)">${b.tagline || ''}</div>
-                  <div style="font-size:.82rem;color:var(--gold);font-weight:700;margin-top:.25rem">${b.phone || ''}</div>
-                </div>`
-            }
-            <div class="banner-ad-label">AD</div>
-          </div>
-        `).join('') + (data.banners.length > 1 ? `
-          <div class="banner-dots">
-            ${data.banners.map((_,i) => `<div class="banner-dot ${i===0?'active':''}" onclick="goToSlide(${i})"></div>`).join('')}
-          </div>` : '');
-
-        if (data.banners.length > 1) {
-          let current = 0;
-          window.goToSlide = function(n) {
-            document.querySelectorAll('.banner-slide').forEach((s,i) => s.classList.toggle('active', i===n));
-            document.querySelectorAll('.banner-dot').forEach((d,i) => d.classList.toggle('active', i===n));
-            current = n;
-          };
-          setInterval(() => goToSlide((current + 1) % data.banners.length), 4000);
-        }
-      }
-
-      // Load featured businesses
-      if (data.featured && data.featured.length > 0) {
-        const section = document.getElementById('featured-businesses');
-        const grid = document.getElementById('featBizGrid');
-        section.style.display = 'block';
-        grid.innerHTML = data.featured.map(b => `
-          <div class="feat-biz-card" onclick="${b.link ? `window.open('${b.link}','_blank')` : ''}">
-            <div class="feat-biz-badge">⭐ Featured Partner</div>
-            <div class="feat-biz-name">${b.businessName}</div>
-            <div class="feat-biz-desc">${b.description || ''}</div>
-            <div class="feat-biz-phone">${b.phone || ''}</div>
-          </div>
-        `).join('');
-      }
-
-      // Load sponsored directory cards
-      if (data.sponsored && data.sponsored.length > 0) {
-        const firstGrid = document.querySelector('.biz-grid');
-        if (firstGrid) {
-          data.sponsored.forEach(b => {
-            const card = document.createElement('div');
-            card.className = 'biz-card sponsored';
-            card.dataset.cat = b.category || 'specialty';
-            card.dataset.search = (b.businessName + ' ' + (b.description || '')).toLowerCase();
-            card.innerHTML = `
-              <div class="biz-name">${b.businessName}</div>
-              ${b.description ? `<div class="biz-desc">${b.description}</div>` : ''}
-              ${b.phone ? `<div class="biz-phone"><a href="tel:${b.phone.replace(/\D/g,'')}">${b.phone}</a></div>` : ''}
-            `;
-            firstGrid.insertBefore(card, firstGrid.firstChild);
-          });
-        }
-      }
-
-    } catch(e) {
-      console.log('Could not load ads:', e);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadAds);
-  } else {
-    loadAds();
-  }
-})();
-
-// ─── SMOOTH SCROLL ───────────────────────────────
+// ─── SMOOTH SCROLL ──────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    if (a.classList.contains('basic-btn')) return; // let basic-btn handle itself
     const target = document.querySelector(a.getAttribute('href'));
     if (target) { e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
     document.getElementById('navLinks').classList.remove('open');
-  });
-});
-
-// ─── STRIPE PAYMENT INTEGRATION ───────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  const stripe = Stripe('pk_live_51Tin6MIDdMLYVh4oK2QStvaVhBuIEgCcD92cHrhppumHc9xe2fAdlUbniSIWtfccPi2Pqoohh8mzGtjA4Zvq2IPu000Marfnt5');
-
-  async function startPayment(plan) {
-    try {
-      const btn = document.querySelector(`[data-plan="${plan}"]`);
-      if (btn) { btn.textContent = 'Loading…'; btn.disabled = true; }
-
-      const response = await fetch('/.netlify/functions/create-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan })
-      });
-
-      if (!response.ok) {
-        const err = await response.json();
-        throw new Error(err.error || 'Server error');
-      }
-
-      const data = await response.json();
-      // Basic plan returns a redirect instead of a sessionId
-      if (data.redirect) {
-        document.getElementById('contact-form').scrollIntoView({behavior:'smooth', block:'start'});
-        return;
-      }
-      const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
-      if (result.error) throw new Error(result.error.message);
-
-    } catch (error) {
-      console.error('Payment error:', error);
-      alert('Payment error: ' + error.message + '\n\nPlease try again or contact us directly.');
-      // Re-enable button
-      document.querySelectorAll('.price-btn').forEach(b => { b.disabled = false; b.textContent = 'Get Started'; });
-    }
-  }
-
-  document.querySelectorAll('a.price-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const priceCard = btn.closest('.price-card');
-      const planType = priceCard ? priceCard.querySelector('.price-tier').textContent.trim() : '';
-      // Basic is free — just scroll to the contact form
-      if (planType === 'Basic') {
-        document.getElementById('contact-form').scrollIntoView({behavior:'smooth', block:'start'});
-        return;
-      }
-      startPayment(planType);
-    });
   });
 });
 </script>
