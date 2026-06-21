@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Your Coupon — ShopLocal SI</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--light:#f4f6fb;--border:#dde2ee;--gray:#64748b}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:#1a1a2e;min-height:100vh}
+a{color:inherit;text-decoration:none}
+header{background:var(--navy);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.logo{color:#fff;font-size:1.15rem;font-weight:900}.logo span{color:var(--gold)}
+.container{max-width:680px;margin:0 auto;padding:2rem 1.5rem}
+
+/* STEPS */
+.steps{display:flex;margin-bottom:2rem;background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden}
+.step{flex:1;padding:.75rem;text-align:center;font-size:.75rem;font-weight:700;color:var(--gray);border-right:1px solid var(--border);transition:all .3s}
+.step:last-child{border-right:none}
+.step.active{background:var(--navy);color:#fff}
+.step.done{background:#e8f8ee;color:#1a6b35}
+.step-num{display:block;font-size:1rem;margin-bottom:.15rem}
+
+.card{background:#fff;border-radius:14px;border:1px solid var(--border);padding:2rem;margin-bottom:1.5rem}
+.card h2{font-size:1.15rem;font-weight:800;color:var(--navy);margin-bottom:.35rem}
+.card p{font-size:.85rem;color:var(--gray);margin-bottom:1.5rem}
+
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:.35rem}
+.field input,.field select,.field textarea{width:100%;padding:.75rem 1rem;border:2px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;transition:border .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--navy)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.field-note{font-size:.75rem;color:var(--gray);margin-top:.3rem}
+
+/* EXPIRY NOTICE */
+.expiry-notice{background:#fff8e1;border:2px solid var(--gold);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem}
+.expiry-notice h4{color:#b8860b;font-size:.85rem;font-weight:700;margin-bottom:.3rem}
+.expiry-notice p{font-size:.8rem;color:#7a5c00;line-height:1.5}
+.expiry-toggle{display:flex;align-items:center;gap:.5rem;margin-top:.75rem;cursor:pointer}
+.expiry-toggle input{width:16px;height:16px}
+.expiry-toggle label{font-size:.82rem;font-weight:600;color:var(--navy);cursor:pointer}
+
+/* COUPON PREVIEW */
+.coupon-preview{background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:1.25rem}
+.coupon-preview-top{padding:1.25rem;color:#fff}
+.coupon-preview-biz{font-size:.7rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem}
+.coupon-preview-discount{font-size:2rem;font-weight:900;color:#fff}
+.coupon-preview-desc{font-size:.82rem;color:rgba(255,255,255,.8);margin-top:.25rem}
+.perf{display:flex;align-items:center;gap:.3rem;padding:.4rem 1rem;background:var(--navy)}
+.perf-dot{width:7px;height:7px;border-radius:50%;background:var(--light);flex-shrink:0}
+.perf-line{flex:1;border-top:2px dashed rgba(255,255,255,.2)}
+.coupon-preview-bottom{background:#fff;padding:1rem 1.25rem}
+.coupon-preview-code{background:var(--light);border:2px dashed var(--gold);border-radius:6px;padding:.5rem;text-align:center;font-weight:900;font-size:1rem;color:var(--navy);letter-spacing:.15rem;margin-bottom:.5rem}
+.coupon-preview-expiry{font-size:.72rem;color:var(--gray)}
+
+.btn-primary{background:var(--navy);color:#fff;border:none;padding:.9rem 2rem;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;width:100%;margin-top:.5rem}
+.btn-primary:hover{background:#182e6a}
+.btn-secondary{background:#fff;color:var(--navy);border:2px solid var(--navy);padding:.8rem 2rem;border-radius:8px;font-weight:700;font-size:.9rem;cursor:pointer;width:100%;margin-top:.5rem}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:3rem 1rem}
+.success-screen .check{font-size:4rem;margin-bottom:1rem}
+
+/* BILLING NOTICE */
+.billing-box{background:#f0f7ff;border:1px solid #b3d4f5;border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:.82rem;color:#1a3a6b;line-height:1.6}
+.billing-box strong{color:var(--navy)}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/coupons.html" class="logo">Shop<span>Local</span> SI</a>
+  <span style="color:rgba(255,255,255,.6);font-size:.82rem">← Back to Coupons</span>
+</header>
+
+<div class="container">
+
+  <div style="text-align:center;margin-bottom:2rem">
+    <div style="font-size:3rem">🎟️</div>
+    <h1 style="color:var(--navy);font-size:1.5rem;font-weight:900;margin:.5rem 0">Payment Successful!</h1>
+    <p style="color:var(--gray);font-size:.9rem">Let's set up your coupon. It takes less than 2 minutes.</p>
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps">
+    <div class="step active" id="step1"><span class="step-num">1</span>Business Info</div>
+    <div class="step" id="step2"><span class="step-num">2</span>Coupon Details</div>
+    <div class="step" id="step3"><span class="step-num">3</span>Preview & Submit</div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div id="section1">
+    <div class="card">
+      <h2>Your Business Info</h2>
+      <p>This will appear on your coupon listing.</p>
+      <div class="field-row">
+        <div class="field">
+          <label>Business Name *</label>
+          <input type="text" id="bizName" placeholder="e.g. Nancy's Salon">
+        </div>
+        <div class="field">
+          <label>Category *</label>
+          <select id="bizCat">
+            <option value="">Select…</option>
+            <option value="food">Restaurants & Food</option>
+            <option value="home">Home Services</option>
+            <option value="beauty">Beauty & Self Care</option>
+            <option value="specialty">Specialty Shops</option>
+            <option value="medical">Medical</option>
+            <option value="services">Services</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Phone Number *</label>
+          <input type="tel" id="bizPhone" placeholder="718-000-0000">
+        </div>
+        <div class="field">
+          <label>Email (optional)</label>
+          <input type="email" id="bizEmail" placeholder="hello@yourbiz.com">
+        </div>
+      </div>
+      <div class="field">
+        <label>Website (optional)</label>
+        <input type="url" id="bizLink" placeholder="https://...">
+      </div>
+      <button class="btn-primary" onclick="goToStep2()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div id="section2" style="display:none">
+    <div class="card">
+      <h2>Coupon Details</h2>
+      <p>What deal are you offering the community?</p>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Discount Amount *</label>
+          <input type="text" id="discount" placeholder="e.g. 20% OFF or $10 OFF">
+        </div>
+        <div class="field">
+          <label>Coupon Code *</label>
+          <input type="text" id="code" placeholder="e.g. SAVE20" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Offer Description *</label>
+        <textarea id="desc" placeholder="e.g. 20% off any service for new customers. Cannot be combined with other offers." style="height:80px"></textarea>
+      </div>
+
+      <!-- EXPIRY NOTICE -->
+      <div class="expiry-notice">
+        <h4>📅 Coupon Expiry</h4>
+        <p>Your coupon will automatically expire at the <strong>end of the current month</strong> and renew with your $29/mo subscription. You can also set an earlier expiry date below.</p>
+        <div class="expiry-toggle">
+          <input type="checkbox" id="earlyExpiry" onchange="toggleEarlyExpiry(this)">
+          <label for="earlyExpiry">Set an earlier expiry date</label>
+        </div>
+        <div id="earlyExpiryField" style="display:none;margin-top:.75rem">
+          <input type="date" id="expiryDate" style="width:100%;padding:.65rem 1rem;border:2px solid var(--gold);border-radius:8px;font-size:.9rem;outline:none">
+          <div class="field-note">Must be before end of current month</div>
+        </div>
+      </div>
+
+      <!-- BILLING NOTICE -->
+      <div class="billing-box">
+        <strong>💳 Billing reminder:</strong> Your coupon listing is $29/mo. It will automatically renew each month. Your coupon expires at end of month unless you set an earlier date above or cancel your subscription.
+      </div>
+
+      <button class="btn-primary" onclick="goToStep3()">Preview My Coupon →</button>
+      <button class="btn-secondary" onclick="goBack(1)">← Back</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: PREVIEW -->
+  <div id="section3" style="display:none">
+    <div class="card">
+      <h2>🎟️ Your Coupon Preview</h2>
+      <p>This is exactly how your coupon will appear on the coupons page.</p>
+
+      <div class="coupon-preview">
+        <div class="coupon-preview-top">
+          <div class="coupon-preview-biz" id="previewBiz"></div>
+          <div class="coupon-preview-discount" id="previewDiscount"></div>
+          <div class="coupon-preview-desc" id="previewDesc"></div>
+        </div>
+        <div class="perf">
+          <div class="perf-dot"></div><div class="perf-line"></div><div class="perf-dot"></div>
+        </div>
+        <div class="coupon-preview-bottom">
+          <div class="coupon-preview-code" id="previewCode"></div>
+          <div class="coupon-preview-expiry" id="previewExpiry"></div>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="submitCoupon()">✅ Submit My Coupon</button>
+      <button class="btn-secondary" onclick="goBack(2)">← Edit</button>
+      <div id="submitStatus" style="margin-top:.75rem;text-align:center;font-size:.85rem"></div>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="check">✅</div>
+    <h2 style="color:var(--navy);font-size:1.4rem;font-weight:900">Your coupon has been submitted!</h2>
+    <p style="color:var(--gray);margin-top:.5rem;line-height:1.7">We'll review and publish it within <strong>24 hours</strong>.<br>It will appear on <strong>shoplocalsi.com/coupons.html</strong></p>
+    <div style="margin-top:1.5rem;background:#f8faff;border-radius:10px;padding:1.25rem;text-align:left">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:.4rem">📋 What happens next:</div>
+      <div style="font-size:.83rem;color:var(--gray);line-height:1.8">
+        ✅ We review your coupon<br>
+        ✅ It goes live within 24 hours<br>
+        ✅ It expires end of month (or your chosen date)<br>
+        ✅ Renews automatically at $29/mo
+      </div>
+    </div>
+    <a href="/coupons.html" style="display:block;margin-top:1.5rem;background:var(--navy);color:#fff;padding:.9rem;border-radius:8px;font-weight:700;text-align:center">View Coupons Page →</a>
+  </div>
+
+</div>
+
+<script>
+const TOKEN = 'pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87';
+let couponData = {};
+
+function setStep(n) {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById('step'+i).className = 'step' + (i<n?' done':i===n?' active':'');
+    document.getElementById('section'+i).style.display = i===n?'block':'none';
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goBack(n) { setStep(n); }
+
+function toggleEarlyExpiry(cb) {
+  document.getElementById('earlyExpiryField').style.display = cb.checked ? 'block' : 'none';
+  if (cb.checked) {
+    // Set max date to end of current month
+    const now = new Date();
+    const lastDay = new Date(now.getFullYear(), now.getMonth()+1, 0);
+    document.getElementById('expiryDate').max = lastDay.toISOString().split('T')[0];
+    document.getElementById('expiryDate').min = new Date().toISOString().split('T')[0];
+  }
+}
+
+function getExpiryDate() {
+  if (document.getElementById('earlyExpiry').checked) {
+    return document.getElementById('expiryDate').value;
+  }
+  // End of current month
+  const now = new Date();
+  const lastDay = new Date(now.getFullYear(), now.getMonth()+1, 0);
+  return lastDay.toISOString().split('T')[0];
+}
+
+function goToStep2() {
+  const name = document.getElementById('bizName').value.trim();
+  const cat = document.getElementById('bizCat').value;
+  const phone = document.getElementById('bizPhone').value.trim();
+  if (!name || !cat || !phone) { alert('Please fill in all required fields.'); return; }
+  couponData.bizName = name;
+  couponData.bizCat = cat;
+  couponData.bizPhone = phone;
+  couponData.bizEmail = document.getElementById('bizEmail').value.trim();
+  couponData.bizLink = document.getElementById('bizLink').value.trim();
+  setStep(2);
+}
+
+function goToStep3() {
+  const discount = document.getElementById('discount').value.trim();
+  const code = document.getElementById('code').value.trim();
+  const desc = document.getElementById('desc').value.trim();
+  if (!discount || !code || !desc) { alert('Please fill in all fields.'); return; }
+
+  couponData.discount = discount;
+  couponData.code = code;
+  couponData.desc = desc;
+  couponData.expiry = getExpiryDate();
+
+  // Update preview
+  document.getElementById('previewBiz').textContent = couponData.bizName;
+  document.getElementById('previewDiscount').textContent = discount;
+  document.getElementById('previewDesc').textContent = desc;
+  document.getElementById('previewCode').textContent = code;
+  const expDate = new Date(couponData.expiry + 'T00:00:00');
+  document.getElementById('previewExpiry').textContent = '⏰ Expires ' + expDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
+  setStep(3);
+}
+
+async function submitCoupon() {
+  const btn = document.querySelector('#section3 .btn-primary');
+  const status = document.getElementById('submitStatus');
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+  status.textContent = '';
+
+  try {
+    await fetch(`https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fields: {
+          BusinessName: couponData.bizName,
+          Discount: couponData.discount,
+          Description: couponData.desc,
+          Code: couponData.code,
+          Phone: couponData.bizPhone,
+          Email: couponData.bizEmail,
+          Link: couponData.bizLink,
+          Category: couponData.bizCat,
+          Status: 'Pending',
+          ExpiryDate: couponData.expiry,
+          Created: new Date().toISOString().split('T')[0]
+        }
+      })
+    });
+
+    document.getElementById('section3').style.display = 'none';
+    document.querySelector('.steps').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    window.scrollTo({top:0,behavior:'smooth'});
+
+  } catch(e) {
+    status.style.color = '#cc2222';
+    status.textContent = 'Error submitting. Please try again.';
+    btn.textContent = '✅ Submit My Coupon';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

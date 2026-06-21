@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Coupons & Deals — ShopLocal SI</title>
+<script src="https://js.stripe.com/v3/"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--light:#f4f6fb;--white:#fff;--border:#dde2ee;--gray:#64748b}
@@ -110,9 +111,14 @@ footer a{color:var(--gold)}
   </div>
 
   <div class="advertise-cta">
-    <h2>🎟️ Add Your Coupon Here</h2>
-    <p>Offer a discount and bring new customers through your door — starting at just $29/mo</p>
-    <a href="/#advertise" class="btn-gold">Post a Coupon</a>
+    <h2>🎟️ Post Your Coupon Here</h2>
+    <p>Offer a discount and bring new customers through your door</p>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:1rem;margin-bottom:1.25rem;font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.7;text-align:left;max-width:400px;margin-left:auto;margin-right:auto">
+      ✅ Coupon expires at <strong style="color:var(--gold)">end of month</strong> or your chosen date<br>
+      ✅ Automatically renews monthly at $29/mo<br>
+      ✅ Cancel anytime
+    </div>
+    <button onclick="startCouponPayment()" style="background:var(--gold);color:#111;padding:.9rem 2.5rem;border-radius:8px;font-weight:800;font-size:1rem;border:none;cursor:pointer;box-shadow:0 4px 15px rgba(212,168,67,.4)">Post a Coupon — $29/mo →</button>
   </div>
 </div>
 
@@ -233,6 +239,22 @@ function renderCoupons(cat = 'all') {
       </div>
     </div>`;
   }).join('');
+}
+
+async function startCouponPayment() {
+  try {
+    const response = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan: 'Coupon' })
+    });
+    const data = await response.json();
+    if (data.redirect) { window.location.href = data.redirect; return; }
+    const stripe = Stripe('pk_live_51Tin6MIDdMLYVh4oK2QStvaVhBuIEgCcD92cHrhppumHc9xe2fAdlUbniSIWtfccPi2Pqoohh8mzGtjA4Zvq2IPu000Marfnt5');
+    await stripe.redirectToCheckout({ sessionId: data.sessionId });
+  } catch(e) {
+    alert('Please try again or contact us at 917-753-4444');
+  }
 }
 
 loadCoupons();
