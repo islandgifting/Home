@@ -64,6 +64,17 @@ footer a{color:var(--gold)}
 </head>
 <body>
 
+<!-- GRAND OPENING PROMO BANNER -->
+<div id="promoBanner" style="background:linear-gradient(135deg,#7c1fa8,#a834d4,#cc44ff);padding:.65rem 2rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;position:relative;overflow:hidden;cursor:pointer" onclick="window.location.href='/advertise.html'">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0px,rgba(255,255,255,.03) 1px,transparent 1px,transparent 12px);pointer-events:none"></div>
+  <div style="display:flex;align-items:center;gap:.6rem;position:relative">
+    <span style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:50px;text-transform:uppercase;letter-spacing:1px;animation:promo-pulse 2s infinite">🎉 Grand Opening</span>
+    <span style="color:#fff;font-size:.88rem;font-weight:700">First Month <strong style="color:#ffe566">FREE</strong> on all listings!</span>
+    <span style="color:rgba(255,255,255,.6);font-size:.78rem">No charge until month 2 · Use code <strong style="color:#ffe566">GRANDOPENING</strong></span>
+  </div>
+  <a href="/advertise.html" style="background:#ffe566;color:#4a0080;padding:.4rem 1.1rem;border-radius:50px;font-weight:800;font-size:.78rem;text-decoration:none;white-space:nowrap;flex-shrink:0">Claim Free Month →</a>
+  <style>@keyframes promo-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}70%{box-shadow:0 0 0 6px rgba(255,255,255,0)}}</style>
+</div>
 <div class="emstrip">
   <span>🚨 EMERGENCIES:</span>
   <a href="tel:7182301000">🚑 Hatzolah: 718-230-1000</a>
@@ -95,6 +106,24 @@ footer a{color:var(--gold)}
   <p>Put your business in front of thousands of Staten Island community members every month</p>
 </div>
 
+<!-- GRAND OPENING SPECIAL -->
+<div style="background:linear-gradient(135deg,#4a0080,#7c1fa8,#a834d4);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,229,102,.2)">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0px,rgba(255,255,255,.02) 1px,transparent 1px,transparent 14px);pointer-events:none"></div>
+  <div style="position:relative;max-width:700px;margin:0 auto">
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,229,102,.15);border:2px solid rgba(255,229,102,.4);color:#ffe566;font-size:.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:.4rem 1rem;border-radius:50px;margin-bottom:1rem">🎉 Grand Opening Special — Limited Time</div>
+    <h2 style="font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;color:#fff;margin-bottom:.5rem;letter-spacing:-1px">First Month <span style="color:#ffe566">Completely Free</span></h2>
+    <p style="color:rgba(255,255,255,.8);font-size:.95rem;line-height:1.7;margin-bottom:1.5rem">List your business, post a coupon, or run a banner ad — <strong style="color:#ffe566">no charge for the first month</strong>. Your card is stored but not billed until month 2. Cancel anytime.</p>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.25rem">
+      <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,229,102,.3);border-radius:12px;padding:.75rem 1.25rem;color:#fff;font-size:.85rem;font-weight:600">✅ Featured Listing <span style="color:#ffe566;font-weight:800">$79/mo → FREE</span></div>
+      <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,229,102,.3);border-radius:12px;padding:.75rem 1.25rem;color:#fff;font-size:.85rem;font-weight:600">✅ Premium Listing <span style="color:#ffe566;font-weight:800">$129/mo → FREE</span></div>
+      <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,229,102,.3);border-radius:12px;padding:.75rem 1.25rem;color:#fff;font-size:.85rem;font-weight:600">✅ Coupon Listing <span style="color:#ffe566;font-weight:800">$29/mo → FREE</span></div>
+    </div>
+    <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:.75rem 1.25rem;display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.8);font-size:.82rem">
+      🏷️ Promo code <strong style="color:#ffe566;letter-spacing:2px;font-size:.9rem">GRANDOPENING</strong> applied automatically at checkout
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="price-grid">
     <div class="price-card">
@@ -111,9 +140,11 @@ footer a{color:var(--gold)}
     </div>
 
     <div class="price-card feat">
+      <div style="background:rgba(255,229,102,.2);border:1px solid rgba(255,229,102,.5);color:#ffe566;font-size:.65rem;font-weight:800;padding:.2rem .65rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:.5rem">🎉 First Month Free</div>
       <div class="price-tier">⭐ Featured</div>
-      <div class="price-val">$79<span style="font-size:.9rem">/mo</span></div>
-      <div class="price-per">per month</div>
+      <div style="text-decoration:line-through;color:rgba(255,255,255,.35);font-size:.85rem">$79/mo</div>
+      <div class="price-val" style="color:#ffe566">FREE</div>
+      <div class="price-per" style="color:rgba(255,229,102,.7)">month 1 · then $79/mo</div>
       <ul class="price-feats">
         <li>Everything in Basic</li>
         <li>Gold card in directory</li>
@@ -122,13 +153,15 @@ footer a{color:var(--gold)}
         <li>Featured Business spotlight</li>
         <li>⭐ More Info button</li>
       </ul>
-      <button class="price-btn" onclick="startAdPayment('FeaturedBusiness')">Get Started</button>
+      <button class="price-btn" onclick="startAdPayment('FeaturedBusiness')">Start Free →</button>
     </div>
 
     <div class="price-card">
+      <div style="background:rgba(255,229,102,.15);border:1px solid rgba(255,229,102,.3);color:#ffe566;font-size:.65rem;font-weight:800;padding:.2rem .65rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:.5rem">🎉 First Month Free</div>
       <div class="price-tier">💎 Premium</div>
-      <div class="price-val">$129<span style="font-size:.9rem">/mo</span></div>
-      <div class="price-per">per month</div>
+      <div style="text-decoration:line-through;color:rgba(255,255,255,.35);font-size:.85rem">$129/mo</div>
+      <div class="price-val">FREE</div>
+      <div class="price-per">month 1 · then $129/mo</div>
       <ul class="price-feats">
         <li>Everything in Featured</li>
         <li>Navy/gold card in directory</li>
@@ -138,15 +171,16 @@ footer a{color:var(--gold)}
         <li>Blog post feature</li>
         <li>Maximum visibility</li>
       </ul>
-      <button class="price-btn" onclick="startAdPayment('Bundle')">Get Started</button>
+      <button class="price-btn" onclick="startAdPayment('Bundle')">Start Free →</button>
     </div>
   </div>
 
   <!-- COUPON CTA -->
   <div class="coupon-cta">
+    <div style="background:rgba(255,229,102,.15);border:1px solid rgba(255,229,102,.3);color:#ffe566;font-size:.68rem;font-weight:800;padding:.25rem .75rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:.75rem">🎉 First Month Free</div>
     <h3>🎟️ Also offer a Coupon!</h3>
-    <p>Post a discount offer on our Coupons page — starting at just $29/mo. Expires end of month.</p>
-    <button class="btn-gold" onclick="window.location.href='/coupons.html'">Post a Coupon — $29/mo</button>
+    <p>Post a discount offer on our Coupons page — <strong style="color:#ffe566">first month free</strong>, then just $29/mo. Expires end of month.</p>
+    <button class="btn-gold" onclick="window.location.href='/coupons.html'">Post a Coupon — Start Free →</button>
   </div>
 
   <!-- CONTACT FORM -->
