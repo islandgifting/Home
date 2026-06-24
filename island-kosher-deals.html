@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Island Kosher Super Deals — June 24 - July 7</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#4caf1a;--green2:#6ed62a;--yellow:#f5d800;--dark:#070e29;--navy:#0a1c4b;--gold:#d4a843;--gold2:#f0c855}
+body{font-family:'Poppins',sans-serif;background:#f0f9e8;color:#1a1a2e;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{background:rgba(7,14,41,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:999;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{color:#fff;font-size:1.1rem;font-weight:900;display:flex;align-items:center;gap:.35rem}.logo span{color:var(--gold)}
+.logo-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(212,168,67,.4)}70%{box-shadow:0 0 0 6px rgba(212,168,67,0)}}
+.nav-back{color:rgba(255,255,255,.7);font-size:.84rem;font-weight:500;transition:color .2s;display:flex;align-items:center;gap:.4rem}
+.nav-back:hover{color:var(--gold)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1a5c00,#2d8c00,#4caf1a);padding:3rem 2rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,216,0,.2),transparent 65%);pointer-events:none}
+.hero-logo{background:#fff;border-radius:16px;padding:.75rem 1.5rem;display:inline-flex;align-items:center;gap.5rem;margin-bottom:1.5rem;box-shadow:0 8px 30px rgba(0,0,0,.2)}
+.hero-logo-text{font-size:1.6rem;font-weight:900;color:#2d8c00;letter-spacing:-1px}
+.hero-logo-sub{font-size:.7rem;font-weight:700;color:#4caf1a;text-transform:uppercase;letter-spacing:2px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,216,0,.2);border:2px solid var(--yellow);color:var(--yellow);font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:.4rem 1rem;border-radius:50px;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-1px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+.hero h1 em{color:var(--yellow);font-style:normal}
+.hero-valid{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);border-radius:50px;padding:.6rem 1.5rem;color:#fff;font-size:.88rem;font-weight:700;margin-top:1rem;backdrop-filter:blur(10px)}
+.hero-info{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:1.75rem}
+.hero-info-item{background:rgba(0,0,0,.2);border-radius:12px;padding:.75rem 1.25rem;color:#fff;font-size:.82rem;font-weight:600;backdrop-filter:blur(10px)}
+.hero-info-item strong{color:var(--yellow);display:block;font-size:1rem}
+
+/* HOURS BAR */
+.hours-bar{background:#1a5c00;padding:.75rem 2rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;border-bottom:2px solid #2d8c00}
+.hour-item{color:rgba(255,255,255,.8);font-size:.78rem;font-weight:600;display:flex;gap:.5rem}
+.hour-item strong{color:var(--yellow)}
+
+/* DEALS SECTION */
+.deals-wrap{max-width:1150px;margin:0 auto;padding:2rem 1.5rem}
+.deals-section-title{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;padding:.6rem 1rem;background:linear-gradient(135deg,#2d8c00,#4caf1a);border-radius:10px;color:#fff;font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.deals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2.5rem}
+.deal-card{background:#fff;border-radius:14px;border:2px solid #e8f5d8;overflow:hidden;transition:all .25s;position:relative;cursor:default}
+.deal-card:hover{border-color:#4caf1a;transform:translateY(-3px);box-shadow:0 12px 28px rgba(76,175,26,.15)}
+.deal-brand{font-size:.65rem;font-weight:700;color:#4caf1a;text-transform:uppercase;letter-spacing:.5px;padding:.6rem .85rem .1rem;display:block}
+.deal-name{font-size:.88rem;font-weight:700;color:#1a1a2e;padding:0 .85rem .5rem;line-height:1.3;display:block}
+.deal-img-wrap{height:130px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f9e8,#e8f5d8);padding:.5rem}
+.deal-img-wrap img{max-height:115px;max-width:100%;object-fit:contain}
+.deal-img-placeholder{font-size:3rem;display:flex;align-items:center;justify-content:center;height:100%}
+.deal-price{background:linear-gradient(135deg,#2d8c00,#4caf1a);color:#fff;text-align:center;padding:.6rem;font-size:1.2rem;font-weight:900;letter-spacing:-.5px}
+.deal-price small{font-size:.7rem;font-weight:500;opacity:.8;display:block;margin-top:-.15rem}
+.deal-badge{position:absolute;top:.5rem;right:.5rem;background:var(--yellow);color:#1a1a2e;font-size:.6rem;font-weight:800;padding:.2rem .5rem;border-radius:4px;text-transform:uppercase}
+
+/* ORDER SECTION */
+.order-section{background:linear-gradient(135deg,#1a5c00,#2d8c00);border-radius:20px;padding:2.5rem;text-align:center;margin:2rem 0;position:relative;overflow:hidden}
+.order-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,216,0,.15),transparent 65%);pointer-events:none}
+.order-section h2{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:.5rem;position:relative}
+.order-section p{color:rgba(255,255,255,.8);font-size:.9rem;margin-bottom:1.5rem;position:relative}
+.order-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-yellow{background:var(--yellow);color:#1a1a2e;padding:.85rem 2rem;border-radius:50px;font-weight:800;font-size:.95rem;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem;box-shadow:0 8px 25px rgba(245,216,0,.4)}
+.btn-yellow:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(245,216,0,.55)}
+.btn-white{background:#fff;color:#2d8c00;padding:.85rem 2rem;border-radius:50px;font-weight:800;font-size:.95rem;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.15)}
+
+/* STORE INFO */
+.store-info{background:#fff;border-radius:20px;border:2px solid #e8f5d8;padding:2rem;margin:2rem 0;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.info-block h3{font-size:.82rem;font-weight:700;color:#4caf1a;text-transform:uppercase;letter-spacing:1px;margin-bottom:.75rem}
+.info-block p{font-size:.88rem;color:#555;line-height:1.7}
+.info-block a{color:#2d8c00;font-weight:600}
+.hours-grid{display:grid;gap:.35rem}
+.hour-row{display:flex;justify-content:space-between;font-size:.83rem;padding:.25rem 0;border-bottom:1px solid #f0f9e8}
+.hour-row:last-child{border:none}
+.hour-day{font-weight:600;color:#333}
+.hour-time{color:#4caf1a;font-weight:700}
+
+footer{background:var(--dark);color:rgba(255,255,255,.5);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer a{color:var(--gold)}
+
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:600px){.store-info{grid-template-columns:1fr}.hours-bar{gap:1rem}.deals-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo"><span class="logo-dot"></span>Shop<span>Local</span> SI</a>
+  <a href="/directory.html" class="nav-back">← Back to Directory</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-logo">
+    <div>
+      <div class="hero-logo-text">🛒 ISLAND KOSHER</div>
+      <div class="hero-logo-sub">Super Deals</div>
+    </div>
+  </div>
+  <div class="hero-badge">🔥 Weekly Specials</div>
+  <h1>Super <em>Deals</em> Are Here!</h1>
+  <div class="hero-valid">📅 Valid: June 24th — July 7th, 2025</div>
+  <div class="hero-info">
+    <div class="hero-info-item"><strong>718-650-2200</strong>Call to Order</div>
+    <div class="hero-info-item"><strong>islandkosher.shop</strong>Order Online</div>
+    <div class="hero-info-item"><strong>2200-2210 Victory Blvd</strong>Staten Island, NY 10314</div>
+  </div>
+</div>
+
+<!-- HOURS -->
+<div class="hours-bar">
+  <div class="hour-item"><strong>Sun</strong> 8am–8pm</div>
+  <div class="hour-item"><strong>Mon</strong> 7:30am–9pm</div>
+  <div class="hour-item"><strong>Tue</strong> 7:30am–9pm</div>
+  <div class="hour-item"><strong>Wed</strong> 7:30am–11pm</div>
+  <div class="hour-item"><strong>Thu</strong> 7:30am–12pm</div>
+  <div class="hour-item"><strong>Fri</strong> 7:30am–6pm</div>
+</div>
+
+<div class="deals-wrap">
+
+  <!-- PAGE 1 DEALS -->
+  <div class="deals-section-title fade-up">🥐 Bakery & Beverages</div>
+  <div class="deals-grid fade-up">
+    <div class="deal-card"><span class="deal-brand">Beigel's</span><span class="deal-name">Mini CupCakes 24ct</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🧁</div></div><div class="deal-price">$9.99</div></div>
+    <div class="deal-card"><span class="deal-brand">Reisman's</span><span class="deal-name">Brownie Bars Value pk</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍫</div></div><div class="deal-price">$5.99</div></div>
+    <div class="deal-card"><div class="deal-badge">HOT</div><span class="deal-brand">Prigat</span><span class="deal-name">Mango Juice</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🥭</div></div><div class="deal-price">$2.99</div></div>
+    <div class="deal-card"><div class="deal-badge">HOT</div><span class="deal-brand">Prigat</span><span class="deal-name">Strawberry Banana Juice</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍓</div></div><div class="deal-price">$2.99</div></div>
+    <div class="deal-card"><span class="deal-brand">Mashke</span><span class="deal-name">Plastic Seltzer Case</span><div class="deal-img-wrap"><div class="deal-img-placeholder">💧</div></div><div class="deal-price">12/$7.99<small>12 bottles</small></div></div>
+    <div class="deal-card"><span class="deal-brand">Mayim Chaim</span><span class="deal-name">Spring Water 8oz 8pk</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🫙</div></div><div class="deal-price">$3.99</div></div>
+  </div>
+
+  <div class="deals-section-title fade-up">🥫 Pantry & Dairy</div>
+  <div class="deals-grid fade-up">
+    <div class="deal-card"><div class="deal-badge">VALUE</div><span class="deal-brand">Gefen</span><span class="deal-name">Noodle Soup No Msg-Chicken Yellow-Case</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍜</div></div><div class="deal-price">12/$12.99<small>case of 12</small></div></div>
+    <div class="deal-card"><span class="deal-brand">Haolam</span><span class="deal-name">Muenster Cheese Sliced 6oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🧀</div></div><div class="deal-price">2/$6.00<small>2 for</small></div></div>
+    <div class="deal-card"><div class="deal-badge">HOT</div><span class="deal-brand">Givat</span><span class="deal-name">Yogolite Nonfat Yogurt — All Varieties</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🥛</div></div><div class="deal-price">5/$4.00<small>5 for</small></div></div>
+    <div class="deal-card"><span class="deal-brand">Macabee</span><span class="deal-name">Pizza Bagels 6ct</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🥯</div></div><div class="deal-price">2/$8.00<small>2 for</small></div></div>
+  </div>
+
+  <div class="deals-section-title fade-up">🌭 Meat & Proteins</div>
+  <div class="deals-grid fade-up">
+    <div class="deal-card"><span class="deal-brand">B'Gan</span><span class="deal-name">Thick Breaded Onion Rings</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🧅</div></div><div class="deal-price">$4.99</div></div>
+    <div class="deal-card"><span class="deal-brand">Pardes Farms</span><span class="deal-name">Cauliflower Florets Mini & Regular</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🥦</div></div><div class="deal-price">$4.99 each</div></div>
+    <div class="deal-card"><div class="deal-badge">HOT</div><span class="deal-brand">Meal Mart</span><span class="deal-name">Beef Franks 40oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🌭</div></div><div class="deal-price">$17.99</div></div>
+    <div class="deal-card"><div class="deal-badge">HOT</div><span class="deal-brand">KJ</span><span class="deal-name">Chicken Franks 12oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍗</div></div><div class="deal-price">2/$6.00<small>2 for</small></div></div>
+    <div class="deal-card"><span class="deal-brand">Solomon's</span><span class="deal-name">Hot Dogs 12oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🌭</div></div><div class="deal-price">$6.99</div></div>
+  </div>
+
+  <div class="deals-section-title fade-up">🥗 Salads & Sides</div>
+  <div class="deals-grid fade-up">
+    <div class="deal-card"><span class="deal-brand">Golden Taste</span><span class="deal-name">Chick Peas 12oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🫘</div></div><div class="deal-price">$1.69</div></div>
+    <div class="deal-card"><span class="deal-brand">Golden Taste</span><span class="deal-name">Cole Slaw 14oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🥗</div></div><div class="deal-price">$2.99</div></div>
+    <div class="deal-card"><div class="deal-badge">HOT</div><span class="deal-brand">Golden Taste</span><span class="deal-name">White Fish Salad 7.50oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🐟</div></div><div class="deal-price">$4.99</div></div>
+    <div class="deal-card"><span class="deal-brand">Lieber's</span><span class="deal-name">Chick Peas Can 15oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🫘</div></div><div class="deal-price">3/$4.00<small>3 for</small></div></div>
+    <div class="deal-card"><span class="deal-brand">Telma</span><span class="deal-name">Kariot Cereal Nougat 24.20oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍪</div></div><div class="deal-price">$7.99</div></div>
+  </div>
+
+  <!-- PAGE 2 DEALS -->
+  <div class="deals-section-title fade-up">🥒 Snacks & Condiments</div>
+  <div class="deals-grid fade-up">
+    <div class="deal-card"><span class="deal-brand">Lieber's</span><span class="deal-name">Hot Peppers Sandwich Slices 16oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🌶️</div></div><div class="deal-price">$3.19</div></div>
+    <div class="deal-card"><span class="deal-brand">Lieber's</span><span class="deal-name">Dill Gherkins Tiny 24oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🥒</div></div><div class="deal-price">2/$5.00<small>2 for</small></div></div>
+    <div class="deal-card"><div class="deal-badge">VALUE</div><span class="deal-brand">Sizgit</span><span class="deal-name">Corn Puffs 0.70oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍿</div></div><div class="deal-price">6/$4.00<small>6 for</small></div></div>
+    <div class="deal-card"><span class="deal-brand">Doritos</span><span class="deal-name">Doritos Spicy Sour 6.50oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🌽</div></div><div class="deal-price">$2.49</div></div>
+    <div class="deal-card"><span class="deal-brand">Blooms</span><span class="deal-name">Pop' mmms 30pk</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍫</div></div><div class="deal-price">$6.99</div></div>
+  </div>
+
+  <div class="deals-section-title fade-up">🍩 More Snacks</div>
+  <div class="deals-grid fade-up">
+    <div class="deal-card"><div class="deal-badge">VALUE</div><span class="deal-brand">Paskesz</span><span class="deal-name">Dunkees Dip w Stix</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍬</div></div><div class="deal-price">4/$5.00<small>4 for</small></div></div>
+    <div class="deal-card"><span class="deal-brand">Haddar</span><span class="deal-name">Honey Wheat Braided 24oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🥨</div></div><div class="deal-price">$5.99</div></div>
+    <div class="deal-card"><div class="deal-badge">HOT</div><span class="deal-brand">Osem</span><span class="deal-name">Hazelnut Bamba 2.10oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🥜</div></div><div class="deal-price">2/$4.00<small>2 for</small></div></div>
+    <div class="deal-card"><div class="deal-badge">VALUE</div><span class="deal-brand">Lieber's</span><span class="deal-name">Onion Rings 0.50oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🧅</div></div><div class="deal-price">6/$2.00<small>6 for</small></div></div>
+    <div class="deal-card"><span class="deal-brand">Gesher</span><span class="deal-name">Snow Flakes Large Bags</span><div class="deal-img-wrap"><div class="deal-img-placeholder">❄️</div></div><div class="deal-price">$2.99 each</div></div>
+    <div class="deal-card"><span class="deal-brand">Snack Delite</span><span class="deal-name">Crisp Rice Treats 8ct Variety</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍘</div></div><div class="deal-price">$3.49 each</div></div>
+    <div class="deal-card"><span class="deal-brand">Lieber's</span><span class="deal-name">Cookies Mini Stripes 8oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍪</div></div><div class="deal-price">$2.49</div></div>
+    <div class="deal-card"><span class="deal-brand">Gefen</span><span class="deal-name">Oats & Honey Granola Bars</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🌾</div></div><div class="deal-price">$2.99</div></div>
+    <div class="deal-card"><span class="deal-brand">Lieber's</span><span class="deal-name">Snackers Salted 15oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🥨</div></div><div class="deal-price">$3.99</div></div>
+    <div class="deal-card"><div class="deal-badge">HOT</div><span class="deal-brand">Paskesz</span><span class="deal-name">White Marshmallows 8oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">☁️</div></div><div class="deal-price">2/$6.00<small>2 for</small></div></div>
+  </div>
+
+  <div class="deals-section-title fade-up">🍬 Candy & Sweets</div>
+  <div class="deals-grid fade-up">
+    <div class="deal-card"><span class="deal-brand">Shefa</span><span class="deal-name">Fruit Bites 8ct Variety</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍬</div></div><div class="deal-price">$2.99 each</div></div>
+    <div class="deal-card"><span class="deal-brand">Sizgit</span><span class="deal-name">Cherry Bites 9oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍒</div></div><div class="deal-price">$3.99</div></div>
+    <div class="deal-card"><div class="deal-badge">VALUE</div><span class="deal-brand">Klik</span><span class="deal-name">La Hit Bar Original</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍫</div></div><div class="deal-price">4/$6.00<small>4 for</small></div></div>
+    <div class="deal-card"><span class="deal-brand">Mentos</span><span class="deal-name">Mini Assorted Fruit Mix 17ct</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍬</div></div><div class="deal-price">$3.99</div></div>
+    <div class="deal-card"><span class="deal-brand">Lieber's</span><span class="deal-name">Toffee Fruit & Creamy 12oz</span><div class="deal-img-wrap"><div class="deal-img-placeholder">🍭</div></div><div class="deal-price">$2.99 each</div></div>
+  </div>
+
+  <!-- ORDER CTA -->
+  <div class="order-section fade-up">
+    <h2>🛒 Ready to Order?</h2>
+    <p>Shop online, call us, or come in store — we're here to serve you!</p>
+    <div class="order-btns">
+      <a href="https://islandkosher.shop" target="_blank" class="btn-yellow">🌐 Shop Online</a>
+      <a href="tel:7186502200" class="btn-white">📞 Call 718-650-2200</a>
+    </div>
+  </div>
+
+  <!-- STORE INFO -->
+  <div class="store-info fade-up">
+    <div class="info-block">
+      <h3>📍 Store Information</h3>
+      <p><strong>Island Kosher Supermarket</strong><br>2200-2210 Victory Blvd<br>Staten Island, NY 10314<br><br>
+      📞 <a href="tel:7186502200">718-650-2200</a><br>
+      📠 Fax: 718-425-0300<br>
+      📧 <a href="mailto:orders@islandkosher.store">orders@islandkosher.store</a><br>
+      🌐 <a href="https://islandkosher.shop" target="_blank">islandkosher.shop</a></p>
+    </div>
+    <div class="info-block">
+      <h3>🕐 Store Hours</h3>
+      <div class="hours-grid">
+        <div class="hour-row"><span class="hour-day">Sunday</span><span class="hour-time">8am – 8pm</span></div>
+        <div class="hour-row"><span class="hour-day">Monday</span><span class="hour-time">7:30am – 9pm</span></div>
+        <div class="hour-row"><span class="hour-day">Tuesday</span><span class="hour-time">7:30am – 9pm</span></div>
+        <div class="hour-row"><span class="hour-day">Wednesday</span><span class="hour-time">7:30am – 11pm</span></div>
+        <div class="hour-row"><span class="hour-day">Thursday</span><span class="hour-time">7:30am – 12pm</span></div>
+        <div class="hour-row"><span class="hour-day">Friday</span><span class="hour-time">7:30am – 6pm</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <a href="/">← ShopLocal SI</a> · <a href="/directory.html">Directory</a> · <a href="/coupons.html">Coupons</a> · <a href="/advertise.html">Advertise</a>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
