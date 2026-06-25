@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simcha Planning — Shop Local Staten Island</title>
+<title id="pageTitle">Business Profile — Shop Local Staten Island</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
 /* ─── EXACT BRAND COLORS FROM KIT ─── */
@@ -319,56 +319,58 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
   .search-wrap{top:70px}
   .section{padding:3.5rem 1.5rem}
 }
-.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;max-width:1100px;margin:2rem auto 0}
-.type-chip{background:var(--white);border:2px solid var(--border2);border-radius:6px;padding:1.1rem .75rem;text-align:center;cursor:pointer;transition:all .25s}
-.type-chip:hover,.type-chip.active{border-color:var(--green);background:#f5fff9;transform:translateY(-2px)}
-.type-emoji{font-size:1.4rem;display:block;margin-bottom:.35rem}
-.type-name{font-size:.72rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.3px}
-.vfilter-wrap{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1.75rem 0 0}
-.vfilter{padding:.35rem .85rem;border:2px solid var(--border2);border-radius:50px;background:transparent;color:var(--mid);font-weight:600;font-size:.72rem;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s}
-.vfilter:hover,.vfilter.active{background:var(--green);color:#fff;border-color:var(--green)}
-.vendor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem;max-width:1100px;margin:1.5rem auto 0}
-.vendor-card{background:var(--white);border:1px solid var(--border2);border-radius:6px;overflow:hidden;transition:all .3s;border-top:3px solid var(--green)}
-.vendor-card:hover{border-color:var(--green);box-shadow:0 6px 20px rgba(62,124,89,.1);transform:translateY(-2px)}
-.vendor-header{padding:1.25rem 1.5rem 1rem}
-.vendor-cat-badge{display:inline-block;background:rgba(62,124,89,.1);border:1px solid rgba(62,124,89,.25);color:var(--green);font-size:.62rem;font-weight:700;padding:.18rem .6rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem}
-.vendor-name{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.2px}
-.vendor-desc{font-size:.78rem;color:var(--mid);line-height:1.55}
-.vendor-footer{padding:.75rem 1.5rem;border-top:1px solid var(--border2);background:var(--light);display:flex;gap:.6rem;align-items:center}
-.vphone{font-size:.8rem;font-weight:700;color:var(--mid);margin-left:auto}
-.vweb{background:var(--navy);color:#fff;padding:.38rem .9rem;border-radius:50px;font-size:.72rem;font-weight:700;text-decoration:none;transition:background .2s}
-.vweb:hover{background:#0d2545}
-.announce-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1100px;margin:2.5rem auto 0}
-.announce-form,.announce-board{background:var(--white);border:1px solid var(--border2);border-radius:8px;padding:2rem;border-top:3px solid var(--green)}
-.announce-form h3,.announce-board h3{font-size:.9rem;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.3px;margin-bottom:.35rem}
-.announce-form p{font-size:.8rem;color:var(--mid);margin-bottom:1.5rem}
-.field{margin-bottom:.85rem}
-.field label{display:block;font-size:.67rem;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.35rem}
-.field input,.field select,.field textarea{width:100%;padding:.62rem .9rem;border:2px solid var(--border2);border-radius:4px;font-size:.86rem;color:var(--text);font-family:'Montserrat',sans-serif;outline:none;background:var(--light);transition:border .2s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);background:var(--white)}
-.field textarea{height:90px;resize:vertical}
-.type-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.5rem}
-.type-tag{padding:.28rem .7rem;border:2px solid var(--border2);border-radius:50px;font-size:.7rem;font-weight:700;color:var(--mid);cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif}
-.type-tag.selected{background:var(--green);border-color:var(--green);color:#fff}
-.announce-board{max-height:500px;overflow-y:auto}
-.announce-item{border:1px solid var(--border2);border-radius:6px;padding:1rem;margin-bottom:.75rem;border-left:3px solid var(--green)}
-.ai-badge{display:inline-flex;align-items:center;gap:.3rem;background:rgba(62,124,89,.1);border:1px solid rgba(62,124,89,.25);color:var(--green);font-size:.6rem;font-weight:700;padding:.15rem .5rem;border-radius:50px;margin-bottom:.45rem;text-transform:uppercase;letter-spacing:.5px}
-.ai-title{font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:.28rem}
-.ai-details{font-size:.77rem;color:var(--mid);line-height:1.55}
-.ai-date{font-size:.67rem;color:var(--muted);margin-top:.4rem}
-.success-msg{background:rgba(62,124,89,.08);border:2px solid rgba(62,124,89,.25);border-radius:6px;padding:.85rem;color:var(--green);font-weight:700;font-size:.82rem;display:none;margin-top:.75rem;line-height:1.6}
-.checklist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;max-width:1100px;margin:2.5rem auto 0}
-.checklist-card{background:var(--white);border:1px solid var(--border2);border-radius:8px;padding:1.65rem;border-top:3px solid var(--green)}
-.checklist-card h3{font-size:.75rem;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.85rem}
-.checklist-item{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.55rem;cursor:pointer}
-.check-box{width:18px;height:18px;border:2px solid var(--green);border-radius:3px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:.7rem;color:transparent}
-.checklist-item.done .check-box{background:var(--green);color:#fff}
-.check-text{font-size:.8rem;color:var(--mid);line-height:1.5;transition:all .2s}
-.checklist-item.done .check-text{color:var(--muted);text-decoration:line-through}
-.progress-label{font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.35rem;display:flex;justify-content:space-between}
-.progress-bar{height:5px;background:var(--border2);border-radius:3px;margin-bottom:1rem;overflow:hidden}
-.progress-fill{height:100%;background:var(--green);border-radius:3px;transition:width .4s ease}
-@media(max-width:900px){.announce-grid{grid-template-columns:1fr}}
+
+.biz-hero{background:var(--navy);min-height:280px;display:flex;align-items:flex-end;position:relative;overflow:hidden;border-bottom:4px solid var(--green)}
+.biz-hero-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;opacity:.35}
+.biz-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,31,58,.95) 30%,rgba(11,31,58,.4))}
+.biz-hero-content{position:relative;z-index:2;padding:2.5rem;width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.biz-logo-wrap{width:90px;height:90px;border-radius:8px;background:var(--white);border:3px solid var(--green);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.biz-logo-wrap img{width:100%;height:100%;object-fit:cover}
+.biz-logo-placeholder{font-size:2rem;font-weight:800;color:var(--navy)}
+.biz-hero-info{flex:1;min-width:200px}
+.biz-plan-badge{display:inline-flex;align-items:center;gap:.35rem;background:var(--green);color:#fff;font-size:.62rem;font-weight:700;padding:.22rem .65rem;border-radius:50px;text-transform:uppercase;letter-spacing:1px;margin-bottom:.6rem}
+.biz-hero-name{font-size:clamp(1.4rem,3vw,2.4rem);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.3px;line-height:1.1;margin-bottom:.3rem}
+.biz-hero-tagline{font-size:.88rem;color:rgba(255,255,255,.7);font-weight:400}
+.biz-hero-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+.biz-profile-body{max-width:1100px;margin:0 auto;padding:3rem 2.5rem;display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:start}
+.biz-main{}
+.biz-sidebar{display:flex;flex-direction:column;gap:1.5rem}
+.biz-section{margin-bottom:2.5rem}
+.biz-section-title{font-size:.68rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:.6rem;margin-bottom:1.1rem;padding-bottom:.6rem;border-bottom:2px solid var(--green)}
+.biz-desc-text{font-size:.9rem;color:var(--mid);line-height:1.8}
+.biz-contact-card{background:var(--white);border:1px solid var(--border2);border-radius:8px;padding:1.5rem;border-top:3px solid var(--green)}
+.biz-contact-card h3{font-size:.68rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--navy);margin-bottom:1rem}
+.contact-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.85rem;font-size:.84rem;color:var(--mid)}
+.contact-icon{width:32px;height:32px;background:rgba(62,124,89,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
+.contact-label{font-size:.62rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:.1rem}
+.contact-val{font-weight:600;color:var(--navy)}
+.contact-val a{color:var(--navy);transition:color .2s}.contact-val a:hover{color:var(--green)}
+.biz-action-btns{display:flex;flex-direction:column;gap:.65rem;margin-top:1.25rem}
+.biz-btn-call{background:var(--red);color:#fff;padding:.75rem 1.25rem;font-weight:700;font-size:.82rem;text-align:center;border-radius:50px;display:block;text-decoration:none;letter-spacing:.3px;transition:opacity .2s}
+.biz-btn-call:hover{opacity:.9}
+.biz-btn-web{background:var(--navy);color:#fff;padding:.75rem 1.25rem;font-weight:700;font-size:.82rem;text-align:center;border-radius:50px;display:block;text-decoration:none;letter-spacing:.3px;transition:opacity .2s}
+.biz-btn-web:hover{opacity:.9}
+.biz-btn-email{background:transparent;color:var(--navy);border:2px solid var(--navy);padding:.72rem 1.25rem;font-weight:700;font-size:.82rem;text-align:center;border-radius:50px;display:block;text-decoration:none;letter-spacing:.3px;transition:all .2s}
+.biz-btn-email:hover{background:var(--navy);color:#fff}
+.hours-grid{display:grid;gap:.35rem}
+.hour-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.3rem 0;border-bottom:1px solid var(--border2)}
+.hour-row:last-child{border:none}
+.hour-day{font-weight:600;color:var(--navy)}
+.hour-time{color:var(--green);font-weight:700}
+.social-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem}
+.social-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .9rem;border:2px solid var(--border2);border-radius:50px;font-size:.75rem;font-weight:700;color:var(--navy);text-decoration:none;transition:all .2s}
+.social-btn:hover{border-color:var(--green);color:var(--green)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+.gallery-img{aspect-ratio:1;object-fit:cover;border-radius:6px;border:1px solid var(--border2);width:100%;cursor:zoom-in;transition:transform .2s}
+.gallery-img:hover{transform:scale(1.03)}
+.coupon-card{background:var(--white);border:2px solid var(--green);border-radius:8px;padding:1.25rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.75rem}
+.coupon-discount{font-size:1.3rem;font-weight:800;color:var(--navy)}
+.coupon-desc{font-size:.78rem;color:var(--mid);margin-top:.15rem}
+.coupon-code-btn{background:var(--green);color:#fff;border:none;padding:.42rem .9rem;border-radius:50px;font-size:.72rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Montserrat',sans-serif}
+.not-found{text-align:center;padding:5rem 2rem}
+.not-found h2{font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:.5rem}
+.not-found p{color:var(--mid);margin-bottom:1.5rem}
+@media(max-width:900px){.biz-profile-body{grid-template-columns:1fr}.biz-sidebar{order:-1}.gallery-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -411,7 +413,7 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
     <li><a href="/" >Home</a></li>
     <li><a href="/directory.html">Directory</a></li>
     <li><a href="/marketplace.html">Marketplace</a></li>
-    <li><a href="/simcha.html" class="active">Simcha</a></li>
+    <li><a href="/simcha.html">Simcha</a></li>
     <li><a href="/coupons.html">Coupons</a></li>
     <li><a href="/#shabbos">Shabbos</a></li>
     <li><a href="/advertise.html" class="nav-cta">List Your Business</a></li>
@@ -421,137 +423,10 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
   </div>
 </nav>
 
-<div class="page-hero">
-  <div class="page-hero-eyebrow">Plan Your Perfect Simcha</div>
-  <h1>Simcha <span>Planning Hub</span></h1>
-  <p>Find vendors, share your joy, plan every detail</p>
+
+<div id="profileContent">
+  <div style="text-align:center;padding:5rem;color:var(--muted)">Loading business profile…</div>
 </div>
-
-<div style="background:var(--light);border-bottom:1px solid var(--border2);padding:.65rem 2.5rem;display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
-  <a href="#vendors" class="btn-navy" style="padding:.45rem 1rem;font-size:.72rem;border-radius:50px">Find Vendors</a>
-  <a href="#announce" class="btn-outline-green" style="padding:.43rem 1rem;font-size:.72rem">Announce Your Simcha</a>
-  <a href="#checklist" class="btn-outline-navy" style="padding:.43rem 1rem;font-size:.72rem">Planning Checklist</a>
-</div>
-
-<div class="section bg-white">
-  <div class="section-inner" style="text-align:center">
-    <div class="section-eyebrow fade-up">What Are You Planning?</div>
-    <h2 class="section-title fade-up">Every Simcha Covered</h2>
-    <div class="green-divider fade-up"></div>
-  </div>
-  <div class="type-grid">
-    <div class="type-chip active" onclick="selectType('all',this)"><span class="type-emoji">🎉</span><span class="type-name">All Events</span></div>
-    <div class="type-chip" onclick="selectType('wedding',this)"><span class="type-emoji">💒</span><span class="type-name">Wedding</span></div>
-    <div class="type-chip" onclick="selectType('barmitzvah',this)"><span class="type-emoji">📜</span><span class="type-name">Bar Mitzvah</span></div>
-    <div class="type-chip" onclick="selectType('basmitzvah',this)"><span class="type-emoji">✡</span><span class="type-name">Bas Mitzvah</span></div>
-    <div class="type-chip" onclick="selectType('vort',this)"><span class="type-emoji">💍</span><span class="type-name">Vort / L'Chaim</span></div>
-    <div class="type-chip" onclick="selectType('bris',this)"><span class="type-emoji">👶</span><span class="type-name">Bris</span></div>
-    <div class="type-chip" onclick="selectType('sheva',this)"><span class="type-emoji">🕯</span><span class="type-name">Sheva Brachos</span></div>
-    <div class="type-chip" onclick="selectType('kiddush',this)"><span class="type-emoji">🍷</span><span class="type-name">Kiddush</span></div>
-    <div class="type-chip" onclick="selectType('aufruf',this)"><span class="type-emoji">📖</span><span class="type-name">Aufruf</span></div>
-    <div class="type-chip" onclick="selectType('graduation',this)"><span class="type-emoji">🎓</span><span class="type-name">Graduation</span></div>
-    <div class="type-chip" onclick="selectType('event',this)"><span class="type-emoji">🎊</span><span class="type-name">General Event</span></div>
-  </div>
-</div>
-
-<section id="vendors" class="section bg-light">
-  <div class="section-inner" style="text-align:center">
-    <div class="section-eyebrow fade-up">Trusted Local Vendors</div>
-    <h2 class="section-title fade-up">Find Your Perfect Vendor</h2>
-    <div class="green-divider fade-up"></div>
-    <p class="section-sub fade-up">Upgrade to Featured or Premium to show your website link</p>
-  </div>
-  <div class="vfilter-wrap">
-    <button class="vfilter active" onclick="filterVendors('all',this)">All</button>
-    <button class="vfilter" onclick="filterVendors('catering',this)">Catering</button>
-    <button class="vfilter" onclick="filterVendors('photo',this)">Photography</button>
-    <button class="vfilter" onclick="filterVendors('flowers',this)">Flowers & Décor</button>
-    <button class="vfilter" onclick="filterVendors('gifts',this)">Gifts & Favors</button>
-    <button class="vfilter" onclick="filterVendors('beauty',this)">Hair & Makeup</button>
-    <button class="vfilter" onclick="filterVendors('clothing',this)">Clothing</button>
-    <button class="vfilter" onclick="filterVendors('transport',this)">Transport</button>
-  </div>
-  <div class="vendor-grid" id="vendorGrid">
-    <div class="vendor-card" data-vendor="catering"><div class="vendor-header"><div class="vendor-cat-badge">Catering</div><div class="vendor-name">Island Catering NY</div><div class="vendor-desc">Full-service kosher catering for all simchos. Steven Israel — decades of experience.</div></div><div class="vendor-footer"><span class="vphone">646-645-6609</span></div></div>
-    <div class="vendor-card" data-vendor="catering"><div class="vendor-header"><div class="vendor-cat-badge">Catering</div><div class="vendor-name">Dairy Palace Pizza & Caterers</div><div class="vendor-desc">Catering for kiddushim, sheva brachos, and all dairy events.</div></div><div class="vendor-footer"><span class="vphone">718-761-5200</span></div></div>
-    <div class="vendor-card" data-vendor="catering"><div class="vendor-header"><div class="vendor-cat-badge">Catering & Desserts</div><div class="vendor-name">321 Desserts</div><div class="vendor-desc">Beautiful dessert tables, cakes, and sweet displays for your simcha.</div></div><div class="vendor-footer"><span class="vphone">718-290-7785</span></div></div>
-    <div class="vendor-card" data-vendor="catering"><div class="vendor-header"><div class="vendor-cat-badge">Ice Cream & Desserts</div><div class="vendor-name">Sugar House Ice Cream</div><div class="vendor-desc">Ice cream station and dessert catering — a crowd favorite!</div></div><div class="vendor-footer"><span class="vphone">718-701-6891</span></div></div>
-    <div class="vendor-card" data-vendor="photo"><div class="vendor-header"><div class="vendor-cat-badge">Photography & Video</div><div class="vendor-name">Engaging Pix Photography</div><div class="vendor-desc">Weddings, bar/bas mitzvahs, vorts, and family portraits.</div></div><div class="vendor-footer"><span class="vphone">347-393-6094</span></div></div>
-    <div class="vendor-card" data-vendor="photo"><div class="vendor-header"><div class="vendor-cat-badge">Event Photography</div><div class="vendor-name">Koby Yedgar Photography</div><div class="vendor-desc">Professional event photography capturing every precious moment.</div></div><div class="vendor-footer"><span class="vphone">917-682-1351</span></div></div>
-    <div class="vendor-card" data-vendor="photo"><div class="vendor-header"><div class="vendor-cat-badge">Photography</div><div class="vendor-name">Nechami Photography</div><div class="vendor-desc">Family portraits and simcha photography with a warm touch.</div></div><div class="vendor-footer"><span class="vphone">347-248-6011</span></div></div>
-    <div class="vendor-card" data-vendor="photo"><div class="vendor-header"><div class="vendor-cat-badge">Photography</div><div class="vendor-name">Rikkiz Photography</div><div class="vendor-desc">Portraits and events — capturing the joy of your simcha.</div></div><div class="vendor-footer"><span class="vphone">917-753-4444</span></div></div>
-    <div class="vendor-card" data-vendor="flowers"><div class="vendor-header"><div class="vendor-cat-badge">Balloon Décor</div><div class="vendor-name">Sabine ExtraaoridnAir</div><div class="vendor-desc">Stunning balloon décor for weddings, bar mitzvahs, and all smachot.</div></div><div class="vendor-footer"><span class="vphone">917-838-2707</span></div></div>
-    <div class="vendor-card" data-vendor="gifts"><div class="vendor-header"><div class="vendor-cat-badge">Gifts & Favors</div><div class="vendor-name">Island Gifting</div><div class="vendor-desc">Custom engraved gifts, photo printing, and personalized favors.</div></div><div class="vendor-footer"><span class="vphone">917-753-4444</span></div></div>
-    <div class="vendor-card" data-vendor="gifts"><div class="vendor-header"><div class="vendor-cat-badge">Gifts</div><div class="vendor-name">Hedy's Gifts</div><div class="vendor-desc">Beautiful gifts for all occasions — simcha gifts, thank you gifts, and more.</div></div><div class="vendor-footer"><span class="vphone">347-729-3538</span></div></div>
-    <div class="vendor-card" data-vendor="gifts"><div class="vendor-header"><div class="vendor-cat-badge">Baby & Simcha Gifts</div><div class="vendor-name">Little Lilac</div><div class="vendor-desc">Beautiful baby layette and gifting — perfect for bris, baby naming, and showers.</div></div><div class="vendor-footer"><span class="vphone">347-675-1567</span></div></div>
-    <div class="vendor-card" data-vendor="gifts"><div class="vendor-header"><div class="vendor-cat-badge">Diamond Jewelry</div><div class="vendor-name">Lab Grown Jewelry</div><div class="vendor-desc">14ct & 18ct gold diamond jewelry — perfect for engagement rings and simcha gifts.</div></div><div class="vendor-footer"><span class="vphone">917-640-7675</span></div></div>
-    <div class="vendor-card" data-vendor="beauty"><div class="vendor-header"><div class="vendor-cat-badge">Hair & Makeup</div><div class="vendor-name">Danielle Besser</div><div class="vendor-desc">Wig, hair, and makeup services for brides and simcha guests.</div></div><div class="vendor-footer"><span class="vphone">718-232-2789</span></div></div>
-    <div class="vendor-card" data-vendor="beauty"><div class="vendor-header"><div class="vendor-cat-badge">Makeup</div><div class="vendor-name">Glam n Go</div><div class="vendor-desc">Makeup by Chani — bridal and simcha makeup that lasts all night.</div></div><div class="vendor-footer"><span class="vphone">917-843-8740</span></div></div>
-    <div class="vendor-card" data-vendor="beauty"><div class="vendor-header"><div class="vendor-cat-badge">Makeup</div><div class="vendor-name">Makeup by Naomi</div><div class="vendor-desc">Professional makeup for brides, kallot, and simcha occasions.</div></div><div class="vendor-footer"><span class="vphone">718-598-7865</span></div></div>
-    <div class="vendor-card" data-vendor="beauty"><div class="vendor-header"><div class="vendor-cat-badge">Wigs & Hair</div><div class="vendor-name">Hair by Gall</div><div class="vendor-desc">Wigs, hair styling, and haircuts for the kallah and all simcha guests.</div></div><div class="vendor-footer"><span class="vphone">347-424-7505</span></div></div>
-    <div class="vendor-card" data-vendor="clothing"><div class="vendor-header"><div class="vendor-cat-badge">Lingerie & Bridal</div><div class="vendor-name">White Petal Lingerie</div><div class="vendor-desc">Your perfect fitting for the kallah and all simcha occasions.</div></div><div class="vendor-footer"><span class="vphone">347-707-4637</span></div></div>
-    <div class="vendor-card" data-vendor="clothing"><div class="vendor-header"><div class="vendor-cat-badge">Mens & Boys</div><div class="vendor-name">Mr Basics</div><div class="vendor-desc">Mens and boys dry goods — suits, shirts, and everything for the simcha.</div></div><div class="vendor-footer"><span class="vphone">718-851-1799</span></div></div>
-    <div class="vendor-card" data-vendor="transport"><div class="vendor-header"><div class="vendor-cat-badge">Transportation</div><div class="vendor-name">Yakov Schmelczer</div><div class="vendor-desc">VIP long distance transportation and messenger services.</div></div><div class="vendor-footer"><span class="vphone">917-200-4594</span></div></div>
-  </div>
-  <div style="text-align:center;margin-top:2.5rem" class="fade-up">
-    <p style="font-size:.8rem;color:var(--mid);margin-bottom:1rem">Are you a simcha vendor? First month free.</p>
-    <a href="/advertise.html" class="btn-green">List Your Business</a>
-  </div>
-</section>
-
-<section id="announce" class="section bg-white">
-  <div class="section-inner" style="text-align:center">
-    <div class="section-eyebrow fade-up">Share the Joy</div>
-    <h2 class="section-title fade-up">Simcha Announcements</h2>
-    <div class="green-divider fade-up"></div>
-    <p class="section-sub fade-up">Share your happy news with the Staten Island community — free!</p>
-  </div>
-  <div class="announce-grid">
-    <div class="announce-form fade-up">
-      <h3>Post Your Simcha</h3>
-      <p>Submitted for review — usually approved within a few hours.</p>
-      <div class="field"><label>Simcha Type</label>
-        <div class="type-tags" id="typeTagsForm">
-          <div class="type-tag selected" data-type="Wedding">💒 Wedding</div>
-          <div class="type-tag" data-type="Bar Mitzvah">📜 Bar Mitzvah</div>
-          <div class="type-tag" data-type="Bas Mitzvah">✡ Bas Mitzvah</div>
-          <div class="type-tag" data-type="Vort">💍 Vort</div>
-          <div class="type-tag" data-type="Bris">👶 Bris</div>
-          <div class="type-tag" data-type="Sheva Brachos">🕯 Sheva Brachos</div>
-          <div class="type-tag" data-type="Kiddush">🍷 Kiddush</div>
-          <div class="type-tag" data-type="Aufruf">📖 Aufruf</div>
-          <div class="type-tag" data-type="Graduation">🎓 Graduation</div>
-          <div class="type-tag" data-type="Event">🎊 Other Event</div>
-        </div>
-      </div>
-      <div class="field"><label>Family Name(s) *</label><input type="text" id="annFamilies" placeholder="e.g. The Cohen & Levy Families"></div>
-      <div class="field"><label>Announcement *</label><textarea id="annMessage" placeholder="Share your joyful news with the community…"></textarea></div>
-      <div class="field"><label>Date of Simcha (optional)</label><input type="date" id="annDate"></div>
-      <div class="field"><label>Posted By</label><input type="text" id="annName" placeholder="e.g. The Goldstein Family"></div>
-      <button class="btn-green" style="width:100%;justify-content:center;margin-top:.5rem" id="annBtn" onclick="postAnnouncement()">Share the Joy!</button>
-      <div class="success-msg" id="annSuccess">🎉 Your simcha has been submitted and is pending approval. It will appear on the board once reviewed — usually within a few hours. Mazel Tov!</div>
-    </div>
-    <div class="announce-board fade-up">
-      <h3>Recent Smachot</h3>
-      <div id="announceFeed">
-        <div class="announce-item"><div class="ai-badge">💒 Wedding</div><div class="ai-title">Mazel Tov to the Goldstein & Friedman Families!</div><div class="ai-details">Wishing the Chossen & Kallah a beautiful life together.</div><div class="ai-date">Posted by The Goldstein Family · 2 days ago</div></div>
-        <div class="announce-item"><div class="ai-badge">📜 Bar Mitzvah</div><div class="ai-title">Bar Mitzvah of Moshe Katz — Shabbos Parshas Vayeira</div><div class="ai-details">Join us in celebrating Moshe's Bar Mitzvah! All are welcome.</div><div class="ai-date">Posted by The Katz Family · 5 days ago</div></div>
-        <div class="announce-item"><div class="ai-badge">👶 Bris</div><div class="ai-title">Bris — Baby Boy Rosenberg!</div><div class="ai-details">Baruch Hashem! The bris will take place Sunday morning.</div><div class="ai-date">Posted by The Rosenberg Family · 1 week ago</div></div>
-        <div class="announce-item"><div class="ai-badge">💍 Vort</div><div class="ai-title">L'Chaim — Chani Weiss & Yaakov Stern!</div><div class="ai-details">L'Chaim will be held this Tuesday evening. All friends are welcome!</div><div class="ai-date">Posted by The Weiss & Stern Families · 3 days ago</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="checklist" class="section bg-light">
-  <div class="section-inner" style="text-align:center">
-    <div class="section-eyebrow fade-up">Stay Organized</div>
-    <h2 class="section-title fade-up">Simcha Planning Checklist</h2>
-    <div class="green-divider fade-up"></div>
-    <p class="section-sub fade-up">Check off each item — your progress is saved automatically</p>
-  </div>
-  <div class="checklist-grid" id="checklistGrid"></div>
-</section>
 
 <footer>
   <div class="foot-grid">
@@ -600,24 +475,170 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
     <span><a href="/advertise.html">Advertise with us</a></span>
   </div>
 </footer>
+
+
 <script>
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
-document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}document.getElementById('navLinks').classList.remove('open')})});
-function selectType(type,btn){document.querySelectorAll('.type-chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');}
-function filterVendors(cat,btn){document.querySelectorAll('.vfilter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.vendor-card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.vendor===cat)?'':'none';});}
-let selectedType='Wedding';
-document.querySelectorAll('#typeTagsForm .type-tag').forEach(tag=>{tag.addEventListener('click',()=>{document.querySelectorAll('#typeTagsForm .type-tag').forEach(t=>t.classList.remove('selected'));tag.classList.add('selected');selectedType=tag.dataset.type;});});
-async function postAnnouncement(){
-  const families=document.getElementById('annFamilies').value.trim(),message=document.getElementById('annMessage').value.trim(),name=document.getElementById('annName').value.trim(),date=document.getElementById('annDate').value;
-  if(!families||!message){alert('Please fill in family names and your announcement.');return;}
-  const btn=document.getElementById('annBtn');btn.textContent='Submitting…';btn.disabled=true;
-  try{const res=await fetch('/.netlify/functions/submit-simcha',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:selectedType,families,message,date,postedBy:name||'Anonymous'})});if(!res.ok)throw new Error();document.getElementById('annFamilies').value='';document.getElementById('annMessage').value='';document.getElementById('annName').value='';document.getElementById('annDate').value='';document.getElementById('annSuccess').style.display='block';}catch(e){alert('Error. Please try again.');}
-  btn.textContent='Share the Joy!';btn.disabled=false;
-}
-const LISTS=[{title:'Venue & Date',items:['Set a budget','Choose a date','Book the hall / venue','Confirm dates with Rav','Send save-the-dates','Book parking']},{title:'Food & Catering',items:['Choose caterer','Plan the menu','Arrange liquor & soft drinks','Order cake / desserts','Arrange water station','Confirm final guest count']},{title:'Photography & Video',items:['Book photographer','Book videographer','Create shot list','Plan album design','Collect family photos','Arrange forshpiel coverage']},{title:'Beauty & Clothing',items:['Book hair & makeup','Order dress / suit','Arrange alterations','Book wig stylist','Plan accessories','Schedule final fitting']},{title:'Gifts & Details',items:['Order centerpieces','Arrange party favors','Create seating chart','Print programs / bentchers','Order kippot','Order thank you cards']},{title:'Admin & Logistics',items:['Send invitations','Track RSVPs','Arrange transportation','Book hotel rooms','Prepare speeches','Confirm all vendors day before']}];
-function buildChecklist(){const saved=JSON.parse(localStorage.getItem('simcha_cl')||'{}');const grid=document.getElementById('checklistGrid');grid.innerHTML='';LISTS.forEach((list,li)=>{const done=list.items.filter((_,ii)=>saved[li+'-'+ii]).length,pct=Math.round(done/list.items.length*100);const card=document.createElement('div');card.className='checklist-card fade-up';card.innerHTML='<h3>'+list.title+'</h3><div class="progress-label"><span>'+done+'/'+list.items.length+' done</span><span>'+pct+'%</span></div><div class="progress-bar"><div class="progress-fill" style="width:'+pct+'%"></div></div>'+list.items.map((item,ii)=>'<div class="checklist-item '+(saved[li+'-'+ii]?'done':'')+'" onclick="toggleCheck('+li+','+ii+')"><div class="check-box">'+(saved[li+'-'+ii]?'✓':'')+'</div><div class="check-text">'+item+'</div></div>').join('');grid.appendChild(card);setTimeout(()=>obs.observe(card),50);});}
-function toggleCheck(li,ii){const saved=JSON.parse(localStorage.getItem('simcha_cl')||'{}');const key=li+'-'+ii;if(saved[key])delete saved[key];else saved[key]=true;localStorage.setItem('simcha_cl',JSON.stringify(saved));buildChecklist();}
-buildChecklist();
+(async function(){
+  // Get business slug from URL
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('b') || params.get('slug');
+  const id = params.get('id');
+
+  if (!slug && !id) {
+    document.getElementById('profileContent').innerHTML = `
+      <div class="not-found">
+        <h2>Business Not Found</h2>
+        <p>We couldn't find this business listing.</p>
+        <a href="/directory.html" class="btn-green">Back to Directory</a>
+      </div>`;
+    return;
+  }
+
+  try {
+    // Try to load from Airtable ads first (featured/premium)
+    const [adsRes, coupRes] = await Promise.all([
+      fetch('/.netlify/functions/get-ads'),
+      fetch('https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ', {
+        headers: {'Authorization': 'Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87'}
+      })
+    ]);
+
+    let biz = null;
+    let coupons = [];
+
+    if (adsRes.ok) {
+      const data = await adsRes.json();
+      const all = data.all || [...(data.banners||[]),...(data.featured||[]),...(data.sponsored||[])];
+      // Match by slug or id
+      biz = all.find(a => {
+        const aSlug = a.businessName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+        return aSlug === slug || a.id === id;
+      });
+    }
+
+    if (coupRes.ok) {
+      const cd = await coupRes.json();
+      coupons = (cd.records||[])
+        .filter(r => (r.fields.Status||'').toLowerCase()==='active')
+        .map(r => ({biz:r.fields.BusinessName||'',discount:r.fields.Discount||'',desc:r.fields.Description||'',code:r.fields.Code||''}));
+    }
+
+    if (!biz) {
+      document.getElementById('profileContent').innerHTML = `
+        <div class="not-found">
+          <h2>Profile Not Available</h2>
+          <p>This business hasn't upgraded to a Featured or Premium listing yet.</p>
+          <a href="/directory.html" class="btn-green" style="display:inline-flex">Back to Directory</a>
+        </div>`;
+      return;
+    }
+
+    document.title = biz.businessName + ' — Shop Local Staten Island';
+    const bizCoupons = coupons.filter(c => c.biz.toLowerCase() === biz.businessName.toLowerCase());
+    const isPremium = biz.planType === 'premium';
+
+    // Parse hours if available
+    let hoursHtml = '';
+    if (biz.hours) {
+      const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Shabbos'];
+      const hourLines = biz.hours.split('\n').filter(Boolean);
+      hoursHtml = '<div class="hours-grid">' + hourLines.map(line => {
+        const [day,...rest] = line.split(':');
+        return `<div class="hour-row"><span class="hour-day">${day}</span><span class="hour-time">${rest.join(':').trim()}</span></div>`;
+      }).join('') + '</div>';
+    }
+
+    // Social links
+    const socialHtml = [
+      biz.instagram ? `<a href="https://instagram.com/${biz.instagram.replace('@','').trim()}" target="_blank" class="social-btn">📸 Instagram</a>` : '',
+      biz.facebook ? `<a href="${biz.facebook}" target="_blank" class="social-btn">👤 Facebook</a>` : '',
+      biz.link ? `<a href="${biz.link}" target="_blank" class="social-btn">🌐 Website</a>` : '',
+    ].filter(Boolean).join('');
+
+    document.getElementById('profileContent').innerHTML = `
+      <div class="biz-hero">
+        ${biz.image ? `<img src="${biz.image}" class="biz-hero-img" alt="${biz.businessName}">` : ''}
+        <div class="biz-hero-overlay"></div>
+        <div class="biz-hero-content">
+          <div style="display:flex;align-items:flex-end;gap:1.25rem;flex:1">
+            <div class="biz-logo-wrap">
+              ${biz.logo ? `<img src="${biz.logo}" alt="logo">` : `<div class="biz-logo-placeholder">${biz.businessName.charAt(0)}</div>`}
+            </div>
+            <div class="biz-hero-info">
+              <div class="biz-plan-badge">${isPremium ? '💎 Premium Partner' : '⭐ Featured Partner'}</div>
+              <div class="biz-hero-name">${biz.businessName}</div>
+              <div class="biz-hero-tagline">${biz.tagline || biz.category || ''}</div>
+            </div>
+          </div>
+          <div class="biz-hero-actions">
+            ${biz.phone ? `<a href="tel:${biz.phone.replace(/\D/g,'')}" class="btn-green">📞 Call Now</a>` : ''}
+            ${biz.link ? `<a href="${biz.link}" target="_blank" class="btn-white">🌐 Website</a>` : ''}
+          </div>
+        </div>
+      </div>
+
+      <div class="biz-profile-body">
+        <div class="biz-main">
+          ${biz.description ? `
+          <div class="biz-section">
+            <div class="biz-section-title">About</div>
+            <p class="biz-desc-text">${biz.description}</p>
+          </div>` : ''}
+
+          ${bizCoupons.length ? `
+          <div class="biz-section">
+            <div class="biz-section-title">🎟️ Active Coupons</div>
+            ${bizCoupons.map(c => `
+              <div class="coupon-card">
+                <div>
+                  <div class="coupon-discount">${c.discount}</div>
+                  <div class="coupon-desc">${c.desc}</div>
+                </div>
+                ${c.code ? `<button class="coupon-code-btn" onclick="navigator.clipboard.writeText('${c.code}');this.textContent='Copied!';setTimeout(()=>this.textContent='${c.code}',2000)">${c.code}</button>` : ''}
+              </div>`).join('')}
+          </div>` : ''}
+
+          ${socialHtml ? `
+          <div class="biz-section">
+            <div class="biz-section-title">Connect</div>
+            <div class="social-row">${socialHtml}</div>
+          </div>` : ''}
+        </div>
+
+        <div class="biz-sidebar">
+          <div class="biz-contact-card">
+            <h3>Contact & Info</h3>
+            ${biz.phone ? `<div class="contact-item"><div class="contact-icon">📞</div><div><span class="contact-label">Phone</span><span class="contact-val"><a href="tel:${biz.phone.replace(/\D/g,'')}">${biz.phone}</a></span></div></div>` : ''}
+            ${biz.email ? `<div class="contact-item"><div class="contact-icon">✉️</div><div><span class="contact-label">Email</span><span class="contact-val"><a href="mailto:${biz.email}">${biz.email}</a></span></div></div>` : ''}
+            ${biz.address ? `<div class="contact-item"><div class="contact-icon">📍</div><div><span class="contact-label">Address</span><span class="contact-val">${biz.address}</span></div></div>` : ''}
+            ${biz.category ? `<div class="contact-item"><div class="contact-icon">🏷️</div><div><span class="contact-label">Category</span><span class="contact-val">${biz.category}</span></div></div>` : ''}
+            <div class="biz-action-btns">
+              ${biz.phone ? `<a href="tel:${biz.phone.replace(/\D/g,'')}" class="biz-btn-call">📞 Call Now</a>` : ''}
+              ${biz.link ? `<a href="${biz.link}" target="_blank" class="biz-btn-web">🌐 Visit Website</a>` : ''}
+              ${biz.email ? `<a href="mailto:${biz.email}" class="biz-btn-email">✉️ Email Us</a>` : ''}
+            </div>
+          </div>
+
+          ${hoursHtml ? `
+          <div class="biz-contact-card">
+            <h3>Business Hours</h3>
+            ${hoursHtml}
+          </div>` : ''}
+
+          <div class="biz-contact-card" style="background:rgba(62,124,89,.05);border-color:var(--green)">
+            <h3>Want a profile like this?</h3>
+            <p style="font-size:.78rem;color:var(--mid);line-height:1.65;margin-bottom:.85rem">Upgrade to Featured or Premium and get your own full business profile page. First month free.</p>
+            <a href="/advertise.html" class="biz-btn-web" style="text-align:center">Learn More →</a>
+          </div>
+        </div>
+      </div>`;
+  } catch(e) {
+    document.getElementById('profileContent').innerHTML = `
+      <div class="not-found">
+        <h2>Error Loading Profile</h2>
+        <p>Please try again or <a href="/directory.html">browse the directory</a>.</p>
+      </div>`;
+  }
+})();
 </script>
 </body></html>

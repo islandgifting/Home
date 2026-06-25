@@ -1,333 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#0B1F3A">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<title>Coupons & Deals — ShopLocal SI</title>
-<script src="https://js.stripe.com/v3/"></script>
+<title>Coupons & Deals — Shop Local Staten Island</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
+/* ─── EXACT BRAND COLORS FROM KIT ─── */
+:root{
+  --navy:#0b1f3a;
+  --blue:#2c6e9e;
+  --green:#3e7c59;
+  --green2:#4a9469;
+  --light:#f4f4f2;
+  --white:#ffffff;
+  --red:#cc2222;
+  --text:#1a2a3a;
+  --mid:#4a6070;
+  --muted:#6b8090;
+  --border:#dde4ea;
+  --border2:#eaeef2;
+}
+
+/* ─── RESET ─── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--light:#f4f6fb;--white:#fff;--border:#dde2ee;--gray:#64748b}
-body{font-family:"Poppins",sans-serif;background:var(--ivory);color:#1a1a2e}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--text);font-size:15px;line-height:1.6}
 a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--navy)}
 
-.emstrip{background:var(--red);color:#fff;padding:.45rem 2rem;display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap;font-size:.78rem;font-weight:600}
-.emstrip a{color:#fff}.emstrip .sep{opacity:.5}
-nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,.4)}
-.logo{color:#fff;font-size:1.15rem;font-weight:900}.logo span{color:var(--gold)}
-.nav-links{display:flex;gap:1.25rem;list-style:none}
-.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500}
-.nav-links a:hover{color:var(--gold)}
-.nav-cta{background:var(--red);color:#fff!important;padding:.45rem 1.1rem;border-radius:6px;font-weight:700!important}
+/* ─── EMERGENCY STRIP ─── */
+.emstrip{background:var(--red);padding:.38rem 2rem;display:flex;justify-content:center;align-items:center;gap:1.25rem;flex-wrap:wrap;font-size:.68rem;font-weight:600;letter-spacing:.2px}
+.emstrip a{color:rgba(255,255,255,.9)}.emstrip a:hover{color:#fff}
+.emstrip .sep{color:rgba(255,255,255,.3)}.emstrip .em-label{color:rgba(255,255,255,.55);font-size:.62rem;letter-spacing:1px;text-transform:uppercase}
 
-.page-hero{background:var(--navy);color:#fff;text-align:center;padding:3rem 2rem;position:relative;overflow:hidden}
-.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,67,.2),transparent 65%);pointer-events:none}
-.page-hero h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;position:relative}
-.page-hero h1 span{color:var(--gold)}
-.page-hero p{color:rgba(255,255,255,.8);margin:.75rem auto 0;max-width:520px;position:relative}
+/* ─── TOP BAR (dark navy, centered tagline) ─── */
+.top-bar{background:var(--navy);padding:.4rem 2.5rem;display:flex;align-items:center;justify-content:space-between;font-size:.7rem;letter-spacing:.5px}
+.top-bar-tagline{color:rgba(255,255,255,.7);text-align:center;flex:1;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;font-size:.65rem}
+.top-bar-right{display:flex;gap:1.25rem;align-items:center;flex-shrink:0}
+.top-bar-right a{color:rgba(255,255,255,.55);font-size:.68rem;transition:color .2s}.top-bar-right a:hover{color:#fff}
+.top-bar-promo{color:rgba(255,255,255,.45);font-size:.65rem}
+.top-bar-promo strong{color:var(--green2)}
 
-.filter-wrap{background:#fff;padding:1.25rem 2rem;border-bottom:1px solid var(--border);position:sticky;top:62px;z-index:99}
-.filter-tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto}
-.ftab{padding:.45rem 1.1rem;border:2px solid var(--border);border-radius:20px;background:#fff;color:var(--navy);font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s}
-.ftab:hover,.ftab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+/* ─── NAV (WHITE background, exactly like mockup) ─── */
+nav{
+  background:var(--white);
+  border-bottom:1px solid var(--border2);
+  padding:0 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:82px;
+  position:sticky;top:0;z-index:999;
+  box-shadow:0 2px 16px rgba(11,31,58,.08);
+}
+.logo-wrap{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+.logo-img{height:64px;width:64px;object-fit:contain}
+.logo-text{line-height:1}
+.logo-shop{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;color:var(--navy);letter-spacing:.5px;text-transform:uppercase;display:block}
+.logo-local{font-family:'Caveat Brush','Caveat',cursive;font-size:1.2rem;font-weight:700;color:var(--green);display:block;line-height:.9;letter-spacing:.5px}
+.logo-si{font-size:.55rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.4rem;margin-top:.2rem}
+.logo-si::before,.logo-si::after{content:'';width:12px;height:1px;background:var(--navy);opacity:.4}
+.logo-url{font-size:.58rem;color:var(--blue);font-weight:600;letter-spacing:.5px;margin-top:.1rem;display:block}
+.nav-links{display:flex;align-items:center;gap:.15rem;list-style:none}
+.nav-links a{font-size:.75rem;font-weight:600;color:var(--text);letter-spacing:.5px;text-transform:uppercase;padding:.5rem .85rem;position:relative;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-links a.active{color:var(--green)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-1px;left:.85rem;right:.85rem;height:3px;background:var(--green);border-radius:2px 2px 0 0}
+.nav-cta{background:var(--green)!important;color:var(--white)!important;padding:.48rem 1.2rem!important;border-radius:50px;font-weight:700!important;font-size:.72rem!important;letter-spacing:.3px!important;transition:background .2s!important}
+.nav-cta:hover{background:var(--green2)!important}
+.nav-cta::after{display:none!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--navy);display:block}
 
-.container{max-width:1150px;margin:0 auto;padding:2rem 1.5rem}
+/* ─── HERO (photo-style with dark overlay + text, exactly like mockup) ─── */
+.hero{
+  background:linear-gradient(rgba(11,31,58,.45),rgba(11,31,58,.55)),url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80') center/cover no-repeat;
+  min-height:520px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:5rem 2.5rem 4rem;
+  position:relative;
+}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:800;color:var(--white);text-transform:uppercase;letter-spacing:2px;line-height:1.05;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero-script{font-family:'Caveat Brush','Caveat',cursive;font-size:clamp(1.6rem,4vw,2.5rem);color:var(--green2);display:block;margin-top:.5rem;font-weight:700;text-shadow:0 2px 10px rgba(0,0,0,.2)}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.btn-green{background:var(--green);color:#fff;padding:.72rem 1.85rem;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;transition:background .2s;display:inline-flex;align-items:center;gap:.5rem;border-radius:50px}
+.btn-green:hover{background:var(--green2)}
+.btn-white{background:var(--white);color:var(--navy);padding:.72rem 1.85rem;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;border-radius:50px}
+.btn-white:hover{background:var(--light)}
+.btn-navy{background:var(--navy);color:#fff;padding:.72rem 1.85rem;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;transition:background .2s;display:inline-flex;align-items:center;gap:.5rem;border-radius:50px}
+.btn-navy:hover{background:#0d2545}
+.btn-outline-navy{border:2px solid var(--navy);color:var(--navy);background:transparent;padding:.7rem 1.85rem;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;border-radius:50px}
+.btn-outline-navy:hover{background:var(--navy);color:#fff}
+.btn-outline-green{border:2px solid var(--green);color:var(--green);background:transparent;padding:.7rem 1.85rem;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;border-radius:50px}
+.btn-outline-green:hover{background:var(--green);color:#fff}
 
-/* COUPON CARDS */
-.coupons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
-.coupon-card{background:#fff;border-radius:14px;overflow:hidden;border:2px solid var(--border);transition:all .2s;position:relative}
-.coupon-card:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(212,168,67,.2);transform:translateY(-2px)}
-.coupon-card.expired{opacity:.5;filter:grayscale(1)}
+/* ─── BANNER SLOT ─── */
+.banner-slot{background:var(--light);border-bottom:1px solid var(--border);padding:.85rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.bs-label{font-size:.6rem;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.bs-label::before{content:'';width:16px;height:2px;background:var(--green)}
+.bs-text{font-size:.82rem;color:var(--mid);font-style:italic;flex:1;text-align:center}
+.bs-cta{font-size:.72rem;font-weight:700;color:var(--green);letter-spacing:.5px;text-transform:uppercase;flex-shrink:0;border-bottom:2px solid var(--green);padding-bottom:1px}
+.bs-cta:hover{color:var(--green2)}
 
-/* TICKET DESIGN */
-.coupon-top{background:linear-gradient(135deg,var(--navy),#182e6a);padding:1.5rem;color:#fff;position:relative}
-.coupon-top::after{content:'';position:absolute;bottom:-12px;left:0;right:0;height:24px;background:#fff;border-radius:50% 50% 0 0 / 100% 100% 0 0}
-.coupon-biz{font-size:.75rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem}
-.coupon-discount{font-size:2.2rem;font-weight:900;color:#fff;line-height:1;margin-bottom:.25rem}
-.coupon-discount span{font-size:1rem;font-weight:600;color:rgba(255,255,255,.7)}
-.coupon-desc{font-size:.82rem;color:rgba(255,255,255,.8)}
+/* ─── SECTION STRUCTURE ─── */
+.section{padding:5rem 2.5rem}
+.section.bg-light{background:var(--light)}
+.section.bg-white{background:var(--white)}
+.section.bg-navy{background:var(--navy)}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:.75rem;margin-bottom:.65rem}
+.section-eyebrow::before,.section-eyebrow::after{content:'';width:24px;height:2px;background:var(--green)}
+.section-eyebrow.light{color:var(--green2)}.section-eyebrow.light::before,.section-eyebrow.light::after{background:var(--green2)}
+.section-title{font-size:clamp(1.5rem,3vw,2.2rem);text-align:center;color:var(--navy);font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.section-title.light{color:var(--white)}
+.section-sub{font-size:.88rem;color:var(--mid);text-align:center;max-width:520px;margin:.5rem auto 0;line-height:1.75}
+.section-sub.light{color:rgba(255,255,255,.65)}
+.green-divider{width:48px;height:3px;background:var(--green);margin:.75rem auto 0;border-radius:2px}
 
-/* PERFORATION LINE */
-.perforation{display:flex;align-items:center;padding:.5rem 1.25rem;gap:.3rem}
-.perf-dot{width:8px;height:8px;border-radius:50%;background:var(--light);flex-shrink:0}
-.perf-line{flex:1;border-top:2px dashed var(--border)}
+/* ─── STATS BAR ─── */
+.stats-bar{background:var(--white);border-bottom:1px solid var(--border2)}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:1.5rem;text-align:center;border-right:1px solid var(--border2);border-bottom:3px solid transparent;transition:border-color .3s}
+.stat:last-child{border-right:none}
+.stat:hover{border-bottom-color:var(--green)}
+.stat-n{font-size:2rem;font-weight:800;color:var(--navy);display:block;line-height:1}
+.stat-l{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:.35rem;display:block}
 
-.coupon-bottom{padding:1.1rem 1.25rem}
-.coupon-code{background:var(--light);border:2px dashed var(--gold);border-radius:8px;padding:.6rem 1rem;text-align:center;margin-bottom:.85rem;cursor:pointer;transition:all .2s}
-.coupon-code:hover{background:#fff8e1}
-.coupon-code-text{font-size:1.1rem;font-weight:900;color:var(--navy);letter-spacing:.2rem}
-.coupon-code-label{font-size:.68rem;color:var(--gray);margin-top:.15rem}
-.coupon-expiry{font-size:.75rem;color:var(--gray);display:flex;align-items:center;gap:.35rem;margin-bottom:.85rem}
-.expiry-badge{background:#fff8e1;color:#b8860b;font-weight:700;padding:.15rem .45rem;border-radius:4px;font-size:.7rem}
-.expiry-badge.expired{background:#fff0f0;color:#cc2222}
-.coupon-actions{display:flex;gap:.5rem}
-.btn-use{background:var(--red);color:#fff;padding:.55rem 1rem;border-radius:7px;font-size:.82rem;font-weight:700;border:none;cursor:pointer;flex:1;text-align:center}
-.btn-call{background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:7px;font-size:.82rem;font-weight:700;border:none;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.3rem}
-.btn-web{background:#fff;color:var(--navy);border:2px solid var(--navy);padding:.5rem 1rem;border-radius:7px;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.3rem}
+/* ─── QUICK LINKS GRID ─── */
+.ql-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:1100px;margin:2.5rem auto 0;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.ql-card{background:var(--white);padding:1.85rem 1rem;text-align:center;text-decoration:none;transition:all .25s;display:block;border-right:1px solid var(--border);border-bottom:3px solid transparent}
+.ql-card:last-child{border-right:none}
+.ql-card:hover{background:var(--light);border-bottom-color:var(--green)}
+.ql-icon{font-size:1.4rem;display:block;margin-bottom:.65rem}
+.ql-label{font-size:.75rem;font-weight:700;color:var(--navy);letter-spacing:.3px;text-transform:uppercase;display:block}
+.ql-sub{font-size:.68rem;color:var(--muted);margin-top:.2rem;display:block}
 
-.copied-toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:.75rem 1.5rem;border-radius:8px;font-weight:700;font-size:.88rem;display:none;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+/* ─── FEATURED CARDS ─── */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:1.5rem;max-width:1100px;margin:2.75rem auto 0}
+.feat-card{border:1px solid var(--border2);border-radius:6px;padding:1.75rem;transition:all .3s;cursor:pointer;border-top:3px solid var(--green);background:var(--white)}
+.feat-card:hover{box-shadow:0 8px 28px rgba(62,124,89,.12);transform:translateY(-3px);border-color:var(--green)}
+.feat-badge{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:.35rem;margin-bottom:.85rem}
+.feat-badge::before{content:'';width:14px;height:2px;background:var(--green)}
+.feat-name{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.2px}
+.feat-desc{font-size:.8rem;color:var(--mid);line-height:1.6}
+.feat-phone{font-size:.82rem;font-weight:700;color:var(--blue);margin-top:.75rem;letter-spacing:.2px}
 
-.advertise-cta{background:var(--navy);border-radius:16px;padding:2.5rem;text-align:center;color:#fff;margin-top:2.5rem}
-.advertise-cta h2{color:var(--gold);font-size:1.4rem;font-weight:900;margin-bottom:.5rem}
-.advertise-cta p{color:rgba(255,255,255,.8);margin-bottom:1.5rem}
-.btn-gold{background:var(--gold);color:#111;padding:.85rem 2rem;border-radius:8px;font-weight:800;font-size:.92rem;display:inline-block}
+/* ─── AD SCREEN ─── */
+.ad-screen-frame{border:2px solid var(--border2);border-radius:6px;background:var(--white);padding:1.25rem;max-width:380px;margin:2.5rem auto 0;position:relative}
+.ad-screen-label{position:absolute;top:-10px;left:1.25rem;background:var(--light);padding:0 .6rem;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border2);font-weight:700}
+.ad-screen-inner{border:1px solid var(--border2);min-height:170px;background:var(--light);display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:4px;transition:border-color .25s}
+.ad-screen-inner:hover{border-color:var(--green)}
+.ad-slot-text{text-align:center;padding:1.75rem}
+.ad-slot-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.ad-slot-main{font-size:1rem;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.3px;margin-bottom:.35rem}
+.ad-slot-sub{font-size:.75rem;color:var(--mid)}
+.ad-slot-link{display:inline-block;margin-top:.85rem;font-size:.7rem;font-weight:700;color:var(--green);letter-spacing:.5px;text-transform:uppercase;border-bottom:2px solid var(--green);padding-bottom:1px}
+.ad-screen-base{width:100px;height:5px;background:var(--border2);margin:.75rem auto 0;border-radius:3px}
+.ad-screen-legs{display:flex;justify-content:center;gap:55px;margin-top:0}
+.ad-screen-leg{width:8px;height:14px;background:var(--border2)}
 
-.empty-state{text-align:center;padding:4rem 2rem;color:var(--gray)}
-.empty-state .icon{font-size:3.5rem;margin-bottom:1rem}
+/* ─── SHABBOS ─── */
+.city-select-wrap{position:relative;max-width:580px;margin:2.5rem auto 0}
+.city-select{width:100%;padding:.75rem 1rem;background:var(--white);border:2px solid var(--green);border-radius:6px;font-size:.9rem;font-weight:600;color:var(--navy);outline:none;font-family:'Montserrat',sans-serif;cursor:pointer;appearance:none;-webkit-appearance:none;margin-bottom:1rem}
+.city-select option{background:#fff;color:var(--navy)}
+.city-select-arrow{position:absolute;right:1rem;top:1rem;color:var(--green);pointer-events:none;font-weight:700}
+.shab-card{background:var(--white);border:2px solid var(--border2);border-radius:8px;padding:2rem;max-width:580px;margin:0 auto;border-top:4px solid var(--green)}
+.shab-date{text-align:center;font-size:.82rem;font-weight:700;color:var(--navy);letter-spacing:.5px;margin-bottom:1.5rem;text-transform:uppercase}
+.shab-times{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border2);border-radius:4px;overflow:hidden;margin-bottom:1.5rem}
+.shab-block{background:var(--light);padding:1.35rem .75rem;text-align:center}
+.shab-block.rt{background:#f0faf5;border-top:3px solid var(--green)}
+.shab-lbl{font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;display:block}
+.shab-time{font-size:1.3rem;font-weight:800;color:var(--navy);display:block}
+.shab-block.rt .shab-time{color:var(--green)}
+.shab-note{font-size:.62rem;color:var(--muted);margin-top:.3rem;display:block}
+.shab-disclaimer{font-size:.72rem;color:var(--mid);text-align:center;line-height:1.75}
+.shab-disclaimer a{color:var(--blue);border-bottom:1px solid rgba(44,110,158,.3)}
 
-footer{background:var(--ivory);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.82rem;margin-top:2rem}
-footer a{color:var(--gold)}
+/* ─── BLOG ─── */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:1.5rem;max-width:1100px;margin:2.75rem auto 0}
+.blog-card{background:var(--white);border:1px solid var(--border2);border-radius:6px;padding:1.75rem;transition:all .3s;border-top:3px solid transparent;cursor:pointer}
+.blog-card:nth-child(1){border-top-color:var(--green)}
+.blog-card:nth-child(2){border-top-color:var(--navy)}
+.blog-card:nth-child(3){border-top-color:var(--blue)}
+.blog-card:hover{box-shadow:0 6px 22px rgba(11,31,58,.08);transform:translateY(-2px)}
+.blog-cat{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:.5rem}
+.blog-title{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.5rem;line-height:1.35;text-transform:uppercase;letter-spacing:.2px}
+.blog-exc{font-size:.8rem;color:var(--mid);line-height:1.65}
+.blog-meta{font-size:.68rem;color:var(--muted);margin-top:1rem;display:flex;justify-content:space-between;align-items:center}
+.blog-read{color:var(--green);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.3px;border-bottom:2px solid var(--green);padding-bottom:1px}
+
+/* ─── COMMUNITY SECTION ─── */
+.comm-box{max-width:820px;margin:2.75rem auto 0;border:1px solid rgba(255,255,255,.1);border-top:4px solid var(--green);padding:3rem;border-radius:6px;text-align:center;background:rgba(255,255,255,.04)}
+.comm-quote{font-family:'Caveat Brush','Caveat',cursive;font-size:1.3rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:1.25rem;font-weight:700}
+.comm-text{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.85;margin-bottom:.6rem}
+.comm-bold{color:var(--green2);font-weight:700}
+.comm-orgs{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem}
+.org-item{text-align:center;padding:.85rem 1.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:6px;border-top:2px solid var(--green)}
+.org-name{font-size:.78rem;font-weight:700;color:rgba(255,255,255,.85);text-transform:uppercase;letter-spacing:.3px}
+.org-detail{font-size:.7rem;color:rgba(255,255,255,.4);margin-top:.2rem}
+
+/* ─── DIRECTORY ─── */
+.search-wrap{background:var(--light);border-bottom:1px solid var(--border);padding:1rem 2.5rem;position:sticky;top:82px;z-index:99}
+.search-inner{max-width:820px;margin:0 auto;display:flex;gap:.75rem;flex-wrap:wrap}
+.search-inner input,.search-inner select{flex:1;min-width:160px;padding:.65rem 1rem;border:2px solid var(--border);border-radius:50px;font-size:.85rem;color:var(--text);font-family:'Montserrat',sans-serif;outline:none;background:var(--white);transition:border .2s}
+.search-inner input:focus,.search-inner select:focus{border-color:var(--green)}
+.search-inner input::placeholder{color:var(--muted)}
+.search-btn{background:var(--navy);color:#fff;border:none;padding:.65rem 1.5rem;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif;border-radius:50px;transition:background .2s}
+.search-btn:hover{background:#0d2545}
+.cat-strip{background:var(--white);border-bottom:1px solid var(--border2);padding:.6rem 1.5rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.cat-strip::-webkit-scrollbar{display:none}
+.ctab{display:inline-flex;align-items:center;padding:.35rem .85rem;border-radius:50px;background:transparent;color:var(--mid);font-weight:600;font-size:.72rem;cursor:pointer;margin-right:.4rem;font-family:'Montserrat',sans-serif;border:2px solid var(--border2);transition:all .2s}
+.ctab:hover{border-color:var(--green);color:var(--green)}
+.ctab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.ctab.em.active{background:var(--red);border-color:var(--red)}
+.dir-container{max-width:1150px;margin:0 auto;padding:2rem}
+.cat-section{margin-bottom:2.75rem}
+.cat-title{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:2px solid var(--green)}
+.cat-title.em{color:var(--red);border-bottom-color:var(--red)}
+.biz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.85rem}
+.biz-card{background:var(--white);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.25rem;transition:all .25s;position:relative}
+.biz-card:hover{border-color:var(--green);box-shadow:0 4px 16px rgba(62,124,89,.1)}
+.biz-card.em{background:#fdf8f8;border-color:#f0d4d4}
+.biz-card.hatz{border-left:4px solid var(--red)}
+.biz-name{font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:.2rem;line-height:1.35}
+.biz-card.em .biz-name{color:var(--red)}
+.biz-desc{font-size:.76rem;color:var(--mid);margin-bottom:.2rem}
+.biz-addr{font-size:.73rem;color:var(--muted)}
+.biz-phone{margin-top:.45rem}
+.biz-phone a{font-size:.85rem;font-weight:700;color:var(--navy);transition:color .2s}
+.biz-phone a:hover{color:var(--blue)}
+.biz-card.hatz .biz-phone a{color:var(--red);font-size:.95rem;font-weight:800}
+.biz-tag{display:inline-block;margin-top:.4rem;font-size:.67rem;color:var(--blue);font-weight:600;padding:.15rem .55rem;background:rgba(44,110,158,.08);border-radius:50px;border:1px solid rgba(44,110,158,.2)}
+.biz-card.featured-card{background:#f5fff9;border:2px solid var(--green);border-left:4px solid var(--green)}
+.biz-card.featured-card .biz-name{color:var(--green)}
+.biz-card.featured-card::after{content:'Featured';position:absolute;top:.6rem;right:.75rem;font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--green);padding:.18rem .55rem;border-radius:50px}
+.biz-card.premium-card{background:var(--navy);border:2px solid var(--blue)}
+.biz-card.premium-card .biz-name{color:#fff}
+.biz-card.premium-card .biz-desc,.biz-card.premium-card .biz-addr{color:rgba(255,255,255,.6)}
+.biz-card.premium-card .biz-phone a{color:var(--green2)}
+.biz-card.premium-card::after{content:'Premium';position:absolute;top:.6rem;right:.75rem;font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--blue);padding:.18rem .55rem;border-radius:50px}
+.biz-more-btn{display:block;margin-top:.6rem;background:transparent;color:var(--green);border:2px solid var(--green);padding:.35rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase;cursor:pointer;width:100%;text-align:center;font-family:'Montserrat',sans-serif;border-radius:50px;transition:all .2s}
+.biz-more-btn:hover{background:var(--green);color:#fff}
+.biz-card.premium-card .biz-more-btn{border-color:var(--blue2);color:rgba(255,255,255,.8)}.biz-card.premium-card .biz-more-btn:hover{background:var(--blue);border-color:var(--blue)}
+
+/* ─── MODAL ─── */
+.biz-modal-overlay{position:fixed;inset:0;background:rgba(11,31,58,.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+.biz-modal-overlay.open{opacity:1;pointer-events:all}
+.biz-modal{background:var(--white);border-radius:12px 12px 0 0;width:100%;max-width:600px;max-height:88vh;overflow-y:auto;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);border-top:4px solid var(--green)}
+.biz-modal-overlay.open .biz-modal{transform:translateY(0)}
+.biz-modal-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:1rem auto .5rem}
+.biz-modal-body{padding:1.75rem 2rem}
+.biz-modal-badge{font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:.4rem;margin-bottom:.75rem}
+.biz-modal-badge::before{content:'';width:16px;height:2px;background:var(--green)}
+.biz-modal-name{font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:.2rem;text-transform:uppercase;letter-spacing:.3px}
+.biz-modal-cat{font-size:.78rem;color:var(--muted);margin-bottom:.85rem}
+.biz-modal-desc{font-size:.88rem;color:var(--mid);line-height:1.7;margin-bottom:1.25rem}
+.biz-modal-actions{display:flex;gap:.65rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.biz-modal-btn-call{background:var(--red);color:#fff;padding:.6rem 1.25rem;font-weight:700;font-size:.8rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;border-radius:50px}
+.biz-modal-btn-web{background:var(--navy);color:#fff;padding:.6rem 1.25rem;font-weight:700;font-size:.8rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;border-radius:50px}
+.biz-modal-btn-email{background:transparent;color:var(--navy);border:2px solid var(--navy);padding:.58rem 1.25rem;font-weight:700;font-size:.8rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;border-radius:50px}
+.biz-modal-coupons{border-top:1px solid var(--border2);padding-top:1rem;margin-top:.5rem}
+.biz-modal-coupons h4{font-size:.62rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.75rem}
+.biz-modal-coupon{background:var(--light);border:1px solid var(--border2);border-radius:6px;padding:.8rem 1rem;margin-bottom:.6rem;display:flex;justify-content:space-between;align-items:center}
+.biz-modal-coupon-discount{font-size:1rem;font-weight:800;color:var(--navy)}
+.biz-modal-coupon-desc{font-size:.74rem;color:var(--muted);margin-top:.12rem}
+.biz-modal-coupon-code{background:var(--green);color:#fff;font-size:.72rem;font-weight:700;padding:.28rem .7rem;border-radius:50px;cursor:pointer;white-space:nowrap}
+.biz-modal-close{width:100%;background:var(--light);color:var(--mid);border:1px solid var(--border2);padding:.85rem;font-weight:700;font-size:.82rem;cursor:pointer;margin-top:.5rem;font-family:'Montserrat',sans-serif;border-radius:6px;transition:all .2s}
+.biz-modal-close:hover{background:var(--navy);color:#fff}
+
+/* ─── FOOTER ─── */
+footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid var(--green)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto 3rem}
+.foot-logo-wrap{display:flex;align-items:center;gap:.85rem;margin-bottom:.85rem}
+.foot-logo-img{height:52px;width:52px;object-fit:contain}
+.foot-brand-text .shop{font-size:.95rem;font-weight:800;color:#fff;text-transform:uppercase;display:block;line-height:1}
+.foot-brand-text .local{font-family:'Caveat Brush','Caveat',cursive;font-size:1.1rem;color:var(--green2);display:block;font-weight:700;line-height:.9}
+.foot-brand-text .si{font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-top:.25rem}
+.foot-tagline{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.75;max-width:220px}
+.foot-heading{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.foot-links a{font-size:.8rem;color:rgba(255,255,255,.5);transition:color .2s}
+.foot-links a:hover{color:var(--green2)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.7rem;color:rgba(255,255,255,.25);max-width:1100px;margin:0 auto;letter-spacing:.3px}
+.foot-bottom a{color:var(--green2);opacity:.7}.foot-bottom a:hover{opacity:1}
+
+/* ─── PAGE HERO (inner pages) ─── */
+.page-hero{background:var(--navy);padding:3.5rem 2.5rem 3rem;text-align:center;position:relative;overflow:hidden;border-bottom:4px solid var(--green)}
+.page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(44,110,158,.12),transparent);pointer-events:none}
+.page-hero-eyebrow{font-size:.62rem;font-weight:700;color:var(--green2);letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:.85rem}
+.page-hero-eyebrow::before,.page-hero-eyebrow::after{content:'';width:20px;height:2px;background:var(--green2)}
+.page-hero h1{font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:800;color:var(--white);letter-spacing:.5px;text-transform:uppercase}
+.page-hero h1 span{color:var(--green2)}
+.page-hero p{color:rgba(255,255,255,.65);font-size:.9rem;margin:.5rem auto 0;max-width:520px}
+
+/* ─── UTILITIES ─── */
+.container{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.hidden{display:none!important}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr;gap:2rem}.foot-grid>div:first-child{grid-column:1/-1}}
+@media(max-width:768px){
+  nav{padding:0 1.25rem;height:70px}
+  .logo-img{height:52px;width:52px}
+  .nav-links{display:none;position:fixed;top:70px;left:0;right:0;background:var(--white);flex-direction:column;padding:1.5rem;gap:.25rem;border-bottom:2px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.1)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.7rem 0;border-bottom:1px solid var(--border2);font-size:.82rem}
+  .nav-links a.active::after{display:none}
+  .hamburger{display:flex}
+  .emstrip{gap:.65rem;font-size:.65rem}
+  .top-bar{display:none}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .ql-grid{grid-template-columns:repeat(3,1fr)}
+  .shab-times{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-grid>div:first-child{grid-column:auto}
+  .search-wrap{top:70px}
+  .section{padding:3.5rem 1.5rem}
+}
+
+.coup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;max-width:1100px;margin:2.5rem auto 0}
+.coup-card{background:var(--white);border:1px solid var(--border2);border-radius:8px;overflow:hidden;transition:all .3s}
+.coup-card:hover{border-color:var(--green);box-shadow:0 6px 20px rgba(62,124,89,.1);transform:translateY(-2px)}
+.coup-top{background:var(--navy);padding:1.1rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+.coup-biz{font-size:.82rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.3px}
+.coup-discount{font-size:1.5rem;font-weight:800;color:var(--green2);line-height:1}
+.coup-body{padding:1.1rem 1.5rem}
+.coup-desc{font-size:.82rem;color:var(--mid);line-height:1.6;margin-bottom:.85rem}
+.coup-code-row{display:flex;gap:.5rem}
+.coup-code{flex:1;padding:.5rem .85rem;background:var(--light);border:2px dashed var(--green);border-radius:4px;font-size:.82rem;font-weight:700;color:var(--navy);letter-spacing:1px;text-align:center}
+.coup-copy{background:var(--green);color:#fff;border:none;padding:.5rem 1rem;font-size:.72rem;font-weight:700;border-radius:4px;cursor:pointer;font-family:'Montserrat',sans-serif;transition:background .2s;white-space:nowrap}
+.coup-copy:hover{background:var(--green2)}
+.coup-footer{padding:.65rem 1.5rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;background:var(--light)}
+.coup-expiry{font-size:.65rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.coup-cat{font-size:.65rem;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.ik-banner{background:var(--navy);border-radius:8px;padding:1.75rem 2rem;max-width:1100px;margin:0 auto 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-left:5px solid var(--green)}
+.ik-banner h3{font-size:1.05rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.3px}
+.ik-banner p{font-size:.8rem;color:rgba(255,255,255,.6);margin-top:.25rem}
 </style>
-<link rel="stylesheet" href="/assets/css/shoplocal-refresh.css">
 </head>
 <body>
-
-  <div id="promoGlow" style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,229,102,.15),transparent 70%);pointer-events:none;animation:glow-sweep 2s ease-in-out infinite"></div>
-  <div style="display:flex;align-items:center;gap:.85rem;position:relative;flex-wrap:wrap;justify-content:center">
-    <div id="promoFlash" style="background:rgba(255,229,102,.25);border:2px solid #ffe566;color:#ffe566;font-size:.78rem;font-weight:900;padding:.35rem .9rem;border-radius:50px;text-transform:uppercase;letter-spacing:1.5px;animation:flash-badge 1s infinite;white-space:nowrap">🎉 GRAND OPENING</div>
-    <div style="text-align:center">
-      <div style="color:#fff;font-size:1.1rem;font-weight:900;letter-spacing:-.3px;animation:text-pulse 2s ease-in-out infinite">First Month <span style="color:#ffe566;text-shadow:0 0 20px rgba(255,229,102,.8)">COMPLETELY FREE</span> on all listings!</div>
-      <div style="color:rgba(255,255,255,.75);font-size:.78rem;margin-top:.15rem">No charge until month 2 · Code <strong style="color:#ffe566;letter-spacing:1px">GRANDOPENING</strong> applied automatically</div>
-    </div>
-    <a href="/advertise.html" style="background:#ffe566;color:#4a0080;padding:.55rem 1.4rem;border-radius:50px;font-weight:900;font-size:.85rem;text-decoration:none;white-space:nowrap;flex-shrink:0;box-shadow:0 0 20px rgba(255,229,102,.5);animation:btn-glow 1.5s ease-in-out infinite">Claim Free Month →</a>
-  </div>
-  <style>
-    @keyframes flash-badge{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.97)}}
-    @keyframes glow-sweep{0%,100%{opacity:.6}50%{opacity:1}}
-    @keyframes text-pulse{0%,100%{text-shadow:none}50%{text-shadow:0 0 30px rgba(255,229,102,.4)}}
-    @keyframes btn-glow{0%,100%{box-shadow:0 0 20px rgba(255,229,102,.5)}50%{box-shadow:0 0 40px rgba(255,229,102,.9),0 0 60px rgba(255,229,102,.4)}}
-    #promoBanner:hover{filter:brightness(1.08)}
-  </style>
-</div>
-<!-- EMERGENCY -->
+<!-- EMERGENCY STRIP -->
 <div class="emstrip">
   <span class="em-label">Emergency</span>
-  <a href="tel:7182301000">🚑 Hatzolah: 718-230-1000</a>
+  <a href="tel:7182301000">Hatzolah 718-230-1000</a>
   <span class="sep">·</span>
-  <a href="tel:7187612428">Chaveirim: 718-761-2428</a>
+  <a href="tel:7187612428">Chaveirim 718-761-2428</a>
   <span class="sep">·</span>
-  <a href="tel:7187614444">Shmira: 718-761-4444</a>
+  <a href="tel:7187614444">Shmira 718-761-4444</a>
   <span class="sep">·</span>
-  <a href="tel:7183702121">Shomrim: 718-370-2121</a>
+  <a href="tel:7183702121">Shomrim 718-370-2121</a>
   <span class="sep">·</span>
-  <a href="tel:7188544548">Misaskim: 718-854-4548</a>
+  <a href="tel:7188544548">Misaskim 718-854-4548</a>
 </div>
 
-<!-- PROMO -->
-<div class="promo-bar">
-  <div class="promo-pill">Grand Opening</div>
-  <div class="promo-text">First month <strong>complimentary</strong> on all listings — no charge until month two</div>
-  <a href="/advertise.html" class="promo-cta">Claim offer</a>
+<!-- TOP BAR - dark navy, exactly like mockup -->
+<div class="top-bar">
+  <div style="width:80px"></div>
+  <div class="top-bar-tagline">Support Local · Strengthen Community</div>
+  <div class="top-bar-right">
+    <a href="#">f</a>
+    <a href="#">ig</a>
+    <a href="mailto:info@shoplocalsi.com">✉</a>
+  </div>
 </div>
 
-<!-- NAV -->
+<!-- WHITE NAV - exactly like mockup -->
 <nav>
-  <a href="/" class="logo">
-    <div class="logo-mark"><span>SL</span></div>
-    <div class="logo-text">Shop<em>Local</em> SI</div>
+  <a href="/" class="logo-wrap">
+    <img src="/logo.png" alt="Shop Local Staten Island" class="logo-img">
+    <div class="logo-text">
+      <span class="logo-shop">SHOP <span style="color:var(--green)">LOCAL</span></span>
+      <span class="logo-si">Staten Island</span>
+      <span class="logo-url">shoplocalsi.com</span>
+    </div>
   </a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="/" >Home</a></li>
     <li><a href="/directory.html">Directory</a></li>
     <li><a href="/marketplace.html">Marketplace</a></li>
     <li><a href="/simcha.html">Simcha</a></li>
-    <li><a href="/ads.html">Ads</a></li>
-    <li><a href="/coupons.html">Coupons</a></li>
+    <li><a href="/coupons.html" class="active">Coupons</a></li>
     <li><a href="/#shabbos">Shabbos</a></li>
-    <li><a href="/advertise.html" class="nav-cta">Advertise</a></li>
+    <li><a href="/advertise.html" class="nav-cta">List Your Business</a></li>
   </ul>
   <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
-
 <div class="page-hero">
-  <h1>🎟️ Coupons & <span>Deals</span></h1>
-  <p>Exclusive discounts from Staten Island's local businesses — just for our community</p>
+  <div class="page-hero-eyebrow">Save With Local Businesses</div>
+  <h1>Coupons & <span>Deals</span></h1>
+  <p>Exclusive discounts from Staten Island's finest businesses</p>
 </div>
-
-<div class="filter-wrap">
-  <div class="filter-tabs">
-    <button class="ftab active" onclick="filterCoupons('all',this)">All Deals</button>
-    <button class="ftab" onclick="filterCoupons('food',this)">🍽 Food</button>
-    <button class="ftab" onclick="filterCoupons('home',this)">🏠 Home</button>
-    <button class="ftab" onclick="filterCoupons('beauty',this)">💅 Beauty</button>
-    <button class="ftab" onclick="filterCoupons('specialty',this)">🛍 Specialty</button>
-    <button class="ftab" onclick="filterCoupons('medical',this)">⚕ Medical</button>
-    <button class="ftab" onclick="filterCoupons('services',this)">⚙ Services</button>
-  </div>
-</div>
-
-<div class="container">
-
-  <!-- ISLAND KOSHER FEATURED DEALS -->
-  <div style="background:linear-gradient(135deg,#1a5c00,#2d8c00);border-radius:20px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,216,0,.15),transparent 65%);pointer-events:none"></div>
-    <div style="position:relative;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
-      <div>
-        <div style="font-size:.7rem;font-weight:700;color:#f5d800;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.4rem">🔥 Featured Store Deals</div>
-        <div style="font-size:1.3rem;font-weight:900;color:#fff">Island Kosher Super Deals</div>
-        <div style="font-size:.85rem;color:rgba(255,255,255,.75);margin-top:.25rem">📅 Valid June 24 — July 7 · 30+ items on sale!</div>
-      </div>
-      <a href="/island-kosher-deals.html" style="background:#f5d800;color:#1a5c00;padding:.85rem 1.75rem;border-radius:50px;font-weight:800;font-size:.92rem;text-decoration:none;white-space:nowrap;box-shadow:0 6px 20px rgba(245,216,0,.4);display:inline-flex;align-items:center;gap:.5rem">🛒 View All Deals →</a>
+<div class="section bg-light">
+  <div class="section-inner">
+    <div class="ik-banner fade-up">
+      <div><h3>🛒 Island Kosher Super Deals</h3><p>Valid June 24 — July 7 · 30+ items on sale this week!</p></div>
+      <a href="/island-kosher-deals.html" class="btn-green">View This Week's Deals →</a>
+    </div>
+    <div style="text-align:center;margin-bottom:1rem" class="fade-up">
+      <div class="section-eyebrow">Exclusive Offers</div>
+      <h2 class="section-title">Community Coupons</h2>
+      <div class="green-divider"></div>
+    </div>
+    <div class="coup-grid" id="couponsGrid">
+      <div class="coup-card fade-up"><div class="coup-top"><span class="coup-biz">Island Gifting</span><span class="coup-discount">15% OFF</span></div><div class="coup-body"><p class="coup-desc">15% off all personalized engraving and photo printing orders. Minimum $25.</p><div class="coup-code-row"><div class="coup-code">SHOPLOCAL15</div><button class="coup-copy" onclick="copyCode('SHOPLOCAL15',this)">Copy Code</button></div></div><div class="coup-footer"><span class="coup-expiry">Expires end of month</span><span class="coup-cat">Gifts</span></div></div>
+      <div class="coup-card fade-up"><div class="coup-top"><span class="coup-biz">Hedy's Gifts</span><span class="coup-discount">10% OFF</span></div><div class="coup-body"><p class="coup-desc">10% off your first order. We ship anywhere in the US!</p><div class="coup-code-row"><div class="coup-code">HEDYSI10</div><button class="coup-copy" onclick="copyCode('HEDYSI10',this)">Copy Code</button></div></div><div class="coup-footer"><span class="coup-expiry">Expires end of month</span><span class="coup-cat">Gifts</span></div></div>
+      <div class="coup-card fade-up"><div class="coup-top"><span class="coup-biz">Nancy's Salon</span><span class="coup-discount">$5 OFF</span></div><div class="coup-body"><p class="coup-desc">$5 off any mani/pedi combo. New clients only. Walk-ins welcome.</p><div class="coup-code-row"><div class="coup-code">NANCY5</div><button class="coup-copy" onclick="copyCode('NANCY5',this)">Copy Code</button></div></div><div class="coup-footer"><span class="coup-expiry">Expires end of month</span><span class="coup-cat">Beauty</span></div></div>
+    </div>
+    <div id="airtableCoupons"></div>
+    <div style="text-align:center;margin-top:3rem;padding:2.5rem;border:2px dashed var(--border2);border-radius:8px" class="fade-up">
+      <h3 style="font-size:.9rem;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:.4rem">List Your Coupon</h3>
+      <p style="font-size:.82rem;color:var(--mid);margin-bottom:1.25rem">First month complimentary — just $29/mo after that.</p>
+      <a href="/advertise.html" class="btn-green">Post a Coupon — First Month Free</a>
     </div>
   </div>
-  <div class="coupons-grid" id="couponsGrid">
-    <div style="text-align:center;padding:2rem;color:var(--gray);grid-column:1/-1">Loading coupons…</div>
-  </div>
-
-  <div class="advertise-cta">
-    <h2>🎟️ Post Your Coupon Here</h2>
-    <p>Offer a discount and bring new customers through your door</p>
-    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:1rem;margin-bottom:1.25rem;font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.7;text-align:left;max-width:400px;margin-left:auto;margin-right:auto">
-      ✅ Coupon expires at <strong style="color:var(--gold)">end of month</strong> or your chosen date<br>
-      ✅ Automatically renews monthly at $29/mo<br>
-      ✅ Cancel anytime
-    </div>
-    <button onclick="startCouponPayment()" style="background:var(--gold);color:#111;padding:.9rem 2.5rem;border-radius:8px;font-weight:800;font-size:1rem;border:none;cursor:pointer;box-shadow:0 4px 15px rgba(212,168,67,.4)">Post a Coupon — $29/mo →</button>
-  </div>
 </div>
-
-<div class="copied-toast" id="copiedToast">✅ Code copied to clipboard!</div>
-
 <footer>
-  <a href="/">← Back to ShopLocal SI</a> · <a href="/ads.html">Ads & Promotions</a> · <a href="/#advertise">Advertise</a>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo-wrap">
+        <img src="/logo.png" alt="Shop Local SI" class="foot-logo-img">
+        <div class="foot-brand-text">
+          <span class="shop">SHOP <span style="color:var(--green2)">LOCAL</span></span>
+          <span class="si">Staten Island</span>
+        </div>
+      </div>
+      <p class="foot-tagline">Supporting the businesses that support our Staten Island community — one purchase at a time.</p>
+    </div>
+    <div>
+      <div class="foot-heading">Pages</div>
+      <ul class="foot-links">
+        <li><a href="/directory.html">Business Directory</a></li>
+        <li><a href="/marketplace.html">Marketplace</a></li>
+        <li><a href="/simcha.html">Simcha Planning</a></li>
+        <li><a href="/coupons.html">Coupons & Deals</a></li>
+        <li><a href="/advertise.html">Advertise With Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-heading">Community</div>
+      <ul class="foot-links">
+        <li><a href="/#shabbos">Shabbos Times</a></li>
+        <li><a href="/island-kosher-deals.html">Island Kosher Deals</a></li>
+        <li><a href="/advertise.html">List Your Business</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-heading">Emergency</div>
+      <ul class="foot-links">
+        <li><a href="tel:7182301000">Hatzolah: 718-230-1000</a></li>
+        <li><a href="tel:7187612428">Chaveirim: 718-761-2428</a></li>
+        <li><a href="tel:7188717299">Chavivim: 718-871-7299</a></li>
+        <li><a href="tel:7187614444">Shmira: 718-761-4444</a></li>
+        <li><a href="tel:7183702121">Shomrim: 718-370-2121</a></li>
+        <li><a href="tel:7188544548">Misaskim: 718-854-4548</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 Shop Local Staten Island · Strengthening our community</span>
+    <span><a href="/advertise.html">Advertise with us</a></span>
+  </div>
 </footer>
 
 <script>
-const TOKEN = 'pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87';
-let allCoupons = [];
-
-function daysLeft(dateStr) {
-  if (!dateStr) return null;
-  const diff = Math.ceil((new Date(dateStr) - new Date()) / 86400000);
-  return diff;
-}
-
-function copyCode(code) {
-  navigator.clipboard.writeText(code).catch(() => {});
-  const toast = document.getElementById('copiedToast');
-  toast.style.display = 'block';
-  setTimeout(() => toast.style.display = 'none', 2500);
-}
-
-async function loadCoupons() {
-  try {
-    // Load from Coupons table
-    const res = await fetch(`https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ?sort[0][field]=Created&sort[0][direction]=desc`, {
-      headers: { 'Authorization': `Bearer ${TOKEN}` }
-    });
-    const data = await res.json();
-
-    if (data.error) {
-      // Table doesn't exist yet — show demo coupons
-      showDemoCoupons();
-      return;
-    }
-
-    allCoupons = (data.records || []).filter(r => (r.fields.Status || '').toLowerCase() === 'active').map(r => ({
-      id: r.id,
-      biz: r.fields.BusinessName || '',
-      discount: r.fields.Discount || '10% OFF',
-      desc: r.fields.Description || '',
-      code: r.fields.Code || '',
-      phone: r.fields.Phone || '',
-      link: r.fields.Link || '',
-      cat: (r.fields.Category || 'other').toLowerCase(),
-      expires: r.fields.ExpiryDate || '',
-    }));
-
-    if (!allCoupons.length) { showDemoCoupons(); return; }
-    renderCoupons();
-
-  } catch(e) {
-    showDemoCoupons();
-  }
-}
-
-function showDemoCoupons() {
-  allCoupons = [
-    { id:1, biz:'Island Kosher Supermarket', discount:'10% OFF', desc:'10% off your entire purchase every Tuesday', code:'TUESDAY10', phone:'7186502200', link:'', cat:'food', expires:'2025-12-31' },
-    { id:2, biz:'Nancy\'s Salon', discount:'$5 OFF', desc:'$5 off any mani-pedi combo', code:'MANI5', phone:'7189389337', link:'', cat:'beauty', expires:'2025-09-30' },
-    { id:3, biz:'Sparkle Agency', discount:'15% OFF', desc:'15% off first cleaning service for new clients', code:'SPARKLE15', phone:'3474073931', link:'', cat:'services', expires:'2025-08-31' },
-    { id:4, biz:'Sugar House Ice Cream', discount:'Buy 2 Get 1', desc:'Buy 2 scoops get 1 free — all flavors', code:'SWEET3', phone:'7187016891', link:'', cat:'food', expires:'2025-07-31' },
-    { id:5, biz:'Glo Laser', discount:'20% OFF', desc:'20% off your first laser session', code:'GLOW20', phone:'3476990822', link:'', cat:'beauty', expires:'2025-10-31' },
-    { id:6, biz:'Island Door Repair', discount:'FREE ESTIMATE', desc:'Free estimate on any door repair or replacement', code:'FREEDOOR', phone:'6466237253', link:'', cat:'home', expires:'2025-12-31' },
-  ];
-  renderCoupons();
-}
-
-function filterCoupons(cat, btn) {
-  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  renderCoupons(cat);
-}
-
-function renderCoupons(cat = 'all') {
-  const filtered = cat === 'all' ? allCoupons : allCoupons.filter(c => c.cat === cat);
-  const grid = document.getElementById('couponsGrid');
-
-  if (!filtered.length) {
-    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="icon">🎟️</div><p>No coupons in this category yet.<br><a href="/#advertise" style="color:var(--navy);font-weight:700">Post a coupon →</a></p></div>';
-    return;
-  }
-
-  grid.innerHTML = filtered.map(c => {
-    const days = daysLeft(c.expires);
-    const isExpired = days !== null && days < 0;
-    const expiryText = days === null ? '' : isExpired ? 'Expired' : days === 0 ? 'Expires today!' : `${days} days left`;
-    const expiryClass = isExpired ? 'expired' : days !== null && days <= 7 ? 'expiry-badge' : 'expiry-badge';
-
-    return `
-    <div class="coupon-card ${isExpired ? 'expired' : ''}">
-      <div class="coupon-top">
-        <div class="coupon-biz">${c.biz}</div>
-        <div class="coupon-discount">${c.discount.split(' ')[0]} <span>${c.discount.split(' ').slice(1).join(' ')}</span></div>
-        <div class="coupon-desc">${c.desc}</div>
-      </div>
-      <div class="perforation">
-        <div class="perf-dot"></div>
-        <div class="perf-line"></div>
-        <div class="perf-dot"></div>
-      </div>
-      <div class="coupon-bottom">
-        ${c.code ? `
-        <div class="coupon-code" onclick="copyCode('${c.code}')">
-          <div class="coupon-code-text">${c.code}</div>
-          <div class="coupon-code-label">Tap to copy code</div>
-        </div>` : ''}
-        ${expiryText ? `<div class="coupon-expiry">⏰ <span class="${expiryClass} ${isExpired ? 'expired' : ''}">${expiryText}</span> ${c.expires ? `· Expires ${new Date(c.expires).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}` : ''}</div>` : ''}
-        <div class="coupon-actions">
-          ${!isExpired ? `<button class="btn-use" onclick="copyCode('${c.code}')">🎟️ Use Coupon</button>` : ''}
-          ${c.phone ? `<a href="tel:${c.phone.replace(/\D/g,'')}" class="btn-call">📞</a>` : ''}
-          ${c.link ? `<a href="${c.link}" target="_blank" class="btn-web">🌐</a>` : ''}
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-async function startCouponPayment() {
-  try {
-    const response = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan: 'Coupon' })
-    });
-    const data = await response.json();
-    if (data.redirect) { window.location.href = data.redirect; return; }
-    const stripe = Stripe('pk_live_51Tin6MIDdMLYVh4oK2QStvaVhBuIEgCcD92cHrhppumHc9xe2fAdlUbniSIWtfccPi2Pqoohh8mzGtjA4Zvq2IPu000Marfnt5');
-    await stripe.redirectToCheckout({ sessionId: data.sessionId });
-  } catch(e) {
-    alert('Please try again or contact us at 917-753-4444');
-  }
-}
-
-loadCoupons();
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+function copyCode(code,btn){navigator.clipboard.writeText(code);btn.textContent='Copied!';btn.style.background='var(--navy)';setTimeout(()=>{btn.textContent='Copy Code';btn.style.background='';},2000);}
+(async function(){try{const res=await fetch('https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ',{headers:{'Authorization':'Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87'}});if(!res.ok)return;const data=await res.json();const active=(data.records||[]).filter(r=>(r.fields.Status||'').toLowerCase()==='active');if(!active.length)return;const container=document.getElementById('airtableCoupons');container.innerHTML='<div class="coup-grid">'+active.map(r=>{const f=r.fields;return'<div class="coup-card"><div class="coup-top"><span class="coup-biz">'+(f.BusinessName||'')+'</span><span class="coup-discount">'+(f.Discount||'')+'</span></div><div class="coup-body"><p class="coup-desc">'+(f.Description||'')+'</p>'+(f.Code?'<div class="coup-code-row"><div class="coup-code">'+f.Code+'</div><button class="coup-copy" onclick="copyCode(\''+f.Code+'\',this)">Copy Code</button></div>':'')+'</div><div class="coup-footer"><span class="coup-expiry">Expires end of month</span><span class="coup-cat">'+(f.Category||'')+'</span></div></div>';}).join('')+'</div>';}catch(e){}})();
 </script>
-<script src="/assets/js/shoplocal-pwa.js"></script>
-</body>
-</html>
+</body></html>
