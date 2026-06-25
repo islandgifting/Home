@@ -3,206 +3,487 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <title>Advertise — ShopLocal SI</title>
 <script src="https://js.stripe.com/v3/"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+/* ─── RESET ─── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--light:#f4f6fb;--border:#dde2ee;--gray:#64748b}
-body{font-family:"Poppins",sans-serif;background:var(--dark);color:#1a1a2e}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+
+/* ─── TOKENS ─── */
+:root{
+  --navy:#1e3a4f;
+  --navy2:#162e40;
+  --navy3:#0f2030;
+  --ivory:#f5f3ee;
+  --ivory2:#edeae3;
+  --white:#ffffff;
+  --gold:#c9a84c;
+  --gold2:#e8d5a0;
+  --gold3:#8a6e2f;
+  --pale:#e8edf2;
+  --pale2:#d4dce5;
+  --red:#cc2222;
+  --charcoal:#1c2b35;
+  --mid:#4a5e6a;
+  --muted:#7a8f9a;
+  --border:#d0d8df;
+  --border2:#e4e8ec;
+  --rule:rgba(201,168,76,.25);
+}
+
+/* ─── TYPE ─── */
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--ivory);
+  color:var(--charcoal);
+  font-size:15px;
+  line-height:1.65;
+  font-weight:400;
+}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.2;color:var(--navy)}
 a{color:inherit;text-decoration:none}
-.emstrip{background:var(--red);color:#fff;padding:.45rem 2rem;display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap;font-size:.78rem;font-weight:600}
-.emstrip a{color:#fff}.emstrip .sep{opacity:.5}
-nav{background:var(--navy);position:sticky;top:0;z-index:999;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;box-shadow:0 2px 12px rgba(0,0,0,.4)}
-.logo{color:#fff;font-size:1.15rem;font-weight:900}.logo span{color:var(--gold)}
-.nav-links{display:flex;gap:1.25rem;list-style:none}
-.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500}.nav-links a:hover{color:var(--gold)}
-.nav-cta{background:var(--red);color:#fff!important;padding:.45rem 1.1rem;border-radius:6px;font-weight:700!important}
-.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
-.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px}
-.page-hero{background:var(--navy);color:#fff;text-align:center;padding:3rem 2rem;position:relative;overflow:hidden}
-.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,67,.2),transparent 65%);pointer-events:none}
-.page-hero h1{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;position:relative}.page-hero h1 span{color:var(--gold)}
-.page-hero p{color:rgba(255,255,255,.8);margin:.5rem auto 0;max-width:520px;position:relative}
-.container{max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem}
-.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;margin-bottom:2.5rem}
-.price-card{border:2px solid var(--border);border-radius:14px;padding:1.75rem;text-align:center;transition:all .2s;background:#fff}
-.price-card.feat{border-color:var(--navy);background:var(--navy);color:#fff}
-.price-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(10,28,75,.15)}
-.price-tier{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:.5rem}
-.price-card.feat .price-tier{color:var(--gold)}
-.price-val{font-size:2.3rem;font-weight:900;color:var(--navy)}
-.price-card.feat .price-val{color:#fff}
-.price-per{font-size:.8rem;color:var(--gray);margin-bottom:1.25rem}
-.price-card.feat .price-per{color:rgba(255,255,255,.65)}
-.price-feats{list-style:none;margin-bottom:1.5rem;text-align:left}
-.price-feats li{padding:.35rem 0;font-size:.84rem;border-bottom:1px solid #eee}
-.price-card.feat .price-feats li{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.88)}
-.price-feats li::before{content:"✓ ";color:#2a9d5c;font-weight:700}
-.price-card.feat .price-feats li::before{color:var(--gold)}
-.price-btn{display:block;padding:.7rem;border-radius:8px;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s;border:2px solid var(--navy);color:var(--navy);background:transparent;width:100%}
-.price-btn:hover{background:var(--navy);color:#fff}
-.price-card.feat .price-btn{background:var(--gold);color:#111;border-color:var(--gold)}
-.price-card.feat .price-btn:hover{background:#b8922e}
-.free-note{font-size:.73rem;text-align:center;margin-top:.6rem;color:var(--gray)}
-.contact-form{background:#fff;border-radius:14px;border:1px solid var(--border);padding:2rem;margin-top:1rem}
-.contact-form h3{font-weight:700;color:var(--navy);margin-bottom:1.25rem;text-align:center}
+
+/* ─── UTILITIES ─── */
+.container{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+.gold-rule{width:40px;height:1px;background:var(--gold);display:block;margin:.85rem auto}
+.section-eyebrow{font-size:.65rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold3);display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:.6rem}
+.section-eyebrow::before,.section-eyebrow::after{content:'';width:24px;height:1px;background:var(--gold);opacity:.55}
+.section-title{font-size:1.8rem;text-align:center;color:var(--navy)}
+.section-sub{font-size:.88rem;color:var(--muted);text-align:center;max-width:520px;margin:.5rem auto 0;line-height:1.75;font-weight:300;letter-spacing:.1px}
+
+/* ─── EMERGENCY STRIP ─── */
+.emstrip{
+  background:var(--red);
+  padding:.4rem 2rem;
+  display:flex;justify-content:center;align-items:center;gap:1.25rem;flex-wrap:wrap;
+  font-size:.68rem;font-weight:500;letter-spacing:.3px;
+}
+.emstrip a{color:rgba(255,255,255,.9);transition:color .15s}
+.emstrip a:hover{color:#fff}
+.emstrip .sep{color:rgba(255,255,255,.3);font-size:.5rem}
+.emstrip .em-label{color:rgba(255,255,255,.55);font-size:.62rem;letter-spacing:1px;text-transform:uppercase}
+
+/* ─── PROMO BAR ─── */
+.promo-bar{
+  background:var(--navy3);
+  border-bottom:1px solid rgba(201,168,76,.15);
+  padding:.45rem 2rem;
+  display:flex;align-items:center;justify-content:center;gap:1.25rem;
+  font-size:.72rem;letter-spacing:.2px;
+}
+.promo-pill{
+  background:transparent;border:1px solid rgba(201,168,76,.4);
+  color:var(--gold2);font-size:.6rem;font-weight:600;
+  padding:.15rem .65rem;letter-spacing:1.5px;text-transform:uppercase;
+}
+.promo-text{color:rgba(255,255,255,.65);font-weight:300}
+.promo-text strong{color:var(--gold2);font-weight:500}
+.promo-cta{color:var(--gold2);font-size:.7rem;font-weight:500;letter-spacing:.5px;
+  border-bottom:1px solid rgba(201,168,76,.35);padding-bottom:1px;transition:all .2s}
+.promo-cta:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+
+/* ─── NAV ─── */
+nav{
+  background:var(--navy);
+  height:64px;position:sticky;top:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.logo{display:flex;align-items:center;gap:.5rem}
+.logo-mark{width:28px;height:28px;border:1px solid rgba(201,168,76,.5);display:flex;align-items:center;justify-content:center}
+.logo-mark span{font-family:'Playfair Display',serif;font-size:.7rem;font-weight:700;color:var(--gold2);letter-spacing:-.5px}
+.logo-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--white);letter-spacing:.2px}
+.logo-text em{color:var(--gold2);font-style:italic}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.65);font-size:.78rem;font-weight:400;letter-spacing:.4px;transition:color .2s;position:relative}
+.nav-links a:hover{color:rgba(255,255,255,.95)}
+.nav-links a.active{color:var(--gold2)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);opacity:.7}
+.nav-cta{
+  border:1px solid rgba(201,168,76,.45);
+  color:var(--gold2)!important;
+  padding:.38rem 1.1rem;
+  font-size:.72rem!important;letter-spacing:.8px;text-transform:uppercase;
+  transition:all .25s!important;
+}
+.nav-cta:hover{background:rgba(201,168,76,.1)!important;border-color:var(--gold)!important;color:var(--gold2)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:20px;height:1px;background:rgba(255,255,255,.7);display:block}
+
+/* ─── BANNER AD SLOT ─── */
+.banner-slot{
+  background:var(--pale);
+  border-bottom:1px solid var(--border);
+  padding:.85rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+}
+.bs-label{font-size:.62rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.bs-label::before{content:'';width:18px;height:1px;background:var(--gold);opacity:.5}
+.bs-text{font-size:.82rem;color:var(--mid);font-style:italic;font-weight:300;flex:1;text-align:center}
+.bs-cta{font-size:.7rem;color:var(--navy);letter-spacing:.5px;text-transform:uppercase;flex-shrink:0;
+  border-bottom:1px solid var(--pale2);padding-bottom:1px;transition:all .2s;font-weight:500}
+.bs-cta:hover{color:var(--gold3);border-color:var(--gold)}
+
+/* ─── PAGE HERO ─── */
+.page-hero{
+  background:var(--navy);
+  padding:3.5rem 2.5rem 3rem;
+  text-align:center;position:relative;overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.page-hero::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.page-hero-eyebrow{font-size:.62rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:1rem}
+.page-hero-eyebrow::before,.page-hero-eyebrow::after{content:'';width:20px;height:1px;background:var(--gold);opacity:.5}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;color:var(--white);letter-spacing:-.5px;position:relative}
+.page-hero h1 span{color:var(--gold2);font-style:italic}
+.page-hero p{color:rgba(255,255,255,.55);font-size:.88rem;margin:.5rem auto 0;max-width:500px;font-weight:300;letter-spacing:.1px}
+
+/* ─── SEARCH BAR ─── */
+.search-wrap{background:var(--white);border-bottom:1px solid var(--border2);padding:1rem 2.5rem;position:sticky;top:64px;z-index:99}
+.search-inner{max-width:800px;margin:0 auto;display:flex;gap:.75rem;flex-wrap:wrap}
+.search-inner input,.search-inner select{
+  flex:1;min-width:160px;
+  padding:.65rem 1rem;
+  border:1px solid var(--border);
+  font-size:.85rem;color:var(--charcoal);
+  font-family:'Inter',sans-serif;outline:none;
+  background:var(--ivory);
+  transition:border .2s;
+}
+.search-inner input:focus,.search-inner select:focus{border-color:var(--navy);background:var(--white)}
+.search-inner input::placeholder{color:var(--muted)}
+.search-inner select option{background:var(--white)}
+.search-btn{
+  background:var(--navy);color:var(--white);
+  border:none;padding:.65rem 1.5rem;
+  font-size:.8rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;
+  cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;
+}
+.search-btn:hover{background:var(--navy2)}
+
+/* ─── CAT TABS ─── */
+.cat-strip{background:var(--ivory2);border-bottom:1px solid var(--border2);padding:.6rem 1.5rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.cat-strip::-webkit-scrollbar{display:none}
+.ctab{
+  display:inline-flex;align-items:center;
+  padding:.32rem .85rem;
+  border:1px solid var(--border);
+  font-size:.73rem;font-weight:500;letter-spacing:.2px;
+  color:var(--mid);cursor:pointer;
+  margin-right:.4rem;
+  font-family:'Inter',sans-serif;
+  background:var(--white);
+  transition:all .2s;
+}
+.ctab:hover{border-color:var(--navy);color:var(--navy)}
+.ctab.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.ctab.em.active{background:var(--red);border-color:var(--red)}
+
+/* ─── BUSINESS CARDS ─── */
+.dir-container{max-width:1150px;margin:0 auto;padding:2rem 2rem}
+.cat-section{margin-bottom:2.75rem}
+.cat-title{
+  font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);
+  display:flex;align-items:center;gap:.75rem;
+  margin-bottom:1.1rem;padding-bottom:.6rem;
+  border-bottom:1px solid var(--border2);
+}
+.cat-title::before{content:'';width:18px;height:1px;background:var(--gold);flex-shrink:0}
+.cat-title.em{color:var(--red)}
+.cat-title.em::before{background:var(--red)}
+.biz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:.85rem}
+.biz-card{
+  background:var(--white);
+  border:1px solid var(--border2);
+  padding:1.1rem 1.25rem 1rem;
+  transition:all .25s;position:relative;
+  border-top:2px solid transparent;
+}
+.biz-card:hover{border-top-color:var(--gold);box-shadow:0 4px 18px rgba(30,58,79,.07)}
+.biz-card.em{background:#fdf8f8;border-color:#f0d4d4;border-top-color:var(--red)}
+.biz-card.hatz{border-top:2px solid var(--red)}
+.biz-name{font-weight:600;font-size:.9rem;color:var(--navy);margin-bottom:.2rem;line-height:1.35}
+.biz-card.em .biz-name{color:var(--red)}
+.biz-desc{font-size:.76rem;color:var(--muted);margin-bottom:.25rem}
+.biz-addr{font-size:.73rem;color:var(--muted)}
+.biz-phone{margin-top:.5rem}
+.biz-phone a{font-size:.85rem;font-weight:600;color:var(--navy);transition:color .2s}
+.biz-phone a:hover{color:var(--gold3)}
+.biz-card.hatz .biz-phone a{color:var(--red);font-size:.95rem;font-weight:700}
+.biz-tag{
+  display:inline-block;margin-top:.45rem;
+  font-size:.68rem;color:var(--muted);
+  letter-spacing:.2px;font-weight:400;
+  padding:.18rem .55rem;
+  background:var(--ivory2);
+  border:1px solid var(--border2);
+}
+
+/* FEATURED/PREMIUM card styles */
+.biz-card.featured-card{background:#fffdf5;border-color:rgba(201,168,76,.35);border-top:2px solid var(--gold)}
+.biz-card.featured-card .biz-name{color:var(--gold3)}
+.biz-card.featured-card::after{content:'Featured';position:absolute;top:0;right:1rem;font-size:.58rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold3);background:var(--gold2);padding:.15rem .5rem;opacity:.8}
+.biz-card.premium-card{background:var(--navy);border:1px solid var(--navy2);border-top:2px solid var(--gold)}
+.biz-card.premium-card .biz-name{color:var(--gold2)}
+.biz-card.premium-card .biz-desc,.biz-card.premium-card .biz-addr,.biz-card.premium-card .biz-tag{color:rgba(255,255,255,.45)}
+.biz-card.premium-card .biz-phone a{color:var(--gold2)}
+.biz-card.premium-card::after{content:'Premium';position:absolute;top:0;right:1rem;font-size:.58rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:.15rem .5rem}
+.biz-card.premium-card:hover{box-shadow:0 4px 18px rgba(201,168,76,.15)}
+.biz-more-btn{
+  display:block;margin-top:.65rem;
+  background:transparent;color:var(--navy);
+  border:1px solid var(--border);
+  padding:.38rem .85rem;font-size:.7rem;font-weight:500;
+  letter-spacing:.3px;text-transform:uppercase;
+  cursor:pointer;width:100%;text-align:center;
+  font-family:'Inter',sans-serif;transition:all .2s;
+}
+.biz-more-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.biz-card.premium-card .biz-more-btn{border-color:rgba(201,168,76,.4);color:var(--gold2)}
+.biz-card.premium-card .biz-more-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+
+/* ─── MODAL ─── */
+.biz-modal-overlay{position:fixed;inset:0;background:rgba(15,32,48,.65);z-index:9999;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px)}
+.biz-modal-overlay.open{opacity:1;pointer-events:all}
+.biz-modal{background:var(--white);width:100%;max-width:600px;max-height:88vh;overflow-y:auto;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);border-top:3px solid var(--gold)}
+.biz-modal-overlay.open .biz-modal{transform:translateY(0)}
+.biz-modal-handle{width:36px;height:3px;background:var(--border);margin:1rem auto .5rem}
+.biz-modal-banner{width:100%;overflow:hidden}
+.biz-modal-banner iframe,.biz-modal-banner div{width:100%;min-height:130px;border:none;display:block}
+.biz-modal-body{padding:1.75rem 2rem}
+.biz-modal-badge{font-size:.6rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold3);display:flex;align-items:center;gap:.4rem;margin-bottom:.75rem}
+.biz-modal-badge::before{content:'';width:16px;height:1px;background:var(--gold)}
+.biz-modal-name{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
+.biz-modal-cat{font-size:.78rem;color:var(--muted);margin-bottom:.85rem;font-weight:300;letter-spacing:.2px}
+.biz-modal-desc{font-size:.88rem;color:var(--mid);line-height:1.7;margin-bottom:1.25rem;font-weight:300}
+.biz-modal-actions{display:flex;gap:.65rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.biz-modal-btn-call{background:var(--red);color:#fff;padding:.6rem 1.25rem;font-weight:600;font-size:.82rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;border:none;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.2px;transition:opacity .2s}
+.biz-modal-btn-call:hover{opacity:.9}
+.biz-modal-btn-web{background:var(--navy);color:#fff;padding:.6rem 1.25rem;font-weight:500;font-size:.82rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;letter-spacing:.2px;transition:opacity .2s}
+.biz-modal-btn-web:hover{opacity:.9}
+.biz-modal-btn-email{background:transparent;color:var(--navy);border:1px solid var(--border);padding:.58rem 1.25rem;font-weight:500;font-size:.82rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:all .2s}
+.biz-modal-btn-email:hover{border-color:var(--navy);background:var(--ivory)}
+.biz-modal-coupons{border-top:1px solid var(--border2);padding-top:1rem;margin-top:.5rem}
+.biz-modal-coupons h4{font-size:.62rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.75rem}
+.biz-modal-coupon{background:var(--ivory);border:1px solid var(--border2);padding:.8rem 1rem;margin-bottom:.6rem;display:flex;justify-content:space-between;align-items:center}
+.biz-modal-coupon-discount{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--navy)}
+.biz-modal-coupon-desc{font-size:.74rem;color:var(--muted);margin-top:.12rem;font-weight:300}
+.biz-modal-coupon-code{background:var(--navy);color:var(--gold2);font-size:.72rem;font-weight:600;padding:.28rem .7rem;cursor:pointer;white-space:nowrap;letter-spacing:.5px;transition:opacity .2s}
+.biz-modal-coupon-code:hover{opacity:.85}
+.biz-modal-close{width:100%;background:var(--ivory);color:var(--mid);border:1px solid var(--border2);padding:.85rem;font-weight:500;font-size:.82rem;cursor:pointer;margin-top:.5rem;font-family:'Inter',sans-serif;letter-spacing:.3px;transition:all .2s}
+.biz-modal-close:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--navy3);color:rgba(255,255,255,.5);padding:3.5rem 2.5rem 1.75rem}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto 2.5rem}
+.foot-logo{font-family:'Playfair Display',serif;color:var(--white);font-size:1rem;font-weight:600;margin-bottom:.25rem}
+.foot-logo em{color:var(--gold2);font-style:italic}
+.foot-rule{width:28px;height:1px;background:var(--gold);opacity:.4;margin:.65rem 0}
+.foot-tagline{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.75;font-weight:300}
+.foot-heading{font-size:.6rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.85rem}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.foot-links a{font-size:.78rem;color:rgba(255,255,255,.45);transition:color .2s}
+.foot-links a:hover{color:var(--gold2)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.7rem;color:rgba(255,255,255,.2);max-width:1100px;margin:0 auto;letter-spacing:.3px}
+.foot-bottom a{color:var(--gold);opacity:.7;transition:opacity .2s}.foot-bottom a:hover{opacity:1}
+
+/* ─── ANIMATIONS ─── */
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr;gap:2rem}.foot-grid>div:first-child{grid-column:1/-1}}
+@media(max-width:768px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:var(--navy);flex-direction:column;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .emstrip{gap:.85rem;font-size:.65rem}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-grid>div:first-child{grid-column:auto}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .search-inner{flex-direction:column}
+  .cat-strip{font-size:.7rem}
+}
+.hidden{display:none!important}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;max-width:1000px;margin:2.75rem auto 0;border:1px solid var(--border2);background:var(--border2)}
+.price-card{background:var(--white);padding:2.25rem 2rem;transition:all .25s;position:relative}
+.price-card.feat{background:var(--navy)}
+.price-card:hover{background:var(--ivory)}
+.price-card.feat:hover{background:var(--navy2)}
+.price-tag{font-size:.6rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem;display:flex;align-items:center;gap:.4rem}
+.price-tag::before{content:'';width:14px;height:1px;background:var(--gold);opacity:.5}
+.price-card.feat .price-tag{color:var(--gold2)}
+.price-tag.feat::before{background:var(--gold2)}
+.price-val{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--navy);line-height:1}
+.price-card.feat .price-val{color:var(--white)}
+.price-was{font-size:.78rem;color:var(--muted);text-decoration:line-through;margin-top:.15rem}
+.price-card.feat .price-was{color:rgba(255,255,255,.3)}
+.price-free{font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold3);margin-top:.15rem}
+.price-card.feat .price-free{color:var(--gold2)}
+.price-period{font-size:.72rem;color:var(--muted);margin-bottom:1.75rem;font-weight:300}
+.price-card.feat .price-period{color:rgba(255,255,255,.4)}
+.price-feats{list-style:none;margin-bottom:1.75rem}
+.price-feats li{font-size:.82rem;color:var(--mid);padding:.35rem 0;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:.5rem;font-weight:300}
+.price-feats li::before{content:'';width:5px;height:5px;background:var(--gold);opacity:.6;border-radius:50%;flex-shrink:0}
+.price-card.feat .price-feats li{color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.06)}
+.price-btn{display:block;width:100%;padding:.65rem;text-align:center;font-size:.75rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:all .25s;border:1px solid var(--navy);color:var(--navy);background:transparent}
+.price-btn:hover{background:var(--navy);color:var(--white)}
+.price-card.feat .price-btn{border-color:var(--gold);color:var(--gold2);background:transparent}
+.price-card.feat .price-btn:hover{background:var(--gold);color:var(--navy)}
+.grand-opening-note{text-align:center;margin-top:2rem;padding:1.25rem;border:1px solid rgba(201,168,76,.2);background:rgba(201,168,76,.04)}
+.grand-opening-note p{font-size:.82rem;color:var(--mid);font-weight:300;line-height:1.7}
+.grand-opening-note strong{color:var(--gold3);font-weight:600}
+.contact-form{max-width:640px;margin:3.5rem auto 0;border:1px solid var(--border2);padding:2.5rem}
+.contact-form h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:.35rem}
+.contact-form p{font-size:.82rem;color:var(--muted);margin-bottom:1.75rem;font-weight:300}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
 .form-row.full{grid-template-columns:1fr}
-.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:.7rem .9rem;border:2px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;transition:border .2s}
-.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--navy)}
-.contact-form textarea{height:90px;resize:vertical}
-.form-submit{background:var(--navy);color:#fff;border:none;padding:.8rem 2rem;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;width:100%;margin-top:.5rem}
-.coupon-cta{background:linear-gradient(135deg,var(--navy),#182e6a);border-radius:14px;padding:2rem;text-align:center;color:#fff;margin-top:2rem}
-.coupon-cta h3{color:var(--gold);font-size:1.1rem;margin-bottom:.4rem}
-.coupon-cta p{color:rgba(255,255,255,.8);font-size:.85rem;margin-bottom:1rem}
-.btn-gold{background:var(--gold);color:#111;padding:.75rem 2rem;border-radius:8px;font-weight:800;border:none;cursor:pointer;font-size:.9rem}
-footer{background:#070e29;color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.82rem;margin-top:2rem}
-footer a{color:var(--gold)}
-@media(max-width:768px){.nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;padding:1rem 2rem;gap:.75rem}.nav-links.open{display:flex}.hamburger{display:flex}.form-row{grid-template-columns:1fr}}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:.7rem .9rem;border:1px solid var(--border);font-size:.85rem;color:var(--charcoal);font-family:'Inter',sans-serif;outline:none;background:var(--ivory);transition:border .2s}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--navy);background:var(--white)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted);font-weight:300}
+.contact-form textarea{height:100px;resize:vertical}
+.form-submit{background:var(--navy);color:var(--white);border:none;padding:.75rem 2rem;font-size:.8rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;width:100%;transition:background .2s;margin-top:.25rem}
+.form-submit:hover{background:var(--navy2)}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<!-- GRAND OPENING PROMO BANNER -->
-<div id="promoBanner" onclick="window.location.href='/advertise.html'" style="background:linear-gradient(135deg,#4a0080,#7c1fa8,#cc44ff);padding:1rem 2rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;position:relative;overflow:hidden;cursor:pointer;border-bottom:2px solid rgba(255,229,102,.3)">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0px,rgba(255,255,255,.04) 1px,transparent 1px,transparent 12px);pointer-events:none"></div>
-  <div id="promoGlow" style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,229,102,.15),transparent 70%);pointer-events:none;animation:glow-sweep 2s ease-in-out infinite"></div>
-  <div style="display:flex;align-items:center;gap:.85rem;position:relative;flex-wrap:wrap;justify-content:center">
-    <div id="promoFlash" style="background:rgba(255,229,102,.25);border:2px solid #ffe566;color:#ffe566;font-size:.78rem;font-weight:900;padding:.35rem .9rem;border-radius:50px;text-transform:uppercase;letter-spacing:1.5px;animation:flash-badge 1s infinite;white-space:nowrap">🎉 GRAND OPENING</div>
-    <div style="text-align:center">
-      <div style="color:#fff;font-size:1.1rem;font-weight:900;letter-spacing:-.3px;animation:text-pulse 2s ease-in-out infinite">First Month <span style="color:#ffe566;text-shadow:0 0 20px rgba(255,229,102,.8)">COMPLETELY FREE</span> on all listings!</div>
-      <div style="color:rgba(255,255,255,.75);font-size:.78rem;margin-top:.15rem">No charge until month 2 · Code <strong style="color:#ffe566;letter-spacing:1px">GRANDOPENING</strong> applied automatically</div>
-    </div>
-    <a href="/advertise.html" style="background:#ffe566;color:#4a0080;padding:.55rem 1.4rem;border-radius:50px;font-weight:900;font-size:.85rem;text-decoration:none;white-space:nowrap;flex-shrink:0;box-shadow:0 0 20px rgba(255,229,102,.5);animation:btn-glow 1.5s ease-in-out infinite">Claim Free Month →</a>
-  </div>
-  <style>
-    @keyframes flash-badge{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.97)}}
-    @keyframes glow-sweep{0%,100%{opacity:.6}50%{opacity:1}}
-    @keyframes text-pulse{0%,100%{text-shadow:none}50%{text-shadow:0 0 30px rgba(255,229,102,.4)}}
-    @keyframes btn-glow{0%,100%{box-shadow:0 0 20px rgba(255,229,102,.5)}50%{box-shadow:0 0 40px rgba(255,229,102,.9),0 0 60px rgba(255,229,102,.4)}}
-    #promoBanner:hover{filter:brightness(1.08)}
-  </style>
-</div>
-  <div style="display:flex;align-items:center;gap:.6rem;position:relative">
-    <span style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:50px;text-transform:uppercase;letter-spacing:1px;animation:promo-pulse 2s infinite">🎉 Grand Opening</span>
-    <span style="color:#fff;font-size:.88rem;font-weight:700">First Month <strong style="color:#ffe566">FREE</strong> on all listings!</span>
-    <span style="color:rgba(255,255,255,.6);font-size:.78rem">No charge until month 2 · Use code <strong style="color:#ffe566">GRANDOPENING</strong></span>
-  </div>
-  <a href="/advertise.html" style="background:#ffe566;color:#4a0080;padding:.4rem 1.1rem;border-radius:50px;font-weight:800;font-size:.78rem;text-decoration:none;white-space:nowrap;flex-shrink:0">Claim Free Month →</a>
-  <style>@keyframes promo-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}70%{box-shadow:0 0 0 6px rgba(255,255,255,0)}}</style>
-</div>
+<!-- EMERGENCY -->
 <div class="emstrip">
-  <span>🚨 EMERGENCIES:</span>
+  <span class="em-label">Emergency</span>
   <a href="tel:7182301000">🚑 Hatzolah: 718-230-1000</a>
-  <span class="sep">|</span>
+  <span class="sep">·</span>
   <a href="tel:7187612428">Chaveirim: 718-761-2428</a>
-  <span class="sep">|</span>
+  <span class="sep">·</span>
   <a href="tel:7187614444">Shmira: 718-761-4444</a>
-  <span class="sep">|</span>
+  <span class="sep">·</span>
   <a href="tel:7183702121">Shomrim: 718-370-2121</a>
-  <span class="sep">|</span>
-  <a href="tel:7188544548">Misaskim: (718) 854-4548</a>
+  <span class="sep">·</span>
+  <a href="tel:7188544548">Misaskim: 718-854-4548</a>
 </div>
+
+<!-- PROMO -->
+<div class="promo-bar">
+  <div class="promo-pill">Grand Opening</div>
+  <div class="promo-text">First month <strong>complimentary</strong> on all listings — no charge until month two</div>
+  <a href="/advertise.html" class="promo-cta">Claim offer</a>
+</div>
+
+<!-- NAV -->
 <nav>
-  <a href="/" class="logo">Shop<span>Local</span> SI</a>
+  <a href="/" class="logo">
+    <div class="logo-mark"><span>SL</span></div>
+    <div class="logo-text">Shop<em>Local</em> SI</div>
+  </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/directory.html">Directory</a></li>
     <li><a href="/marketplace.html">Marketplace</a></li>
-    <li><a href="/simcha.html">💒 Simcha</a></li>
-    <li><a href="/ads.html">📢 Ads</a></li>
-    <li><a href="/coupons.html">🎟️ Coupons</a></li>
-    <li><a href="/#shabbos">Shabbos</a></li>
-    <li><a href="/advertise.html" class="nav-cta" style="background:var(--gold);color:#111!important">Advertise</a></li>
+    <li><a href="/simcha.html">Simcha</a></li>
+    <li><a href="/ads.html">Ads</a></li>
+    <li><a href="/coupons.html">Coupons</a></li>
+    <li><a href="/advertise.html" class="nav-cta">Advertise</a></li>
   </ul>
-  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
 <div class="page-hero">
+  <div class="page-hero-eyebrow">Grow Your Business</div>
   <h1>Advertise With <span>ShopLocal SI</span></h1>
-  <p>Put your business in front of thousands of Staten Island community members every month</p>
+  <p>Reach thousands of Staten Island community members each month</p>
 </div>
 
-<!-- GRAND OPENING SPECIAL -->
-<div style="background:linear-gradient(135deg,#4a0080,#7c1fa8,#a834d4);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,229,102,.2)">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0px,rgba(255,255,255,.02) 1px,transparent 1px,transparent 14px);pointer-events:none"></div>
-  <div style="position:relative;max-width:700px;margin:0 auto">
-    <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,229,102,.15);border:2px solid rgba(255,229,102,.4);color:#ffe566;font-size:.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:.4rem 1rem;border-radius:50px;margin-bottom:1rem">🎉 Grand Opening Special — Limited Time</div>
-    <h2 style="font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;color:#fff;margin-bottom:.5rem;letter-spacing:-1px">First Month <span style="color:#ffe566">Completely Free</span></h2>
-    <p style="color:rgba(255,255,255,.8);font-size:.95rem;line-height:1.7;margin-bottom:1.5rem">List your business, post a coupon, or run a banner ad — <strong style="color:#ffe566">no charge for the first month</strong>. Your card is stored but not billed until month 2. Cancel anytime.</p>
-    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.25rem">
-      <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,229,102,.3);border-radius:12px;padding:.75rem 1.25rem;color:#fff;font-size:.85rem;font-weight:600">✅ Featured Listing <span style="color:#ffe566;font-weight:800">$79/mo → FREE</span></div>
-      <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,229,102,.3);border-radius:12px;padding:.75rem 1.25rem;color:#fff;font-size:.85rem;font-weight:600">✅ Premium Listing <span style="color:#ffe566;font-weight:800">$129/mo → FREE</span></div>
-      <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,229,102,.3);border-radius:12px;padding:.75rem 1.25rem;color:#fff;font-size:.85rem;font-weight:600">✅ Coupon Listing <span style="color:#ffe566;font-weight:800">$29/mo → FREE</span></div>
-    </div>
-    <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:.75rem 1.25rem;display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.8);font-size:.82rem">
-      🏷️ Promo code <strong style="color:#ffe566;letter-spacing:2px;font-size:.9rem">GRANDOPENING</strong> applied automatically at checkout
-    </div>
+<div style="background:var(--ivory2);border-bottom:1px solid var(--border);padding:1rem 2.5rem;text-align:center">
+  <p style="font-size:.8rem;color:var(--mid);font-weight:300">
+    Grand Opening Offer — <strong style="color:var(--gold3);font-weight:600">First month complimentary</strong> on all listings. Code <strong style="color:var(--gold3)">GRANDOPENING</strong> applied automatically at checkout.
+  </p>
+</div>
+
+<section style="background:var(--white);padding:5rem 2.5rem;border-bottom:1px solid var(--border2)">
+  <div class="container" style="text-align:center">
+    <div class="section-eyebrow fade-up">Our Plans</div>
+    <h2 class="section-title fade-up">Choose Your Listing</h2>
+    <p class="section-sub fade-up">Transparent pricing — no hidden fees. Cancel anytime.</p>
   </div>
-</div>
-
-<div class="container">
   <div class="price-grid">
     <div class="price-card">
-      <div class="price-tier">Basic</div>
+      <div class="price-tag">Basic</div>
       <div class="price-val">Free</div>
-      <div class="price-per">Forever free</div>
+      <div class="price-period">Forever free</div>
       <ul class="price-feats">
-        <li>Business name &amp; phone</li>
+        <li>Business name & phone</li>
         <li>Category listing</li>
         <li>Searchable directory</li>
       </ul>
       <div class="price-btn" style="cursor:pointer" onclick="document.getElementById('contact-form').scrollIntoView({behavior:'smooth'})">Get Listed Free</div>
-      <div class="free-note">Already listed? <a href="#contact-form" style="color:var(--navy);text-decoration:underline">Update your details →</a></div>
     </div>
-
     <div class="price-card feat">
-      <div style="background:rgba(255,229,102,.2);border:1px solid rgba(255,229,102,.5);color:#ffe566;font-size:.65rem;font-weight:800;padding:.2rem .65rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:.5rem">🎉 First Month Free</div>
-      <div class="price-tier">⭐ Featured</div>
-      <div style="text-decoration:line-through;color:rgba(255,255,255,.35);font-size:.85rem">$79/mo</div>
-      <div class="price-val" style="color:#ffe566">FREE</div>
-      <div class="price-per" style="color:rgba(255,229,102,.7)">month 1 · then $79/mo</div>
+      <div class="price-tag feat">Featured</div>
+      <div class="price-val">Free*</div>
+      <div class="price-was">$79/mo</div>
+      <div class="price-free">First month complimentary</div>
+      <div class="price-period">then $79 per month</div>
       <ul class="price-feats">
         <li>Everything in Basic</li>
         <li>Gold card in directory</li>
         <li>Business description</li>
-        <li>Address &amp; website link</li>
+        <li>Address & website link</li>
         <li>Featured Business spotlight</li>
-        <li>⭐ More Info button</li>
+        <li>View Details button</li>
       </ul>
       <button class="price-btn" onclick="startAdPayment('FeaturedBusiness')">Start Free →</button>
     </div>
-
     <div class="price-card">
-      <div style="background:rgba(255,229,102,.15);border:1px solid rgba(255,229,102,.3);color:#ffe566;font-size:.65rem;font-weight:800;padding:.2rem .65rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:.5rem">🎉 First Month Free</div>
-      <div class="price-tier">💎 Premium</div>
-      <div style="text-decoration:line-through;color:rgba(255,255,255,.35);font-size:.85rem">$129/mo</div>
-      <div class="price-val">FREE</div>
-      <div class="price-per">month 1 · then $129/mo</div>
+      <div class="price-tag">Premium</div>
+      <div class="price-val">Free*</div>
+      <div class="price-was">$129/mo</div>
+      <div class="price-free">First month complimentary</div>
+      <div class="price-period">then $129 per month</div>
       <ul class="price-feats">
         <li>Everything in Featured</li>
-        <li>Navy/gold card in directory</li>
-        <li>Full-width homepage banner</li>
-        <li>Sponsored directory card</li>
-        <li>TV screen ad display</li>
-        <li>Blog post feature</li>
+        <li>Homepage banner ad</li>
+        <li>TV screen display</li>
         <li>Maximum visibility</li>
+        <li>Blog post feature</li>
+        <li>Social media promotion</li>
       </ul>
       <button class="price-btn" onclick="startAdPayment('Bundle')">Start Free →</button>
     </div>
+    <div class="price-card">
+      <div class="price-tag">Coupon</div>
+      <div class="price-val">Free*</div>
+      <div class="price-was">$29/mo</div>
+      <div class="price-free">First month complimentary</div>
+      <div class="price-period">then $29 per month</div>
+      <ul class="price-feats">
+        <li>Coupon on coupons page</li>
+        <li>Expires end of month</li>
+        <li>Tap-to-copy coupon code</li>
+        <li>Renews monthly</li>
+      </ul>
+      <button class="price-btn" onclick="window.location.href='/coupons.html'">Post a Coupon →</button>
+    </div>
   </div>
-
-  <!-- COUPON CTA -->
-  <div class="coupon-cta">
-    <div style="background:rgba(255,229,102,.15);border:1px solid rgba(255,229,102,.3);color:#ffe566;font-size:.68rem;font-weight:800;padding:.25rem .75rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:.75rem">🎉 First Month Free</div>
-    <h3>🎟️ Also offer a Coupon!</h3>
-    <p>Post a discount offer on our Coupons page — <strong style="color:#ffe566">first month free</strong>, then just $29/mo. Expires end of month.</p>
-    <button class="btn-gold" onclick="window.location.href='/coupons.html'">Post a Coupon — Start Free →</button>
+  <div class="grand-opening-note fade-up">
+    <p>* Grand Opening offer. Your card is stored but <strong>not charged until month two</strong>. Cancel anytime before then at no cost.</p>
   </div>
+</section>
 
-  <!-- CONTACT FORM -->
-  <div class="contact-form" id="contact-form" style="margin-top:2.5rem">
-    <h3>📬 Submit Your Listing or Enquiry</h3>
+<section style="background:var(--pale);padding:5rem 2.5rem;border-bottom:1px solid var(--border)">
+  <div class="container" style="text-align:center">
+    <div class="section-eyebrow fade-up">Get in Touch</div>
+    <h2 class="section-title fade-up">Submit Your Listing</h2>
+    <p class="section-sub fade-up">Prefer to get in touch directly? Fill in the form and we'll be in contact shortly.</p>
+  </div>
+  <div class="contact-form fade-up" id="contact-form">
+    <h3>Your Business Details</h3>
+    <p>Fill in your details and we'll reach out to set up your listing.</p>
     <div class="form-row">
       <input type="text" placeholder="Business Name *">
       <input type="text" placeholder="Contact Name *">
@@ -214,54 +495,84 @@ footer a{color:var(--gold)}
     <div class="form-row">
       <select>
         <option>Category</option>
-        <option>Restaurants &amp; Food</option><option>Home Services</option>
+        <option>Restaurants & Food</option><option>Home Services</option>
         <option>Photography</option><option>Auto Services</option><option>Medical</option>
-        <option>Specialty Shops</option><option>Beauty &amp; Self Care</option>
+        <option>Specialty Shops</option><option>Beauty & Self Care</option>
         <option>Services</option><option>Transportation</option><option>Other</option>
       </select>
       <select>
-        <option>Plan</option>
+        <option>Plan Interest</option>
         <option>Basic (Free)</option>
-        <option>Featured ($79/mo)</option>
-        <option>Premium ($129/mo)</option>
-        <option>Coupon ($29/mo)</option>
+        <option>Featured (First month free, then $79/mo)</option>
+        <option>Premium (First month free, then $129/mo)</option>
+        <option>Coupon (First month free, then $29/mo)</option>
       </select>
     </div>
     <div class="form-row full">
-      <textarea placeholder="Business description, address, or message…"></textarea>
+      <textarea placeholder="Business description, address, or any additional information…"></textarea>
     </div>
-    <button class="form-submit" onclick="alert('Thank you! We will be in touch shortly. ✡')">Submit Enquiry</button>
+    <button class="form-submit" onclick="alert('Thank you. We will be in touch shortly.')">Submit Enquiry</button>
   </div>
-</div>
-
-<footer><a href="/">← ShopLocal SI</a> · <a href="/directory.html">Directory</a> · <a href="/coupons.html">Coupons</a></footer>
-
+</section>
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo">Shop<em>Local</em> SI</div>
+      <div class="foot-rule"></div>
+      <div class="foot-tagline">Supporting the businesses that support our Staten Island community — one purchase at a time.</div>
+    </div>
+    <div>
+      <div class="foot-heading">Pages</div>
+      <ul class="foot-links">
+        <li><a href="/directory.html">Business Directory</a></li>
+        <li><a href="/marketplace.html">Marketplace</a></li>
+        <li><a href="/simcha.html">Simcha Planning</a></li>
+        <li><a href="/ads.html">Ads & Promotions</a></li>
+        <li><a href="/coupons.html">Coupons & Deals</a></li>
+        <li><a href="/advertise.html">Advertise With Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-heading">Community</div>
+      <ul class="foot-links">
+        <li><a href="/#shabbos">Shabbos Times</a></li>
+        <li><a href="/#blog">Community Blog</a></li>
+        <li><a href="/advertise.html">List Your Business</a></li>
+        <li><a href="/island-kosher-deals.html">Island Kosher Deals</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-heading">Emergency</div>
+      <ul class="foot-links">
+        <li><a href="tel:7182301000">Hatzolah: 718-230-1000</a></li>
+        <li><a href="tel:7187612428">Chaveirim: 718-761-2428</a></li>
+        <li><a href="tel:7188717299">Chavivim: 718-871-7299</a></li>
+        <li><a href="tel:7187614444">Shmira: 718-761-4444</a></li>
+        <li><a href="tel:7183702121">Shomrim: 718-370-2121</a></li>
+        <li><a href="tel:7188544548">Misaskim: 718-854-4548</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 Shop Local Staten Island · Strengthening our community</span>
+    <span>To list your business: <a href="/advertise.html">advertise with us</a></span>
+  </div>
+</footer>
 <script>
-const stripe = Stripe('pk_live_51Tin6MIDdMLYVh4oK2QStvaVhBuIEgCcD92cHrhppumHc9xe2fAdlUbniSIWtfccPi2Pqoohh8mzGtjA4Zvq2IPu000Marfnt5');
-
-async function startAdPayment(plan) {
-  try {
-    const response = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan })
-    });
-    const data = await response.json();
-    if (data.redirect) { document.getElementById('contact-form').scrollIntoView({behavior:'smooth'}); return; }
-    const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
-    if (result.error) throw new Error(result.error.message);
-  } catch (error) {
-    alert('Payment error: ' + error.message + '\n\nPlease fill in the form below.');
-    document.getElementById('contact-form').scrollIntoView({behavior:'smooth'});
-  }
+const _obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.fade-up').forEach(el=>_obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}document.getElementById('navLinks').classList.remove('open')})});
+</script>
+<script>
+const stripe=Stripe('pk_live_51Tin6MIDdMLYVh4oK2QStvaVhBuIEgCcD92cHrhppumHc9xe2fAdlUbniSIWtfccPi2Pqoohh8mzGtjA4Zvq2IPu000Marfnt5');
+async function startAdPayment(plan){
+  try{
+    const r=await fetch('/.netlify/functions/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan})});
+    const d=await r.json();
+    if(d.redirect){document.getElementById('contact-form').scrollIntoView({behavior:'smooth'});return;}
+    await stripe.redirectToCheckout({sessionId:d.sessionId});
+  }catch(e){alert('Please fill in the enquiry form below or call 917-753-4444.');}
 }
-
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
-  });
-});
 </script>
 </body>
 </html>

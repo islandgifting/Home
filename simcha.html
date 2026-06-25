@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simcha Planning — ShopLocal SI</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--gold2:#f0c855;--dark:#070e29}
 html{scroll-behavior:smooth}
-body{font-family:'Poppins',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#fff;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 .emstrip{background:var(--red);color:#fff;padding:.5rem 2rem;display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-size:.75rem;font-weight:600}
 .emstrip a{color:#fff}.emstrip .sep{opacity:.4}
@@ -31,9 +31,9 @@ nav{background:rgba(7,14,41,.9);backdrop-filter:blur(20px);border-bottom:1px sol
 .hero h1 span{color:transparent;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero p{color:rgba(255,255,255,.65);font-size:1rem;line-height:1.7;max-width:520px;margin:0 auto 2rem}
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;padding:.85rem 1.8rem;border-radius:50px;font-weight:800;font-size:.92rem;box-shadow:0 8px 25px rgba(212,168,67,.35);transition:all .25s;display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer;font-family:'Poppins',sans-serif}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;padding:.85rem 1.8rem;border-radius:50px;font-weight:800;font-size:.92rem;box-shadow:0 8px 25px rgba(212,168,67,.35);transition:all .25s;display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer;font-family:'Inter',sans-serif}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(212,168,67,.5)}
-.btn-ghost{border:2px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:.85rem 1.8rem;border-radius:50px;font-weight:700;font-size:.92rem;transition:all .25s;background:transparent;cursor:pointer;font-family:'Poppins',sans-serif}
+.btn-ghost{border:2px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:.85rem 1.8rem;border-radius:50px;font-weight:700;font-size:.92rem;transition:all .25s;background:transparent;cursor:pointer;font-family:'Inter',sans-serif}
 .btn-ghost:hover{border-color:rgba(212,168,67,.5);color:var(--gold)}
 /* SIMCHA TYPES */
 .simcha-types{background:linear-gradient(180deg,#040c24,#0a1c4b);padding:4rem 2rem}
@@ -50,7 +50,7 @@ nav{background:rgba(7,14,41,.9);backdrop-filter:blur(20px);border-bottom:1px sol
 /* VENDORS */
 .vendors-section{background:#050d20;padding:4rem 2rem}
 .vendor-filter{display:flex;flex-wrap:wrap;gap:.5rem;max-width:1100px;margin:0 auto 2rem;justify-content:center}
-.vfilter{padding:.38rem .9rem;border:1px solid rgba(255,255,255,.1);border-radius:50px;background:transparent;color:rgba(255,255,255,.6);font-weight:600;font-size:.77rem;cursor:pointer;transition:all .2s;font-family:'Poppins',sans-serif}
+.vfilter{padding:.38rem .9rem;border:1px solid rgba(255,255,255,.1);border-radius:50px;background:transparent;color:rgba(255,255,255,.6);font-weight:600;font-size:.77rem;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
 .vfilter:hover,.vfilter.active{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;border-color:transparent;font-weight:700}
 .vendor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;max-width:1100px;margin:0 auto}
 .vendor-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;transition:all .3s;cursor:default}
@@ -60,9 +60,9 @@ nav{background:rgba(7,14,41,.9);backdrop-filter:blur(20px);border-bottom:1px sol
 .vendor-name{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:.3rem}
 .vendor-desc{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.55}
 .vendor-footer{padding:.85rem 1.5rem;border-top:1px solid rgba(255,255,255,.06);display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
-.vcall{background:linear-gradient(135deg,var(--red),#aa1515);color:#fff;padding:.45rem .9rem;border-radius:50px;font-size:.78rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s}
+.vcall{background:linear-gradient(135deg,var(--red),#aa1515);color:#fff;padding:.45rem .9rem;border-radius:50px;font-size:.78rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
 .vcall:hover{transform:translateY(-1px)}
-.vweb{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;padding:.45rem .9rem;border-radius:50px;font-size:.78rem;font-weight:700;text-decoration:none;font-family:'Poppins',sans-serif}
+.vweb{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;padding:.45rem .9rem;border-radius:50px;font-size:.78rem;font-weight:700;text-decoration:none;font-family:'Inter',sans-serif}
 .vphone{font-size:.82rem;font-weight:700;color:var(--gold);margin-left:auto}
 /* ANNOUNCEMENTS */
 .announce-section{background:linear-gradient(180deg,#050d20,#0a1c4b);padding:4rem 2rem}
@@ -72,7 +72,7 @@ nav{background:rgba(7,14,41,.9);backdrop-filter:blur(20px);border-bottom:1px sol
 .announce-form p{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem}
 .field{margin-bottom:1rem}
 .field label{display:block;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.5px}
-.gold-input{width:100%;padding:.8rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(212,168,67,.2);border-radius:10px;font-size:.88rem;color:#fff;outline:none;font-family:'Poppins',sans-serif;transition:border .2s}
+.gold-input{width:100%;padding:.8rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(212,168,67,.2);border-radius:10px;font-size:.88rem;color:#fff;outline:none;font-family:'Inter',sans-serif;transition:border .2s}
 .gold-input:focus{border-color:rgba(212,168,67,.5);background:rgba(255,255,255,.08)}
 .gold-input::placeholder{color:rgba(255,255,255,.25)}
 .gold-input option{background:#0a1c4b;color:#fff}
@@ -119,9 +119,6 @@ footer{background:#020810;color:rgba(255,255,255,.4);padding:1.5rem 2rem;border-
 </head>
 <body>
 
-<!-- GRAND OPENING PROMO BANNER -->
-<div id="promoBanner" onclick="window.location.href='/advertise.html'" style="background:linear-gradient(135deg,#4a0080,#7c1fa8,#cc44ff);padding:1rem 2rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;position:relative;overflow:hidden;cursor:pointer;border-bottom:2px solid rgba(255,229,102,.3)">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0px,rgba(255,255,255,.04) 1px,transparent 1px,transparent 12px);pointer-events:none"></div>
   <div id="promoGlow" style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,229,102,.15),transparent 70%);pointer-events:none;animation:glow-sweep 2s ease-in-out infinite"></div>
   <div style="display:flex;align-items:center;gap:.85rem;position:relative;flex-wrap:wrap;justify-content:center">
     <div id="promoFlash" style="background:rgba(255,229,102,.25);border:2px solid #ffe566;color:#ffe566;font-size:.78rem;font-weight:900;padding:.35rem .9rem;border-radius:50px;text-transform:uppercase;letter-spacing:1.5px;animation:flash-badge 1s infinite;white-space:nowrap">🎉 GRAND OPENING</div>
@@ -139,35 +136,46 @@ footer{background:#020810;color:rgba(255,255,255,.4);padding:1.5rem 2rem;border-
     #promoBanner:hover{filter:brightness(1.08)}
   </style>
 </div>
-  <div style="display:flex;align-items:center;gap:.6rem;position:relative">
-    <span style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:50px;text-transform:uppercase;letter-spacing:1px;animation:promo-pulse 2s infinite">🎉 Grand Opening</span>
-    <span style="color:#fff;font-size:.88rem;font-weight:700">First Month <strong style="color:#ffe566">FREE</strong> on all listings!</span>
-    <span style="color:rgba(255,255,255,.6);font-size:.78rem">No charge until month 2 · Use code <strong style="color:#ffe566">GRANDOPENING</strong></span>
-  </div>
-  <a href="/advertise.html" style="background:#ffe566;color:#4a0080;padding:.4rem 1.1rem;border-radius:50px;font-weight:800;font-size:.78rem;text-decoration:none;white-space:nowrap;flex-shrink:0">Claim Free Month →</a>
-  <style>@keyframes promo-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}70%{box-shadow:0 0 0 6px rgba(255,255,255,0)}}</style>
-</div>
+<!-- EMERGENCY -->
 <div class="emstrip">
-  <span>🚨 EMERGENCIES:</span>
-  <a href="tel:7182301000">🚑 Hatzolah: 718-230-1000</a><span class="sep">|</span>
-  <a href="tel:7187612428">Chaveirim: 718-761-2428</a><span class="sep">|</span>
-  <a href="tel:7187614444">Shmira: 718-761-4444</a><span class="sep">|</span>
-  <a href="tel:7183702121">Shomrim: 718-370-2121</a><span class="sep">|</span>
-  <a href="tel:7188544548">Misaskim: (718) 854-4548</a>
+  <span class="em-label">Emergency</span>
+  <a href="tel:7182301000">🚑 Hatzolah: 718-230-1000</a>
+  <span class="sep">·</span>
+  <a href="tel:7187612428">Chaveirim: 718-761-2428</a>
+  <span class="sep">·</span>
+  <a href="tel:7187614444">Shmira: 718-761-4444</a>
+  <span class="sep">·</span>
+  <a href="tel:7183702121">Shomrim: 718-370-2121</a>
+  <span class="sep">·</span>
+  <a href="tel:7188544548">Misaskim: 718-854-4548</a>
 </div>
 
+<!-- PROMO -->
+<div class="promo-bar">
+  <div class="promo-pill">Grand Opening</div>
+  <div class="promo-text">First month <strong>complimentary</strong> on all listings — no charge until month two</div>
+  <a href="/advertise.html" class="promo-cta">Claim offer</a>
+</div>
+
+<!-- NAV -->
 <nav>
-  <a href="/" class="logo"><span class="logo-dot"></span>Shop<span>Local</span> SI</a>
+  <a href="/" class="logo">
+    <div class="logo-mark"><span>SL</span></div>
+    <div class="logo-text">Shop<em>Local</em> SI</div>
+  </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/directory.html">Directory</a></li>
     <li><a href="/marketplace.html">Marketplace</a></li>
-    <li><a href="/simcha.html" class="active">💒 Simcha</a></li>
-    <li><a href="/ads.html">📢 Ads</a></li>
-    <li><a href="/coupons.html">🎟️ Coupons</a></li>
-    <li><a href="/advertise.html" class="nav-cta">✨ Advertise</a></li>
+    <li><a href="/simcha.html">Simcha</a></li>
+    <li><a href="/ads.html">Ads</a></li>
+    <li><a href="/coupons.html">Coupons</a></li>
+    <li><a href="/advertise.html" class="nav-cta">Advertise</a></li>
   </ul>
-  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+
 
 <!-- HERO -->
 <div class="hero">

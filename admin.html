@@ -108,8 +108,9 @@ header span{font-size:.82rem;color:rgba(255,255,255,.6)}
 
     <!-- TABS -->
     <div class="tabs">
-      <div class="tab active" onclick="switchTab('listings',this)">🛍 Marketplace Listings <span class="tab-badge" id="listingsBadge">0</span></div>
+      <div class="tab active" onclick="switchTab('listings',this)">🛍 Marketplace <span class="tab-badge" id="listingsBadge">0</span></div>
       <div class="tab" onclick="switchTab('ads',this)">📢 Ad Submissions <span class="tab-badge" id="adsBadge">0</span></div>
+      <div class="tab" onclick="switchTab('simcha',this)">🎉 Simchos <span class="tab-badge" id="simchaBadge">0</span></div>
     </div>
 
     <!-- MARKETPLACE TAB -->
@@ -144,6 +145,20 @@ header span{font-size:.82rem;color:rgba(255,255,255,.6)}
       <div id="adsContainer"><div class="loading">Loading…</div></div>
     </div>
 
+    <!-- SIMCHA TAB -->
+    <div id="tabSimcha" style="display:none">
+      <div class="stats-bar">
+        <div class="stat-pill"><span id="countSimchaPending">—</span>Pending</div>
+        <div class="stat-pill"><span id="countSimchaApproved">—</span>Approved</div>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" onclick="setFilter('all',this,'simcha')">All</button>
+        <button class="filter-btn" onclick="setFilter('Pending',this,'simcha')">⏳ Pending</button>
+        <button class="filter-btn" onclick="setFilter('Approved',this,'simcha')">✅ Approved</button>
+      </div>
+      <div id="simchaContainer"><div class="loading">Loading…</div></div>
+    </div>
+
   </div>
 </div>
 
@@ -153,8 +168,8 @@ const BASE = 'appyNDNuwGFgR44sg';
 const LISTINGS_TABLE = 'tblBt9FfVcrMK1aOs';
 
 let adminPassword = '';
-let allListings = [], allAds = [];
-let listingsFilter = 'all', adsFilter = 'all';
+let allListings = [], allAds = [], allSimchos = [];
+let listingsFilter = 'all', adsFilter = 'all', simchaFilter = 'all';
 let currentTab = 'listings';
 
 // ── LOGIN ──
@@ -187,15 +202,8 @@ function switchTab(tab, btn) {
   btn.classList.add('active');
   document.getElementById('tabListings').style.display = tab === 'listings' ? 'block' : 'none';
   document.getElementById('tabAds').style.display = tab === 'ads' ? 'block' : 'none';
-}
-
-function setFilter(f, btn, type) {
-  if (type === 'listings') listingsFilter = f;
-  else adsFilter = f;
-  btn.closest('.filters').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  if (type === 'listings') renderListings();
-  else renderAds();
+  document.getElementById('tabSimcha').style.display = tab === 'simcha' ? 'block' : 'none';
+  if (tab === 'simcha' && allSimchos.length === 0) loadSimchos();
 }
 
 // ── LISTINGS ──
@@ -359,6 +367,83 @@ async function updateAd(id, status) {
     renderAds();
   } catch(e) {
     document.getElementById('adcard-' + id).style.opacity = '1';
+    alert('Failed. Try again.');
+  }
+}
+
+// ── SIMCHOS ──
+async function loadSimchos() {
+  try {
+    const res = await fetch(`https://api.airtable.com/v0/${BASE}/Simchos?sort[0][field]=Submitted&sort[0][direction]=desc`, {
+      headers: { 'Authorization': `Bearer ${TOKEN}` }
+    });
+    const data = await res.json();
+    allSimchos = (data.records || []).map(r => ({
+      id: r.id,
+      type: r.fields.Type || '',
+      families: r.fields.Families || '',
+      message: r.fields.Message || '',
+      date: r.fields.Date || '',
+      postedBy: r.fields.PostedBy || '',
+      status: r.fields.Status || 'Pending',
+      submitted: r.fields.Submitted || ''
+    }));
+    document.getElementById('countSimchaPending').textContent = allSimchos.filter(s => s.status === 'Pending').length;
+    document.getElementById('countSimchaApproved').textContent = allSimchos.filter(s => s.status === 'Approved').length;
+    document.getElementById('simchaBadge').textContent = allSimchos.filter(s => s.status === 'Pending').length;
+    renderSimchos();
+  } catch(e) {
+    document.getElementById('simchaContainer').innerHTML = '<div class="loading">Error loading simchos.</div>';
+  }
+}
+
+function setFilter(val, btn, tab) {
+  if (tab === 'listings') { listingsFilter = val; renderListings(); }
+  else if (tab === 'ads') { adsFilter = val; renderAds(); }
+  else if (tab === 'simcha') { simchaFilter = val; renderSimchos(); }
+  btn.closest('.filters').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function renderSimchos() {
+  const filtered = simchaFilter === 'all' ? allSimchos : allSimchos.filter(s => s.status === simchaFilter);
+  const container = document.getElementById('simchaContainer');
+  if (!filtered.length) { container.innerHTML = '<div class="loading">No simchos found.</div>'; return; }
+  const typeEmojis = {Wedding:'💒',Bar_Mitzvah:'📜','Bar Mitzvah':'📜',Bat_Mitzvah:'✡','Bat Mitzvah':'✡',Vort:'💍',Bris:'👶','Sheva Brachos':'🕯',Kiddush:'🍷',Aufruf:'📖',Graduation:'🎓',Event:'🎊'};
+  container.innerHTML = filtered.map(s => `
+    <div class="listing-card" id="simcha-${s.id}" style="border-left:4px solid ${s.status==='Approved'?'#2a9d5c':s.status==='Pending'?'#f59e0b':'#94a3b8'}">
+      <div class="listing-header">
+        <div>
+          <div class="listing-title">${typeEmojis[s.type]||'🎉'} ${s.families}</div>
+          <div class="listing-meta">${s.type} · Posted by ${s.postedBy} · ${s.submitted}</div>
+        </div>
+        <span class="listing-status" style="background:${s.status==='Approved'?'#e8f8ee':s.status==='Pending'?'#fff8e1':'#f4f6fb'};color:${s.status==='Approved'?'#1a6b35':s.status==='Pending'?'#92600a':'#64748b'}">${s.status}</span>
+      </div>
+      <div style="font-size:.88rem;color:#334155;line-height:1.6;margin:.75rem 0">${s.message}</div>
+      ${s.date ? `<div style="font-size:.8rem;color:#64748b">📅 Event Date: ${s.date}</div>` : ''}
+      <div class="ad-card-actions" style="margin-top:1rem">
+        ${s.status !== 'Approved' ? `<button class="btn-approve" onclick="updateSimcha('${s.id}','Approved')">✅ Approve & Post</button>` : ''}
+        ${s.status !== 'Rejected' ? `<button class="btn-reject" onclick="updateSimcha('${s.id}','Rejected')">❌ Reject</button>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+async function updateSimcha(id, status) {
+  document.getElementById('simcha-' + id).style.opacity = '.4';
+  try {
+    await fetch(`https://api.airtable.com/v0/${BASE}/Simchos/${id}`, {
+      method: 'PATCH',
+      headers: { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fields: { Status: status } })
+    });
+    const s = allSimchos.find(x => x.id === id);
+    if (s) s.status = status;
+    document.getElementById('countSimchaPending').textContent = allSimchos.filter(s => s.status === 'Pending').length;
+    document.getElementById('countSimchaApproved').textContent = allSimchos.filter(s => s.status === 'Approved').length;
+    document.getElementById('simchaBadge').textContent = allSimchos.filter(s => s.status === 'Pending').length;
+    renderSimchos();
+  } catch(e) {
+    document.getElementById('simcha-' + id).style.opacity = '1';
     alert('Failed. Try again.');
   }
 }
