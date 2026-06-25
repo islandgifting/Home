@@ -1,358 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#0B1F3A">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<title>Ads & Promotions — ShopLocal SI</title>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ads – Shop Local Staten Island</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0a1c4b;--red:#cc2222;--gold:#d4a843;--light:#f4f6fb;--white:#fff;--border:#dde2ee;--gray:#64748b}
-body{font-family:"Poppins",sans-serif;background:var(--ivory);color:#1a1a2e}
-a{color:inherit;text-decoration:none}
-
-/* NAV */
-.emstrip{background:var(--red);color:#fff;padding:.45rem 2rem;display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap;font-size:.78rem;font-weight:600}
-.emstrip a{color:#fff}.emstrip .sep{opacity:.5}
-nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,.4)}
-.logo{color:#fff;font-size:1.15rem;font-weight:900}.logo span{color:var(--gold)}
-.nav-links{display:flex;gap:1.25rem;list-style:none}
-.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500}
-.nav-links a:hover{color:var(--gold)}
-.nav-cta{background:var(--red);color:#fff!important;padding:.45rem 1.1rem;border-radius:6px;font-weight:700!important}
-
-/* HERO */
-.page-hero{background:var(--navy);color:#fff;text-align:center;padding:3rem 2rem;position:relative;overflow:hidden}
-.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,67,.2),transparent 65%);pointer-events:none}
-.page-hero h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;position:relative}
-.page-hero h1 span{color:var(--gold)}
-.page-hero p{color:rgba(255,255,255,.8);margin:.75rem auto 0;max-width:520px;position:relative}
-.page-hero .cta-row{display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;position:relative}
-.btn-gold{background:var(--gold);color:#111;padding:.75rem 1.75rem;border-radius:8px;font-weight:800;font-size:.92rem}
-.btn-outline{border:2px solid rgba(255,255,255,.7);color:#fff;padding:.75rem 1.75rem;border-radius:8px;font-weight:700;font-size:.92rem}
-
-/* FILTER TABS */
-.filter-wrap{background:#fff;padding:1.25rem 2rem;border-bottom:1px solid var(--border);position:sticky;top:62px;z-index:99}
-.filter-tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto}
-.ftab{padding:.45rem 1.1rem;border:2px solid var(--border);border-radius:20px;background:#fff;color:var(--navy);font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s}
-.ftab:hover,.ftab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-
-/* ADS CONTAINER */
-.ads-container{max-width:1150px;margin:0 auto;padding:2rem 1.5rem}
-
-/* FULL BANNER AD */
-.ad-full{background:var(--navy);border-radius:16px;overflow:hidden;margin-bottom:2rem;position:relative;cursor:pointer;transition:transform .2s,box-shadow .2s}
-.ad-full:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(10,28,75,.3)}
-.ad-full iframe{width:100%;height:200px;border:none;display:block}
-.ad-full-fallback{width:100%;height:200px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:linear-gradient(135deg,var(--navy),#182e6a)}
-.ad-full-info h2{color:var(--gold);font-size:1.6rem;font-weight:900;margin-bottom:.35rem}
-.ad-full-info p{color:rgba(255,255,255,.8);font-size:.95rem}
-.ad-full-actions{display:flex;flex-direction:column;gap:.65rem;min-width:160px}
-.ad-badge{position:absolute;top:.75rem;left:.75rem;background:var(--gold);color:#111;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
-.ad-size-label{position:absolute;top:.75rem;right:.75rem;background:rgba(0,0,0,.4);color:#fff;font-size:.65rem;padding:.2rem .5rem;border-radius:4px}
-
-/* MEDIUM ADS GRID */
-.medium-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.25rem;margin-bottom:2rem}
-.ad-medium{background:#fff;border-radius:14px;border:2px solid var(--border);overflow:hidden;transition:all .2s;cursor:pointer;position:relative}
-.ad-medium:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(212,168,67,.2);transform:translateY(-2px)}
-.ad-medium-header{height:120px;background:linear-gradient(135deg,var(--navy),#182e6a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.ad-medium-header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,168,67,.2),transparent 60%)}
-.ad-medium-name{color:#fff;font-size:1.2rem;font-weight:900;position:relative;text-align:center;padding:0 1rem}
-.ad-medium-body{padding:1.1rem}
-.ad-medium-cat{font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem}
-.ad-medium-desc{font-size:.85rem;color:var(--gray);line-height:1.55;margin-bottom:.85rem}
-.ad-medium-actions{display:flex;gap:.5rem;flex-wrap:wrap}
-
-/* SMALL ADS GRID */
-.small-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
-.ad-small{background:#fff;border-radius:12px;border:1px solid var(--border);padding:1.1rem;transition:all .2s;cursor:pointer;position:relative}
-.ad-small:hover{border-color:var(--navy);box-shadow:0 4px 14px rgba(10,28,75,.1)}
-.ad-small-name{font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.2rem}
-.ad-small-cat{font-size:.72rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem}
-.ad-small-desc{font-size:.8rem;color:var(--gray);margin-bottom:.65rem;line-height:1.5}
-.ad-small-actions{display:flex;gap:.4rem;flex-wrap:wrap}
-
-/* ACTION BUTTONS */
-.btn-call{background:var(--red);color:#fff;padding:.45rem .9rem;border-radius:6px;font-size:.78rem;font-weight:700;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
-.btn-email{background:var(--navy);color:#fff;padding:.45rem .9rem;border-radius:6px;font-size:.78rem;font-weight:700;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
-.btn-web{background:#fff;color:var(--navy);border:2px solid var(--navy);padding:.45rem .9rem;border-radius:6px;font-size:.78rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
-.btn-web:hover{background:var(--navy);color:#fff}
-
-/* SECTION HEADERS */
-.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
-.section-header h2{font-size:1.1rem;font-weight:800;color:var(--navy)}
-.section-line{flex:1;height:2px;background:var(--border)}
-.section-badge{background:var(--gold);color:#111;font-size:.7rem;font-weight:800;padding:.2rem .6rem;border-radius:4px}
-
-/* ADVERTISE CTA */
-.advertise-cta{background:var(--navy);border-radius:16px;padding:2.5rem;text-align:center;color:#fff;margin-top:2rem}
-.advertise-cta h2{color:var(--gold);font-size:1.4rem;font-weight:900;margin-bottom:.5rem}
-.advertise-cta p{color:rgba(255,255,255,.8);margin-bottom:1.5rem;font-size:.92rem}
-.price-chips{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
-.price-chip{background:rgba(255,255,255,.1);border:1px solid rgba(212,168,67,.4);border-radius:8px;padding:.6rem 1.1rem;color:#fff;font-size:.82rem}
-.price-chip strong{color:var(--gold);display:block;font-size:1rem}
-
-/* EMPTY */
-.empty-state{text-align:center;padding:4rem 2rem;color:var(--gray)}
-.empty-state .icon{font-size:3rem;margin-bottom:1rem}
-
-footer{background:var(--ivory);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.82rem}
-footer a{color:var(--gold)}
+:root{--navy:#1A3D5C;--gold:#D4A843;--ivory:#FDFAF4;--blue-light:#EBF4FB;--border:#C8DFF0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Poppins",sans-serif;background:var(--ivory);color:var(--navy);}
+.emergency-strip{background:#8B0000;color:#fff;text-align:center;padding:7px 16px;font-size:12.5px;font-weight:500;}
+.emergency-strip span{margin:0 8px;}
+.promo-bar{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:8px 24px;font-size:13px;}
+.promo-bar a{color:var(--gold);text-decoration:none;font-size:12px;}
+nav{background:#fff;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:10px 32px;box-shadow:0 2px 8px rgba(26,61,92,.08);}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo img{height:52px;}
+.nav-logo-text .brand{font-family:"Playfair Display",serif;font-size:22px;color:var(--navy);}
+.nav-logo-text .brand span{color:var(--gold);font-style:italic;}
+.nav-logo-text .sub{font-size:10px;color:#666;letter-spacing:1px;text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{text-decoration:none;color:var(--navy);font-size:13px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;padding-bottom:2px;border-bottom:2px solid transparent;transition:border-color .2s,color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);border-bottom-color:var(--gold);}
+.nav-cta{background:var(--gold)!important;color:#fff!important;padding:9px 20px;border-radius:6px;border-bottom:none!important;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,#2a5f8a 100%);color:#fff;padding:48px 32px;text-align:center;}
+.page-header h1{font-family:"Playfair Display",serif;font-size:38px;margin-bottom:10px;}
+.page-header p{font-size:16px;opacity:.85;}
+.main{padding:40px 32px;max-width:1100px;margin:0 auto;}
+.btn{display:inline-block;padding:11px 24px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;font-family:"Poppins",sans-serif;border:none;}
+.btn-gold{background:var(--gold);color:#fff;}
+footer{background:var(--navy);color:#fff;padding:40px 32px 24px;margin-top:60px;}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:32px;max-width:1100px;margin:0 auto 32px;}
+.footer-col h4{font-family:"Playfair Display",serif;font-size:16px;margin-bottom:14px;color:var(--gold);}
+.footer-col a,.footer-col p{display:block;color:rgba(255,255,255,.75);font-size:13px;text-decoration:none;margin-bottom:8px;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:20px;text-align:center;font-size:12px;color:rgba(255,255,255,.5);max-width:1100px;margin:0 auto;}
 </style>
-<link rel="stylesheet" href="/assets/css/shoplocal-refresh.css">
+<style>
+.ads-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+.ad-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;}
+.ad-biz{font-family:"Playfair Display",serif;font-size:20px;margin-bottom:6px;}
+.ad-cat{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:10px;}
+.ad-desc{font-size:13px;color:#555;line-height:1.6;margin-bottom:14px;}
+.ad-badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;background:var(--gold);color:#fff;margin-bottom:10px;}
+</style>
 </head>
 <body>
-
-  <div id="promoGlow" style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,229,102,.15),transparent 70%);pointer-events:none;animation:glow-sweep 2s ease-in-out infinite"></div>
-  <div style="display:flex;align-items:center;gap:.85rem;position:relative;flex-wrap:wrap;justify-content:center">
-    <div id="promoFlash" style="background:rgba(255,229,102,.25);border:2px solid #ffe566;color:#ffe566;font-size:.78rem;font-weight:900;padding:.35rem .9rem;border-radius:50px;text-transform:uppercase;letter-spacing:1.5px;animation:flash-badge 1s infinite;white-space:nowrap">🎉 GRAND OPENING</div>
-    <div style="text-align:center">
-      <div style="color:#fff;font-size:1.1rem;font-weight:900;letter-spacing:-.3px;animation:text-pulse 2s ease-in-out infinite">First Month <span style="color:#ffe566;text-shadow:0 0 20px rgba(255,229,102,.8)">COMPLETELY FREE</span> on all listings!</div>
-      <div style="color:rgba(255,255,255,.75);font-size:.78rem;margin-top:.15rem">No charge until month 2 · Code <strong style="color:#ffe566;letter-spacing:1px">GRANDOPENING</strong> applied automatically</div>
-    </div>
-    <a href="/advertise.html" style="background:#ffe566;color:#4a0080;padding:.55rem 1.4rem;border-radius:50px;font-weight:900;font-size:.85rem;text-decoration:none;white-space:nowrap;flex-shrink:0;box-shadow:0 0 20px rgba(255,229,102,.5);animation:btn-glow 1.5s ease-in-out infinite">Claim Free Month →</a>
-  </div>
-  <style>
-    @keyframes flash-badge{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.97)}}
-    @keyframes glow-sweep{0%,100%{opacity:.6}50%{opacity:1}}
-    @keyframes text-pulse{0%,100%{text-shadow:none}50%{text-shadow:0 0 30px rgba(255,229,102,.4)}}
-    @keyframes btn-glow{0%,100%{box-shadow:0 0 20px rgba(255,229,102,.5)}50%{box-shadow:0 0 40px rgba(255,229,102,.9),0 0 60px rgba(255,229,102,.4)}}
-    #promoBanner:hover{filter:brightness(1.08)}
-  </style>
-</div>
-<!-- EMERGENCY -->
-<div class="emstrip">
-  <span class="em-label">Emergency</span>
-  <a href="tel:7182301000">🚑 Hatzolah: 718-230-1000</a>
-  <span class="sep">·</span>
-  <a href="tel:7187612428">Chaveirim: 718-761-2428</a>
-  <span class="sep">·</span>
-  <a href="tel:7187614444">Shmira: 718-761-4444</a>
-  <span class="sep">·</span>
-  <a href="tel:7183702121">Shomrim: 718-370-2121</a>
-  <span class="sep">·</span>
-  <a href="tel:7188544548">Misaskim: 718-854-4548</a>
-</div>
-
-<!-- PROMO -->
-<div class="promo-bar">
-  <div class="promo-pill">Grand Opening</div>
-  <div class="promo-text">First month <strong>complimentary</strong> on all listings — no charge until month two</div>
-  <a href="/advertise.html" class="promo-cta">Claim offer</a>
-</div>
-
-<!-- NAV -->
+<div class="emergency-strip"><span>🚨</span><span>Hatzolah 718-230-1000</span>·<span>Chaveirim 718-761-2428</span>·<span>Shmira 718-761-4444</span>·<span>Shomrim 718-370-2121</span>·<span>Misaskim 718-854-4548</span></div><div class="promo-bar"><span>SUPPORT LOCAL · STRENGTHEN COMMUNITY</span><div><a href="#">Facebook</a>&nbsp;&nbsp;<a href="#">Instagram</a>&nbsp;&nbsp;<a href="#">Email</a></div></div>
 <nav>
-  <a href="/" class="logo">
-    <div class="logo-mark"><span>SL</span></div>
-    <div class="logo-text">Shop<em>Local</em> SI</div>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="/directory.html">Directory</a></li>
-    <li><a href="/marketplace.html">Marketplace</a></li>
-    <li><a href="/simcha.html">Simcha</a></li>
-    <li><a href="/ads.html">Ads</a></li>
-    <li><a href="/coupons.html">Coupons</a></li>
-    <li><a href="/#shabbos">Shabbos</a></li>
-    <li><a href="/advertise.html" class="nav-cta">Advertise</a></li>
-  </ul>
-  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
-    <span></span><span></span><span></span>
-  </div>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Shop Local SI"/><div class="nav-logo-text"><div class="brand">SHOP <span>Local</span></div><div class="sub">— Staten Island — shoplocalsi.com</div></div></a>
+  <div class="nav-links"><a href="index.html">HOME</a><a href="directory.html">DIRECTORY</a><a href="marketplace.html">MARKETPLACE</a><a href="simcha.html">SIMCHA</a><a href="coupons.html">COUPONS</a><a href="island-kosher-deals.html">KOSHER DEALS</a><a href="shabbos.html">SHABBOS</a><a href="advertise.html" class="nav-cta">LIST YOUR BUSINESS</a></div>
 </nav>
-
-
-<div class="page-hero">
-  <h1>Ads & <span>Promotions</span></h1>
-  <p>Discover special offers from Staten Island's best local businesses</p>
-  <div class="cta-row">
-    <a href="/coupons.html" class="btn-gold">🎟️ View Coupons</a>
-    <a href="/#advertise" class="btn-outline">Advertise Here</a>
-  </div>
+<div class="page-header"><h1>Community Ads</h1><p>Local businesses serving the Staten Island community</p></div>
+<div class="main">
+  <div class="ads-grid" id="adsGrid"><p style="color:#888;">Loading ads…</p></div>
 </div>
-
-<!-- FILTER TABS -->
-<div class="filter-wrap">
-  <div class="filter-tabs">
-    <button class="ftab active" onclick="filterAds('all',this)">All</button>
-    <button class="ftab" onclick="filterAds('food',this)">🍽 Food</button>
-    <button class="ftab" onclick="filterAds('home',this)">🏠 Home</button>
-    <button class="ftab" onclick="filterAds('beauty',this)">💅 Beauty</button>
-    <button class="ftab" onclick="filterAds('specialty',this)">🛍 Specialty</button>
-    <button class="ftab" onclick="filterAds('medical',this)">⚕ Medical</button>
-    <button class="ftab" onclick="filterAds('services',this)">⚙ Services</button>
-  </div>
-</div>
-
-<div class="ads-container">
-
-  <!-- FULL BANNERS -->
-  <div id="fullBannersSection">
-    <div class="section-header">
-      <h2>🏆 Featured Advertisers</h2>
-      <div class="section-line"></div>
-      <div class="section-badge">PREMIUM</div>
-    </div>
-    <div id="fullBanners"><div style="text-align:center;padding:2rem;color:var(--gray)">Loading…</div></div>
-  </div>
-
-  <!-- MEDIUM ADS -->
-  <div id="mediumAdsSection" style="margin-top:2rem">
-    <div class="section-header">
-      <h2>⭐ Business Spotlights</h2>
-      <div class="section-line"></div>
-      <div class="section-badge">FEATURED</div>
-    </div>
-    <div class="medium-grid" id="mediumAds"><div style="text-align:center;padding:2rem;color:var(--gray)">Loading…</div></div>
-  </div>
-
-  <!-- SMALL ADS -->
-  <div id="smallAdsSection" style="margin-top:2rem">
-    <div class="section-header">
-      <h2>📌 Community Sponsors</h2>
-      <div class="section-line"></div>
-      <div class="section-badge">SPONSORED</div>
-    </div>
-    <div class="small-grid" id="smallAds"><div style="text-align:center;padding:2rem;color:var(--gray)">Loading…</div></div>
-  </div>
-
-  <!-- ADVERTISE CTA -->
-  <div class="advertise-cta">
-    <h2>Advertise Your Business Here</h2>
-    <p>Reach thousands of Staten Island community members every month</p>
-    <div class="price-chips">
-      <div class="price-chip"><strong>$49/mo</strong>Community Sponsor</div>
-      <div class="price-chip"><strong>$79/mo</strong>Business Spotlight</div>
-      <div class="price-chip"><strong>$129/mo</strong>Featured Advertiser</div>
-    </div>
-    <a href="/#advertise" class="btn-gold" style="display:inline-block;padding:.85rem 2rem;font-size:.95rem">Get Started Today</a>
-  </div>
-
-</div>
-
-<footer>
-  <a href="/">← Back to ShopLocal SI</a> · <a href="/coupons.html">Coupons</a> · <a href="/#advertise">Advertise</a>
-</footer>
-
+<footer><div class="footer-grid"><div class="footer-col"><h4>Shop Local SI</h4><p>Supporting the Staten Island Jewish community.</p></div><div class="footer-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="directory.html">Directory</a><a href="marketplace.html">Marketplace</a><a href="simcha.html">Simcha Hub</a></div><div class="footer-col"><h4>Community</h4><a href="coupons.html">Coupons</a><a href="island-kosher-deals.html">Kosher Deals</a><a href="shabbos.html">Shabbos Times</a><a href="advertise.html">Advertise</a></div><div class="footer-col"><h4>Emergency</h4><p>Hatzolah: 718-230-1000</p><p>Chaveirim: 718-761-2428</p><p>Shomrim: 718-370-2121</p><p>Misaskim: 718-854-4548</p></div></div><div class="footer-bottom">© 2026 ShopLocalSI.com · All rights reserved</div></footer>
 <script>
-const TOKEN = 'pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87';
-let allAds = [];
-let currentFilter = 'all';
-
-function actionBtns(ad) {
-  let btns = '';
-  if (ad.phone) btns += `<a href="tel:${ad.phone.replace(/\D/g,'')}" class="btn-call">📞 Call</a>`;
-  if (ad.email) btns += `<a href="mailto:${ad.email}" class="btn-email">✉️ Email</a>`;
-  if (ad.link) btns += `<a href="${ad.link}" target="_blank" class="btn-web">🌐 Website</a>`;
-  return btns;
+async function loadAds(){
+  const grid=document.getElementById('adsGrid');
+  try{
+    const res=await fetch('/.netlify/functions/get-ads');
+    const data=await res.json();
+    const records=(data.records||[]).filter(r=>r.fields.Status==='active');
+    if(!records.length){grid.innerHTML='<p style="color:#888;grid-column:1/-1;">No ads currently. <a href="advertise.html">Advertise here!</a></p>';return;}
+    grid.innerHTML=records.map(r=>{const f=r.fields;return `<div class="ad-card">
+      <div class="ad-badge">${f.Plan||'Featured'}</div>
+      <div class="ad-biz">${f.BusinessName||''}</div>
+      <div class="ad-cat">${f.Category||''}</div>
+      <div class="ad-desc">${f.Description||''}</div>
+      ${f.Phone?'<div style="font-size:13px;font-weight:600;">📞 '+f.Phone+'</div>':''}
+      ${f.Website?'<a href="'+f.Website+'" target="_blank" style="font-size:13px;color:var(--gold);text-decoration:none;">🌐 Website</a>':''}
+    </div>`;}).join('');
+  }catch(e){grid.innerHTML='<p style="color:#888;">Unable to load ads.</p>';}
 }
-
-async function loadAds() {
-  try {
-    const res = await fetch(`https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblYxLfo3pgbpdlGS`, {
-      headers: { 'Authorization': `Bearer ${TOKEN}` }
-    });
-    const data = await res.json();
-    allAds = (data.records || []).filter(r => (r.fields.Status || '').toLowerCase() === 'active').map(r => ({
-      id: r.id,
-      name: r.fields.BusinessName || '',
-      type: (r.fields.AdType || '').toLowerCase(),
-      cat: (r.fields.Category || 'other').toLowerCase(),
-      desc: r.fields.Description || '',
-      phone: r.fields.Phone || '',
-      email: r.fields.Email || '',
-      link: r.fields.Link || '',
-      tagline: r.fields.Tagline || '',
-      color: r.fields.Color || '#0a1c4b',
-      bannerHTML: r.fields.BannerHTML || ''
-    }));
-    renderAds();
-  } catch(e) {
-    document.getElementById('fullBanners').innerHTML = '<div class="empty-state"><div class="icon">📢</div><p>No ads found</p></div>';
-    document.getElementById('mediumAds').innerHTML = '';
-    document.getElementById('smallAds').innerHTML = '';
-  }
-}
-
-function filterAds(cat, btn) {
-  currentFilter = cat;
-  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  renderAds();
-}
-
-function renderAds() {
-  const filtered = currentFilter === 'all' ? allAds : allAds.filter(a => a.cat === currentFilter);
-
-  // Full banners
-  const banners = filtered.filter(a => a.type === 'banner' || a.type === 'bannerhtml');
-  const fullEl = document.getElementById('fullBanners');
-  document.getElementById('fullBannersSection').style.display = banners.length ? 'block' : 'none';
-  if (banners.length) {
-    fullEl.innerHTML = banners.map(a => `
-      <div class="ad-full" style="margin-bottom:1.25rem" onclick="${a.link ? `window.open('${a.link}','_blank')` : ''}">
-        <div class="ad-badge">⭐ Featured</div>
-        <div class="ad-size-label">Full Banner</div>
-        ${a.bannerHTML
-          ? `<iframe srcdoc="${a.bannerHTML.replace(/"/g,'&quot;')}" style="width:100%;height:200px;border:none"></iframe>`
-          : `<div class="ad-full-fallback">
-              <div class="ad-full-info">
-                <h2>${a.name}</h2>
-                <p>${a.tagline || a.desc}</p>
-                <div style="margin-top:.75rem;display:flex;gap:.5rem">${actionBtns(a)}</div>
-              </div>
-            </div>`
-        }
-      </div>`).join('');
-  }
-
-  // Medium ads (featured business)
-  const medium = filtered.filter(a => a.type === 'featuredbusiness');
-  const medEl = document.getElementById('mediumAds');
-  document.getElementById('mediumAdsSection').style.display = medium.length ? 'block' : 'none';
-  if (medium.length) {
-    medEl.innerHTML = medium.map(a => `
-      <div class="ad-medium">
-        <div class="ad-badge" style="top:.6rem;left:.6rem">⭐ Featured</div>
-        <div class="ad-size-label" style="top:.6rem;right:.6rem">Spotlight</div>
-        <div class="ad-medium-header" style="background:linear-gradient(135deg,${a.color},${a.color}cc)">
-          <div class="ad-medium-name">${a.name}</div>
-        </div>
-        <div class="ad-medium-body">
-          <div class="ad-medium-cat">${a.cat}</div>
-          <div class="ad-medium-desc">${a.tagline || a.desc}</div>
-          <div class="ad-medium-actions">${actionBtns(a)}</div>
-        </div>
-      </div>`).join('');
-  }
-
-  // Small ads (sponsored)
-  const small = filtered.filter(a => a.type === 'sponsored');
-  const smallEl = document.getElementById('smallAds');
-  document.getElementById('smallAdsSection').style.display = small.length ? 'block' : 'none';
-  if (small.length) {
-    smallEl.innerHTML = small.map(a => `
-      <div class="ad-small">
-        <div class="ad-small-cat">${a.cat} · Sponsored</div>
-        <div class="ad-small-name">${a.name}</div>
-        <div class="ad-small-desc">${a.tagline || a.desc}</div>
-        <div class="ad-small-actions">${actionBtns(a)}</div>
-      </div>`).join('');
-  }
-
-  // If nothing at all
-  if (!banners.length && !medium.length && !small.length) {
-    fullEl.innerHTML = '<div class="empty-state"><div class="icon">📢</div><p>No ads in this category yet.<br><a href="/#advertise" style="color:var(--navy);font-weight:700">Be the first to advertise →</a></p></div>';
-    document.getElementById('fullBannersSection').style.display = 'block';
-    document.getElementById('mediumAdsSection').style.display = 'none';
-    document.getElementById('smallAdsSection').style.display = 'none';
-  }
-}
-
 loadAds();
 </script>
-<script src="/assets/js/shoplocal-pwa.js"></script>
 </body>
 </html>

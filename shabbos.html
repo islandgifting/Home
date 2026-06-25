@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Island Kosher Deals – Shop Local Staten Island</title>
+<title>Shabbos Times – Shop Local Staten Island</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{--navy:#1A3D5C;--gold:#D4A843;--ivory:#FDFAF4;--blue-light:#EBF4FB;--border:#C8DFF0;}
@@ -35,55 +35,75 @@ footer{background:var(--navy);color:#fff;padding:40px 32px 24px;margin-top:60px;
 .footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:20px;text-align:center;font-size:12px;color:rgba(255,255,255,.5);max-width:1100px;margin:0 auto;}
 </style>
 <style>
-.flyer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;max-width:1000px;margin:0 auto;}
-.flyer-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:box-shadow .2s;}
-.flyer-card:hover{box-shadow:0 8px 24px rgba(26,61,92,.15);}
-.flyer-card img{width:100%;display:block;}
-.flyer-label{padding:14px 16px;font-size:14px;font-weight:600;color:var(--navy);}
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:300;align-items:center;justify-content:center;}
-.lightbox.open{display:flex;}
-.lightbox img{max-width:90vw;max-height:90vh;border-radius:8px;}
-.lightbox-close{position:absolute;top:24px;right:32px;color:#fff;font-size:36px;cursor:pointer;background:none;border:none;}
+.shabbos-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:40px;max-width:560px;margin:0 auto;text-align:center;}
+.shabbos-card h2{font-family:"Playfair Display",serif;font-size:28px;margin-bottom:8px;}
+.city-select{padding:10px 20px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:"Poppins",sans-serif;margin-bottom:28px;outline:none;color:var(--navy);}
+.time-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);}
+.time-row:last-child{border:none;}
+.time-label{font-size:15px;font-weight:600;}
+.time-val{font-size:18px;font-weight:700;color:var(--gold);}
+.candle-icon{font-size:28px;margin-bottom:12px;}
 </style>
 </head>
 <body>
 <div class="emergency-strip"><span>🚨</span><span>Hatzolah 718-230-1000</span>·<span>Chaveirim 718-761-2428</span>·<span>Shmira 718-761-4444</span>·<span>Shomrim 718-370-2121</span>·<span>Misaskim 718-854-4548</span></div><div class="promo-bar"><span>SUPPORT LOCAL · STRENGTHEN COMMUNITY</span><div><a href="#">Facebook</a>&nbsp;&nbsp;<a href="#">Instagram</a>&nbsp;&nbsp;<a href="#">Email</a></div></div>
 <nav>
   <a href="index.html" class="nav-logo"><img src="logo.png" alt="Shop Local SI"/><div class="nav-logo-text"><div class="brand">SHOP <span>Local</span></div><div class="sub">— Staten Island — shoplocalsi.com</div></div></a>
-  <div class="nav-links"><a href="index.html">HOME</a><a href="directory.html">DIRECTORY</a><a href="marketplace.html">MARKETPLACE</a><a href="simcha.html">SIMCHA</a><a href="coupons.html">COUPONS</a><a href="island-kosher-deals.html" class="active">KOSHER DEALS</a><a href="shabbos.html">SHABBOS</a><a href="advertise.html" class="nav-cta">LIST YOUR BUSINESS</a></div>
+  <div class="nav-links"><a href="index.html">HOME</a><a href="directory.html">DIRECTORY</a><a href="marketplace.html">MARKETPLACE</a><a href="simcha.html">SIMCHA</a><a href="coupons.html">COUPONS</a><a href="island-kosher-deals.html">KOSHER DEALS</a><a href="shabbos.html" class="active">SHABBOS</a><a href="advertise.html" class="nav-cta">LIST YOUR BUSINESS</a></div>
 </nav>
 <div class="page-header">
-  <h1>Island Kosher Deals</h1>
-  <p>Weekly specials from your local kosher grocery</p>
+  <h1>🕯️ Shabbos Times</h1>
+  <p>Candle lighting, Shabbos & Yom Tov times</p>
 </div>
 <div class="main">
-  <p style="text-align:center;color:#666;font-size:14px;margin-bottom:32px;">Click any flyer to view full size</p>
-  <div class="flyer-grid">
-    <div class="flyer-card" onclick="openLightbox('ik-deals-page1.jpg')">
-      <img src="ik-deals-page1.jpg" alt="Island Kosher Deals Page 1"/>
-      <div class="flyer-label">Weekly Specials — Page 1</div>
-    </div>
-    <div class="flyer-card" onclick="openLightbox('ik-deals-page2.jpg')">
-      <img src="ik-deals-page2.jpg" alt="Island Kosher Deals Page 2"/>
-      <div class="flyer-label">Weekly Specials — Page 2</div>
+  <div class="shabbos-card">
+    <div class="candle-icon">🕯️</div>
+    <h2>This Week's Times</h2>
+    <select class="city-select" id="citySelect" onchange="loadTimes()">
+      <option value="Staten Island, NY">Staten Island, NY</option>
+      <option value="Brooklyn, NY">Brooklyn, NY</option>
+      <option value="Lakewood, NJ">Lakewood, NJ</option>
+      <option value="Monsey, NY">Monsey, NY</option>
+      <option value="Flatbush, NY">Flatbush, NY</option>
+    </select>
+    <div id="timesContainer">
+      <div class="time-row"><span class="time-label">🕯️ Candle Lighting</span><span class="time-val" id="candleLighting">Loading…</span></div>
+      <div class="time-row"><span class="time-label">🌟 Shabbos Ends (Havdalah)</span><span class="time-val" id="shabbosEnd">Loading…</span></div>
+      <div class="time-row"><span class="time-label">📅 Parsha</span><span class="time-val" id="parsha" style="font-size:15px;">Loading…</span></div>
     </div>
   </div>
-  <div style="margin-top:40px;padding:24px;background:var(--blue-light);border-radius:12px;text-align:center;">
-    <p style="font-size:15px;font-weight:600;margin-bottom:8px;">Want to feature your kosher business deals here?</p>
-    <p style="font-size:13px;color:#666;margin-bottom:16px;">Reach hundreds of local families every week</p>
-    <a href="advertise.html" class="btn btn-gold">Contact Us to Advertise</a>
+  <div style="max-width:560px;margin:24px auto;padding:20px;background:var(--blue-light);border-radius:12px;text-align:center;font-size:13px;color:#666;">
+    <p>Times are approximate. Always verify with a local Rabbi or reliable halachic calendar for your exact location.</p>
   </div>
 </div>
-
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightboxImg" src="" alt="Flyer"/>
-</div>
-
 <footer><div class="footer-grid"><div class="footer-col"><h4>Shop Local SI</h4><p>Supporting the Staten Island Jewish community.</p></div><div class="footer-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="directory.html">Directory</a><a href="marketplace.html">Marketplace</a><a href="simcha.html">Simcha Hub</a></div><div class="footer-col"><h4>Community</h4><a href="coupons.html">Coupons</a><a href="island-kosher-deals.html">Kosher Deals</a><a href="shabbos.html">Shabbos Times</a><a href="advertise.html">Advertise</a></div><div class="footer-col"><h4>Emergency</h4><p>Hatzolah: 718-230-1000</p><p>Chaveirim: 718-761-2428</p><p>Shomrim: 718-370-2121</p><p>Misaskim: 718-854-4548</p></div></div><div class="footer-bottom">© 2026 ShopLocalSI.com · All rights reserved</div></footer>
 <script>
-function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+async function loadTimes(){
+  const city=document.getElementById('citySelect').value;
+  document.getElementById('candleLighting').textContent='Loading…';
+  document.getElementById('shabbosEnd').textContent='Loading…';
+  document.getElementById('parsha').textContent='Loading…';
+  try{
+    const res=await fetch('https://www.hebcal.com/shabbat?cfg=json&city='+encodeURIComponent(city)+'&m=50');
+    const data=await res.json();
+    const items=data.items||[];
+    const candle=items.find(i=>i.category==='candles');
+    const havdalah=items.find(i=>i.category==='havdalah');
+    const parsha=items.find(i=>i.category==='parashat');
+    document.getElementById('candleLighting').textContent=candle?formatTime(candle.date):'See local calendar';
+    document.getElementById('shabbosEnd').textContent=havdalah?formatTime(havdalah.date):'See local calendar';
+    document.getElementById('parsha').textContent=parsha?parsha.title:'';
+  }catch(e){
+    document.getElementById('candleLighting').textContent='See local calendar';
+    document.getElementById('shabbosEnd').textContent='See local calendar';
+    document.getElementById('parsha').textContent='';
+  }
+}
+function formatTime(dateStr){
+  const d=new Date(dateStr);
+  return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+}
+loadTimes();
 </script>
 </body>
 </html>
