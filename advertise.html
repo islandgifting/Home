@@ -395,16 +395,16 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
 .price-tier{font-size:.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
 .price-tier::before{content:"";width:14px;height:2px;background:var(--green)}
 .price-card.feat .price-tier{color:#7ee8a2}.price-card.feat .price-tier::before{background:#7ee8a2}
-.price-val{font-size:2.2rem;font-weight:800;color:var(--navy);line-height:1}
-.price-card.feat .price-val{color:#fff}
-.price-was{font-size:.76rem;color:var(--muted);text-decoration:line-through;margin-top:.1rem}
-.price-card.feat .price-was{color:rgba(255,255,255,.45)}
-.price-free{font-size:.65rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px}
-.price-card.feat .price-free{color:#7ee8a2}
-.price-deadline{font-size:.65rem;color:#cc2222;font-weight:700;margin-top:.1rem}
-.price-card.feat .price-deadline{color:#ffaaaa}
-.price-period{font-size:.7rem;color:var(--muted);margin-bottom:1.5rem}
-.price-card.feat .price-period{color:rgba(255,255,255,.55)}
+.price-val{font-size:2.8rem;font-weight:800;color:var(--navy);line-height:1}
+.price-card.feat .price-val{color:#fff;font-size:2.8rem}
+.price-was{font-size:.95rem;color:var(--muted);text-decoration:line-through;margin-top:.15rem;font-weight:600}
+.price-card.feat .price-was{color:rgba(255,255,255,.6);font-weight:600}
+.price-free{font-size:.78rem;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.5px}
+.price-card.feat .price-free{color:#7ee8a2;font-size:.78rem;font-weight:800}
+.price-deadline{font-size:.74rem;color:#cc2222;font-weight:800;margin-top:.2rem}
+.price-card.feat .price-deadline{color:#ff9999;font-size:.74rem;font-weight:800}
+.price-period{font-size:.75rem;color:var(--mid);margin-bottom:1.5rem;font-weight:600}
+.price-card.feat .price-period{color:rgba(255,255,255,.82);font-weight:600}
 .price-feats{list-style:none;margin-bottom:1.5rem}
 .price-feats li{font-size:.78rem;color:var(--mid);padding:.3rem 0;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:.5rem}
 .price-feats li::before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%;flex-shrink:0}
@@ -593,9 +593,10 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
       <div class="price-tier">Premium</div>
       <div class="price-val">Free*</div>
       <div class="price-was">$249/mo</div>
+      <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-top:.1rem">Then $249/mo</div>
       <div class="price-free">First month complimentary</div>
       <div class="price-deadline">⏰ Offer ends July 31 &mdash; 10 spots only</div>
-      <div class="price-period">then $249/month &mdash; cancel anytime</div>
+      <div class="price-period" style="font-size:.82rem;font-weight:800;color:var(--mid)">Then <strong style="color:var(--navy)">$249/month</strong> &mdash; cancel anytime</div>
       <ul class="price-feats">
         <li>Everything in Featured</li>
         <li>Full profile page with gallery</li>
