@@ -422,6 +422,7 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
 @media(max-width:600px){.field-row{grid-template-columns:1fr}}
 
 </style>
+<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 <!-- EMERGENCY STRIP -->
@@ -495,7 +496,6 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
 })();
 </script>
 
-<script src="https://js.stripe.com/v3/"></script>
 <div class="page-hero">
   <div class="page-hero-eyebrow">Grow Your Business</div>
   <h1>Advertise With <span>Shop Local SI</span></h1>
@@ -619,12 +619,33 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
 <script>
 var stripe=Stripe('pk_live_51Tin6MIDdMLYVh4oK2QStvaVhBuIEgCcD92cHrhppumHc9xe2fAdlUbniSIWtfccPi2Pqoohh8mzGtjA4Zvq2IPu000Marfnt5');
 async function startPayment(plan){
+  var btn=event.target;
+  var orig=btn.innerHTML;
+  btn.innerHTML='Loading&hellip;';
+  btn.disabled=true;
   try{
-    var r=await fetch('/.netlify/functions/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:plan})});
+    var r=await fetch('/.netlify/functions/create-checkout',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({plan:plan})
+    });
+    if(!r.ok) throw new Error('Server error '+r.status);
     var d=await r.json();
-    if(d.sessionId){await stripe.redirectToCheckout({sessionId:d.sessionId});}
-    else{alert('Error starting checkout. Please call 917-753-4444.');}
-  }catch(e){alert('Error starting checkout. Please call 917-753-4444.');}
+    if(d.redirect){
+      window.location.href=d.redirect;
+    } else if(d.sessionId){
+      await stripe.redirectToCheckout({sessionId:d.sessionId});
+    } else if(d.error){
+      throw new Error(d.error);
+    } else {
+      throw new Error('No session returned');
+    }
+  }catch(e){
+    console.error('Payment error:',e);
+    alert('Could not start checkout: '+e.message+'\n\nPlease call 917-753-4444 to sign up.');
+    btn.innerHTML=orig;
+    btn.disabled=false;
+  }
 }
 async function submitFree(){
   var name=document.getElementById('biz-name').value.trim();
