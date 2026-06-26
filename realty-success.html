@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Your Listing &mdash; Shop Local Staten Island</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Montserrat",sans-serif;background:#f4f4f2;color:#0b1f3a}
+.top-section{background:#0b1f3a;padding:3rem 2rem 2.5rem;text-align:center;border-bottom:4px solid #3e7c59}
+.top-section h1{font-size:2rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px}
+.top-section h1 span{color:#7ee8a2}
+.top-section p{color:rgba(255,255,255,.85);font-size:.9rem;margin:.5rem auto 0;max-width:520px}
+.wrap{max-width:720px;margin:2.5rem auto;padding:0 1.5rem 4rem}
+.plan-banner{background:#fff;border:1px solid #d0dce8;border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;border-left:5px solid #3e7c59;display:flex;align-items:flex-start;gap:1rem}
+.plan-icon{font-size:2rem;flex-shrink:0}
+.plan-name{font-size:1rem;font-weight:800;color:#0b1f3a;text-transform:uppercase;letter-spacing:.3px}
+.plan-desc{font-size:.8rem;color:#555;margin-top:.2rem;line-height:1.55}
+.live-dot{display:inline-flex;align-items:center;gap:.35rem;background:rgba(62,124,89,.1);border:1px solid rgba(62,124,89,.3);color:#3e7c59;font-size:.65rem;font-weight:700;padding:.2rem .55rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;margin-top:.5rem}
+.live-dot::before{content:"";width:6px;height:6px;background:#3e7c59;border-radius:50%;animation:p 1.5s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.3}}
+.warning-box{background:#fff5f5;border:2px solid #cc2222;border-radius:6px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.82rem;color:#cc2222;font-weight:700;line-height:1.65}
+.warning-box .title{font-size:.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:.35rem}
+.form-card{background:#fff;border:1px solid #d0dce8;border-radius:8px;padding:2rem;border-top:3px solid #3e7c59;margin-bottom:1.25rem}
+.form-card h3{font-size:.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#0b1f3a;border-bottom:2px solid #3e7c59;padding-bottom:.4rem;margin-bottom:1.1rem}
+.field{margin-bottom:.85rem}
+.field label{display:block;font-size:.63rem;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem}
+.field input,.field select,.field textarea{width:100%;padding:.62rem .9rem;border:2px solid #d0dce8;border-radius:4px;font-size:.86rem;color:#0b1f3a;font-family:"Montserrat",sans-serif;outline:none;background:#f9fafb;transition:border .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#3e7c59;background:#fff}
+.field textarea{height:100px;resize:vertical}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem}
+.opt{display:inline-block;font-size:.6rem;font-weight:700;color:#999;background:#f0f0ee;border:1px solid #d0dce8;padding:.1rem .45rem;border-radius:50px;margin-left:.4rem;letter-spacing:.5px;text-transform:uppercase}
+.upload-box{border:2px dashed #3e7c59;border-radius:6px;padding:1.25rem;text-align:center;cursor:pointer;background:rgba(62,124,89,.04);transition:all .2s}
+.upload-box:hover{background:rgba(62,124,89,.1)}
+.upload-box input[type=file]{display:none}
+.ul{font-size:.8rem;font-weight:700;color:#3e7c59;display:block;margin-bottom:.2rem}
+.un{font-size:.7rem;color:#999}
+.photos{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;justify-content:center}
+.photos img{width:80px;height:60px;object-fit:cover;border-radius:4px;border:2px solid #3e7c59}
+.type-tabs{display:flex;border:2px solid #3e7c59;border-radius:6px;overflow:hidden;margin-bottom:1.25rem}
+.tt{flex:1;padding:.65rem;text-align:center;font-size:.76rem;font-weight:700;text-transform:uppercase;cursor:pointer;font-family:"Montserrat",sans-serif;border:none;background:#fff;color:#0b1f3a;transition:all .2s;border-right:1px solid #d0dce8}
+.tt:last-child{border-right:none}
+.tt.active{background:#3e7c59;color:#fff}
+.submit-btn{width:100%;padding:1rem;background:#3e7c59;color:#fff;border:none;border-radius:6px;font-size:.92rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;font-family:"Montserrat",sans-serif;transition:background .2s;margin-top:.5rem}
+.submit-btn:hover{background:#2d6147}
+.submit-btn:disabled{background:#999;cursor:not-allowed}
+.success-card{display:none;background:#fff;border:2px solid #3e7c59;border-radius:8px;padding:2.5rem;text-align:center;margin-top:1rem}
+.success-card h2{font-size:1.3rem;font-weight:800;color:#0b1f3a;text-transform:uppercase;margin-bottom:.5rem}
+.success-card p{font-size:.88rem;color:#555;line-height:1.7;margin-bottom:1rem}
+.code-block{background:#f5fff9;border:2px solid #3e7c59;border-radius:6px;padding:1.25rem;margin:1rem 0}
+.code-block h4{font-size:.72rem;font-weight:800;text-transform:uppercase;color:#0b1f3a;margin-bottom:.35rem}
+.code-val{font-size:2rem;font-weight:800;color:#3e7c59;letter-spacing:4px;margin:.35rem 0}
+.code-block p{font-size:.75rem;color:#555;line-height:1.6}
+.btn-green{display:inline-flex;align-items:center;background:#3e7c59;color:#fff;padding:.65rem 1.5rem;border-radius:50px;font-size:.78rem;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:.5px}
+.btn-out{display:inline-flex;align-items:center;background:transparent;color:#0b1f3a;padding:.63rem 1.5rem;border-radius:50px;font-size:.78rem;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:.5px;border:2px solid #0b1f3a}
+@media(max-width:600px){.fr,.fr3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="top-section">
+  <h1>Post Your <span>Listing</span></h1>
+  <p>Payment confirmed &mdash; complete the form below. Your listing goes live immediately.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- No plan fallback -->
+  <div id="noPlan" style="display:none;background:#fff;border-radius:8px;padding:2rem;text-align:center;border:1px solid #d0dce8">
+    <p style="font-size:.9rem;color:#555;margin-bottom:1.25rem;font-weight:600">Which plan did you sign up for?</p>
+    <div style="display:flex;gap:.65rem;justify-content:center;flex-wrap:wrap">
+      <button onclick="init('rentals')" style="padding:.55rem 1.1rem;border:2px solid #0b1f3a;border-radius:50px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;cursor:pointer;text-transform:uppercase;background:#fff">Rentals — $49/mo</button>
+      <button onclick="init('featured')" style="padding:.55rem 1.1rem;border:2px solid #3e7c59;border-radius:50px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;cursor:pointer;text-transform:uppercase;background:#3e7c59;color:#fff">Featured — $149/mo</button>
+      <button onclick="init('premium')" style="padding:.55rem 1.1rem;border:2px solid #2c6e9e;border-radius:50px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;cursor:pointer;text-transform:uppercase;background:#2c6e9e;color:#fff">Premium — $299/mo</button>
+      <button onclick="init('agency')" style="padding:.55rem 1.1rem;border:2px solid #0b1f3a;border-radius:50px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;cursor:pointer;text-transform:uppercase;background:#0b1f3a;color:#fff">Agency — $249/mo</button>
+      <button onclick="init('wanted')" style="padding:.55rem 1.1rem;border:2px solid #d0dce8;border-radius:50px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;cursor:pointer;text-transform:uppercase;background:#fff">Rental Wanted — Free</button>
+    </div>
+  </div>
+
+  <!-- MAIN FORM -->
+  <div id="mainForm" style="display:none">
+
+    <!-- Plan info -->
+    <div class="plan-banner">
+      <div class="plan-icon" id="planIcon">🏠</div>
+      <div>
+        <div class="plan-name" id="planName"></div>
+        <div class="plan-desc" id="planDesc"></div>
+        <div class="live-dot">Goes live instantly on submission</div>
+      </div>
+    </div>
+
+    <!-- Final warning (not for wanted/agency) -->
+    <div class="warning-box" id="finalWarning">
+      <div class="title">⚠️ Important — Please Read Before Submitting</div>
+      This listing is for <strong>one specific property only</strong>. Once you submit, your listing goes live immediately and <strong>cannot be changed or swapped for a different property</strong>. Your payment covers this listing for the current month. You will receive a private removal code to mark it as Sold or Rented when the property is no longer available.
+    </div>
+
+    <!-- Listing type tabs -->
+    <div id="typeTabs">
+      <div style="font-size:.63rem;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.45rem">What type of listing is this?</div>
+      <div class="type-tabs" id="typeTabRow">
+        <button class="tt active" onclick="setType('sale',this)">🏠 For Sale</button>
+        <button class="tt" onclick="setType('rent',this)">🔑 For Rent</button>
+      </div>
+    </div>
+
+    <!-- Property details -->
+    <div class="form-card">
+      <h3>Property Details</h3>
+      <div id="priceRow" class="fr">
+        <div class="field"><label>Asking Price / Rent *</label><input type="text" id="f-price" placeholder="e.g. $750,000 or $2,800/mo"></div>
+        <div class="field"><label>Full Address *</label><input type="text" id="f-addr" placeholder="123 Victory Blvd, Staten Island, NY"></div>
+      </div>
+      <div id="specsRow" class="fr3">
+        <div class="field"><label>Bedrooms</label><input type="number" id="f-beds" placeholder="3" min="0"></div>
+        <div class="field"><label>Bathrooms</label><input type="number" id="f-baths" placeholder="2" min="0" step="0.5"></div>
+        <div class="field"><label>Sq Ft <span class="opt">optional</span></label><input type="text" id="f-sqft" placeholder="1,800"></div>
+      </div>
+      <div class="field"><label>Description *</label>
+        <textarea id="f-desc" placeholder="Describe the property — features, condition, neighborhood, what makes it special..."></textarea>
+      </div>
+    </div>
+
+    <!-- WANTED fields -->
+    <div class="form-card" id="wantedFields" style="display:none">
+      <h3>What You're Looking For</h3>
+      <div class="fr">
+        <div class="field"><label>Max Budget / Rent</label><input type="text" id="f-budget" placeholder="e.g. $3,000/mo"></div>
+        <div class="field"><label>Desired Move-in</label><input type="text" id="f-movein" placeholder="e.g. August 1, flexible"></div>
+      </div>
+      <div class="field"><label>Requirements <span class="opt">optional</span></label>
+        <textarea id="f-req" placeholder="Parking, ground floor, near shul, pets, etc..."></textarea>
+      </div>
+    </div>
+
+    <!-- Photos (featured+) -->
+    <div class="form-card" id="photoSection" style="display:none">
+      <h3>Property Photos <span id="photoCountLabel"></span></h3>
+      <div class="upload-box" onclick="document.getElementById('f-photos').click()">
+        <input type="file" id="f-photos" accept="image/*" multiple onchange="handlePhotos(this)">
+        <span class="ul">📷 Click to upload photos</span>
+        <span class="un">JPG/PNG — first photo becomes the main listing image</span>
+        <div class="photos" id="photoPreview"></div>
+      </div>
+    </div>
+
+    <!-- Video (premium+) -->
+    <div class="form-card" id="videoSection" style="display:none">
+      <h3>Advertising Screen — Video or Banner</h3>
+      <p style="font-size:.78rem;color:#555;margin-bottom:1rem;line-height:1.6">Your video tour or banner image will display on the live advertising screen seen by every site visitor.</p>
+      <div class="upload-box" onclick="document.getElementById('f-video').click()">
+        <input type="file" id="f-video" accept="video/mp4,video/quicktime,image/jpeg,image/png" onchange="handleVideo(this)">
+        <span class="ul">🎬 Click to upload video tour or banner image</span>
+        <span class="un">Video: MP4/MOV max 60 seconds &bull; Image: JPG/PNG landscape format</span>
+        <div id="videoName" style="margin-top:.5rem;font-size:.75rem;color:#3e7c59;font-weight:700"></div>
+      </div>
+    </div>
+
+    <!-- Open house (featured+) -->
+    <div class="form-card" id="openHouseSection" style="display:none">
+      <h3>Open House <span class="opt">optional</span></h3>
+      <div class="field"><label>Open House Date &amp; Time</label>
+        <input type="text" id="f-openhouse" placeholder="e.g. Sunday July 13, 1pm-4pm">
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="form-card">
+      <h3>Your Contact Information</h3>
+      <div class="fr">
+        <div class="field"><label>Your Name / Agency Name *</label><input type="text" id="f-name" placeholder="Your name or agency name"></div>
+        <div class="field"><label>Phone Number *</label><input type="tel" id="f-phone" placeholder="718-000-0000"></div>
+      </div>
+      <div class="field"><label>Email Address <span class="opt">optional</span></label>
+        <input type="email" id="f-email" placeholder="email@example.com">
+      </div>
+    </div>
+
+    <!-- Final confirm -->
+    <div id="confirmSection" style="background:#fff5f5;border:2px solid #cc2222;border-radius:6px;padding:1rem 1.25rem;margin-bottom:1.25rem;display:none">
+      <label style="display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;font-size:.82rem;color:#cc2222;font-weight:700;line-height:1.6">
+        <input type="checkbox" id="f-confirm" style="width:18px;height:18px;margin-top:1px;flex-shrink:0;accent-color:#cc2222">
+        I understand that this listing is for the one property I have described above. I confirm that the details I have entered are final and correct. Once submitted, the listing cannot be changed or swapped for a different property.
+      </label>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="submitListing()">
+      🏠 Submit My Listing — Goes Live Now
+    </button>
+
+    <!-- Success -->
+    <div class="success-card" id="successCard">
+      <div style="font-size:3rem;margin-bottom:.75rem">🎉</div>
+      <h2>Your Listing Is Live!</h2>
+      <p>Your property is now visible to the entire Staten Island community on the Realty page. Save your private removal code below &mdash; you will need it to mark your listing as Sold or Rented.</p>
+      <div class="code-block">
+        <h4>🔑 Your Private Removal Code</h4>
+        <div class="code-val" id="privateCode">—</div>
+        <p><strong>Screenshot this now.</strong> When your property sells or rents, enter this code on the listing to display a red SOLD / RENTED bar. The listing will move to the bottom and expire at end of the month. No one else has this code.</p>
+      </div>
+      <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.25rem">
+        <a href="/realty.html" class="btn-green">View Your Listing →</a>
+        <a href="/" class="btn-out">Back to Home</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+var AT='Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87';
+var BASE='appyNDNuwGFgR44sg';
+var currentPlan='';
+var currentType='sale';
+
+var PLANS={
+  rentals:{icon:'🔑',name:'Rentals Plan — $49/mo',desc:'One rental listing. Photos, price, specs & contact. Final once submitted.',photos:1,featured:false,premium:false,wanted:false,rentOnly:true},
+  featured:{icon:'⭐',name:'Featured Listing — $149/mo',desc:'One property listing — For Sale or For Rent. Up to 5 photos, full description, open house dates. Green featured card. Final once submitted.',photos:5,featured:true,premium:false,wanted:false,rentOnly:false},
+  premium:{icon:'💎',name:'Premium Listing — $299/mo',desc:'One property listing — For Sale or For Rent. Everything in Featured plus video tour on the advertising screen and homepage banner. Final once submitted.',photos:5,featured:true,premium:true,wanted:false,rentOnly:false},
+  agency:{icon:'🏢',name:'Agency Listing — $249/mo',desc:'Up to 10 listings — any mix of For Sale, For Rent, or Rental Wanted. Everything in Featured & Premium for all listings. You may add, update or remove listings throughout the month.',photos:5,featured:true,premium:true,wanted:true,rentOnly:false,multiListing:true},
+  wanted:{icon:'🔍',name:'Rental Wanted — Free',desc:'Tell the community what you are looking for. Auto-expires after 30 days.',photos:0,featured:false,premium:false,wanted:true,rentOnly:false}
+};
+
+function init(plan){
+  currentPlan=plan;
+  var p=PLANS[plan];
+  document.getElementById('noPlan').style.display='none';
+  document.getElementById('mainForm').style.display='block';
+  document.getElementById('planIcon').textContent=p.icon;
+  document.getElementById('planName').textContent=p.name;
+  document.getElementById('planDesc').textContent=p.desc;
+
+  // Warnings
+  var warn=document.getElementById('finalWarning');
+  var confirm=document.getElementById('confirmSection');
+  if(plan==='wanted'||plan==='agency'){warn.style.display='none';confirm.style.display='none';}
+  else{warn.style.display='block';confirm.style.display='block';}
+
+  // Listing type tabs
+  var tabRow=document.getElementById('typeTabRow');
+  if(p.wanted&&plan!=='agency'){
+    // Wanted only
+    tabRow.innerHTML='<button class="tt active" onclick="setType(\'wanted\',this)">🔍 Rental Wanted</button>';
+    setType('wanted',tabRow.firstChild);
+  } else if(p.rentOnly){
+    // Rentals plan — rent only
+    tabRow.innerHTML='<button class="tt active" onclick="setType(\'rent\',this)">🔑 For Rent</button>';
+    setType('rent',tabRow.firstChild);
+  } else if(p.multiListing){
+    // Agency — all types
+    tabRow.innerHTML='<button class="tt active" onclick="setType(\'sale\',this)">🏠 For Sale</button><button class="tt" onclick="setType(\'rent\',this)">🔑 For Rent</button><button class="tt" onclick="setType(\'wanted\',this)">🔍 Rental Wanted</button>';
+    setType('sale',tabRow.firstChild);
+  } else {
+    // Featured/Premium — sale or rent
+    tabRow.innerHTML='<button class="tt active" onclick="setType(\'sale\',this)">🏠 For Sale</button><button class="tt" onclick="setType(\'rent\',this)">🔑 For Rent</button>';
+    setType('sale',tabRow.firstChild);
+  }
+
+  // Show/hide sections
+  document.getElementById('photoSection').style.display=p.photos>0?'block':'none';
+  document.getElementById('videoSection').style.display=p.premium?'block':'none';
+  document.getElementById('openHouseSection').style.display=p.featured?'block':'none';
+  document.getElementById('photoCountLabel').textContent='('+p.photos+' photo'+(p.photos>1?'s allowed':'')+')'
+
+  if(p.multiListing){
+    var note=document.getElementById('agencyNote');
+    if(!note){
+      var n=document.createElement('div');
+      n.id='agencyNote';
+      n.style.cssText='background:#e8f4fd;border:1px solid #2c6e9e;border-radius:6px;padding:.85rem 1rem;font-size:.78rem;color:#0b1f3a;font-weight:600;line-height:1.65;margin-bottom:1rem';
+      n.innerHTML='<strong>Agency Plan:</strong> Submit this form for your first listing. After it goes live you can submit additional listings using this same page (up to 10 total per month). You may add, change or remove listings at any time during the month.';
+      document.getElementById('mainForm').insertBefore(n,document.getElementById('typeTabs'));
+    }
+  }
+}
+
+function setType(type,btn){
+  currentType=type;
+  document.querySelectorAll('.tt').forEach(function(t){t.classList.remove('active');});
+  btn.classList.add('active');
+  var isWanted=type==='wanted';
+  document.getElementById('wantedFields').style.display=isWanted?'block':'none';
+  document.getElementById('priceRow').style.display=isWanted?'none':'';
+  document.getElementById('specsRow').style.display=isWanted?'none':'';
+}
+
+function handlePhotos(input){
+  var preview=document.getElementById('photoPreview');
+  preview.innerHTML='';
+  var max=PLANS[currentPlan]?PLANS[currentPlan].photos:5;
+  Array.from(input.files).slice(0,max).forEach(function(file){
+    var reader=new FileReader();
+    reader.onload=function(e){
+      var img=document.createElement('img');
+      img.src=e.target.result;
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function handleVideo(input){
+  var file=input.files[0];
+  if(file) document.getElementById('videoName').textContent='✓ '+file.name+' ('+Math.round(file.size/1024/1024*10)/10+'MB)';
+}
+
+function fileToBase64(file){
+  return new Promise(function(resolve,reject){
+    var reader=new FileReader();
+    reader.onload=function(e){resolve(e.target.result.split(',')[1]);};
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function genCode(){
+  var c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var code='SI-';
+  for(var i=0;i<5;i++) code+=c.charAt(Math.floor(Math.random()*c.length));
+  return code;
+}
+
+async function submitListing(){
+  var name=document.getElementById('f-name').value.trim();
+  var phone=document.getElementById('f-phone').value.trim();
+  if(!name||!phone){alert('Please fill in your name and phone number.');return;}
+
+  var isWanted=currentType==='wanted';
+  if(!isWanted){
+    var addr=document.getElementById('f-addr').value.trim();
+    if(!addr){alert('Please enter the property address.');return;}
+  }
+
+  var confirmEl=document.getElementById('f-confirm');
+  if(confirmEl&&confirmEl.closest('#confirmSection').style.display!=='none'&&!confirmEl.checked){
+    alert('Please confirm that you have read and agree to the listing terms before submitting.');return;
+  }
+
+  var btn=document.getElementById('submitBtn');
+  btn.textContent='Uploading your listing...';
+  btn.disabled=true;
+
+  var code=genCode();
+  var p=PLANS[currentPlan]||PLANS['rentals'];
+  var price=document.getElementById('f-price')?document.getElementById('f-price').value:'';
+  var beds=document.getElementById('f-beds')?document.getElementById('f-beds').value:'';
+  var baths=document.getElementById('f-baths')?document.getElementById('f-baths').value:'';
+
+  var tagline=isWanted
+    ?'Rental Wanted \u00b7 Budget: '+(document.getElementById('f-budget').value||'Flexible')
+    :price+(beds?' \u00b7 '+beds+'bd':'')+(baths?'/'+baths+'ba':'');
+
+  var desc=document.getElementById('f-desc').value;
+  if(document.getElementById('f-req')&&document.getElementById('f-req').value) desc+=' Requirements: '+document.getElementById('f-req').value;
+
+  try{
+    var fields={
+      BusinessName:name,
+      ContactName:name,
+      Phone:phone,
+      Email:document.getElementById('f-email').value||'',
+      Address:document.getElementById('f-addr')?document.getElementById('f-addr').value:'',
+      Description:desc,
+      Tagline:tagline,
+      Category:'Realty-'+currentType,
+      Hours:document.getElementById('f-openhouse')?document.getElementById('f-openhouse').value:'',
+      PlanType:currentPlan,
+      Status:'Active',
+      CouponCode:code
+    };
+
+    var photoInput=document.getElementById('f-photos');
+    if(photoInput&&photoInput.files.length>0){
+      var pf=photoInput.files[0];
+      fields.Logo=[{filename:pf.name,content:await fileToBase64(pf)}];
+    }
+
+    var videoInput=document.getElementById('f-video');
+    if(videoInput&&videoInput.files.length>0){
+      var vf=videoInput.files[0];
+      fields.AdFile=[{filename:vf.name,content:await fileToBase64(vf)}];
+      fields.AdFileName=vf.name;
+      fields.AdFileType=vf.type;
+    }
+
+    var res=await fetch('https://api.airtable.com/v0/'+BASE+'/Ads',{
+      method:'POST',
+      headers:{'Authorization':AT,'Content-Type':'application/json'},
+      body:JSON.stringify({fields:fields})
+    });
+
+    if(!res.ok){var err=await res.json();throw new Error(JSON.stringify(err));}
+
+    document.getElementById('privateCode').textContent=code;
+    document.getElementById('successCard').style.display='block';
+    btn.style.display='none';
+    document.getElementById('successCard').scrollIntoView({behavior:'smooth'});
+
+  }catch(e){
+    btn.textContent='Submit My Listing \u2014 Goes Live Now';
+    btn.disabled=false;
+    alert('Error submitting listing: '+e.message+'\nPlease call 917-753-4444 for assistance.');
+  }
+}
+
+// Init from URL
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var plan=(params.get('plan')||'').toLowerCase();
+  if(plan&&PLANS[plan]) init(plan);
+  else document.getElementById('noPlan').style.display='block';
+})();
+</script>
+</body>
+</html>
