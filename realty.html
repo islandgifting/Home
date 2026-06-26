@@ -819,12 +819,16 @@ function showTab(tab,btn){
 // Load live listings from Airtable
 (async function(){
   try{
-    var res=await fetch('https://api.airtable.com/v0/appyNDNuwGFgR44sg/Ads?filterByFormula=AND(FIND(%22Realty%22%2CCategory))&maxRecords=100&sort%5B0%5D%5Bfield%5D=Status&sort%5B0%5D%5Bdirection%5D=asc',{
+    var res=await fetch('https://api.airtable.com/v0/appyNDNuwGFgR44sg/Ads?maxRecords=100',{
       headers:{'Authorization':'Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87'}
     });
-    if(!res.ok)return;
+    if(!res.ok){showSampleCards();return;}
     var data=await res.json();
     var records=data.records||[];
+    // Filter to only Realty listings client-side
+    records = records.filter(function(r){
+      return r.fields && r.fields.Category && r.fields.Category.toString().toLowerCase().includes('realty');
+    });
     var sales=[],rents=[],wanted=[];
     records.forEach(function(r){
       var f=r.fields;
@@ -870,16 +874,24 @@ function showTab(tab,btn){
     var saleGrid=document.getElementById('saleGrid');
     var rentGrid=document.getElementById('rentGrid');
     var wantedGrid=document.getElementById('wantedGrid');
-    saleGrid.innerHTML=sales.length?sales.map(function(o){return makeCard(o,'sale');}).join(''):'<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.85rem">No sale listings yet &mdash; <a href="#pricing" style="color:var(--green);font-weight:700">be the first to post!</a></div>';
-    rentGrid.innerHTML=rents.length?rents.map(function(o){return makeCard(o,'rent');}).join(''):'<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.85rem">No rentals yet &mdash; <a href="#pricing" style="color:var(--green);font-weight:700">post your rental!</a></div>';
+    saleGrid.innerHTML=sales.length?sales.map(function(o){return makeCard(o,'sale');}).join(''):'<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.85rem">No sale listings yet &mdash; <a href="#pricing" style="color:var(--green);font-weight:700" onclick="document.getElementById(\'pricing\').scrollIntoView({behavior:\'smooth\'});return false">be the first to post!</a></div>';
+    rentGrid.innerHTML=rents.length?rents.map(function(o){return makeCard(o,'rent');}).join(''):'<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.85rem">No rentals yet &mdash; <a href="#pricing" style="color:var(--green);font-weight:700" onclick="document.getElementById(\'pricing\').scrollIntoView({behavior:\'smooth\'});return false">post your rental!</a></div>';
     wantedGrid.innerHTML=wanted.length?wanted.map(function(o){
       var f=o.fields;
       return '<div class="wanted-card"><div class="wanted-badge">&#x1F50D; Rental Wanted</div><div class="wanted-title">'+(f.Tagline||f.BusinessName||'')+'</div><div class="wanted-desc">'+(f.Description||'').substring(0,150)+'</div><div class="wanted-meta"><span>&#x1F4DE; '+(f.Phone||'')+'</span><span>Active</span></div></div>';
-    }).join(''):'<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.85rem">No rental requests yet.</div>';
+    }).join(''):'<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.85rem">No rental requests yet. <a href="#wanted-form" style="color:var(--green);font-weight:700" onclick="document.getElementById(\'wanted-form\').scrollIntoView({behavior:\'smooth\'});return false">Post yours free!</a></div>';
     var total=sales.length+rents.length+wanted.length;
-    document.getElementById('listingCount').textContent=total+' active listing'+(total!==1?'s':'');
-  }catch(e){document.getElementById('listingCount').textContent='Browse listings below';}
+    document.getElementById('listingCount').textContent=total?total+' active listing'+(total!==1?'s':''):'Be the first to list your property!';
+  }catch(e){showSampleCards();}
 })();
+
+function showSampleCards(){
+  document.getElementById('listingCount').textContent='Sample listings — be the first to post!';
+  document.getElementById('saleGrid').innerHTML='<div class="listing-card featured-card"><div style="position:relative"><div class="listing-img-placeholder">&#x1F3E1;</div><div class="listing-badge featured">Featured</div></div><div class="listing-body"><div class="listing-price">$749,000</div><div class="listing-address">&#x1F4CD; 42 Lighthouse Ave, Westerleigh</div><div class="listing-specs"><span class="listing-spec">&#x1F6CF; 4 bed</span><span class="listing-spec">&#x1F6BF; 2.5 bath</span><span class="listing-spec">2,100 sqft</span></div><div class="listing-desc">Beautiful single-family home in prime location. Updated kitchen, finished basement, large backyard. Walking distance to shul.</div></div><div class="listing-footer"><span class="listing-contact"><a href="tel:0000000000">&#x1F4DE; 000-000-0000</a></span><span style="font-size:.7rem;color:var(--muted);font-style:italic">Sample listing</span></div></div>'
+  +'<div class="listing-card"><div style="position:relative"><div class="listing-img-placeholder">&#x1F3E0;</div><div class="listing-badge rentals">Rental</div></div><div class="listing-body"><div class="listing-price">$525,000</div><div class="listing-address">&#x1F4CD; 18 Manor Rd, Willowbrook</div><div class="listing-specs"><span class="listing-spec">&#x1F6CF; 3 bed</span><span class="listing-spec">&#x1F6BF; 2 bath</span></div><div class="listing-desc">Semi-detached, excellent condition. New roof 2023.</div></div><div class="listing-footer"><span class="listing-contact"><a href="tel:0000000000">&#x1F4DE; 000-000-0000</a></span><span style="font-size:.7rem;color:var(--muted);font-style:italic">Sample listing</span></div></div>';
+  document.getElementById('rentGrid').innerHTML='<div class="listing-card featured-card"><div style="position:relative"><div class="listing-img-placeholder">&#x1F3E0;</div><div class="listing-badge featured">Featured</div></div><div class="listing-body"><div class="listing-price">$2,800/mo</div><div class="listing-address">&#x1F4CD; 55 Victory Blvd</div><div class="listing-specs"><span class="listing-spec">&#x1F6CF; 3 bed</span><span class="listing-spec">&#x1F6BF; 2 bath</span></div><div class="listing-desc">Spacious apartment, updated throughout. Parking included. Available immediately.</div></div><div class="listing-footer"><span class="listing-contact"><a href="tel:0000000000">&#x1F4DE; 000-000-0000</a></span><span style="font-size:.7rem;color:var(--muted);font-style:italic">Sample listing</span></div></div>';
+  document.getElementById('wantedGrid').innerHTML='<div class="wanted-card"><div class="wanted-badge">&#x1F50D; Rental Wanted</div><div class="wanted-title">Family seeking 3BR in Westerleigh / Willowbrook</div><div class="wanted-desc">Frum family, excellent references. Max $3,000/mo. Need parking. Available July 1.</div><div class="wanted-meta"><span>&#x1F4DE; 000-000-0000</span><span>Sample post</span></div></div>';
+}
 
 var soldCardId='';
 var soldAction='sold';
