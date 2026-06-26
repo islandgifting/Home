@@ -426,6 +426,16 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
 .how-title{font-size:.82rem;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.3px;margin-bottom:.35rem}
 .how-desc{font-size:.76rem;color:var(--mid);line-height:1.6}
 
+
+.field{margin-bottom:.85rem}
+.field label{display:block;font-size:.65rem;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.32rem}
+.field input,.field select,.field textarea{width:100%;padding:.62rem .9rem;border:2px solid var(--border2);border-radius:4px;font-size:.86rem;color:var(--text);font-family:"Montserrat",sans-serif;outline:none;background:var(--light);transition:border .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);background:#fff}
+.field textarea{height:100px;resize:vertical}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.field-note{font-size:.68rem;color:var(--muted);margin-top:.25rem}
+@media(max-width:600px){.field-row{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -649,14 +659,7 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
       ✅ Free listings include your business name, phone, category, and address. Upgrade to Featured for a full profile with description and logo.
     </div>
 
-.field{margin-bottom:.85rem}
-.field label{display:block;font-size:.65rem;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.32rem}
-.field input,.field select,.field textarea{width:100%;padding:.62rem .9rem;border:2px solid var(--border2);border-radius:4px;font-size:.86rem;color:var(--text);font-family:"Montserrat",sans-serif;outline:none;background:var(--light);transition:border .2s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);background:#fff}
-.field textarea{height:100px;resize:vertical}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.field-note{font-size:.68rem;color:var(--muted);margin-top:.25rem}
-@media(max-width:600px){.field-row{grid-template-columns:1fr}}
+
 
     <div class="field-row">
       <div class="field"><label>Business Name *</label><input type="text" id="biz-name" placeholder="Your Business Name"></div>
