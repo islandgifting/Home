@@ -489,6 +489,7 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
     <li><a href="/advertise.html" data-page="advertise">Ads</a></li>
     <li><a href="/jobs.html" data-page="jobs">Jobs</a></li>
     <li><a href="/realty.html" data-page="realty">Realty</a></li>
+    <li><a href="/community.html" data-page="community">Community</a></li>
     <li><a href="/#shabbos" data-page="shabbos">Shabbos</a></li>
   </ul>
   </div><!-- end nav-row -->
@@ -518,6 +519,68 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
   <a href="#announce" class="btn-outline-green" style="padding:.43rem 1rem;font-size:.72rem">Announce Your Simcha</a>
   <a href="#checklist" class="btn-outline-navy" style="padding:.43rem 1rem;font-size:.72rem">Planning Checklist</a>
 </div>
+<section id="announce" class="section bg-white">
+  <div class="section-inner" style="text-align:center">
+    <div class="section-eyebrow fade-up">Share the Joy</div>
+    <h2 class="section-title fade-up">Simcha Announcements</h2>
+    <div class="green-divider fade-up"></div>
+    <p class="section-sub fade-up">Share your happy news with the Staten Island community &mdash; free!</p>
+  </div>
+  <div class="announce-grid">
+    <div class="announce-board fade-up">
+      <h3>Recent Smachot</h3>
+      <div id="announceFeed">
+        <!-- Kol Berama Issue #215, June 26 2026 -->
+        <div class="announce-item"><div class="ai-badge">&#x1F942; Kiddush</div><div class="ai-title">Kiddush &mdash; Beis Medrash Pnei Menachem</div><div class="ai-details">
+          <strong>Harav Moshe Milshtein</strong> invites the community to a Kiddusha Rabbah at Beis Medrash Pnei Menachem.
+        </div><div class="ai-date">Posted by Kol Berama &mdash; Voice of Staten Island &middot; June 26, 2026</div></div>
+
+        <div class="announce-item"><div class="ai-badge">&#x1F3E0; Welcome</div><div class="ai-title">&#x1F44B; Welcome to Our Community!</div><div class="ai-details">
+          We welcome the following families who have recently moved to Staten Island:<br>
+          <strong>Harav Chaim Yitzchak Aharon Bender</strong><br>
+          <strong>Harav Yisroel Zelig Sirkis</strong><br>
+          <strong>Harav Simcha Bunim Pikurski</strong><br>
+          <strong>Harav Tzvi Hirsh Kahana</strong> Shlit&quot;a, Chav&quot;n Avd&quot;k Ervei Nachal<br>
+          <strong>Harav Menachem Mendel Grin</strong>
+        </div><div class="ai-date">Posted by Kol Berama &mdash; Voice of Staten Island &middot; June 26, 2026</div></div>
+        
+    </div>
+    </div>
+    <div class="announce-form fade-up">
+      <h3>Post Your Simcha</h3>
+      <p>Submitted for review &mdash; usually approved within a few hours.</p>
+      <div class="field"><label>Simcha Type</label>
+        <div class="type-tags" id="typeTags">
+          <div class="type-tag selected" data-type="Wedding">&#x1F492; Wedding</div>
+          <div class="type-tag" data-type="Bar Mitzvah">&#x1F4DC; Bar Mitzvah</div>
+          <div class="type-tag" data-type="Bas Mitzvah">&#x2721; Bas Mitzvah</div>
+          <div class="type-tag" data-type="Vort">&#x1F48D; Vort</div>
+          <div class="type-tag" data-type="Bris">&#x1F476; Bris</div>
+          <div class="type-tag" data-type="Sheva Brachos">&#x1F56F; Sheva Brachos</div>
+          <div class="type-tag" data-type="Kiddush">&#x1F377; Kiddush</div>
+          <div class="type-tag" data-type="Aufruf">&#x1F4D6; Aufruf</div>
+          <div class="type-tag" data-type="Graduation">&#x1F393; Graduation</div>
+          <div class="type-tag" data-type="Event">&#x1F38A; Other Event</div>
+        </div>
+      </div>
+      <div class="field"><label>Family Name(s) *</label><input type="text" id="annFamilies" placeholder="e.g. The Cohen &amp; Levy Families"></div>
+      <div class="field"><label>Announcement *</label><textarea id="annMessage" placeholder="Share your joyful news with the community&hellip;"></textarea></div>
+      <div class="field"><label>Date of Simcha (optional)</label><input type="date" id="annDate"></div>
+      <div class="field"><label>Posted By</label><input type="text" id="annName" placeholder="e.g. The Goldstein Family"></div>
+      <button class="btn-green" style="width:100%;justify-content:center;margin-top:.5rem" id="annBtn" onclick="postAnn()">Share the Joy!</button>
+      <div class="success-msg" id="annSuccess">&#x1F389; Your simcha has been submitted and is pending approval. It will appear on the board once reviewed. Mazel Tov!</div>
+    </div>
+  </div>
+</section>
+<section id="checklist" class="section bg-light">
+  <div class="section-inner" style="text-align:center">
+    <div class="section-eyebrow fade-up">Stay Organized</div>
+    <h2 class="section-title fade-up">Simcha Planning Checklist</h2>
+    <div class="green-divider fade-up"></div>
+    <p class="section-sub fade-up">Check off each item &mdash; your progress is saved automatically</p>
+  </div>
+  <div class="cl-grid" id="clGrid"></div>
+</section>
 <section id="vendors" class="section bg-light">
   <div class="section-inner" style="text-align:center">
     <div class="section-eyebrow fade-up">Trusted Local Vendors</div>
@@ -560,58 +623,6 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
     <p style="font-size:.8rem;color:var(--mid);margin-bottom:1rem">Are you a simcha vendor? First month free.</p>
     <a href="/advertise.html" class="btn-green">List Your Business</a>
   </div>
-</section>
-<section id="announce" class="section bg-white">
-  <div class="section-inner" style="text-align:center">
-    <div class="section-eyebrow fade-up">Share the Joy</div>
-    <h2 class="section-title fade-up">Simcha Announcements</h2>
-    <div class="green-divider fade-up"></div>
-    <p class="section-sub fade-up">Share your happy news with the Staten Island community &mdash; free!</p>
-  </div>
-  <div class="announce-grid">
-    <div class="announce-form fade-up">
-      <h3>Post Your Simcha</h3>
-      <p>Submitted for review &mdash; usually approved within a few hours.</p>
-      <div class="field"><label>Simcha Type</label>
-        <div class="type-tags" id="typeTags">
-          <div class="type-tag selected" data-type="Wedding">&#x1F492; Wedding</div>
-          <div class="type-tag" data-type="Bar Mitzvah">&#x1F4DC; Bar Mitzvah</div>
-          <div class="type-tag" data-type="Bas Mitzvah">&#x2721; Bas Mitzvah</div>
-          <div class="type-tag" data-type="Vort">&#x1F48D; Vort</div>
-          <div class="type-tag" data-type="Bris">&#x1F476; Bris</div>
-          <div class="type-tag" data-type="Sheva Brachos">&#x1F56F; Sheva Brachos</div>
-          <div class="type-tag" data-type="Kiddush">&#x1F377; Kiddush</div>
-          <div class="type-tag" data-type="Aufruf">&#x1F4D6; Aufruf</div>
-          <div class="type-tag" data-type="Graduation">&#x1F393; Graduation</div>
-          <div class="type-tag" data-type="Event">&#x1F38A; Other Event</div>
-        </div>
-      </div>
-      <div class="field"><label>Family Name(s) *</label><input type="text" id="annFamilies" placeholder="e.g. The Cohen &amp; Levy Families"></div>
-      <div class="field"><label>Announcement *</label><textarea id="annMessage" placeholder="Share your joyful news with the community&hellip;"></textarea></div>
-      <div class="field"><label>Date of Simcha (optional)</label><input type="date" id="annDate"></div>
-      <div class="field"><label>Posted By</label><input type="text" id="annName" placeholder="e.g. The Goldstein Family"></div>
-      <button class="btn-green" style="width:100%;justify-content:center;margin-top:.5rem" id="annBtn" onclick="postAnn()">Share the Joy!</button>
-      <div class="success-msg" id="annSuccess">&#x1F389; Your simcha has been submitted and is pending approval. It will appear on the board once reviewed. Mazel Tov!</div>
-    </div>
-    <div class="announce-board fade-up">
-      <h3>Recent Smachot</h3>
-      <div id="announceFeed">
-        <div class="announce-item"><div class="ai-badge">&#x1F492; Wedding</div><div class="ai-title">Mazel Tov to the Goldstein &amp; Friedman Families!</div><div class="ai-details">Wishing the Chossen &amp; Kallah a beautiful life together.</div><div class="ai-date">Posted by The Goldstein Family &middot; 2 days ago</div></div>
-        <div class="announce-item"><div class="ai-badge">&#x1F4DC; Bar Mitzvah</div><div class="ai-title">Bar Mitzvah of Moshe Katz &mdash; Shabbos Parshas Vayeira</div><div class="ai-details">Join us in celebrating Moshe's Bar Mitzvah! All are welcome.</div><div class="ai-date">Posted by The Katz Family &middot; 5 days ago</div></div>
-        <div class="announce-item"><div class="ai-badge">&#x1F476; Bris</div><div class="ai-title">Bris &mdash; Baby Boy Kirzman!</div><div class="ai-details">Baruch Hashem! The bris will take place Sunday morning.</div><div class="ai-date">Posted by The Kirzman Family &middot; 1 week ago</div></div>
-        <div class="announce-item"><div class="ai-badge">&#x1F48D; Vort</div><div class="ai-title">L'Chaim &mdash; Chani Weiss &amp; Yaakov Stern!</div><div class="ai-details">L'Chaim will be held this Tuesday evening. All friends are welcome!</div><div class="ai-date">Posted by The Weiss &amp; Stern Families &middot; 3 days ago</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="checklist" class="section bg-light">
-  <div class="section-inner" style="text-align:center">
-    <div class="section-eyebrow fade-up">Stay Organized</div>
-    <h2 class="section-title fade-up">Simcha Planning Checklist</h2>
-    <div class="green-divider fade-up"></div>
-    <p class="section-sub fade-up">Check off each item &mdash; your progress is saved automatically</p>
-  </div>
-  <div class="cl-grid" id="clGrid"></div>
 </section>
 <script>
 function fv(cat,btn){document.querySelectorAll(".vfilter").forEach(function(b){b.classList.remove("active");});btn.classList.add("active");document.querySelectorAll(".vendor-card").forEach(function(c){c.style.display=(cat==="all"||c.dataset.v===cat)?"":"none";});}
