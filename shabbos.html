@@ -531,7 +531,7 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
     </div>
     <div class="shab-card">
       <div class="shab-date" id="shabDate">Loading&hellip;</div>
-      <div id="shabParsha" style="text-align:center;font-size:.82rem;font-weight:700;color:var(--green);letter-spacing:.5px;margin-bottom:1.25rem;display:none"></div>
+      <div id="shabParsha" style="text-align:center;font-size:.9rem;font-weight:800;color:var(--green);letter-spacing:.5px;margin-bottom:1.25rem;padding:.5rem;background:rgba(62,124,89,.08);border-radius:4px;border-left:3px solid var(--green);display:none"></div>
       <div class="shab-times">
         <div class="shab-block"><span class="shab-lbl">Candle Lighting</span><span class="shab-time" id="candleLighting">&mdash;</span><span class="shab-note">18 min before sunset</span></div>
         <div class="shab-block"><span class="shab-lbl">Shabbos Ends</span><span class="shab-time" id="shabbosEnds">&mdash;</span><span class="shab-note">50 min after sunset</span></div>
@@ -564,7 +564,7 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
     var city2=sel.options[sel.selectedIndex].text;
     var parshaEl=document.getElementById('shabParsha');
     if(parshaEl){
-      fetch('https://www.hebcal.com/shabbat?cfg=json&city='+encodeURIComponent(city2)+'&m=50&b=18')
+      fetch('https://www.hebcal.com/shabbat?cfg=json&city=Staten+Island,+NY&m=50&b=18')
         .then(function(r){return r.json();})
         .then(function(data){
           var parsha=(data.items||[]).find(function(i){return i.category==='parashat';});
