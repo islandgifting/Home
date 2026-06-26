@@ -618,37 +618,37 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
   <div class="city-select-wrap">
     <select id="citySelect" class="city-select">
       <optgroup label="United States">
-        <option value="40.5795,-74.1502,-5,-4">Staten Island, NY</option>
-        <option value="40.6782,-73.9442,-5,-4">Brooklyn, NY</option>
-        <option value="40.0975,-74.2148,-5,-4">Lakewood, NJ</option>
-        <option value="40.7282,-74.0776,-5,-4">Passaic / Clifton, NJ</option>
-        <option value="40.9176,-74.1719,-5,-4">Monsey, NY</option>
-        <option value="41.3107,-74.1254,-5,-4">Monroe / Kiryas Joel, NY</option>
-        <option value="41.0534,-74.1301,-5,-4">Spring Valley, NY</option>
-        <option value="39.9526,-75.1652,-5,-4">Philadelphia, PA</option>
-        <option value="42.3601,-71.0589,-5,-4">Boston, MA</option>
-        <option value="41.4993,-81.6944,-5,-4">Cleveland, OH</option>
-        <option value="42.3314,-83.0458,-5,-4">Detroit, MI</option>
-        <option value="41.8781,-87.6298,-6,-5">Chicago, IL</option>
-        <option value="34.0522,-118.2437,-8,-7">Los Angeles, CA</option>
-        <option value="25.7617,-80.1918,-5,-4">Miami, FL</option>
-        <option value="38.9072,-77.0369,-5,-4">Washington DC</option>
+        <option value="Staten Island, NY">Staten Island, NY</option>
+        <option value="Brooklyn, NY">Brooklyn, NY</option>
+        <option value="Lakewood, NJ">Lakewood, NJ</option>
+        <option value="Passaic, NJ">Passaic / Clifton, NJ</option>
+        <option value="Monsey, NY">Monsey, NY</option>
+        <option value="Monroe, NY">Monroe / Kiryas Joel, NY</option>
+        <option value="Spring Valley, NY">Spring Valley, NY</option>
+        <option value="Philadelphia, PA">Philadelphia, PA</option>
+        <option value="Boston, MA">Boston, MA</option>
+        <option value="Cleveland, OH">Cleveland, OH</option>
+        <option value="Detroit, MI">Detroit, MI</option>
+        <option value="Chicago, IL">Chicago, IL</option>
+        <option value="Los Angeles, CA">Los Angeles, CA</option>
+        <option value="Miami, FL">Miami, FL</option>
+        <option value="Washington, DC">Washington DC</option>
       </optgroup>
       <optgroup label="United Kingdom">
-        <option value="51.5074,-0.1278,0,1">London</option>
-        <option value="53.4808,-2.2426,0,1">Manchester</option>
+        <option value="London, UK">London</option>
+        <option value="Manchester, UK">Manchester</option>
       </optgroup>
       <optgroup label="Israel">
-        <option value="31.7683,35.2137,2,3">Jerusalem</option>
-        <option value="32.0853,34.7818,2,3">Tel Aviv / Bnei Brak</option>
-        <option value="32.7940,34.9896,2,3">Haifa</option>
-        <option value="31.7442,34.9885,2,3">Beit Shemesh</option>
+        <option value="Jerusalem">Jerusalem</option>
+        <option value="Tel Aviv">Tel Aviv / Bnei Brak</option>
+        <option value="Haifa">Haifa</option>
+        <option value="Beit Shemesh">Beit Shemesh</option>
       </optgroup>
       <optgroup label="Other">
-        <option value="48.8566,2.3522,1,2">Paris, France</option>
-        <option value="43.6532,-79.3832,-5,-4">Toronto, Canada</option>
-        <option value="45.5017,-73.5673,-5,-4">Montreal, Canada</option>
-        <option value="-33.8688,151.2093,10,11">Sydney, Australia</option>
+        <option value="Paris, France">Paris, France</option>
+        <option value="Toronto, Canada">Toronto, Canada</option>
+        <option value="Montreal, Canada">Montreal, Canada</option>
+        <option value="Sydney, Australia">Sydney, Australia</option>
       </optgroup>
     </select>
     <span class="city-select-arrow">▾</span>
@@ -715,57 +715,53 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
 </div>
 
 <script>
-// ── SHABBOS TIMES ──
-function shabNextFri(){
-  var d=new Date(), day=d.getDay(), diff;
-  if(day===6) diff=6;       // Saturday -> next Friday
-  else diff=5-day;           // Sun=4, Mon=4, Tue=3, Wed=2, Thu=1, Fri=0
-  var fri=new Date(d);
-  fri.setDate(d.getDate()+diff);
-  fri.setHours(12,0,0,0);
-  return fri;
+// ── SHABBOS TIMES via Hebcal API ──
+function shabFmtTime(dateStr){
+  var d=new Date(dateStr);
+  return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
 }
-function shabSunset(d,lat,lon,std,dst){
-  var yr=d.getFullYear();
-  var isDST=d>=new Date(yr,2,8)&&d<new Date(yr,10,1);
-  var off=isDST?dst:std;
-  var J=Math.floor((d-new Date(yr,0,0))/86400000);
-  var D=23.45*Math.sin((2*Math.PI/365)*(J-81))*Math.PI/180;
-  var cosH=-Math.tan(lat*Math.PI/180)*Math.tan(D);
-  if(cosH>1||cosH<-1) return null;
-  return 12+Math.acos(cosH)*180/Math.PI/15-lon/15+off;
-}
-function shabFmt(h){
-  if(h===null) return 'N/A';
-  h=((h%24)+24)%24;
-  var hr=Math.floor(h), mn=Math.round((h-hr)*60);
-  if(mn===60){hr++;mn=0;}
-  var p=hr>=12?'PM':'AM';
-  var h12=hr>12?hr-12:(hr===0?12:hr);
-  return h12+':'+(mn<10?'0':'')+mn+' '+p;
-}
-var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
-var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-function updateShabbos(){
+var SHAB_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var SHAB_DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+async function updateShabbos(){
   var sel=document.getElementById('citySelect');
   if(!sel) return;
-  var parts=sel.value.split(',');
-  var lat=parseFloat(parts[0]),lon=parseFloat(parts[1]),std=parseFloat(parts[2]),dst=parseFloat(parts[3]);
-  var fri=shabNextFri();
-  var sun=shabSunset(fri,lat,lon,std,dst);
-  var sat=new Date(fri); sat.setDate(fri.getDate()+1);
   var city=sel.options[sel.selectedIndex].text;
-  document.getElementById('shabDate').textContent=
-    city.toUpperCase()+' · '+DAYS[fri.getDay()].toUpperCase()+', '+
-    MONTHS[fri.getMonth()].toUpperCase()+' '+fri.getDate()+
-    ' — '+MONTHS[sat.getMonth()].toUpperCase()+' '+sat.getDate()+', '+sat.getFullYear();
-  document.getElementById('candleLighting').textContent=shabFmt(sun!==null?sun-18/60:null);
-  document.getElementById('shabbosEnds').textContent=shabFmt(sun!==null?sun+50/60:null);
-  document.getElementById('rabbeinuTam').textContent=shabFmt(sun!==null?sun+72/60:null);
+  document.getElementById('candleLighting').textContent='Loading…';
+  document.getElementById('shabbosEnds').textContent='Loading…';
+  document.getElementById('rabbeinuTam').textContent='Loading…';
+  document.getElementById('shabDate').textContent=city.toUpperCase()+' · Loading…';
+  try{
+    var res=await fetch('https://www.hebcal.com/shabbat?cfg=json&city='+encodeURIComponent(city)+'&m=50&b=18');
+    var data=await res.json();
+    var items=data.items||[];
+    var candle=items.find(function(i){return i.category==='candles';});
+    var havdalah=items.find(function(i){return i.category==='havdalah';});
+    var parsha=items.find(function(i){return i.category==='parashat';});
+    var fri=candle?new Date(candle.date):new Date();
+    var sat=new Date(fri); sat.setDate(fri.getDate()+1);
+    document.getElementById('shabDate').textContent=
+      city.toUpperCase()+' · '+SHAB_DAYS[fri.getDay()].toUpperCase()+', '+
+      SHAB_MONTHS[fri.getMonth()].toUpperCase()+' '+fri.getDate()+
+      ' — '+SHAB_MONTHS[sat.getMonth()].toUpperCase()+' '+sat.getDate()+', '+sat.getFullYear()+
+      (parsha?' · '+parsha.title:'');
+    document.getElementById('candleLighting').textContent=candle?shabFmtTime(candle.date):'See calendar';
+    document.getElementById('shabbosEnds').textContent=havdalah?shabFmtTime(havdalah.date):'See calendar';
+    if(havdalah){
+      var rt=new Date(havdalah.date);
+      rt.setMinutes(rt.getMinutes()+22);
+      document.getElementById('rabbeinuTam').textContent=shabFmtTime(rt.toISOString());
+    } else {
+      document.getElementById('rabbeinuTam').textContent='See calendar';
+    }
+  }catch(e){
+    document.getElementById('shabDate').textContent=city.toUpperCase()+' · See local calendar';
+    document.getElementById('candleLighting').textContent='See local calendar';
+    document.getElementById('shabbosEnds').textContent='See local calendar';
+    document.getElementById('rabbeinuTam').textContent='See local calendar';
+  }
 }
-// Run immediately - script is at bottom so DOM elements exist
 updateShabbos();
-document.getElementById('citySelect').addEventListener('change', updateShabbos);
+document.getElementById('citySelect').addEventListener('change',updateShabbos);
 // ── COUNTER ──
 var statObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!en.target.dataset.done){en.target.dataset.done='1';en.target.querySelectorAll('.stat-n[data-target]').forEach(function(el){var t=parseInt(el.dataset.target);var c=0;var iv=setInterval(function(){c=Math.min(c+Math.ceil(t/40),t);el.textContent=c+(t===80?'+':'');if(c>=t)clearInterval(iv);},40);});}});},{threshold:.5});
 var sb=document.querySelector('.stats-bar');if(sb)statObs.observe(sb);
