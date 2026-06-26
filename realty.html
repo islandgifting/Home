@@ -594,10 +594,10 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
       <div class="per-listing">Per rental listing</div>
       <ul class="pfeats">
         <li>1 rental property listing</li>
-        <li>Photo, price, specs, contact</li>
+        <li>Up to 5 photos &mdash; rotating display</li>
+        <li>Price, specs &amp; contact info</li>
         <li>For Rent listings only</li>
-        <li>Private removal code to mark Rented</li>
-        <li>Sold/Rented bar through listing</li>
+        <li>Private code to mark Rented</li>
         <li>Listing is final once submitted</li>
       </ul>
       <a href="https://buy.stripe.com/realty-rentals" class="pbtn" onclick="goStripe('rentals');return false">Post Rental &rarr;</a>
@@ -698,6 +698,38 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
   </div>
 </div>
 
+
+<!-- RENTAL WANTED FORM -->
+<div class="section bg-light" id="wanted-form">
+  <div class="section-inner" style="text-align:center">
+    <div class="section-eyebrow fade-up">Free &mdash; No Payment Needed</div>
+    <h2 class="section-title fade-up">Post a Rental Wanted</h2>
+    <div class="green-divider fade-up"></div>
+    <p class="section-sub fade-up">Tell the community what you are looking for. Your post goes live instantly and auto-expires after 30 days.</p>
+  </div>
+  <div style="max-width:620px;margin:2rem auto 0;background:#fff;border:1px solid var(--border2);border-radius:8px;padding:2.25rem;border-top:4px solid var(--navy)" class="fade-up">
+    <div class="field"><label>What Are You Looking For? *</label>
+      <input type="text" id="w-title" placeholder="e.g. 3BR apartment in Westerleigh / Willowbrook">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+      <div class="field"><label>Max Budget / Rent</label><input type="text" id="w-budget" placeholder="e.g. $3,000/mo"></div>
+      <div class="field"><label>Desired Move-in Date</label><input type="text" id="w-movein" placeholder="e.g. August 1, flexible"></div>
+    </div>
+    <div class="field"><label>Additional Requirements <span style="font-size:.6rem;color:var(--muted);font-weight:600;background:var(--light);border:1px solid var(--border2);padding:.1rem .4rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px">Optional</span></label>
+      <textarea id="w-req" style="height:80px;width:100%;padding:.62rem .9rem;border:2px solid var(--border2);border-radius:4px;font-size:.86rem;font-family:Montserrat,sans-serif;outline:none;background:var(--light);resize:vertical" placeholder="Parking, ground floor, near shul, pet-friendly..."></textarea>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+      <div class="field"><label>Your Phone *</label><input type="tel" id="w-phone" placeholder="718-000-0000"></div>
+      <div class="field"><label>Your Email <span style="font-size:.6rem;color:var(--muted);font-weight:600;background:var(--light);border:1px solid var(--border2);padding:.1rem .4rem;border-radius:50px;text-transform:uppercase;letter-spacing:.5px">Optional</span></label><input type="email" id="w-email" placeholder="email@example.com"></div>
+    </div>
+    <div class="field"><label>Your Name</label><input type="text" id="w-name" placeholder="Your name"></div>
+    <button class="btn-green" style="width:100%;justify-content:center;padding:.75rem;font-size:.82rem;margin-top:.25rem" id="wantedSubmitBtn" onclick="submitWanted()">Post Rental Wanted &mdash; Free &amp; Instant</button>
+    <div id="wantedSuccess" style="display:none;margin-top:.75rem;background:rgba(62,124,89,.08);border:2px solid rgba(62,124,89,.25);border-radius:6px;padding:1rem;text-align:center;font-size:.85rem;color:var(--navy);font-weight:600;line-height:1.65">
+      ✅ Your rental request is now live! The community can see it on the Rental Wanted tab. It will automatically expire after 30 days.
+    </div>
+  </div>
+</div>
+
 <!-- MARK SOLD MODAL -->
 <div class="sold-modal" id="soldModal">
   <div class="sold-modal-box">
@@ -725,6 +757,36 @@ var STRIPE_PRICES = {
   agency: 'price_1TmdvCIDdMLYVh4oSvJOoUNb'
 };
 
+
+async function submitWanted(){
+  var title=document.getElementById('w-title').value.trim();
+  var phone=document.getElementById('w-phone').value.trim();
+  if(!title||!phone){alert('Please fill in what you are looking for and your phone number.');return;}
+  var btn=document.getElementById('wantedSubmitBtn');
+  btn.textContent='Posting...';btn.disabled=true;
+  try{
+    var budget=document.getElementById('w-budget').value;
+    var req=document.getElementById('w-req').value;
+    var tagline='Rental Wanted · '+title+(budget?' · Budget: '+budget:'');
+    var desc=title+(req?'
+
+Requirements: '+req:'');
+    await fetch('https://api.airtable.com/v0/appyNDNuwGFgR44sg/Ads',{
+      method:'POST',
+      headers:{'Authorization':'Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87','Content-Type':'application/json'},
+      body:JSON.stringify({fields:{
+        BusinessName:document.getElementById('w-name').value||phone,
+        ContactName:document.getElementById('w-name').value||'',
+        Phone:phone,Email:document.getElementById('w-email').value||'',
+        Tagline:tagline,Description:desc,
+        Category:'Realty-wanted',PlanType:'wanted',Status:'Active',
+        Hours:document.getElementById('w-movein').value||''
+      }})
+    });
+    document.getElementById('wantedSuccess').style.display='block';
+    btn.style.display='none';
+  }catch(e){btn.textContent='Post Rental Wanted — Free & Instant';btn.disabled=false;alert('Error. Please call 917-753-4444.');}
+}
 async function goStripe(plan){
   try{
     var r=await fetch('/.netlify/functions/create-checkout',{
@@ -821,7 +883,7 @@ function showTab(tab,btn){
 
 var soldCardId='';
 var soldAction='sold';
-function openSoldModal(btn,action,cardId){soldAction=action;soldCardId=cardId;document.getElementById('modalTitle').textContent='Mark as '+(action==='sold'?'Sold':'Rented');document.getElementById('modalAction').textContent=action;document.getElementById('removalCode').value='';document.getElementById('codeError').style.display='none';document.getElementById('soldModal').classList.add('open');document.body.style.overflow='hidden';}
+function openSoldModal(btn,action,cardId){soldAction=action;soldCardId=cardId;document.getElementById('modalTitle').textContent='Mark as Rented';document.getElementById('modalAction').textContent='rented';document.getElementById('removalCode').value='';document.getElementById('codeError').style.display='none';document.getElementById('soldModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeSoldModal(){document.getElementById('soldModal').classList.remove('open');document.body.style.overflow='';}
 async function confirmRemoval(){
   var code=document.getElementById('removalCode').value.trim().toUpperCase();
