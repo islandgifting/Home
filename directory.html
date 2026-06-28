@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VTW71T3PS0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VTW71T3PS0');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Business Directory &mdash; Shop Local Staten Island</title>
@@ -484,6 +492,7 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
     <li><a href="/advertise.html" data-page="advertise">Ads</a></li>
     <li><a href="/jobs.html" data-page="jobs">Jobs</a></li>
     <li><a href="/realty.html" data-page="realty">Realty</a></li>
+    <li><a href="/community.html" data-page="community">Community</a></li>
     <li><a href="/#shabbos" data-page="shabbos">Shabbos</a></li>
   </ul>
   </div><!-- end nav-row -->
@@ -525,6 +534,7 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
       <option value="transport">Transportation</option>
       <option value="realty">Realtors</option>
       <option value="insurance">Insurance</option>
+      <option value="gemach">Community Gemachs</option>
       <option value="emergency">Emergency Services</option>
     </select>
     <button class="search-btn" onclick="filterBiz()">Search</button>
@@ -573,6 +583,7 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
   <button class="ctab" onclick="setTab('transport',this)">Transport</button>
   <button class="ctab" onclick="setTab('realty',this)">Realty</button>
   <button class="ctab" onclick="setTab('insurance',this)">Insurance</button>
+  <button class="ctab" onclick="setTab('gemach',this)">Gemach</button>
   <button class="ctab em" onclick="setTab('emergency',this)">Emergency</button>
 </div>
 <div class="dir-container">
@@ -669,6 +680,19 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
       <div class="biz-card" data-cat="insurance" data-search="aryeh pearlman life health insurance agent"><div class="biz-name">Aryeh Pearlman</div><div class="biz-desc">Life &amp; Health Insurance Agent</div><div class="biz-phone"><a href="tel:7183741103">718-374-1103</a></div><div class="biz-tag">Life &amp; Health Insurance</div></div>
       <div class="biz-card" data-cat="insurance" data-search="mr hirshenbaum estate planning life retirement"><div class="biz-name">Mr Hirshenbaum</div><div class="biz-desc">Estate Planning · Life &amp; Retirement</div><div class="biz-phone"><a href="tel:3477250833">347-725-0833</a></div><div class="biz-tag">Estate Planning</div></div>
     </div></div>
+    
+    <div class="cat-section" data-cat="gemach"><div class="cat-title" style="color:var(--blue);border-bottom-color:var(--blue)">Community Gemachs</div><div class="biz-grid">
+      <div class="biz-card" data-cat="gemach" data-search="mezuzot inspection gemach scott diamond"><div class="biz-name">Mezuzot Inspection Gemach</div><div class="biz-desc">Picked up, inspected, repaired &amp; returned. Free transport.</div><div class="biz-phone"><a href="tel:9176743317">917-674-3317</a></div><div class="biz-tag">Mezuzot</div></div>
+      <div class="biz-card" data-cat="gemach" data-search="simcha gowns gemach sarah chasky"><div class="biz-name">Simcha Gowns Gemach</div><div class="biz-desc">Beautiful simcha gowns to borrow</div><div class="biz-phone"><a href="tel:9175750749">917-575-0749</a></div><div class="biz-tag">Simcha</div></div>
+      <div class="biz-card" data-cat="gemach" data-search="chair gemach chana reichman borrow"><div class="biz-name">Chair Gemach</div><div class="biz-desc">Borrow chairs for company or a simcha</div><div class="biz-phone"><a href="tel:7184046708">718-404-6708</a></div><div class="biz-tag">Simcha</div></div>
+      <div class="biz-card" data-cat="gemach" data-search="baby newborn gemach emunah toback"><div class="biz-name">Baby on the Go Gemach</div><div class="biz-desc">Liluy Nishmat Rafi Toback &mdash; newborn &amp; baby travel items</div><div class="biz-phone"><a href="tel:7188131977">718-813-1977</a></div><div class="biz-tag">Baby</div></div>
+      <div class="biz-card" data-cat="gemach" data-search="mom to mom kosher lunch new mothers"><div class="biz-name">Mom to Mom</div><div class="biz-desc">Free hot kosher lunches delivered to new moms for a week</div><div class="biz-phone"><a href="tel:3472548112">347-254-8112</a></div><div class="biz-tag">New Moms</div></div>
+      <div class="biz-card" data-cat="gemach" data-search="rachelit school uniforms centerpiece ketubot"><div class="biz-name">Rachelit Gemach</div><div class="biz-desc">School uniforms, centerpieces, ketubot, Hebrew writing for matzeva</div><div class="biz-phone"><a href="tel:7189839664">718-983-9664</a></div><div class="biz-tag">Multiple</div></div>
+      <div class="biz-card" data-cat="gemach" data-search="free apartment weekend simcha joseph avenue"><div class="biz-name">Free Weekend Apartment</div><div class="biz-desc">Available for weekends or simchos. Joseph Avenue.</div><div class="biz-phone"><a href="tel:3474881536">347-488-1536</a></div><div class="biz-tag">Housing</div></div>
+    </div>
+    <p style="font-size:.72rem;color:var(--muted);margin-top:.65rem;padding:.5rem .75rem;background:rgba(44,110,158,.06);border-radius:4px;border-left:3px solid var(--blue)">ℹ Gemach listings sourced from the Young Israel of Staten Island weekly newsletter. Contact each gemach directly. <a href="/community.html" style="color:var(--blue);font-weight:700">View full community page &#x2192;</a></p>
+    </div>
+
     <div class="cat-section" data-cat="emergency"><div class="cat-title em">Emergency Services</div><div class="biz-grid">
       <div class="biz-card em hatz" data-cat="emergency" data-search="hatzolah emergency ambulance medical"><div class="biz-name">Hatzolah</div><div class="biz-desc">Emergency Medical Services</div><div class="biz-phone"><a href="tel:7182301000">718-230-1000</a></div><div class="biz-tag">Emergency Medical</div></div>
       <div class="biz-card em" data-cat="emergency" data-search="chaveirim community help flat tire lockout"><div class="biz-name">Chaveirim</div><div class="biz-desc">Community Emergency Assistance</div><div class="biz-phone"><a href="tel:7187612428">718-761-2428</a></div><div class="biz-tag">Community Assistance</div></div>
