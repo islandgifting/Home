@@ -536,12 +536,15 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
       <option value="insurance">Insurance</option>
       <option value="gemach">Community Gemachs</option>
       <option value="emergency">Emergency Services</option>
+      <option value="media">Media</option>
+      <option value="daycare">Daycare</option>
+      <option value="other">Other</option>
     </select>
     <button class="search-btn" onclick="filterBiz()">Search</button>
   </div>
 </div>
 <div style="background:#fff;border-bottom:1px solid var(--border2);padding:.65rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.65rem">
-  <p style="font-size:.78rem;color:var(--mid);font-weight:500">80+ local businesses across 14 categories</p>
+  <p id="bizCountText" style="font-size:.78rem;color:var(--mid);font-weight:500">80+ local businesses across 16 categories</p>
   <a href="/marketplace.html" class="btn-green" style="padding:.42rem 1rem;font-size:.72rem">+ Post a Free Listing</a>
 </div>
 
@@ -584,7 +587,10 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
   <button class="ctab" onclick="setTab('realty',this)">Realty</button>
   <button class="ctab" onclick="setTab('insurance',this)">Insurance</button>
   <button class="ctab" onclick="setTab('gemach',this)">Gemach</button>
+  <button class="ctab" onclick="setTab('media',this)">Media</button>
+  <button class="ctab" onclick="setTab('daycare',this)">Daycare</button>
   <button class="ctab em" onclick="setTab('emergency',this)">Emergency</button>
+  <button class="ctab" onclick="setTab('other',this)">Other</button>
 </div>
 <div class="dir-container">
   <div id="bizContainer">
@@ -701,6 +707,9 @@ footer{background:var(--navy);padding:4.5rem 2.5rem 2rem;border-top:4px solid va
       <div class="biz-card em" data-cat="emergency" data-search="shmira security patrol"><div class="biz-name">Shmira</div><div class="biz-phone"><a href="tel:7187614444">718-761-4444</a></div><div class="biz-tag">Security Patrol</div></div>
       <div class="biz-card em" data-cat="emergency" data-search="shomrim neighborhood watch security"><div class="biz-name">Shomrim</div><div class="biz-phone"><a href="tel:7183702121">718-370-2121</a></div><div class="biz-tag">Neighborhood Watch</div></div>
     </div></div>
+    <div class="cat-section hidden" data-cat="media"><div class="cat-title">Media &amp; Marketing</div><div class="biz-grid"></div></div>
+    <div class="cat-section hidden" data-cat="daycare"><div class="cat-title">Daycare &amp; Playgroups</div><div class="biz-grid"></div></div>
+    <div class="cat-section hidden" data-cat="other"><div class="cat-title" style="color:var(--muted);border-bottom-color:var(--border2)">Newly Added &mdash; Awaiting Category Review</div><div class="biz-grid"></div></div>
     <p id="noResults" class="hidden" style="color:var(--muted);padding:3rem;text-align:center;font-size:.9rem">No businesses found. Try a different search.</p>
   </div>
   <div style="text-align:center;padding:3rem 0 1rem;border-top:1px solid var(--border2);margin-top:1rem">
@@ -785,6 +794,80 @@ var allCoupons=[];
 (async function(){try{var ar=await fetch("/.netlify/functions/get-ads");var cr=await fetch("https://api.airtable.com/v0/appyNDNuwGFgR44sg/tblQk5fUA5fvrxupZ",{headers:{"Authorization":"Bearer pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87"}});if(ar.ok){var data=await ar.json();var ads=data.all||[...(data.banners||[]),...(data.featured||[]),...(data.sponsored||[])];ads.forEach(function(ad){document.querySelectorAll(".biz-card").forEach(function(card){var n=card.querySelector(".biz-name");if(!n)return;var cn=n.textContent.trim().toLowerCase(),an=ad.businessName.toLowerCase();if(cn===an||cn.includes(an)||an.includes(cn)){card.classList.add(ad.planType==="premium"?"premium-card":"featured-card");var btn=document.createElement("button");btn.className="biz-more-btn";btn.textContent=ad.planType==="premium"?"View Profile":"View Details";btn.onclick=function(e){e.stopPropagation();openBizModal(ad);};card.appendChild(btn);}});})}if(cr.ok){var cd=await cr.json();allCoupons=(cd.records||[]).filter(function(r){return (r.fields.Status||"").toLowerCase()==="active";}).map(function(r){return {biz:r.fields.BusinessName||"",discount:r.fields.Discount||"",desc:r.fields.Description||"",code:r.fields.Code||""};});}}catch(e){}})();
 function openBizModal(ad){var b=document.getElementById("bizModalBanner");b.innerHTML=ad.bannerHTML?'<iframe srcdoc="'+ad.bannerHTML.replace(/"/g,"&quot;")+'" style="width:100%;height:140px;border:none"></iframe>':'<div style="height:72px;background:var(--navy);display:flex;align-items:center;justify-content:center"><div style="font-size:1rem;font-weight:800;color:#fff;text-transform:uppercase">'+ad.businessName+"</div></div>";document.getElementById("bizModalBadge").textContent=ad.planType==="premium"?"Premium Partner":"Featured Partner";document.getElementById("bizModalName").textContent=ad.businessName||"";document.getElementById("bizModalCat").textContent=(ad.category||"")+(ad.address?" · "+ad.address:"");document.getElementById("bizModalDesc").textContent=ad.description||ad.tagline||"";var a="";if(ad.phone)a+='<a href="tel:'+ad.phone.replace(/[^0-9]/g,"")+'" class="biz-modal-btn-call">Call Now</a>';if(ad.link)a+='<a href="'+ad.link+'" target="_blank" class="biz-modal-btn-web">Visit Website</a>';if(ad.email)a+='<a href="mailto:'+ad.email+'" class="biz-modal-btn-email">Email Us</a>';document.getElementById("bizModalActions").innerHTML=a;var bc=allCoupons.filter(function(c){return c.biz.toLowerCase()===(ad.businessName||"").toLowerCase();});var cs=document.getElementById("bizModalCoupons");if(bc.length){cs.style.display="block";document.getElementById("bizModalCouponsList").innerHTML=bc.map(function(c){return '<div class="biz-modal-coupon"><div><div class="biz-modal-coupon-discount">'+c.discount+'</div><div class="biz-modal-coupon-desc">'+c.desc+"</div></div>"+(c.code?'<div class="biz-modal-coupon-code" onclick="navigator.clipboard.writeText(\''+c.code+'\');this.textContent=\'Copied!\';setTimeout(function(){this.textContent=\''+c.code+"'\"},2000)\">"+c.code+"</div>":"")+"</div>";}).join("");}else cs.style.display="none";document.getElementById("bizModalOverlay").classList.add("open");document.body.style.overflow="hidden";}
 function closeBizModal(){document.getElementById("bizModalOverlay").classList.remove("open");document.body.style.overflow="";}
+
+// ── AUTO-SYNC APPROVED LISTINGS FROM AIRTABLE (no manual step needed) ──
+(function(){
+var LISTINGS_BASE='appyNDNuwGFgR44sg', LISTINGS_TABLE='tblBt9FfVcrMK1aOs';
+var LISTINGS_TOKEN='pattpepVsrciRn5To.2f3666388d8f882b39c8a734ed05add6f746f3fa0cd9c20ca38155f00eaf9d87';
+var CAT_MAP={
+  'restaurants & food':'food','food':'food',
+  'home services':'home','home':'home',
+  'photography':'photo','photo':'photo',
+  'auto services':'auto','auto':'auto',
+  'medical':'medical',
+  'specialty shops':'specialty','specialty':'specialty','חנויות מיוחדות':'specialty',
+  'beauty & self care':'beauty','beauty':'beauty',
+  'pool rental':'pool','pool':'pool',
+  'services':'services',
+  'transportation':'transport','transport':'transport',
+  'realtors':'realty','realty':'realty',
+  'insurance agents':'insurance','insurance':'insurance',
+  'community gemachs':'gemach','gemach':'gemach',
+  'emergency services':'emergency','emergency':'emergency',
+  'media':'media','marketing':'media',
+  'daycare':'daycare','childcare':'daycare','playgroup':'daycare'
+};
+function normName(s){return (s||'').toLowerCase().replace(/[^a-z0-9]/g,'');}
+function mapCategory(raw){var k=(raw||'').trim().toLowerCase();return CAT_MAP[k]||'other';}
+function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+async function syncApprovedListings(){
+  try{
+    var res=await fetch('https://api.airtable.com/v0/'+LISTINGS_BASE+'/'+LISTINGS_TABLE+'?sort[0][field]=Submitted&sort[0][direction]=desc',{headers:{'Authorization':'Bearer '+LISTINGS_TOKEN}});
+    if(!res.ok)return;
+    var data=await res.json();
+    var records=(data.records||[]).filter(function(r){return (r.fields.Status||'')==='Approved';});
+    var seen={};
+    document.querySelectorAll('.biz-card .biz-name').forEach(function(n){seen[normName(n.textContent)]=true;});
+    var added=0;
+    records.forEach(function(r){
+      var f=r.fields;
+      var title=f.Title||'';
+      var key=normName(title);
+      if(!title||seen[key])return;
+      seen[key]=true;
+      var cat=mapCategory(f.Category);
+      var section=document.querySelector('.cat-section[data-cat="'+cat+'"]');
+      if(!section)return;
+      var grid=section.querySelector('.biz-grid');
+      var phone=f.Phone||'';
+      var addr=f.Address||'';
+      var desc=f.Description||'';
+      var contact=f.Contact||'';
+      var searchTerms=(title+' '+desc+' '+contact).toLowerCase();
+      var card=document.createElement('div');
+      card.className='biz-card';
+      card.dataset.cat=cat;
+      card.dataset.search=searchTerms;
+      var html='<div class="biz-name">'+esc(title)+'</div>';
+      if(desc)html+='<div class="biz-desc">'+esc(desc)+'</div>';
+      if(addr)html+='<div class="biz-addr">'+esc(addr)+'</div>';
+      if(phone)html+='<div class="biz-phone"><a href="tel:'+esc(phone.replace(/[^0-9]/g,''))+'">'+esc(phone)+'</a></div>';
+      else if(contact)html+='<div class="biz-desc">Contact: '+esc(contact)+'</div>';
+      card.innerHTML=html;
+      grid.appendChild(card);
+      section.classList.remove('hidden');
+      added++;
+    });
+    if(added>0){
+      var totalCards=document.querySelectorAll('.biz-card').length;
+      var totalCats=document.querySelectorAll('.cat-section:not(.hidden)').length;
+      var ct=document.getElementById('bizCountText');
+      if(ct)ct.textContent=totalCards+'+ local businesses across '+totalCats+' categories';
+    }
+  }catch(e){}
+}
+syncApprovedListings();
+})();
 
 </script>
 </body>
