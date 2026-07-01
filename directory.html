@@ -846,6 +846,7 @@ async function syncApprovedListings(){
       var phone=f.Phone||f['Phone Number']||f.PhoneNumber||f.phone||f['phone number']||'';
       var addr=f.Address||f['Business Address']||f.address||'';
       var desc=f.Description||'';
+      if(desc.length>100){desc=desc.substring(0,100).replace(/\s+\S*$/,'').trim()+'…';}
       var contact=f.Contact||'';
       var searchTerms=(title+' '+desc+' '+contact).toLowerCase();
       var card=document.createElement('div');
